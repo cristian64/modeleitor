@@ -1,6 +1,4 @@
-drop table if exists fotos;
 drop table if exists precios;
-
 drop table if exists anos_modelos;
 
 drop table if exists temporadas_modelos;
@@ -14,6 +12,8 @@ drop table if exists estados;
 drop table if exists colores_modelos;
 drop table if exists colores;
 
+drop table if exists fotos;
+drop table if exists notas;
 drop table if exists modelos;
 
 drop table if exists fabricantes_telefonos;
@@ -95,11 +95,38 @@ create table modelos
 	id int auto_increment,
 	modelo varchar(50) not null,
 	descripcion text,
+	precio_venta decimal(4,2) not null default 0,
+	precio_compra decimal(4,2) not null default 0,
+	precio_venta_minorista decimal(4,2) not null default 0,
+	primer_ano int(4),
 	id_fabricante int not null,
 	fecha_insercion datetime not null,
 	primary key (id),
 	foreign key (id_fabricante) references fabricantes (id) on delete restrict on update cascade
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
+create table notas
+(
+	id int auto_increment,
+	id_modelo int not null,
+	id_usuario int,
+	texto text,
+	fecha_insercion datetime not null,
+	primary key (id),
+	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade,
+	foreign key (id_usuario) references usuarios (id) on delete restrict on update cascade
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
+create table fotos
+(
+	id int auto_increment,
+	id_modelo int not null,
+	descripcion text,
+	fecha_insercion datetime not null,
+	primary key (id),
+	foreign key (id_modelo) references modelos (id) on delete restrict on update cascade
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
 
 
 
@@ -127,6 +154,8 @@ create table colores_modelos
 
 
 
+
+
 create table estados
 (
 	id int auto_increment,
@@ -145,6 +174,8 @@ create table estados_modelos
 	foreign key (id_estado) references estados (id) on delete restrict on update cascade,
 	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade	 
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
+
 
 
 
@@ -170,6 +201,9 @@ create table generos_modelos
 
 
 
+
+
+
 create table temporadas
 (
 	id int auto_increment,
@@ -191,6 +225,9 @@ create table temporadas_modelos
 
 
 
+
+
+
 /*
 --create table anos_modelos
 --(
@@ -205,6 +242,9 @@ create table temporadas_modelos
 
 
 
+
+
+/*
 create table precios
 (
 	id_modelo int,
@@ -214,18 +254,10 @@ create table precios
 	fecha_insercion datetime not null,
 	primary key (id_modelo, fecha),
 	foreign key (id_modelo) references modelos (id)	 on delete cascade on update cascade
-);
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+*/
 
 
-create table fotos
-(
-	id int auto_increment,
-	id_modelo int not null,
-	descripcion text,
-	fecha_insercion datetime not null,
-	primary key (id),
-	foreign key (id_modelo) references modelos (id) on delete restrict on update cascade
-);
 
 
 
