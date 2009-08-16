@@ -121,6 +121,8 @@ create table fotos
 (
 	id int auto_increment,
 	id_modelo int not null,
+	ruta varchar(256),
+	ruta_miniatura varchar(256),
 	descripcion text,
 	fecha_insercion datetime not null,
 	primary key (id),
