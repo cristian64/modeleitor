@@ -292,3 +292,19 @@ insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_i
 
 
 
+/*
+Disparador en MySQL
+
+create trigger anuncios_a_usuarios
+before insert on anuncios
+for each row
+begin
+       declare cantidad int;
+       select count(*) into cantidad from usuarios where nombre_usuario = new.usuario;
+       if cantidad = 0
+       then
+                select ERROR_no_existe_el_usuario into cantidad from usuarios;
+       end if;
+end |
+*/
+
