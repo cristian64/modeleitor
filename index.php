@@ -11,6 +11,7 @@
 			BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
 			require_once 'ENColor.php';
 			require_once 'ENFabricante.php';
+			require_once 'ENFoto.php';
 
 			/*echo "¿Existe el color de id 3? ";
 			if (ENColor::existePorId(3)) echo "Sí";
@@ -107,7 +108,7 @@
 				echo "No guardado correctamente.<br/>";
 			}*/
 
-			$fabricantes = CADFabricante::obtenerTodos();
+			/*$fabricantes = CADFabricante::obtenerTodos();
 			foreach ($fabricantes as $i)
 			{
 				echo $i->getId().' '.$i->getNombre()."<br/>";
@@ -117,7 +118,47 @@
 
 			$cutillas = CADFabricante::obtenerPorNombre("paquito");
 			$cutillas->insertarTelefono("961112223", "inventado");
-			CADFabricante::actualizar($cutillas);
+			CADFabricante::actualizar($cutillas);*/
+
+			/*$foto = new Imagen("BD.php");
+			$foto->redimensionar(100, 100, "1000.jpg");
+
+			Imagen::borrar("labla.jpg");
+			*/
+
+
+			$fotos = CADFoto::obtenerTodos();
+			foreach ($fotos as $i)
+			{
+				echo $i->toString()."<br/>";
+			}
+
+			$foto = CADFoto::obtenerPorId(4);
+			echo $foto->toString()."<br/>";
+
+			/*if (CADFoto::existePorId(2))
+			{
+				echo "existe la 2<br/>";
+			}
+
+			CADFoto::borrar($foto);
+
+			if (CADFoto::existePorId(2))
+			{
+				echo "existe la 2<br/>";
+			}*/
+
+			$nuevaFoto = new ENFoto();
+			$nuevaFoto->setDescripcion("jejejaejaeae, veamos qué tal");
+			$nuevaFoto->setIdModelo(4);
+
+			CADFoto::guardar($nuevaFoto);
+
+			$foto5 = CADFoto::obtenerPorId(4);
+			$foto5->setDescripcion($foto5->getDescripcion()."a");
+			CADFoto::actualizar($foto5);
+
+
         ?>
     </body>
 </html>

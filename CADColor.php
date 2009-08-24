@@ -307,7 +307,6 @@ class CADColor
 		catch (Exception $e)
 		{
 			Logger::error("<CADColor::borrar(id) ".$e->getMessage());
-			$borrado = false;
 		}
 
 		return $borrado;
