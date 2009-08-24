@@ -47,7 +47,7 @@ class ENColor
 
 	/**
 	 * Modifica el identificador del color. Sólo puede cambiarse si el identificador es 0. Cuando se asigna, no puede modificarse.
-	 * @param string $nombre Nuevo valor para el identificador del color.
+	 * @param int $id Nuevo valor para el identificador del color.
 	 * @return bool Devuelve verdadero si se ha podido cambiar el identificador.
 	 */
 	public function setId($id)

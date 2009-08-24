@@ -364,7 +364,7 @@ class CADFabricante
 		}
 		catch (Exception $e)
 		{
-			Logger::error("<CADColor::borrarPorNombre(nombre) ".$e->getMessage());
+			Logger::error("<CADFabricante::actualizar(fabricante) ".$e->getMessage());
 		}
 		
 		return $actualizado;
@@ -419,7 +419,7 @@ class CADFabricante
 			}
 			catch (Exception $e)
 			{
-				Logger::error("<CADColor::borrar(fabricante) ".$e->getMessage());
+				Logger::error("<CADFabricante::borrar(fabricante) ".$e->getMessage());
 			}
 		}
 
@@ -446,7 +446,7 @@ class CADFabricante
 		}
 		catch (Exception $e)
 		{
-			Logger::error("<CADColor::borrarPorNombre(nombre) ".$e->getMessage());
+			Logger::error("<CADFabricante::borrarPorNombre(nombre) ".$e->getMessage());
 		}
 
 		return $borrado;
@@ -472,7 +472,7 @@ class CADFabricante
 		}
 		catch (Exception $e)
 		{
-			Logger::error("<CADColor::borrarPorIde(id) ".$e->getMessage());
+			Logger::error("<CADFabricante::borrarPorId(id) ".$e->getMessage());
 		}
 
 		return $borrado;

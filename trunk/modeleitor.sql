@@ -95,9 +95,9 @@ create table modelos
 	id int auto_increment,
 	modelo varchar(50) not null,
 	descripcion text,
-	precio_venta decimal(4,2) not null default 0,
-	precio_compra decimal(4,2) not null default 0,
-	precio_venta_minorista decimal(4,2) not null default 0,
+	precio_venta decimal(4,2) not null default -1,
+	precio_compra decimal(4,2) not null default -1,
+	precio_venta_minorista decimal(4,2) not null default -1,
 	primer_ano int(4),
 	id_fabricante int not null,
 	fecha_insercion datetime not null,
@@ -121,8 +121,6 @@ create table fotos
 (
 	id int auto_increment,
 	id_modelo int not null,
-	ruta varchar(256),
-	ruta_miniatura varchar(256),
 	descripcion text,
 	fecha_insercion datetime not null,
 	primary key (id),
@@ -281,6 +279,7 @@ insert into estados (nombre, fecha_insercion) values ('pendiente de recibir', no
 insert into fabricantes (nombre, fecha_insercion) values ('paquito', now());
 insert into fabricantes (nombre, fecha_insercion) values ('carlos', now());
 insert into fabricantes (nombre, fecha_insercion) values ('mistral', now());
+insert into fabricantes (nombre, fecha_insercion) values ('antonio méndez', now());
 
 insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_insercion) values (1, '965441622', 'casa', now());
 insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_insercion) values (1, '654123312', 'movil', now());
@@ -288,6 +287,26 @@ insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_i
 insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_insercion) values (2, '612341221', 'movil', now());
 insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_insercion) values (2, '6677812', 'movil nuevo', now());
 insert into fabricantes_telefonos (id_fabricante, telefono, descripcion, fecha_insercion) values (3, '965345331', 'taller', now());
+
+insert into modelos (modelo, descripcion, precio_venta, precio_compra, precio_venta_minorista, id_fabricante, fecha_insercion)
+values ('552', 'Zapato caballero piel, Ibérico, desde el nº 39 hasta el 46', 15.95, 15.00, 24.00, 4, now());
+
+insert into modelos (modelo, descripcion, precio_venta, precio_compra, precio_venta_minorista, id_fabricante, fecha_insercion)
+values ('502', 'Zapato caballero piel, Ibérico, desde el nº 39 hasta el 46', 15.95, 15.00, 24.00, 4, now());
+
+insert into modelos (modelo, descripcion, precio_venta, precio_compra, precio_venta_minorista, id_fabricante, fecha_insercion)
+values ('404', 'Zapato caballero piel, Ibérico, desde el nº 39 hasta el 46', 15.95, 15.00, 24.00, 4, now());
+
+insert into modelos (modelo, descripcion, precio_venta, precio_compra, precio_venta_minorista, id_fabricante, fecha_insercion)
+values ('243', 'Zapato señora piel, desde el nº 35 hasta el 41', 16.40, 15.50, 24.00, 1, now());
+
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (2, 'Foto 1', now());
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (2, 'Foto 2', now());
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (2, 'Foto 3', now());
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (2, 'Foto 4', now());
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (3, 'Planta', now());
+insert into fotos (id_modelo, descripcion, fecha_insercion) values (3, 'Alzado', now());
+
 
 
 
