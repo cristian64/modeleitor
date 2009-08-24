@@ -12,6 +12,7 @@
 			require_once 'ENColor.php';
 			require_once 'ENFabricante.php';
 			require_once 'ENFoto.php';
+			require_once 'ENModelo.php';
 
 			/*echo "¿Existe el color de id 3? ";
 			if (ENColor::existePorId(3)) echo "Sí";
@@ -127,14 +128,14 @@
 			*/
 
 
-			$fotos = CADFoto::obtenerTodos();
+			/*$fotos = CADFoto::obtenerTodos();
 			foreach ($fotos as $i)
 			{
 				echo $i->toString()."<br/>";
 			}
 
 			$foto = CADFoto::obtenerPorId(4);
-			echo $foto->toString()."<br/>";
+			echo $foto->toString()."<br/>";*/
 
 			/*if (CADFoto::existePorId(2))
 			{
@@ -148,7 +149,7 @@
 				echo "existe la 2<br/>";
 			}*/
 
-			$nuevaFoto = new ENFoto();
+			/*$nuevaFoto = new ENFoto();
 			$nuevaFoto->setDescripcion("jejejaejaeae, veamos qué tal");
 			$nuevaFoto->setIdModelo(4);
 
@@ -156,7 +157,32 @@
 
 			$foto5 = CADFoto::obtenerPorId(4);
 			$foto5->setDescripcion($foto5->getDescripcion()."a");
-			CADFoto::actualizar($foto5);
+			CADFoto::actualizar($foto5);*/
+
+
+
+
+			$modelo = CADModelo::obtenerPorId(3);
+			//$modelo->setDescripcion($modelo->getDescripcion()."a");
+			$modelo->setPrecioVenta($modelo->getPrecioVenta()+0.01);
+			CADModelo::actualizar($modelo);
+
+			$modeloNuevo = new ENModelo();
+			$modeloNuevo->setDescripcion("qué tal");
+			$modeloNuevo->setModelo("JB-1005");
+			$modeloNuevo->setPrecioVenta(rand(500, 3000)/100);
+			$modeloNuevo->setPrecioCompra($modeloNuevo->getPrecioVenta()-rand(50, 150)/100);
+			$modeloNuevo->setPrecioVentaMinorista($modeloNuevo->getPrecioVenta()+4);
+			$modeloNuevo->setFabricante(ENFabricante::obtenerPorNombre("paquito"));
+
+			CADModelo::guardar($modeloNuevo);
+
+			echo "<br/>";
+			$modelos = CADModelo::obtenerTodos();
+			foreach ($modelos as $i)
+			{
+				echo $i->toString()."<br/>";
+			}
 
 
         ?>

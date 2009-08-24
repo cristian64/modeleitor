@@ -254,7 +254,7 @@ class CADFoto
 		}
 		catch (Exception $e)
 		{
-			Logger::error("<CADFoto::borrar(id) ".$e->getMessage());
+			Logger::error("<CADFoto::borrarPorId(id) ".$e->getMessage());
 		}
 
 		return $borrado;
