@@ -98,8 +98,8 @@ class CADFabricante
 		}
 		catch (Exception $e)
 		{
-			Logger::error("<CADFabricante::obtenerTodos() ".$e->getMessage());
 			$listaFabricantes = NULL;
+			Logger::error("<CADFabricante::obtenerTodos() ".$e->getMessage());
 		}
 
 		return $listaFabricantes;

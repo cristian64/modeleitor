@@ -174,7 +174,7 @@ class ENFabricante
 	 */
 	public static function obtenerPorNombre($nombre)
 	{
-		return CADFabricante::obtenerPorNombre($id);
+		return CADFabricante::obtenerPorNombre($nombre);
 	}
 
 	/**

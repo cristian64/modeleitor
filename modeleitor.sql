@@ -98,7 +98,7 @@ create table modelos
 	precio_venta decimal(4,2) not null default -1,
 	precio_compra decimal(4,2) not null default -1,
 	precio_venta_minorista decimal(4,2) not null default -1,
-	primer_ano int(4),
+	primer_ano int(4) not null default -1,
 	id_fabricante int not null,
 	fecha_insercion datetime not null,
 	primary key (id),
