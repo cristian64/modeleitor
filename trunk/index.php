@@ -1,11 +1,22 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
+	<head>
+		<title>Modeleitor</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" media="all" type="text/css" href="estilo/estilo.css" />
+	</head>
+	<body>
+		<div id="contenedor">
+			<div id="menu">
+				<?php include 'menu.html'; ?>
+			</div>
+
+			<div id="contenido">
+				<div id="titulo">
+					<p>Modelos</p>
+				</div>
+				<div id="panel">
+			<?php
 
 			require_once 'BD.php';
 			BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
@@ -186,5 +197,8 @@
 
 
         ?>
-    </body>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

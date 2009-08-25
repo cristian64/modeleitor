@@ -77,6 +77,60 @@ class CADModelo
 	}
 
 	/**
+	 * Realiza una consulta en la base de datos con una serie de parámetros para extraer una selección de modelos de forma paginada.
+	 * @param int $cantidad
+	 * @param int $pagina
+	 * @param string $ordenar_por
+	 * @param string $orden
+	 * @param string $filtro_busqueda
+	 * @param int $id_fabricante
+	 * @return array Devuelve...
+	 */
+	public static function obtenerSeleccion($cantidad, $pagina, $ordenar_por, $orden, $filtro_modelo, $filtro_descripcion, $id_fabricante)
+	{
+		$listaModelos = NULL;
+
+		try
+		{
+			$sentencia = "";
+			if ($id_fabricante == NULL)
+				$sentencia = "select * from modelos order by id";
+			else
+				$sentencia = "select * from modelos where id_fabricante = $id_fabricante order by id";
+			$resultado = mysql_query($sentencia, BD::conectar());
+
+			if ($resultado)
+			{
+				$listaModelos = array();
+				$contador = 0;
+				while ($fila = mysql_fetch_array($resultado))
+				{
+					$modelo = self::obtenerDatos($fila);
+					if ($modelo != NULL)
+					{
+						$listaModelos[$contador++] = $modelo;
+					}
+					else
+					{
+						Logger::aviso("<CADModelo::obtenerTodos(id_fabricante=NULL)> Modelo nulo nº $contador");
+					}
+				}
+			}
+			else
+			{
+				Logger::error("<CADModelo::obtenerTodos(id_fabricante=NULL)>".mysql_error());
+			}
+		}
+		catch (Exception $e)
+		{
+			$listaModelos = NULL;
+			Logger::error("<CADModelo::obtenerTodos(id_fabricante=NULL) ".$e->getMessage());
+		}
+
+		return $listaModelos;
+	}
+
+	/**
 	 * Obtiene un modelo desde la base de datos a partir de su identificador.
 	 * @param int $id Identificador del modelo que se va a obtener.
 	 * @return ENModelo Devuelve el modelo con todos sus atributos extraidos desde la base de datos. Devuelve NULL si ocurrió algún error.
