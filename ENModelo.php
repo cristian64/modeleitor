@@ -105,11 +105,19 @@ class ENModelo
 		}
 	}
 
+	/**
+	 * Obtiene la referencia ("modelo") del modelo.
+	 * @return string
+	 */
 	public function getModelo()
 	{
 		return $this->modelo;
 	}
 
+	/**
+	 * Establece una nueva referencia para el modelo.
+	 * @param string $modelo Nuevo valor para la referencia del modelo.
+	 */
 	public function setModelo($modelo)
 	{
 		$this->modelo = $modelo;
@@ -251,6 +259,84 @@ class ENModelo
 		if ($this->fabricante != NULL)
 			$fabricante = " || ".$this->fabricante->getNombre()."(".$this->fabricante->getId().")";
 		return "----- MODELO :: $this->id || $this->modelo || $this->descripcion || ($this->precio_venta, $this->precio_compra, $this->precio_venta_minorista) || $this->primer_ano $fabricante -----";
+	}
+
+	/**
+	 * Obtiene todos los modelos que hay en la base de datos.
+	 * @param int $id_fabricante Identificador del fabricante del que se quiere extraer todos sus modelos.
+	 * @return array Devuelve una lista con todos los modelos de la base de datos. Si hay algun error, devuelve NULL.
+	 */
+	public static function obtenerTodos($id_fabricante=NULL)
+	{
+		return CADModelo::obtenerTodos();
+	}
+
+	/**
+	 * Obtiene un modelo desde la base de datos a partir de su identificador.
+	 * @param int $id Identificador del modelo que se va a obtener.
+	 * @return ENModelo Devuelve el modelo con todos sus atributos extraidos desde la base de datos. Devuelve NULL si ocurrió algún error.
+	 */
+	public static function obtenerPorId($id)
+	{
+		return CADModelo::obtenerPorId($id);
+	}
+
+	/**
+	 * Comprueba si un modelo existe en la base de datos.
+	 * @param int $id Identificador del modelo, que es clave primaria en la tabla "modelos" de la base de datos.
+	 * @return bool Devuelve verdadero si existe el modelo en la base de datos. Falso en caso contrario.
+	 */
+	public static function existePorId($id)
+	{
+		return CADModelo::existePorId($id);
+	}
+
+	/**
+	 * Comprueba si un modelo existe en la base de datos.
+	 * @return bool Devuelve verdadero si existe el modelo en la base de datos. Falso en caso contrario.
+	 */
+	public function existe()
+	{
+		return CADModelo::existePorId($this->id);
+	}
+
+	/**
+	 * Guarda el modelo que invocó el método en la base de datos.
+	 * Sólo puede guardarse si no existe en la base de datos. Si ya existe, hay que utilizar el método "actualizar".
+	 * Es decir, si el modelo es nuevo, utilizarás "guardar". Si ha sido extraido de la base de datos, se utilizará "actualizar".
+	 * @return bool Devuelve verdadero si ha creado un nuevo modelo. Falso en caso contrario.
+	 */
+	public function guardar()
+	{
+		return CADModelo::guardar($this);
+	}
+
+	/**
+	 * Actualiza los datos del modelo que invocó el método en la base de datos.
+	 * @return bool Devuelve verdadero si se ha actualizado correctamente. Falso en caso contrario.
+	 */
+	public function actualizar()
+	{
+		return CADModelo::actualizar($this);
+	}
+
+	/**
+	 * Eelimina el modelo que invocó el método de la base de datos.
+	 * @return bool Devuelve verdadero si ha borrado el modelo. Falso en caso contrario.
+	 */
+	public function borrar()
+	{
+		return CADModelo::borrar($this);
+	}
+
+	/**
+	 * Dado el identificador de un modelo, lo elimina de la base de datos.
+	 * @param int $id Identificador del modelo que va a ser borrado.
+	 * @return bool Devuelve verdadero si ha borrado el modelo. Falso en caso contrario.
+	 */
+	public static function borrarPorId($id)
+	{
+		return CADModelo::borrarPorId($id);
 	}
 }
 ?>
