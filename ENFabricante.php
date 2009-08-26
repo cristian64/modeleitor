@@ -21,6 +21,12 @@ class ENFabricante
 	private $nombre;
 
 	/**
+	 * Información adicional del fabricante: dirección, email, teléfonos...
+	 * @var string
+	 */
+	private $informacion_adicional;
+
+	/**
 	 * Listado de teléfonos del fabricante. Es una lista de listas. Cada una de las listas
 	 * tiene dos componentes: (teléfono, descripción).
 	 * @var array
@@ -35,7 +41,7 @@ class ENFabricante
 	{
 		$this->id = 0;
 		$this->nombre = $nombre;
-		$telefonos = array();
+		$this->telefonos = array();
 	}
 
 	/**
@@ -54,15 +60,15 @@ class ENFabricante
 	 */
 	public function setId($id)
 	{
-		if ($id > 0 && $this->id == 0)
+		if (is_numeric($id))
 		{
-			$this->id = $id;
-			return true;
+			if ($id > 0 && $this->id == 0)
+			{
+				$this->id = $id;
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -77,10 +83,46 @@ class ENFabricante
 	/**
 	 * Modifica el nombre del fabricante.
 	 * @param string $nombre Nuevo nombre para el fabricante.
+	 * @return bool Devuelve verdadero si se ha podido modificar.
 	 */
 	public function setNombre($nombre)
 	{
-		$this->nombre = $nombre;
+		if (is_string($nombre))
+		{
+			$this->nombre = $nombre;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * Obtiene la información adicional del fabricante.
+	 * @return string
+	 */
+	public function getInformacionAdicional()
+	{
+		return $this->informacion_adicional;
+	}
+
+	/**
+	 * Modifica la información adicional del fabricante.
+	 * @param string $informacion_adicional Nuevo valor para la información adicional.
+	 * @return bool Devuelve verdadero si ha modificado la información.
+	 */
+	public function setInformacionAdicional($informacion_adicional)
+	{
+		if (is_string($informacion_adicional))
+		{
+			$this->informacion_adicional = $informacion_adicional;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -95,11 +137,19 @@ class ENFabricante
 	/**
 	 * Establece un listado de teléfonos para el fabricante.
 	 * @param array $telefonos Listado de teléfonos.
+	 * @return bool Devuelve verdadero si ha modificado la información.
 	 */
 	public function setTelefonos($telefonos)
 	{
 		if ($telefonos != NULL)
-			$this->telefonos = $telefonos;
+		{
+			if (is_array($telefonos))
+			{
+				$this->telefonos = $telefonos;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

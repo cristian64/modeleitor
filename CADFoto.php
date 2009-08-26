@@ -36,7 +36,7 @@ class CADFoto
 			if ($id_modelo == NULL)
 				$sentencia = "select * from fotos order by id";
 			else
-				$sentencia = "select * from fotos where id_modelo = ".$id_modelo." order by id";
+				$sentencia = "select * from fotos where id_modelo = ".$id_modelo." order by id desc";
 
 			$resultado = mysql_query($sentencia, BD::conectar());
 

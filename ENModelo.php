@@ -94,15 +94,15 @@ class ENModelo
 	 */
 	public function setId($id)
 	{
-		if ($id > 0 && $this->id==0)
+		if (is_numeric($id))
 		{
-			$this->id = $id;
-			return true;
+			if ($id > 0 && $this->id==0)
+			{
+				$this->id = $id;
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -117,10 +117,19 @@ class ENModelo
 	/**
 	 * Establece una nueva referencia para el modelo.
 	 * @param string $modelo Nuevo valor para la referencia del modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setModelo($modelo)
 	{
-		$this->modelo = $modelo;
+		if (is_string($modelo))
+		{
+			$this->modelo = $modelo;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -135,10 +144,19 @@ class ENModelo
 	/**
 	 * Modifica la descripción del modelo.
 	 * @param string $descripcion Nuevo valor para la descripción del modelor.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setDescripcion($descripcion)
 	{
-		$this->descripcion = $descripcion;
+		if (is_string($descripcion) || true)
+		{
+			$this->descripcion = $descripcion;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -153,10 +171,19 @@ class ENModelo
 	/**
 	 * Modifica el precio de venta del modelo.
 	 * @param float $precio_venta Nuevo precio de venta para el modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setPrecioVenta ($precio_venta)
 	{
-		$this->precio_venta = $precio_venta;
+		if (is_numeric($precio_venta))
+		{
+			$this->precio_venta = $precio_venta;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -171,10 +198,19 @@ class ENModelo
 	/**
 	 * Modifica el precio de compra del modelo.
 	 * @param float $precio_compra Nuevo precio de compra para el modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setPrecioCompra ($precio_compra)
 	{
-		$this->precio_compra = $precio_compra;
+		if (is_numeric($precio_compra))
+		{
+			$this->precio_compra = $precio_compra;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -189,10 +225,19 @@ class ENModelo
 	/**
 	 * Modifica el precio de venta minorista del modelo.
 	 * @param float $precio_venta_minorista Nuevo precio de venta minorista para el modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setPrecioVentaMinorista ($precio_venta_minorista)
 	{
-		$this->precio_venta_minorista = $precio_venta_minorista;
+		if (is_numeric($precio_venta_minorista))
+		{
+			$this->precio_venta_minorista = $precio_venta_minorista;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -207,10 +252,19 @@ class ENModelo
 	/**
 	 * Modifica el primer año de fabricación del modelo.
 	 * @param int $primer_ano Nuevo valor para el primer año de fabricación del modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setPrimerAno($primer_ano)
 	{
-		$this->primer_ano = $primer_ano;
+		if (is_numeric($primer_ano))
+		{
+			$this->primer_ano = $primer_ano;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -225,10 +279,24 @@ class ENModelo
 	/**
 	 * Modifica el fabricante del modelo.
 	 * @param ENFabricante $fabricante Nuevo fabricante para el modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setFabricante($fabricante)
 	{
-		$this->fabricante = $fabricante;
+		if ($fabricante == NULL)
+		{
+			$this->fabricante = NULL;
+			return true;
+		}
+		else
+		{
+			if (is_a($fabricante, "ENFabricante"))
+			{
+				$this->fabricante = $fabricante;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -243,10 +311,29 @@ class ENModelo
 	/**
 	 * Establece una nueva lista de fotos para el modelo.
 	 * @param array $fotos Lista de elementos del tipo ENFoto que tendrá el modelo.
+	 * @return bool Devuelve verdadero si ha modificado el valor.
 	 */
 	public function setFotos($fotos)
 	{
-		$this->fotos = $fotos;
+		if (is_array($fotos))
+		{
+			$todosENFoto = true;
+			foreach ($fotos as $i)
+			{
+				if (!is_a($i, "ENFoto"))
+				{
+					$todosENFoto = false;
+					break;
+				}
+			}
+
+			if ($todosENFoto)
+			{
+				$this->fotos = $fotos;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

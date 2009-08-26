@@ -54,6 +54,24 @@ class ENFoto
 	}
 
 	/**
+	 * Obtiene la ruta relativa del fichero de la foto.
+	 * @return string Devuelve una cadena de caracteres.
+	 */
+	public function getRutaFoto()
+	{
+		return self::$rutaImagenes.$this->id.".jpg";
+	}
+
+	/**
+	 * Obtiene la ruta relativa del fichero de la miniatura.
+	 * @return string Devuelve una cadena de caracteres.
+	 */
+	public function getRutaMiniatura()
+	{
+		return self::$rutaImagenes.$this->id."m.jpg";
+	}
+
+	/**
 	 * Obtiene el identificador de la foto.
 	 * @return int Identificador de la foto en la base de datos.
 	 */
@@ -69,15 +87,15 @@ class ENFoto
 	 */
 	public function setId($id)
 	{
-		if ($id > 0 && $this->id==0)
+		if (is_numeric($id))
 		{
-			$this->id = $id;
-			return true;
+			if ($id > 0 && $this->id==0)
+			{
+				$this->id = $id;
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -92,10 +110,19 @@ class ENFoto
 	/**
 	 * Modifica la descripción de la foto.
 	 * @param string $descripcion Nuevo valor para la descripción de la foto.
+	 * @return bool Develve verdadero si se ha cambiado.
 	 */
 	public function setDescripcion($descripcion)
 	{
-		$this->descripcion = $descripcion;
+		if (is_string($descripcion))
+		{
+			$this->descripcion = $descripcion;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
@@ -108,19 +135,19 @@ class ENFoto
 		//http://emilio.aesinformatica.com/2007/05/03/subir-una-imagen-con-php/
 		$creada = false;
 		
-		if (is_uploaded_file($httpPostFile))
+		if (is_uploaded_file($httpPostFile['tmp_name']))
 		{
-			$rutaFoto = self::$rutaImagenes.$this->id.".jpg";
-			$rutaMiniatura = self::$rutaImagenes.$this->id."m.jpg";
+			$rutaFoto = $this->getRutaFoto();
+			$rutaMiniatura = $this->getRutaMiniatura();
 			
 			// Hay que intentar borrar las anteriores. No importa si falla.
 			Imagen::borrar($rutaFoto);
 			Imagen::borrar($rutaMiniatura);
 
 			// Luego hay que copiar el fichero de la imagen a la ruta de la foto.
-			if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
+			if (move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
 			{
-				if (@chmod($rutaFoto,0777))
+				if (chmod($rutaFoto,0777))
 				{
 					// Y, por último, reducir la miniatura a un tamaño que será estático de la clase.
 					$foto = new Imagen($rutaFoto);
@@ -128,8 +155,24 @@ class ENFoto
 					{
 						$creada = true;
 					}
+					else
+					{
+						echo "no la he redimensionado<br/>";
+					}
+				}
+				else
+				{
+					echo "no le he dado permisos<br/>";
 				}
 			}
+			else
+			{
+				echo "no la he movido<br/>";
+			}
+		}
+		else
+		{
+			echo "no está subida<br/>";
 		}
 
 		return $creada;
@@ -141,10 +184,13 @@ class ENFoto
 	 */
 	public function borrarFicheroFoto()
 	{
-		$rutaFoto = self::$rutaImagenes.$this->id.".jpg";
-		$rutaMiniatura = self::$rutaImagenes.$this->id."m.jpg";
+		$rutaFoto = $this->getRutaFoto();
+		$rutaMiniatura = $this->getRutaMiniatura();
 
-		return Imagen::borrar($rutaFoto) && Imagen::borrar($rutaMiniatura);
+		$borrado = Imagen::borrar($rutaFoto);
+		$borrado = $borrado && Imagen::borrar($rutaMiniatura);
+
+		return $borrado;
 	}
 
 	/**
@@ -159,19 +205,19 @@ class ENFoto
 	/**
 	 * Modifica el modelo al que pertenece la foto.
 	 * @param int $id_modelo Nuevo valor para el identificador del modelo.
-	 * @return bool
+	 * @return bool Develve verdadero si se ha cambiado.
 	 */
 	public function setIdModelo ($id_modelo)
 	{
-		if ($id_modelo > 0)
+		if (is_numeric($id_modelo))
 		{
-			$this->id_modelo = $id_modelo;
-			return true;
+			if ($id_modelo > 0)
+			{
+				$this->id_modelo = $id_modelo;
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -228,7 +274,7 @@ class ENFoto
 	 * Es decir, si la foto es nueva, utilizarás "guardar". Si ha sido extraida de la base de datos, se utilizará "actualizar".
 	 * @return bool Devuelve verdadero si ha creado una nueva foto. Falso en caso contrario.
 	 */
-	public function guardar($foto)
+	public function guardar()
 	{
 		return CADFoto::guardar($this);
 	}
