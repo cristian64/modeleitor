@@ -21,6 +21,9 @@ body
 	width: 150px;
 	/*height: 100%;*/
 	float: left;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 #enlace_menu
@@ -65,17 +68,63 @@ body
 *******************************************************************************
 ******************************************************************************/
 
+#mensajes
+{
+	text-align: center;
+}
+
+#mensajes table
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+}
+
+#mensajes table.exito
+{
+	color: #080;
+}
+
+#mensajes table.info
+{
+	color: #00e;
+}
+
+#mensajes table.aviso
+{
+	color: #b80;
+}
+
+#mensajes table.error
+{
+	color: #e00;
+}
+
+#mensajes table tr td.columnaizquierda
+{
+	text-align: right;
+}
+#mensajes table tr td.columnaderecha
+{
+	text-align: left;
+}
+
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+******************************************************************************/
+
 #contenido
 {
 	margin-left: 150px;
-	background-color: #eee;
+	background-color: #fff;
 	height: 100%;
 }
 
 #titulo
 {
 	padding: 20px;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	font-size: 25pt;
 }
 
@@ -87,7 +136,96 @@ body
 #panel
 {
 	padding: 20px;
-	padding-top: 5px;
+	padding-top: 25px;
 	font-size: 10pt;
-	background-color: #eee;
+	background-color: #fff;
+}
+
+#panel table.selectiva
+{
+	font-size: 9pt;
+	width: 100%;
+	border: 1px solid #444;
+	border-collapse: collapse;
+}
+
+#panel table.selectiva td
+{
+	border: 1px solid #444;
+	padding: 5px;
+}
+
+#panel table.selectiva tr.impar
+{
+	background-color: #f3f3f3;
+}
+
+#panel table.selectiva tr
+{
+	cursor: pointer;
+	background-color: #fff;
+}
+
+#panel table.selectiva tr:hover
+{
+	background-color: #FFFDB1;
+}
+
+#panel table.selectiva tr.cabecera, #panel table tr.cabecera:hover
+{
+	background-color: #999;
+	color: #fff;
+	font-weight: bold;
+	cursor: auto;
+}
+
+#panel table.selectiva tr.cabecera td
+{
+	padding: 10px;
+	text-align: center;
+}
+
+#buscador
+{
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.busqueda
+{
+	width: 40%;
+}
+
+#panel table.insertiva
+{
+	width: 50%;
+	margin: auto;
+	font-size: 9pt;
+}
+
+#panel table.insertiva select
+{
+	width: 300px;
+}
+
+#panel table.insertiva td.etiqueta
+{
+	text-align: right;
+	padding-right: 20px;
+}
+
+#panel table.insertiva td.botones
+{
+	text-align: center;
+	padding-top: 40px;
+}
+
+#panel table.insertiva td.botones input
+{
+	padding: 10px;
+}
+
+#panel table.insertiva td.botones input[type="submit"]
+{
+	font-weight: bold;
 }

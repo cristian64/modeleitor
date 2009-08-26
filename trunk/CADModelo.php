@@ -40,9 +40,9 @@ class CADModelo
 		{
 			$sentencia = "";
 			if ($id_fabricante == NULL)
-				$sentencia = "select * from modelos order by id";
+				$sentencia = "select * from modelos order by id desc";
 			else
-				$sentencia = "select * from modelos where id_fabricante = $id_fabricante order by id";
+				$sentencia = "select * from modelos where id_fabricante = $id_fabricante order by id desc";
 			$resultado = mysql_query($sentencia, BD::conectar());
 
 			if ($resultado)

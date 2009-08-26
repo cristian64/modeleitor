@@ -47,6 +47,7 @@ create table fabricantes
 (
 	id int auto_increment,
 	nombre varchar(50),
+	informacion_adicional text,
 	fecha_insercion datetime not null,
 	primary key (id),
 	unique (nombre)

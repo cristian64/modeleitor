@@ -17,6 +17,7 @@ class CADFabricante
 		$fabricante = new ENFabricante;
 		$fabricante->setId($fila[0]);
 		$fabricante->setNombre($fila[1]);
+		$fabricante->setInformacionAdicional($fila[2]);
 		$fabricante->setTelefonos(self::obtenerTelefonos($fabricante->getId()));
 		return $fabricante;
 	}
@@ -224,7 +225,7 @@ class CADFabricante
 					$error = false;
 
 					// Insertamos el fabricante.
-					$sentencia ="insert into fabricantes (nombre, fecha_insercion) values ('".$fabricante->getNombre()."', now())";
+					$sentencia ="insert into fabricantes (nombre, informacion_adicional, fecha_insercion) values ('".$fabricante->getNombre()."', '".$fabricante->getInformacionAdicional()."', now())";
 					$resultado = mysql_query($sentencia, $conexion);
 
 					if ($resultado)
@@ -314,7 +315,7 @@ class CADFabricante
 					$error = false;
 					
 					// Actualizamos los datos del fabricante.
-					$sentencia = "update fabricantes set nombre = '".$fabricante->getNombre()."' where id = ".$fabricante->getId();
+					$sentencia = "update fabricantes set nombre = '".$fabricante->getNombre()."', informacion_adicional = '".$fabricante->getInformacionAdicional()."' where id = ".$fabricante->getId();
 					$resultado = mysql_query($sentencia, $conexion);
 					if ($resultado)
 					{

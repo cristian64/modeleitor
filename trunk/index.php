@@ -1,3 +1,15 @@
+<?php
+	/*require_once 'acceso.php';
+	if (accesoValido)*/
+
+	require_once 'BD.php';
+	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
+	require_once 'ENColor.php';
+	require_once 'ENFabricante.php';
+	require_once 'ENFoto.php';
+	require_once 'ENModelo.php';
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -5,7 +17,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" media="all" type="text/css" href="estilo/estilo.css" />
 	</head>
-	<body>
+	<body onload="document.getElementById('busqueda').focus();">
 		<div id="contenedor">
 			<div id="menu">
 				<?php include 'menu.html'; ?>
@@ -15,16 +27,101 @@
 				<div id="titulo">
 					<p>Modelos</p>
 				</div>
+				<?php include 'mensajes.php'; ?>
 				<div id="panel">
+					<div id="buscador">
+						<form action="index.php" method="get">
+							<input id="busqueda" type="text" name="busqueda" class="busqueda"/>
+							<select name="filtro" class="filtrobusqueda">
+								<option value="modelo" selected="selected">Buscar sólo en el código de referencia</option>
+								<option value="descripcion">Buscar sólo en la descripción del modelo</option>
+								<option value="ambos">Buscar en todos los campos</option>
+							</select>
+							<select name="id_fabricante" class="filtrobusqueda">
+								<option value="-1" selected="selected">Cualquier fabricante</option>
+								<?php
+									$fabricantes = ENFabricante::obtenerTodos();
+									if ($fabricantes != NULL)
+										foreach ($fabricantes as $i)
+										{
+											echo "<option value=\"".$i->getId()."\">".$i->getNombre()."</option>\n";
+										}
+								?>
+							</select>
+							<input type="submit" value="Buscar" class="botonbuscar" />
+						</form>
+					</div>
+					<div id="resultados">
+					<?php
+
+					$modelos = ENModelo::obtenerTodos();
+
+					if ($modelos != NULL)
+					{
+						if (count($modelos)>0)
+						{
+							echo "<table class=\"selectiva\">\n";
+							echo "<tr class=\"cabecera\">\n";
+							echo "<td><a href=\"index.php?ordenar=id&orden=$orden\">ID<img src=\"estilo/ascendente.png\"/></a></td>";
+							echo "<td>Código de referencia</td>";
+							echo "<td>Descripción</td>";
+							echo "<td>Precio de venta mayorista</td>";
+							echo "<td>Precio de venta</td>";
+							echo "<td>Precio de compra</td>";
+							echo "<td>Primer año de fabricación</td>";
+							echo "<td>Fabricante</td>";
+							echo "<td>Cantidad de fotos</td>";
+							echo "<td>Última foto añadida</td>";
+							echo "</tr>\n";
+							$contador = 0;
+							foreach ($modelos as $i)
+							{
+								$enlace = "onclick=\"location.href='modelo.php?id=".$i->getId()."';\"";
+								$impar = "";
+								if ($contador%2 != 0)
+									$impar = "class=\"impar\"";
+
+								echo "<tr $impar title=\"Haz clic para ver el modelo en detalle.\" $enlace>\n";
+								echo "<td>".$i->getId()."</td>";
+								echo "<td>".$i->getModelo()."</td>";
+								echo "<td>".$i->getDescripcion()."</td>";
+								echo "<td>".$i->getPrecioVenta()."</td>";
+								echo "<td>".$i->getPrecioVentaMinorista()."</td>";
+								echo "<td>".$i->getPrecioCompra()."</td>";
+								echo "<td>".$i->getPrimerAno()."</td>";
+								echo "<td>".$i->getFabricante()->getNombre()."</td>";
+								$fotos = $i->getFotos();
+								if ($fotos != NULL)
+								{
+									echo "<td>".count($fotos)."</td>";
+									if (count($fotos)>0)
+										echo "<td><img src=\"".$fotos[0]->getRutaMiniatura()."\" alt=\"Foto nº ".$fotos[0]->getId()."\"/></td>";
+									else
+										echo "<td></td>";
+								}
+								else
+								{
+									echo "<td>0</td>";
+									echo "<td></td>";
+								}
+								echo "\n";
+								echo "<tr>\n";
+								$contador++;
+							}
+							echo "</table>\n";
+						}
+					}
+
+					?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
 			<?php
-
-			require_once 'BD.php';
-			BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
-			require_once 'ENColor.php';
-			require_once 'ENFabricante.php';
-			require_once 'ENFoto.php';
-			require_once 'ENModelo.php';
-
 			/*echo "¿Existe el color de id 3? ";
 			if (ENColor::existePorId(3)) echo "Sí";
 			else echo "No";
@@ -173,7 +270,7 @@
 
 
 
-			$modelo = CADModelo::obtenerPorId(3);
+			/*$modelo = CADModelo::obtenerPorId(3);
 			//$modelo->setDescripcion($modelo->getDescripcion()."a");
 			$modelo->setPrecioVenta($modelo->getPrecioVenta()+0.01);
 			CADModelo::actualizar($modelo);
@@ -186,19 +283,12 @@
 			$modeloNuevo->setPrecioVentaMinorista($modeloNuevo->getPrecioVenta()+4);
 			$modeloNuevo->setFabricante(ENFabricante::obtenerPorNombre("paquito"));
 
-			CADModelo::guardar($modeloNuevo);
+			$modeloNuevo->guardar();
 
 			echo "<br/>";
-			$modelos = CADModelo::obtenerTodos();
+			$modelos = ENModelo::obtenerTodos();
 			foreach ($modelos as $i)
 			{
 				echo $i->toString()."<br/>";
-			}
-
-
-        ?>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+			}*/
+			?>
