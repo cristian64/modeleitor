@@ -47,7 +47,7 @@ create table fabricantes
 (
 	id int auto_increment,
 	nombre varchar(50),
-	informacion_adicional text,
+	informacion_adicional varchar(5000),
 	fecha_insercion datetime not null,
 	primary key (id),
 	unique (nombre)
@@ -58,7 +58,7 @@ create table fabricantes_telefonos
 	id int auto_increment,
 	id_fabricante int not null,
 	telefono varchar(50),
-	descripcion text,
+	descripcion varchar(5000),
 	fecha_insercion datetime not null,
 	primary key (id),
 	foreign key (id_fabricante) references fabricantes (id) on delete cascade on update cascade
@@ -95,7 +95,7 @@ create table modelos
 (
 	id int auto_increment,
 	modelo varchar(50) not null,
-	descripcion text,
+	descripcion varchar(5000),
 	precio_venta decimal(4,2) not null default -1,
 	precio_compra decimal(4,2) not null default -1,
 	precio_venta_minorista decimal(4,2) not null default -1,
@@ -111,7 +111,7 @@ create table notas
 	id int auto_increment,
 	id_modelo int not null,
 	id_usuario int,
-	texto text,
+	texto varchar(5000),
 	fecha_insercion datetime not null,
 	primary key (id),
 	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade,
@@ -122,7 +122,7 @@ create table fotos
 (
 	id int auto_increment,
 	id_modelo int not null,
-	descripcion text,
+	descripcion varchar(5000),
 	fecha_insercion datetime not null,
 	primary key (id),
 	foreign key (id_modelo) references modelos (id) on delete restrict on update cascade
@@ -250,7 +250,7 @@ create table precios
 (
 	id_modelo int,
 	precio decimal(4,2) not null,
-	descripcion text,
+	descripcion varchar(5000),
 	fecha datetime not null,
 	fecha_insercion datetime not null,
 	primary key (id_modelo, fecha),

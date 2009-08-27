@@ -19,40 +19,62 @@
 
 		if ($nuevo->guardar())
 		{
-			if ($_FILES["foto"])
+			if ($_FILES["foto"]["tmp_name"] == "")
 			{
-
-			}
-			
-			$foto = new ENFoto();
-			$foto->setIdModelo($nuevo->getId());
-			if ($foto->guardar())
-			{
-				if ($foto->crearFicheroFoto($_FILES["foto"]))
-				{
-					header("location: index.php?exito=INSERTADO TODO");
-				}
-				else
-				{
-					exit();
-					header("location: insertarmodelo.php?error=FALLO CREAR FOTO");
-				}
+				header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No has introducido ninguna foto para el modelo.");
 			}
 			else
 			{
-				header("location: insertarmodelo.php?error=FALLO GUARDAR FOTO");
+				$subida = false;
+				$foto = new ENFoto();
+				$foto->setIdModelo($nuevo->getId());
+				if ($foto->guardar())
+				{
+					if ($foto->crearFicheroFoto($_FILES["foto"]))
+					{
+						$subida = true;
+					}
+					else
+					{
+						$foto->borrar();
+					}
+				}
+
+				if ($subida)
+					header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.");
+				else
+					header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No se ha podido subir la foto seleccionada.");
 			}
 		}
 		else
 		{
-			header("location: insertarmodelo.php?error=FALLO GUARDAR MODELO");
+			header("location: modelo.php?error=No se pudo insertar el modelo. Revisa que los datos introducidos sean correctos.");
 		}
 	}
 	else
 	{
 		if ($_POST["operacion"] == "editar")
 		{
-			
+			$actualizado = false;
+			$existente = ENModelo::obtenerPorId($_POST["id"]);
+			if ($existente != NULL)
+			{
+				$existente->setModelo($_POST["modelo"]);
+				$existente->setDescripcion($_POST["descripcion"]);
+				$existente->setPrecioVenta($_POST["precio_venta"]);
+				$existente->setPrecioVentaMinorista($_POST["precio_venta_minorista"]);
+				$existente->setPrecioCompra($_POST["precio_compra"]);
+				$existente->setPrimerAno($_POST["primer_ano"]);
+				$existente->setFabricante(ENFabricante::obtenerPorId($_POST["fabricante"]));
+
+				if ($existente->actualizar())
+				{
+					$actualizado = true;
+					header("location: modelo.php?exito=Los cambios se han guardado correctamente.&id=".$_POST["id"]);
+				}
+			}
+			if (!$actualizado)
+				header("location: modelo.php?error=No se han podido guardar los cambios. Revisa que los datos introducidos sean correctos.&id=".$_POST["id"]);
 		}
 		else
 		{
@@ -70,11 +92,53 @@
 
 				if (ENModelo::borrarPorId($_POST["id"]))
 				{
-					header("location: index.php?exito=BORRAO");
+					header("location: index.php?exito=Modelo eliminado correctamente.");
 				}
 				else
 				{
-					header("location: modelo.php?error=FALLO&id=".$_POST["id"]);
+					header("location: modelo.php?error=No se ha podido eliminar el modelo.&id=".$_POST["id"]);
+				}
+			}
+			else
+			{
+				if ($_POST["operacion"] == "insertarfoto")
+				{
+					$subida = false;
+					$foto = new ENFoto();
+					$foto->setIdModelo($_POST["id"]);
+					if ($foto->guardar())
+					{
+						if ($foto->crearFicheroFoto($_FILES["foto"]))
+						{
+							$subida = true;
+						}
+						else
+						{
+							$foto->borrar();
+						}
+					}
+
+					if ($subida)
+						header("location: modelo.php?id=".$_POST["id"]."&exito=Foto insertada correctamente.");
+					else
+						header("location: modelo.php?id=".$_POST["id"]."&error=No se pudo insertar la foto.");
+				}
+				else
+				{
+					if ($_POST["operacion"] == "eliminarfoto")
+					{
+						$foto = ENFoto::obtenerPorId($_POST["id"]);
+						if ($foto != NULL)
+						{
+							$foto->borrarFicheroFoto();
+							$foto->borrar();
+							echo "OK";
+						}
+						else
+						{
+							echo "FALLO";
+						}
+					}
 				}
 			}
 		}

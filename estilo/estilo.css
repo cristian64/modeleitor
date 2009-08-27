@@ -7,7 +7,12 @@
 body
 {
 	font-family: Sans;
-	background-color: #415a82;
+	background-color: #fff;
+}
+
+a img
+{
+	border: 1px solid #000;
 }
 
 /******************************************************************************
@@ -19,14 +24,19 @@ body
 {
 	background-color: #415a82;
 	width: 150px;
-	/*height: 100%;*/
+	height: 100%;
 	float: left;
 	position: fixed;
 	top: 0;
 	left: 0;
 }
 
-#enlace_menu
+#menu span
+{
+	display: block;
+}
+
+a.enlace_menu
 {
 	width: 112px;
 	height: 113px;
@@ -40,12 +50,12 @@ body
 	margin-bottom: 20px;
 }
 
-#enlace_menu:hover
+a.enlace_menu:hover
 {
 	background: url('encima.png') no-repeat center center;
 }
 
-#enlace_menu div
+a.enlace_menu span
 {
 	padding: 10px;
 	padding-top: 45px;
@@ -54,7 +64,7 @@ body
 	font-size: 10pt;
 }
 
-#sombra_menu
+.sombra_menu
 {
 	width: 92px;
 	position: absolute;
@@ -71,6 +81,7 @@ body
 #mensajes
 {
 	text-align: center;
+	font-size: 10pt;
 }
 
 #mensajes table
@@ -198,7 +209,7 @@ body
 
 #panel table.insertiva
 {
-	width: 50%;
+	/*width: 50%;*/
 	margin: auto;
 	font-size: 9pt;
 }
@@ -228,4 +239,31 @@ body
 #panel table.insertiva td.botones input[type="submit"]
 {
 	font-weight: bold;
+}
+
+#fotos .foto
+{
+	float: left;
+	margin: 10px;
+	position: relative;
+}
+
+#fotos .foto a.papelera
+{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+#fotos .foto a.papelera img
+{
+	border: 0;
+}
+
+#fotos .foto a.papelera img:hover
+{
+	filter:alpha(opacity=70);
+	-moz-opacity:0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
 }
