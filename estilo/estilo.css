@@ -172,7 +172,7 @@ a.enlace_menu span
 
 #panel table.selectiva tr.impar
 {
-	background-color: #f3f3f3;
+	background-color: #f0f0f0;
 }
 
 #panel table.selectiva tr
@@ -273,6 +273,7 @@ a.enlace_menu span
 .columnafoto
 {
 	width: 100px;
+	text-align: center;
 }
 
 tr.fila td.columnamodelo, tr.fila td.columnaprecio, tr.fila td.columnaprimerano
@@ -346,7 +347,7 @@ tr.fila td.columnaid
 {
 	margin-top: 50px;
 	text-align: center;
-	font-size: 9pt;
+	font-size: 11pt;
 }
 
 #paginacion a:hover, #paginacion a:visited,  #paginacion a:active, #paginacion a:link

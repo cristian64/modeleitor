@@ -8,7 +8,7 @@
 	$orden = $_GET["orden"];
 	$cantidad = $_GET["cantidad"];
 	$pagina = $_GET["pagina"];
-	$maxpagina = 10;
+	$maxpagina = 100;
 	$otrosparametros = "index.php?";
 	$miniaturas = $_GET["miniaturas"];
 ?>
@@ -110,9 +110,9 @@
 								echo "<td class=\"columnaid\">".rellenar($i->getId(), "0", "6")."</td>";
 								echo "<td class=\"columnamodelo\">".$i->getModelo()."</td>";
 								echo "<td class=\"columnadescripcion\">".$i->getDescripcion()."</td>";
-								echo "<td class=\"columnaprecio\">".$i->getPrecioVenta()."</td>";
-								echo "<td class=\"columnaprecio\">".$i->getPrecioVentaMinorista()."</td>";
-								echo "<td class=\"columnaprecio\">".$i->getPrecioCompra()."</td>";
+								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVenta())."</td>";
+								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
+								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioCompra())."</td>";
 								echo "<td class=\"columnaprimerano\">".$i->getPrimerAno()."</td>";
 								echo "<td class=\"columnafabricante\">".$i->getFabricante()->getNombre()."</td>";
 
