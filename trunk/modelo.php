@@ -28,9 +28,9 @@
 			$id = $objetoModelo->getId();
 			$modelo = $objetoModelo->getModelo();
 			$descripcion = $objetoModelo->getDescripcion();
-			$precio_venta = $objetoModelo->getPrecioVenta();
-			$precio_venta_minorista = $objetoModelo->getPrecioVentaMinorista();
-			$precio_compra = $objetoModelo->getPrecioCompra();
+			$precio_venta = str_replace(".", ",", $objetoModelo->getPrecioVenta());
+			$precio_venta_minorista = str_replace(".", ",", $objetoModelo->getPrecioVentaMinorista());
+			$precio_compra = str_replace(".", ",", $objetoModelo->getPrecioCompra());
 			if ($objetoModelo->getFabricante() != NULL)
 				$id_fabricante = $objetoModelo->getFabricante()->getId();
 			$primer_ano = $objetoModelo->getPrimerAno();

@@ -4,9 +4,9 @@
 	$id = filtrarCadena($_POST["id"]);
 	$modelo = filtrarCadena($_POST["modelo"]);
 	$descripcion = filtrarCadena($_POST["descripcion"]);
-	$precio_venta = filtrarCadena($_POST["precio_venta"]);
-	$precio_venta_minorista = filtrarCadena($_POST["precio_venta_minorista"]);
-	$precio_compra = filtrarCadena($_POST["precio_compra"]);
+	$precio_venta = str_replace(",", ".", filtrarCadena($_POST["precio_venta"]));
+	$precio_venta_minorista = str_replace(",", ".", filtrarCadena($_POST["precio_venta_minorista"]));
+	$precio_compra = str_replace(",", ".", filtrarCadena($_POST["precio_compra"]));
 	$primer_ano = filtrarCadena($_POST["primer_ano"]);
 	$fabricante = filtrarCadena($_POST["fabricante"]);
 

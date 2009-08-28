@@ -5,7 +5,7 @@ function validarModelo(formulario)
 {
 	var alerta = "";
 	var esEntero = /^[0-9]{1,4}$/;
-	var esFlotante = /^[0-9]{1,4}[\.][0-9]{1,2}$/;
+	var esFlotante = /^[0-9]{1,4}[\.,][0-9]{1,2}$/;
 
 	if (formulario.modelo.value.length == 0)
 	{
