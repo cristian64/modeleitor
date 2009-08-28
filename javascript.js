@@ -1,87 +1,48 @@
 /************************************************************************
-// Confirma el borrado de un modelo
+// Valida un modelo
 *************************************************************************/
 function validarModelo(formulario)
 {
 	var alerta = "";
-	var caracteresValidos = /^[a-zA-Z0-9\.\ \:\n\(\)\ª\º\€]*$/;
 	var esEntero = /^[0-9]{1,4}$/;
 	var esFlotante = /^[0-9]{1,4}[\.][0-9]{1,2}$/;
 
-	if (formulario.modelo.length == 0)
+	if (formulario.modelo.value.length == 0)
 	{
 		alerta = alerta + "El código de referencia debe tener al menos un caracter.\n";
 	}
 	else
 	{
-		if (formulario.modelo.length > 50)
+		if (formulario.modelo.value.length > 50)
 		{
 			alerta = alerta + "El código de referencia debe tener como mucho 50 caracteres.\n";
 		}
 	}
 
-	if (formulario.descripcion.length > 5000)
+	if (formulario.descripcion.value.length > 5000)
 	{
 		alerta = alerta + "La descripción debe tener como mucho 5000 caracteres.\n";
 	}
 
-	if (!esEntero.test(formulario.precio_venta.value) || !esEntero.test(formulario.precio_venta.value))
+	if (!esEntero.test(formulario.precio_venta.value) && !esFlotante.test(formulario.precio_venta.value))
 	{
-		alerta = alerta + "El precio de venta debe tener un formato: 0000.00";
+		alerta = alerta + "El precio de venta debe tener un formato: 0000.00\n";
 	}
 
-	if (!esEntero.test(formulario.precio_venta_minorista.value) || !esFlotante.test(formulario.precio_venta_minorista.value))
+	if (!esEntero.test(formulario.precio_venta_minorista.value) && !esFlotante.test(formulario.precio_venta_minorista.value))
 	{
-		alerta = alerta + "El precio de venta minorista debe tener un formato: 0000.00";
+		alerta = alerta + "El precio de venta minorista debe tener un formato: 0000.00\n";
 	}
 
-	if (!esEntero.test(formulario.precio_compra.value) || !esFlotante.test(formulario.precio_compra.value))
+	if (!esEntero.test(formulario.precio_compra.value) && !esFlotante.test(formulario.precio_compra.value))
 	{
-		alerta = alerta + "El precio de compra debe tener un formato: 0000.00";
+		alerta = alerta + "El precio de compra debe tener un formato: 0000.00\n";
 	}
 
-/*	if (!ExpReg.test(formulario.usuario.value))
+	if (!esEntero.test(formulario.primer_ano.value) || formulario.primer_ano.value.length != 4)
 	{
-		alerta = alerta + "El usuario sólo puede contener letras minúsculas (sin ñ, sin tildes) y números.\n";
+		alerta = alerta + "El primer año de fabricación debe tener 4 números. Por ejemplo, 2009.\n";
 	}
-	else
-		if (formulario.usuario.value.length<kMinUser)
-			alerta = alerta + "El usuario debe tener una longitud mínima de "+kMinUser+" caracteres.\n";
-		else
-			if (formulario.usuario.value.length>kMaxUser)
-				alerta = alerta + "El usuario debe tener una longitud máxima de "+kMaxUser+" caracteres.\n";
-
-	if (formulario.nombre.value=="")
-		alerta = alerta + "El nombre está vacío.\n";
-	else
-		if (formulario.nombre.value.length<kMinNom)
-			alerta = alerta + "El nombre debe tener una longitud mínima de "+kMinNom+" caracteres.\n";
-		else
-			if (formulario.nombre.value.length>kMaxNom)
-				alerta = alerta + "El nombre debe tener una longitud máxima de "+kMaxNom+" caracteres.\n";
-
-	if (formulario.adicional.value.length>kMaxAdi)
-		alerta = alerta + "La información adicional debe tener una longitud máxima de "+kMaxAdi+" caracteres.\n";
-
-	if (formulario.password1.value=="")
-		alerta = alerta + "La contraseña está vacía.\n";
-	else
-		if (formulario.password1.value!=formulario.password2.value)
-			alerta = alerta + "Las contraseñas deben coincidir.\n";
-		else
-			if (formulario.password1.value.length<kMinPass)
-				alerta = alerta + "Las contraseñas deben tener una longitud mínima de "+kMinPass+" caracteres.\n";
-			else
-				if (formulario.password1.value.length>kMaxPass)
-					alerta = alerta + "Las contraseñas deben tener una longitud máxima de "+kMaxPass+" caracteres.\n";
-				else
-				{
-					var ExpReg = /^[a-zA-Z0-9]*$/;
-					if (!ExpReg.test(formulario.password1.value))
-					{
-						alerta = alerta + "La contraseña sólo puede contener letras (sin ñ, sin tildes) y números.\n";
-					}
-				}*/
 
 	if (alerta != "")
 	{
@@ -115,7 +76,6 @@ function confirmarEliminarModelo()
 /************************************************************************
 // Desbloquear y bloquear el formularió de edición
 *************************************************************************/
-var tamanoMaximo;
 function desbloquearFormularioModelo()
 {
 	var formulario = document.getElementById("formularioeditarmodelo");
@@ -206,4 +166,112 @@ function nuevoAjax()
 	}
 
 	return xmlhttp;
+}
+
+/************************************************************************
+// Confirma el borrado de un fabricante
+*************************************************************************/
+function confirmarEliminarFabricante()
+{
+	var alerta = "(Primera confirmación)\n\nSe eliminará toda la información del fabricante (incluidos sus modelos).\n¿Desea continuar?";
+	if (confirm(alerta))
+	{
+		alerta = "(Segunda confirmación)\n\nSi elimina el fabricante, también eliminará todos los modelos vinculados, sin posibilidad de recuperación.\n¿Está seguro?";
+		if (confirm(alerta))
+		{
+			alerta = "(Última confirmación)\n\n¿Definitivamente quiere hacerlo?";
+			if (confirm(alerta))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+/************************************************************************
+// Desbloquear y bloquear el formularió de edición
+*************************************************************************/
+function desbloquearFormularioFabricante()
+{
+	var formulario = document.getElementById("formularioeditarfabricante");
+	formulario.nombre.readOnly = false;
+	formulario.informacion_adicional.readOnly = false;
+	document.getElementById("bloquear").style.width = document.getElementById("desbloquear").offsetWidth+"px";
+	document.getElementById("bloquear").style.display = 'inline';
+	document.getElementById("desbloquear").style.display = 'none';
+	document.getElementById("botonsubmit").disabled = '';
+	document.getElementById("botonreset").disabled = '';
+	document.getElementById("botoneliminar").disabled = '';
+}
+
+function bloquearFormularioFabricante()
+{
+	var formulario = document.getElementById("formularioeditarfabricante");
+	formulario.nombre.readOnly = true;
+	formulario.informacion_adicional.readOnly = true;
+	document.getElementById("bloquear").style.display = 'none';
+	document.getElementById("desbloquear").style.display = 'inline';
+	document.getElementById("botonsubmit").disabled = 'disabled';
+	document.getElementById("botonreset").disabled = 'disabled';
+	document.getElementById("botoneliminar").disabled = 'disabled';
+}
+
+/************************************************************************
+// Valida un fabricante
+*************************************************************************/
+function validarFabricante(formulario)
+{
+	var alerta = "";
+
+	if (formulario.nombre.value.length < 2)
+	{
+		alerta = alerta + "El nombre debe tener al menos 2 caracteres.\n";
+	}
+	else
+	{
+		if (formulario.nombre.value.length > 50)
+		{
+			alerta = alerta + "El nombre debe tener como mucho 50 caracteres.\n";
+		}
+	}
+
+	if (formulario.informacion_adicional.value.length > 5000)
+	{
+		alerta = alerta + "La información adicional debe tener como mucho 5000 caracteres.\n";
+	}
+
+	if (alerta != "")
+	{
+		alert(alerta);
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+/************************************************************************
+// Mostrar imagen al lado del ratón
+*************************************************************************/
+var posX = 200;
+var posY = 200;
+function mostrarImagenRaton(ruta)
+{
+	document.getElementById("imagenraton").src = ruta;
+	document.getElementById("capaimagenraton").style.display = "block";
+	document.getElementById("capaimagenraton").style.top = (posY+30) + "px";
+	document.getElementById("capaimagenraton").style.left = (posX-20-document.getElementById("imagenraton").width) + "px";
+}
+
+function ocultarImagenRaton()
+{
+	document.getElementById("capaimagenraton").style.display = "none";
+}
+
+function registrarCoordenadas(event)
+{
+	posX = event.clientX;
+	posY = event.clientY;
 }

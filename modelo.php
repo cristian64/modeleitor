@@ -1,37 +1,30 @@
 <?php
-	/*require_once 'acceso.php';
-	if (accesoValido)*/
-
-	require_once 'BD.php';
-	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
-	require_once 'ENColor.php';
-	require_once 'ENFabricante.php';
-	require_once 'ENFoto.php';
-	require_once 'ENModelo.php';
-
+	require_once 'minilibreria.php';
+	
 	$operacion = "insertar";
 	$textoSubmit = "Insertar modelo";
 	$textoReset = "Limpiar formulario";
 	$id = "";
 	$modelo = "";
 	$descripcion = "";
-	$precio_venta = "";
-	$precio_venta_minorista = "";
-	$precio_compra = "";
+	$precio_venta = "0";
+	$precio_venta_minorista = "0";
+	$precio_compra = "0";
 	$id_fabricante = "";
-	$primer_ano = "";
+	$primer_ano = "2000";
 	$soloLectura = "";
 	$deshabilitado = "";
 	if ($_GET["id"] != NULL)
 	{
-		$operacion = "editar";
-		$textoSubmit = "Guardar cambios";
-		$textoReset = "Deshacer cambios";
-		$soloLectura = " readonly=\"readonly\" ";
-		$deshabilitado = " disabled=\"disabled\"";
-		$objetoModelo = ENModelo::obtenerPorId($_GET["id"]);
+		$objetoModelo = ENModelo::obtenerPorId(filtrarCadena($_GET["id"]));
 		if ($objetoModelo != NULL)
 		{
+			$operacion = "editar";
+			$textoSubmit = "Guardar cambios";
+			$textoReset = "Deshacer cambios";
+			$soloLectura = " readonly=\"readonly\" ";
+			$deshabilitado = " disabled=\"disabled\"";
+
 			$id = $objetoModelo->getId();
 			$modelo = $objetoModelo->getModelo();
 			$descripcion = $objetoModelo->getDescripcion();
@@ -53,7 +46,7 @@
 		<link rel="stylesheet" media="all" type="text/css" href="estilo/estilo.css" />
 		<script src="javascript.js" type="text/JavaScript"></script>
 	</head>
-	<body onload="document.getElementById('busqueda').focus();">
+	<body>
 		<div id="contenedor">
 			<div id="menu">
 				<?php include 'menu.html'; ?>
@@ -97,30 +90,30 @@
 										<tr>
 											<td class="etiqueta">Código de referencia:</td>
 											<td>
-												<input type="text" name="modelo" value="<?php echo $modelo; ?>" <?php echo $soloLectura; ?> />
+												<input type="text" name="modelo" autocomplete="off" value="<?php echo $modelo; ?>" <?php echo $soloLectura; ?> />
 												<input type="hidden" name="operacion" value="<?php echo $operacion; ?>" />
 												<?php if ($operacion == "editar") echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n"; ?>
 											</td>
 										</tr>
 										<tr>
 											<td class="etiqueta">Descripción:</td>
-											<td><textarea rows="5" cols="50" name="descripcion" <?php echo $soloLectura; ?> ><?php echo $descripcion; ?></textarea></td>
-										</tr>
-										<tr>
-											<td class="etiqueta">Precio de venta mayorista:</td>
-											<td><input type="text" name="precio_venta" value="<?php echo $precio_venta; ?>" <?php echo $soloLectura; ?> /></td>
+											<td><textarea rows="5" cols="50" name="descripcion" autocomplete="off" <?php echo $soloLectura; ?> ><?php echo $descripcion; ?></textarea></td>
 										</tr>
 										<tr>
 											<td class="etiqueta">Precio de venta:</td>
-											<td><input type="text" name="precio_venta_minorista" value="<?php echo $precio_venta_minorista; ?>" <?php echo $soloLectura; ?> /></td>
+											<td><input type="text" name="precio_venta" autocomplete="off" value="<?php echo $precio_venta; ?>" <?php echo $soloLectura; ?> /></td>
+										</tr>
+										<tr>
+											<td class="etiqueta">Precio de venta (minorista):</td>
+											<td><input type="text" name="precio_venta_minorista" autocomplete="off" value="<?php echo $precio_venta_minorista; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>
 										<tr>
 											<td class="etiqueta">Precio de compra:</td>
-											<td><input type="text" name="precio_compra" value="<?php echo $precio_compra; ?>" <?php echo $soloLectura; ?> /></td>
+											<td><input type="text" name="precio_compra" autocomplete="off" value="<?php echo $precio_compra; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>
 										<tr>
 											<td class="etiqueta">Primer año de fabricación:</td>
-											<td><input type="text" name="primer_ano" value="<?php echo $primer_ano; ?>" <?php echo $soloLectura; ?> /></td>
+											<td><input type="text" name="primer_ano" autocomplete="off" value="<?php echo $primer_ano; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>
 										<tr>
 											<td class="etiqueta">Fabricante:</td>
@@ -188,7 +181,7 @@
 									</fieldset>
 									<form action="operarmodelo.php" method="post" enctype="multipart/form-data">
 										<div style="padding: 20px;">
-											Insertar una nueva foto:
+											Insertar una nueva foto (JPEG):
 											<input type="hidden" value="insertarfoto" name="operacion" />
 											<input type="hidden" value="<?php echo $id; ?>" name="id" />
 											<input type="file" name="foto" />
