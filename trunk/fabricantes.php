@@ -1,13 +1,5 @@
 <?php
-	/*require_once 'acceso.php';
-	if (accesoValido)*/
-
-	require_once 'BD.php';
-	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
-	require_once 'ENColor.php';
-	require_once 'ENFabricante.php';
-	require_once 'ENFoto.php';
-	require_once 'ENModelo.php';
+	require_once 'minilibreria.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -16,6 +8,7 @@
 		<title>Modeleitor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" media="all" type="text/css" href="estilo/estilo.css" />
+		<script src="javascript.js" type="text/JavaScript"></script>
 	</head>
 	<body onload="document.getElementById('busqueda').focus();">
 		<div id="contenedor">

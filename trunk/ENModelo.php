@@ -355,7 +355,7 @@ class ENModelo
 	 */
 	public static function obtenerTodos($id_fabricante=NULL)
 	{
-		return CADModelo::obtenerTodos();
+		return CADModelo::obtenerTodos($id_fabricante);
 	}
 
 	/**
