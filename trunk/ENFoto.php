@@ -2,6 +2,7 @@
 require_once 'Logger.php';
 require_once 'CADFoto.php';
 require_once 'Imagen.php';
+require_once 'resize.php';
 /**
  * Clase que representa a una foto con ruta al fichero de la foto (cadena de caracteres).
  */
@@ -150,15 +151,38 @@ class ENFoto
 				if (chmod($rutaFoto,0777))
 				{
 					// Y, por último, reducir la miniatura a un tamaño que será estático de la clase.
-					$foto = new Imagen($rutaFoto);
-					if ($foto->redimensionar(self::$anchoMiniatura, self::$altoMiniatura, $rutaMiniatura))
+					/*$foto = new Imagen($rutaFoto);
+
+
+					$width = $foto->getAnchoImagen();
+					$height = $foto->getAltoImagen();
+
+					if ($foto->getAnchoImagen() > $foto->getAltoImagen())
+					{
+						$width = self::$anchoMiniatura;
+						$height = $height * (self::$anchoMiniatura / (float) $foto->getAnchoImagen());
+					}
+					else
+					{
+						$height = self::$altoMiniatura;
+						$width = $width * (self::$altoMiniatura / (float) $foto->getAltoImagen());
+					}*/
+
+					$miniatura=new thumbnail($rutaFoto);
+					$miniatura->size_width(100);
+					$miniatura->size_height(100);
+					$miniatura->jpeg_quality(100);
+					$miniatura->save($rutaMiniatura);
+					$creada = true;
+
+					/*if ($foto->redimensionar($width, $height, $rutaMiniatura))
 					{
 						$creada = true;
 					}
 					else
 					{
 						echo "no la he redimensionado<br/>";
-					}
+					}*/
 				}
 				else
 				{
