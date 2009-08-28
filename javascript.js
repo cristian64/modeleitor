@@ -255,23 +255,53 @@ function validarFabricante(formulario)
 /************************************************************************
 // Mostrar imagen al lado del ratón
 *************************************************************************/
-var posX = 200;
-var posY = 200;
+var miniaturas = true;
 function mostrarImagenRaton(ruta)
 {
-	document.getElementById("imagenraton").src = ruta;
-	document.getElementById("capaimagenraton").style.display = "block";
-	document.getElementById("capaimagenraton").style.top = (posY+30) + "px";
-	document.getElementById("capaimagenraton").style.left = (posX-20-document.getElementById("imagenraton").width) + "px";
+	if (!miniaturas)
+	{
+		document.getElementById("imagenraton").src = ruta;
+		document.getElementById("capaimagenraton").style.display = "block";
+		document.getElementById("capaimagenraton").style.top = (posY) + "px";
+		document.getElementById("capaimagenraton").style.left = (posX-30-document.getElementById("imagenraton").width) + "px";
+	}
 }
 
 function ocultarImagenRaton()
 {
-	document.getElementById("capaimagenraton").style.display = "none";
+	if (!miniaturas)
+		document.getElementById("capaimagenraton").style.display = "none";
 }
 
 function registrarCoordenadas(event)
 {
-	posX = event.clientX;
-	posY = event.clientY;
+	document.getElementById("capaimagenraton").style.top = (event.clientY) + "px";
+	document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width) + "px";
+}
+
+function permutarMiniaturas()
+{
+	miniaturas = !miniaturas;
+
+	var tds;
+	if (!miniaturas)
+	{
+		tds = document.getElementsByTagName("td");
+		for (i = 0; i < tds.length; i++)
+		{
+			if (tds[i].className == "columnafoto")
+			{
+				tds[i].style.display = 'none';
+			}
+		}
+	}
+	else
+	{
+		tds = document.getElementsByTagName("td");
+		for (i = 0; i < tds.length; i++)
+		{
+			if (tds[i].className == "columnafoto")
+				tds[i].style.display = '';
+		}
+	}
 }

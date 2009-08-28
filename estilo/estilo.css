@@ -42,7 +42,6 @@ a.enlace_menu
 	height: 113px;
 	background: url('normal.png') no-repeat center center;
 	display: block;
-	font-size: 8pt;
 	color: #000;
 	position: relative;
 	margin: auto;
@@ -144,17 +143,22 @@ a.enlace_menu span
 	border-bottom: 1px solid #000;
 }
 
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+******************************************************************************/
+
 #panel
 {
 	padding: 20px;
 	padding-top: 25px;
-	font-size: 10pt;
+	font-size: 11pt;
 	background-color: #fff;
 }
 
 #panel table.selectiva
 {
-	font-size: 9pt;
+	font-size: 11pt;
 	width: 100%;
 	border: 1px solid #444;
 	border-collapse: collapse;
@@ -196,22 +200,16 @@ a.enlace_menu span
 	text-align: center;
 }
 
-#buscador
-{
-	text-align: center;
-	padding-bottom: 20px;
-}
-
-.busqueda
-{
-	width: 40%;
-}
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+******************************************************************************/
 
 #panel table.insertiva
 {
 	/*width: 50%;*/
 	margin: auto;
-	font-size: 9pt;
+	font-size: 11pt;
 }
 
 #panel table.insertiva select
@@ -241,11 +239,83 @@ a.enlace_menu span
 	font-weight: bold;
 }
 
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+******************************************************************************/
+
+#buscador
+{
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.busqueda
+{
+	width: 40%;
+}
+
+.columnaid
+{
+	width: 5%;
+}
+
+.columnamodelo, .columnaprecio, .columnaprimerano
+{
+	width: 9%;
+}
+
+.columnafabricante
+{
+	width: 10%;
+}
+
+.columnafoto
+{
+	width: 100px;
+}
+
+tr.fila td.columnamodelo, tr.fila td.columnaprecio, tr.fila td.columnaprimerano
+{
+	text-align: right;
+	padding-right: 2% !important;
+}
+
+tr.fila td.columnaid
+{
+	text-align: right;
+}
+
+#panel table.selectiva td.columnafabricante
+{
+	text-align: center;
+	padding: 0 !important;
+}
+
+/******************************************************************************
+*******************************************************************************
+*******************************************************************************
+******************************************************************************/
+
 #fotos .foto
 {
+	padding: 0;
 	float: left;
 	margin: 10px;
 	position: relative;
+	border: 1px solid #BBB;
+}
+
+#fotos .foto img
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+#fotos .foto:hover
+{
+	border: 1px solid #000;
 }
 
 #fotos .foto a.papelera
@@ -262,8 +332,64 @@ a.enlace_menu span
 
 #fotos .foto a.papelera img:hover
 {
-	filter:alpha(opacity=70);
-	-moz-opacity:0.7;
-	-khtml-opacity: 0.7;
-	opacity: 0.7;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+/*--------------------------------------------------------------------------*/
+/*                              PAGINACIÓN                                  */
+/*--------------------------------------------------------------------------*/
+
+#paginacion
+{
+	margin-top: 50px;
+	text-align: center;
+	font-size: 9pt;
+}
+
+#paginacion a:hover, #paginacion a:visited,  #paginacion a:active, #paginacion a:link
+{
+	color: #565656;
+	border: 1px solid #E1E1E1;
+	padding: 3px 7px 3px 7px;
+	background: transparent url(paginacion0.gif) repeat-x;
+}
+
+#paginacion a:hover
+{
+	text-decoration: none;
+	border: 1px solid #D2D2D2;
+	padding: 3px 7px 3px 7px;
+	background: transparent url(paginacion1.gif) repeat-x;
+}
+
+#botones div
+{
+	display: inline;
+	margin: 0px 1px 0px 1px;
+}
+
+.bloqueado
+{
+	color: #BFBFBF;
+	border: 1px solid #E5E5E5;
+	padding: 3px 7px 3px 7px;
+	background-color: #F9F9F9;
+}
+
+.separacion
+{
+	border: 0;
+	padding: 0px 5px 0px 5px;
+}
+
+.actual
+{
+	color: #FFFFFF;
+	font-weight: bold;
+	border: 1px solid #828282;
+	padding: 3px 7px 3px 7px;
+	background: transparent url(paginacion2.gif) repeat-x;
 }
