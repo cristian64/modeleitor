@@ -30,6 +30,7 @@
 			if ($_FILES["foto"]["tmp_name"] == "")
 			{
 				header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No has introducido ninguna foto para el modelo.");
+				exit();
 			}
 			else
 			{
@@ -53,11 +54,13 @@
 					header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.");
 				else
 					header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No se ha podido subir la foto seleccionada.");
+				exit();
 			}
 		}
 		else
 		{
 			header("location: modelo.php?error=No se pudo insertar el modelo. Revisa que los datos introducidos sean correctos.");
+			exit();
 		}
 	}
 	else
@@ -115,7 +118,8 @@
 					if ($modelo->borrar())
 					{
 						registrar($modelo->toString(), "Borrar modelo (después)");
-						header("location: index.php?exito=Modelo eliminado correctamente.");
+						header("location: modelos.php?exito=Modelo eliminado correctamente.");
+						exit();
 					}
 					else
 					{
@@ -168,6 +172,7 @@
 							$foto->borrar();
 							registrar($foto->toString(), "Borrar foto");
 							echo "OK";
+							exit();
 						}
 						else
 						{

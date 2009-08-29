@@ -50,6 +50,7 @@
 	function registrar ($detalles, $accion)
 	{
 		$usuario = $_SESSION["usuario"];
+		$detalles = filtrarCadena($detalles);
 		$accion = filtrarCadena($accion);
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$sentencia = "insert into registro (nombre_usuario, detalles, accion, ip, fecha) values ('$usuario', '$detalles', '$accion', '$ip', now());";
@@ -60,6 +61,7 @@
 		}
 		else
 		{
+			echo mysql_error();
 			return false;
 		}
 	}

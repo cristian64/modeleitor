@@ -129,7 +129,7 @@ function eliminarFoto(id)
 				// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
 				if(ajax.responseText!="OK")
 				{
-					alert ("No se ha podido eliminar la foto.\n" + ajax.responseText);
+					alert ("No se ha podido eliminar la foto.\n");
 				}
 				else
 				{

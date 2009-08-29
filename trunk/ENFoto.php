@@ -132,7 +132,7 @@ class ENFoto
 	 */
 	public function toString()
 	{
-		return "-----FOTO :: $this->id(id) || $this->id_modelo(id_modelo) -----";
+		return "----- FOTO :: $this->id(id) :: $this->id_modelo(id_modelo) -----";
 	}
 
 	/**
@@ -155,9 +155,9 @@ class ENFoto
 			Imagen::borrar($rutaMiniatura);
 
 			// Luego hay que copiar el fichero de la imagen a la ruta de la foto.
-			if (move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
+			if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
 			{
-				if (chmod($rutaFoto,0777))
+				if (@chmod($rutaFoto,0777))
 				{
 					// Y, por último, reducir la miniatura a un tamaño que será estático de la clase.
 					/*$foto = new Imagen($rutaFoto);
@@ -193,19 +193,7 @@ class ENFoto
 						echo "no la he redimensionado<br/>";
 					}*/
 				}
-				else
-				{
-					echo "no le he dado permisos<br/>";
-				}
 			}
-			else
-			{
-				echo "no la he movido<br/>";
-			}
-		}
-		else
-		{
-			echo "no está subida<br/>";
 		}
 
 		return $creada;

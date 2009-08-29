@@ -344,8 +344,8 @@ class ENModelo
 	{
 		$fabricante = "";
 		if ($this->fabricante != NULL)
-			$fabricante = " || ".$this->fabricante->getNombre()."(".$this->fabricante->getId().")";
-		return "----- MODELO :: $this->id || $this->modelo || $this->descripcion || ($this->precio_venta, $this->precio_compra, $this->precio_venta_minorista) || $this->primer_ano $fabricante -----";
+			$fabricante = " :: ".$this->fabricante->getNombre()."(".$this->fabricante->getId().")";
+		return "----- MODELO :: $this->id :: $this->modelo :: $this->descripcion :: ($this->precio_venta, $this->precio_compra, $this->precio_venta_minorista) :: $this->primer_ano $fabricante -----";
 	}
 
 	/**

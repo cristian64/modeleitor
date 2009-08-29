@@ -214,7 +214,7 @@ class ENFabricante
 	 */
 	public function toString()
 	{
-		return "-----FABRICANTE :: $this->nombre($this->id) || $this->informacion_adicional -----";
+		return "----- FABRICANTE :: $this->nombre($this->id) :: $this->informacion_adicional -----";
 	}
 
 	/**
