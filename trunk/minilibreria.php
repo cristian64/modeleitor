@@ -1,11 +1,18 @@
 <?php
-	session_start();
-	
 	require_once 'BD.php';
 	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
 	require_once 'ENFabricante.php';
 	require_once 'ENFoto.php';
 	require_once 'ENModelo.php';
+
+	function accesoValido()
+	{
+		if ($_SESSION["conectado"] != "si")
+		{
+			header("location: index.php");
+			exit();
+		}
+	}
 
 	function filtrarCadena($cadena)
 	{
@@ -40,11 +47,11 @@
 		return $cadena;
 	}
 
-	function registrar ($usuario, $detalles, $accion, $ip)
+	function registrar ($detalles, $accion)
 	{
-		$usuario = filtrarCadena($usuario);
+		$usuario = $_SESSION["usuario"];
 		$accion = filtrarCadena($accion);
-		$ip = filtrarCadena($ip);
+		$ip = $_SERVER["REMOTE_ADDR"];
 		$sentencia = "insert into registro (nombre_usuario, detalles, accion, ip, fecha) values ('$usuario', '$detalles', '$accion', '$ip', now());";
 		$resultado = @mysql_query($sentencia, BD::conectar());
 		if ($resultado)

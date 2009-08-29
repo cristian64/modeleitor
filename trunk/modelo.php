@@ -1,5 +1,7 @@
 <?php
+	session_start();
 	require_once 'minilibreria.php';
+	accesoValido();
 	
 	$operacion = "insertar";
 	$textoSubmit = "Insertar modelo";

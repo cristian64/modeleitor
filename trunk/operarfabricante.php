@@ -1,5 +1,7 @@
 <?php
+	session_start();
 	require_once 'minilibreria.php';
+	accesoValido();
 
 	$id = filtrarCadena($_POST["id"]);
 	$nombre = filtrarCadena($_POST["nombre"]);
@@ -15,16 +17,20 @@
 		{
 			if ($nuevo->guardar())
 			{
+				registrar($nuevo->toString(), "Insertar nuevo fabricante");
 				header("location: fabricante.php?exito=El fabricante ha sido insertado correctamente.&id=".$nuevo->getId());
+				exit();
 			}
 			else
 			{
 				header("location: fabricante.php?error=No se pudo insertar el fabricante. Revisa los datos introducidos y vuelva a intentarlo.");
+				exit();
 			}
 		}
 		else
 		{
 			header("location: fabricante.php?error=Ya existe un fabricante con ese nombre (".$nombre.").");
+			exit();
 		}
 	}
 	else
@@ -47,20 +53,25 @@
 
 				if ($nombreLibre)
 				{
+					registrar($existente->toString(), "Editar fabricante (antes)");
 					$existente->setNombre($nombre);
 					$existente->setInformacionAdicional($informacion_adicional);
 					if ($existente->actualizar())
 					{
+						registrar($existente->toString(), "Editar fabricante (después)");
 						header("location: fabricante.php?exito=Los cambios se han guardado correctamente.&id=".$id);
+						exit();
 					}
 					else
 					{
 						header("location: fabricante.php?error=No se han podido guardar los cambios. Revisa los datos introducidos y vuelve a intentarlo.");
+						exit();
 					}
 				}
 				else
 				{
 					header("location: fabricante.php?error=Ya existe un fabricante con ese nombre ($nombre).&id=$id");
+					exit();
 				}
 			}
 		}
@@ -68,48 +79,65 @@
 		{
 			if ($_POST["operacion"] == "borrar")
 			{
-				$modelosBorrados = false;
-				$modelos = ENModelo::obtenerTodos($id);
-				if (is_array($modelos))
+				$fabricante = ENFabricante::obtenerPorId($id);
+				if ($fabricante != NULL)
 				{
-					$modelosBorrados = true;
-					foreach ($modelos as $j)
+					registrar($fabricante->toString(), "Borrar fabricante (antes)");
+					$modelosBorrados = false;
+					$modelos = ENModelo::obtenerTodos($id);
+					if (is_array($modelos))
 					{
-						$fotos = ENFoto::obtenerTodos($j->getId());
-						if ($fotos != NULL)
+						$modelosBorrados = true;
+						foreach ($modelos as $j)
 						{
-							foreach ($fotos as $i)
+							$fotos = ENFoto::obtenerTodos($j->getId());
+							if ($fotos != NULL)
 							{
-								$i->borrarFicheroFoto();
-								$i->borrar();
+								foreach ($fotos as $i)
+								{
+									$i->borrarFicheroFoto();
+									$i->borrar();
+								}
+							}
+
+							if (!$j->borrar())
+							{
+								$modelosBorrados = false;
+								break;
 							}
 						}
-
-						if (!$j->borrar())
-						{
-							$modelosBorrados = false;
-							break;
-						}
 					}
-				}
 
-				if ($modelosBorrados)
-				{
-					if (ENFabricante::borrarPorId($id))
+					if ($modelosBorrados)
 					{
-						header("location: fabricantes.php?exito=El fabricante ha sido eliminado correctamente.");
+						if ($fabricante->borrar())
+						{
+							registrar($fabricante->toString(), "Borrar fabricante (después)");
+							header("location: fabricantes.php?exito=El fabricante ha sido eliminado correctamente.");
+							exit();
+						}
+						else
+						{
+							header("location: fabricante.php?error=Ocurrió un error al intentar eliminar el fabricante.&id=".$id);
+							exit();
+						}
 					}
 					else
 					{
 						header("location: fabricante.php?error=Ocurrió un error al intentar eliminar el fabricante.&id=".$id);
+						exit();
 					}
 				}
 				else
 				{
-					header("location: fabricante.php?error=Ocurrió un error al intentar eliminar el fabricante2.&id=".$id);
+					header("location: fabricante.php?error=Ocurrió un error al intentar eliminar el fabricante.&id=".$id);
+					exit();
 				}
 			}
 		}
 	}
 
+
+	header("location: fabricantes.php");
+	exit();
 ?>
