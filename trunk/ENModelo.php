@@ -359,6 +359,34 @@ class ENModelo
 	}
 
 	/**
+	 * Realiza una consulta siguiendo unos criterios de búsqueda.
+	 * @param string $busqueda Cadena de caracteres por la que se filtrará la consulta.
+	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelos|descripcion|ambos}
+	 * @param int $fabricante Identificador numérico del fabricante. Si no es un número, se ignora el parámetro.
+	 * @param string $ordenar Campo por el que se ordena la búsqueda: {id, modelo, descripcion, precios..., primer_ano, fabricante}
+	 * @param string $orden Orden descendente o ascendente: {descendente|ascendente}
+	 * @param int $cantidad Cantidad de resultados que se quieren obtener.
+	 * @param int $pagina Número de página que se debe mostrar.
+	 * @return array Devuelve una lista con los modelos seleccionados de la base de datos. Si hay algun error, devuelve NULL.
+	 */
+	public static function obtenerSeleccion($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina)
+	{
+		return CADModelo::obtenerSeleccion($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina);
+	}
+
+	/**
+	 * Calcula el número de resultados que habría si se realiza una consulta con esos criterios.
+	 * @param string $busqueda Cadena de caracteres por la que se filtrará la consulta.
+	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelos|descripcion|ambos}
+	 * @param int $fabricante Identificador numérico del fabricante. Si no es un número, se ignora el parámetro.
+	 * @return int Devuelve la cantidad de resultados que tendría la consulta anterior.
+	 */
+	public static function cantidadSeleccion ($busqueda, $filtro, $fabricante)
+	{
+		return CADModelo::cantidadSeleccion($busqueda, $filtro, $fabricante);
+	}
+
+	/**
 	 * Obtiene un modelo desde la base de datos a partir de su identificador.
 	 * @param int $id Identificador del modelo que se va a obtener.
 	 * @return ENModelo Devuelve el modelo con todos sus atributos extraidos desde la base de datos. Devuelve NULL si ocurrió algún error.

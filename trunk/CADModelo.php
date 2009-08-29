@@ -76,27 +76,92 @@ class CADModelo
 		return $listaModelos;
 	}
 
+	public static function limpiarEspacios ($cadena)
+	{
+		$anterior = " ";
+		$final = "";
+		$cadena = trim($cadena);
+
+		for ($i=0; $i<strlen($cadena); $i++)
+		{
+			if ($cadena[$i] == " ")
+			{
+				if ($anterior != " ")
+				{
+					$final = $final.$cadena[$i];
+				}
+			}
+			else
+			{
+				$final = $final.$cadena[$i];
+			}
+			$anterior = $cadena[$i];
+		}
+
+		return $final;
+	}
+
 	/**
-	 * Realiza una consulta en la base de datos con una serie de parámetros para extraer una selección de modelos de forma paginada.
-	 * @param int $cantidad
-	 * @param int $pagina
-	 * @param string $ordenar_por
-	 * @param string $orden
-	 * @param string $filtro_busqueda
-	 * @param int $id_fabricante
-	 * @return array Devuelve...
+	 * Realiza una consulta siguiendo unos criterios de búsqueda.
+	 * @param string $busqueda Cadena de caracteres por la que se filtrará la consulta.
+	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelos|descripcion|ambos}
+	 * @param int $fabricante Identificador numérico del fabricante. Si no es un número, se ignora el parámetro.
+	 * @param string $ordenar Campo por el que se ordena la búsqueda: {id, modelo, descripcion, precios..., primer_ano, fabricante}
+	 * @param string $orden Orden descendente o ascendente: {descendente|ascendente}
+	 * @param int $cantidad Cantidad de resultados que se quieren obtener.
+	 * @param int $pagina Número de página que se debe mostrar.
+	 * @return array Devuelve una lista con los modelos seleccionados de la base de datos. Si hay algun error, devuelve NULL.
 	 */
-	public static function obtenerSeleccion($cantidad, $pagina, $ordenar_por, $orden, $filtro_modelo, $filtro_descripcion, $id_fabricante)
+	public static function obtenerSeleccion($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina)
 	{
 		$listaModelos = NULL;
 
 		try
 		{
-			$sentencia = "";
-			if ($id_fabricante == NULL)
-				$sentencia = "select * from modelos order by id";
+			// Preparamos los parámetros de la consulta.
+			if ($filtro != "modelo" && $filtro != "descripcion") $filtro = "ambos";
+			if (!is_numeric($fabricante)) $fabricante = "";
+
+			if ($ordenar != "modelo" && $ordenar != "descripcion" && $ordenar != "precio_venta" && $ordenar != "precio_venta_minorista" && $ordenar != "precio_compra" && $ordenar != "primer_ano" && $ordenar != "fabricante")
+				$ordenar = "id";
+			if ($ordenar == "fabricante") $ordenar = "fabricantes.nombre";
+			if ($orden == "ascendente")
+				$orden = "asc";
 			else
-				$sentencia = "select * from modelos where id_fabricante = $id_fabricante order by id";
+				$orden = "desc";
+			if ($cantidad <= 0) $cantidad = 10;
+			if ($pagina <= 0) $pagina = 1;
+
+			$order = " order by ".$ordenar." ".$orden;
+			$limit = " limit ".($pagina-1)*$cantidad.",".$cantidad;
+
+			$sentencia = "select modelos.* from modelos, fabricantes where modelos.id_fabricante = fabricantes.id";
+			if ($fabricante != "")
+				$sentencia = $sentencia." and fabricantes.id = $fabricante";
+
+			$busqueda = str_replace ("'", "", $busqueda);
+			$busqueda = str_replace (";", "", $busqueda);
+			if ($busqueda != "")
+			{
+				$busqueda = self::limpiarEspacios($busqueda);
+				$busquedas = split(" ", $busqueda);
+				if (count($busquedas)>0)
+					$sentencia = $sentencia." and (1=2 ";
+				foreach ($busquedas as $palabra)
+				{
+					if ($filtro != "descripcion")
+						$sentencia = $sentencia." or modelo like '%$palabra%'";
+
+					if ($filtro != "modelo")
+						$sentencia = $sentencia." or descripcion like '%$palabra%'";
+				}
+				if (count($busquedas)>0)
+					$sentencia = $sentencia.") ";
+			}
+
+			$sentencia = $sentencia.$order.$limit;
+
+			// Finalmente, realizamos la consulta.
 			$resultado = mysql_query($sentencia, BD::conectar());
 
 			if ($resultado)
@@ -112,22 +177,92 @@ class CADModelo
 					}
 					else
 					{
-						Logger::aviso("<CADModelo::obtenerTodos(id_fabricante=NULL)> Modelo nulo nº $contador");
+						Logger::aviso("<CADModelo::obtenerSeleccion(...)> Modelo nulo nº $contador");
 					}
 				}
 			}
 			else
 			{
-				Logger::error("<CADModelo::obtenerTodos(id_fabricante=NULL)>".mysql_error());
+				Logger::error("<CADModelo::obtenerSeleccion(...)>".mysql_error());
 			}
 		}
 		catch (Exception $e)
 		{
 			$listaModelos = NULL;
-			Logger::error("<CADModelo::obtenerTodos(id_fabricante=NULL) ".$e->getMessage());
+			Logger::error("<CADModelo::obtenerSeleccion(...) ".$e->getMessage());
 		}
 
 		return $listaModelos;
+	}
+
+	/**
+	 * Calcula el número de resultados que habría si se realiza una consulta con esos criterios.
+	 * @param string $busqueda Cadena de caracteres por la que se filtrará la consulta.
+	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelos|descripcion|ambos}
+	 * @param int $fabricante Identificador numérico del fabricante. Si no es un número, se ignora el parámetro.
+	 * @return int Devuelve la cantidad de resultados que tendría la consulta anterior.
+	 */
+	public static function cantidadSeleccion ($busqueda, $filtro, $fabricante)
+	{
+		$cantidadModelos = 0;
+
+		try
+		{
+			// Preparamos los parámetros de la consulta.
+			if ($filtro != "modelo" && $filtro != "descripcion") $filtro = "ambos";
+			if (!is_numeric($fabricante)) $fabricante = "";
+
+			$sentencia = "select count(*) from modelos, fabricantes where modelos.id_fabricante = fabricantes.id";
+			if ($fabricante != "")
+				$sentencia = $sentencia." and fabricantes.id = $fabricante";
+
+			$busqueda = str_replace ("'", "", $busqueda);
+			$busqueda = str_replace (";", "", $busqueda);
+			if ($busqueda != "")
+			{
+				$busqueda = self::limpiarEspacios($busqueda);
+				$busquedas = split(" ", $busqueda);
+				if (count($busquedas)>0)
+					$sentencia = $sentencia." and (1=2 ";
+				foreach ($busquedas as $palabra)
+				{
+					if ($filtro != "descripcion")
+						$sentencia = $sentencia." or modelo like '%$palabra%'";
+
+					if ($filtro != "modelo")
+						$sentencia = $sentencia." or descripcion like '%$palabra%'";
+				}
+				if (count($busquedas)>0)
+					$sentencia = $sentencia.") ";
+			}
+
+			// Finalmente, realizamos la consulta.
+			$resultado = mysql_query($sentencia, BD::conectar());
+
+			if ($resultado)
+			{
+				$fila = mysql_fetch_array($resultado);
+				if ($fila)
+				{
+					$cantidadModelos = $fila[0];
+				}
+				else
+				{
+					Logger::aviso("<CADModelo::cantidadSeleccion(...)> Modelo nulo nº $contador");
+				}
+			}
+			else
+			{
+				Logger::error("<CADModelo::cantidadSeleccion(...)>".mysql_error());
+			}
+		}
+		catch (Exception $e)
+		{
+			$cantidadModelos = 0;
+			Logger::error("<CADModelo::cantidadSeleccion(...) ".$e->getMessage());
+		}
+
+		return $cantidadModelos;
 	}
 
 	/**
