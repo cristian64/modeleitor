@@ -127,6 +127,15 @@ class ENFoto
 	}
 
 	/**
+	 * Obtiene un conjunto de caracteres con los atributos de la foto. Sobre todo para depuración.
+	 * @return string
+	 */
+	public function toString()
+	{
+		return "-----FOTO :: $this->id(id) || $this->id_modelo(id_modelo) -----";
+	}
+
+	/**
 	 * Dada una foto que acaba de ser enviada por el método post, la guarda en un fichero físico.
 	 * @param resource $httpPostFile Elemento de $HTTP_POST_FILES ($_FILES) que se quiere guardar. Por ejemplo, $_FILES['foto_subida'].
 	 * @return bool Devuelve verdadero si ha creado los ficheros correctamente (foto y miniatura).
@@ -242,15 +251,6 @@ class ENFoto
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Obtiene un conjunto de caracteres con los atributos de la foto. Sobre todo para depuración.
-	 * @return string
-	 */
-	public function toString()
-	{
-		return "Foto ($this->id, $this->id_modelo): $this->descripcion";
 	}
 
 	/**

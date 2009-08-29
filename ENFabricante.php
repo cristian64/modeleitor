@@ -209,6 +209,15 @@ class ENFabricante
 	}
 
 	/**
+	 * Obtiene un conjunto de caracteres con los atributos del fabricante. Sobre todo para depuración.
+	 * @return string
+	 */
+	public function toString()
+	{
+		return "-----FABRICANTE :: $this->nombre($this->id) || $this->informacion_adicional -----";
+	}
+
+	/**
 	 * Obtiene todos los fabricantes que hay en la base de datos.
 	 * @return array Devuelve una lista con todos los fabricantes de la base de datos. Si hay algun error, devuelve NULL.
 	 */
