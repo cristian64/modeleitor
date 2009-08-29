@@ -1,5 +1,7 @@
 <?php
+	session_start();
 	require_once 'minilibreria.php';
+	accesoValido();
 
 	function obtenerRuta ($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina)
 	{
@@ -111,6 +113,11 @@
 					$maxpagina = ceil($cantidadModelos / (float)$cantidad);
 					if ($pagina < 1 || $pagina > $maxpagina) $pagina = 1;
 
+					if ($cantidadModelos > 0)
+						echo "Mostrando ".((($pagina-1)*$cantidad)+1)." - ".min($pagina*$cantidad, $cantidadModelos)." de ".$cantidadModelos." modelos encontrados.";
+					else
+						echo "No se han encontrado modelos con esos criterios de búsqueda.";
+
 					if ($modelos != NULL)
 					{
 						if (count($modelos)>0)
@@ -125,11 +132,6 @@
 							$cabeceras["precio_compra"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_compra", $nuevoOrden, $cantidad, 1)."\">Precio de compra</a>";
 							$cabeceras["primer_ano"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "primer_ano", $nuevoOrden, $cantidad, 1)."\">Primer año de fabricación</a>";
 							$cabeceras["fabricante"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "fabricante", $nuevoOrden, $cantidad, 1)."\">Fabricante</a>";
-
-							if ($cantidadModelos > 0)
-								echo "Mostrando ".((($pagina-1)*$cantidad)+1)." - ".min($pagina*$cantidad, $cantidadModelos)." de ".$cantidadModelos." modelos encontrados.";
-							else
-								echo "No se han encontrado modelos con esos criterios de búsqueda.";
 								
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";

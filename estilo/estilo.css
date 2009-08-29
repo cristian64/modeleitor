@@ -39,7 +39,7 @@ a img
 a.enlace_menu
 {
 	width: 112px;
-	height: 113px;
+	height: 90px;
 	background: url('normal.png') no-repeat center center;
 	display: block;
 	color: #000;
@@ -57,19 +57,24 @@ a.enlace_menu:hover
 a.enlace_menu span
 {
 	padding: 10px;
-	padding-top: 45px;
+	padding-top: 30px;
 	text-align: center;
 	font-weight: bold;
 	font-size: 10pt;
 }
 
-.sombra_menu
+.sombra_menu, .sombra_menu2
 {
 	width: 92px;
 	position: absolute;
 	top: -1px;
 	left: -1px;
 	color: #f9f39b;
+}
+
+.sombra_menu2
+{
+	color: #fe5369;
 }
 
 /******************************************************************************

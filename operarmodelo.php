@@ -1,5 +1,7 @@
 <?php
+	session_start();
 	require_once 'minilibreria.php';
+	accesoValido();
 
 	$id = filtrarCadena($_POST["id"]);
 	$modelo = filtrarCadena($_POST["modelo"]);
@@ -24,7 +26,7 @@
 
 		if ($nuevo->guardar())
 		{
-			registrar($_SESSION["usuario"], $nuevo->toString(), "Insertar nuevo modelo", $_SERVER["REMOTE_ADDR"]);
+			registrar($nuevo->toString(), "Insertar nuevo modelo");
 			if ($_FILES["foto"]["tmp_name"] == "")
 			{
 				header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No has introducido ninguna foto para el modelo.");
@@ -39,7 +41,7 @@
 					if ($foto->crearFicheroFoto($_FILES["foto"]))
 					{
 						$subida = true;
-						registrar($_SESSION["usuario"], $foto->toString(), "Insertar nueva foto (adjunta)", $_SERVER["REMOTE_ADDR"]);
+						registrar($foto->toString(), "Insertar nueva foto (adjunta)");
 					}
 					else
 					{
@@ -67,6 +69,7 @@
 			$existente = ENModelo::obtenerPorId($id);
 			if ($existente != NULL)
 			{
+				registrar($existente->toString(), "Editar modelo (antes)");
 				$existente->setModelo($modelo);
 				$existente->setDescripcion($descripcion);
 				$existente->setPrecioVenta($precio_venta);
@@ -77,35 +80,53 @@
 
 				if ($existente->actualizar())
 				{
+					registrar($existente->toString(), "Editar modelo (después)");
 					$actualizado = true;
 					header("location: modelo.php?exito=Los cambios se han guardado correctamente.&id=".$id);
+					exit();
 				}
 			}
 			if (!$actualizado)
+			{
 				header("location: modelo.php?error=No se han podido guardar los cambios. Revisa que los datos introducidos sean correctos.&id=".$id);
+				exit();
+			}
 		}
 		else
 		{
 			// Comprobamos si se trata de un borrado.
 			if ($_POST["operacion"] == "borrar")
 			{
-				$fotos = ENFoto::obtenerTodos($id);
-				if ($fotos != NULL)
+				$modelo = ENModelo::obtenerPorId($id);
+				if ($modelo != NULL)
 				{
-					foreach ($fotos as $i)
+					registrar($modelo->toString(), "Borrar modelo (antes)");
+					
+					$fotos = ENFoto::obtenerTodos($id);
+					if ($fotos != NULL)
 					{
-						$i->borrarFicheroFoto();
-						$i->borrar();
+						foreach ($fotos as $i)
+						{
+							$i->borrarFicheroFoto();
+							$i->borrar();
+						}
 					}
-				}
 
-				if (ENModelo::borrarPorId($id))
-				{
-					header("location: index.php?exito=Modelo eliminado correctamente.");
+					if ($modelo->borrar())
+					{
+						registrar($modelo->toString(), "Borrar modelo (después)");
+						header("location: index.php?exito=Modelo eliminado correctamente.");
+					}
+					else
+					{
+						header("location: modelo.php?error=No se ha podido eliminar el modelo.&id=".$id);
+						exit();
+					}
 				}
 				else
 				{
 					header("location: modelo.php?error=No se ha podido eliminar el modelo.&id=".$id);
+					exit();
 				}
 			}
 			else
@@ -120,6 +141,7 @@
 					{
 						if ($foto->crearFicheroFoto($_FILES["foto"]))
 						{
+							registrar($foto->toString(), "Insertar nueva foto (aparte)");
 							$subida = true;
 						}
 						else
@@ -132,6 +154,7 @@
 						header("location: modelo.php?id=".$id."&exito=Foto insertada correctamente.");
 					else
 						header("location: modelo.php?id=".$id."&error=No se pudo insertar la foto.");
+					exit();
 				}
 				else
 				{
@@ -143,11 +166,13 @@
 						{
 							$foto->borrarFicheroFoto();
 							$foto->borrar();
+							registrar($foto->toString(), "Borrar foto");
 							echo "OK";
 						}
 						else
 						{
 							echo "FALLO";
+							exit();
 						}
 					}
 					else
@@ -161,6 +186,7 @@
 								$_SESSION["miniaturas"] = "si";
 
 							echo "OK";
+							exit();
 						}
 					}
 				}
@@ -168,4 +194,6 @@
 		}
 	}
 
+	header("location: modelos.php");
+	exit();
 ?>

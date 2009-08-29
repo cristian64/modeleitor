@@ -274,7 +274,15 @@ create table registro
 	foreign key (nombre_usuario) references usuarios (nombre) on delete restrict on update cascade
 );
 
-
+create table accesos
+(
+	id int auto_increment,
+	fecha datetime not null,
+	ip varchar(56) not null,
+	exito varchar(50) not null,
+	intento varchar(100) not null,
+	primary key (id)
+);
 
 
 insert into usuarios (nombre, contrasena, fecha_insercion) values ('cristian', '123456', now());
