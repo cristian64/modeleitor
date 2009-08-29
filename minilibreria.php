@@ -1,7 +1,8 @@
 <?php
+	session_start();
+	
 	require_once 'BD.php';
 	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
-	require_once 'ENColor.php';
 	require_once 'ENFabricante.php';
 	require_once 'ENFoto.php';
 	require_once 'ENModelo.php';

@@ -1,16 +1,41 @@
 <?php
 	require_once 'minilibreria.php';
 
+	function obtenerRuta ($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina)
+	{
+		$ruta = "index.php?";
+		$parametros = "";
+
+		if ($busqueda != "")
+			$parametros = $parametros."busqueda=$busqueda";
+		if ($filtro != "")
+			$parametros = $parametros."&filtro=$filtro";
+		if ($fabricante != "")
+			$parametros = $parametros."&fabricante=$fabricante";
+		if ($ordenar != "")
+			$parametros = $parametros."&ordenar=$ordenar";
+		if ($orden != "")
+			$parametros = $parametros."&orden=$orden";
+		if ($cantidad != "")
+			$parametros = $parametros."&cantidad=$cantidad";
+		if ($pagina != "")
+			$parametros = $parametros."&pagina=$pagina";
+
+		return $ruta.$parametros;
+	}
+
 	$busqueda = filtrarCadena($_GET["busqueda"]);
 	$filtro = $_GET["filtro"];
 	$fabricante = $_GET["fabricante"];
 	$ordenar = $_GET["ordenar"];
 	$orden = $_GET["orden"];
 	$cantidad = $_GET["cantidad"];
+	if ($cantidad <= 0) $cantidad = 10;
 	$pagina = $_GET["pagina"];
-	$maxpagina = 100;
-	$otrosparametros = "index.php?";
-	$miniaturas = $_GET["miniaturas"];
+	$otrosparametros = obtenerRuta($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, "");
+	$miniaturas = $_SESSION["miniaturas"];
+	if ($miniaturas == "no")
+		$miniaturasOcultas = "style=\"display: none\"";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -20,6 +45,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" media="all" type="text/css" href="estilo/estilo.css" />
 		<script src="javascript.js" type="text/JavaScript"></script>
+		<?php
+			if ($miniaturas == "no")
+			{
+				echo "<script type=\"text/JavaScript\">miniaturas = false;</script>\n";
+			}
+		?>
 	</head>
 	<body onload="document.getElementById('busqueda').focus();" onmousemove="registrarCoordenadas(event);">
 		<div id="capaimagenraton" style="display: none; position: absolute; "><img id="imagenraton" src="" alt="" style="border: 1px solid #000;"/></div>
@@ -62,31 +93,55 @@
 									?>
 								</select>
 								<input type="submit" value="Buscar" class="botonbuscar" />
+								<input type="hidden" name="ordenar" value="<?php echo $ordenar; ?>" />
+								<input type="hidden" name="orden" value="<?php echo $orden; ?>" />
+								<input type="hidden" name="pagina" value="1" />
+								<input type="hidden" name="cantidad" value="<?php echo $cantidad; ?>" />
 							</div>
 						</form>
 					</div>
 					<div id="resultados">
-						<div style="text-align: right;"><input type="checkbox" onclick="permutarMiniaturas();" />&nbsp;Ocultar miniaturas</div>
+						<div style="text-align: right;"><input type="checkbox" <?php if ($miniaturas == "no") echo "checked=\"checked\""; ?> onclick="permutarMiniaturas();" />&nbsp;Ocultar miniaturas</div>
 					<?php
 
-					$modelos = ENModelo::obtenerTodos();
+
+					$modelos = CADModelo::obtenerSeleccion($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina);
+
+					$cantidadModelos = CADModelo::cantidadSeleccion($busqueda, $filtro, $fabricante);
+					$maxpagina = ceil($cantidadModelos / (float)$cantidad);
+					if ($pagina < 1 || $pagina > $maxpagina) $pagina = 1;
 
 					if ($modelos != NULL)
 					{
 						if (count($modelos)>0)
 						{
+							$cabeceras = array();
+							$nuevoOrden = ($orden == "ascendente") ? "descendente" : "ascendente";
+							$cabeceras["id"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "id", $nuevoOrden, $cantidad, 1)."\">ID</a>";
+							$cabeceras["modelo"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "modelo", $nuevoOrden, $cantidad, 1)."\">Código de referencia</a>";
+							$cabeceras["descripcion"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "descripcion", $nuevoOrden, $cantidad, 1)."\">Descripción</a>";
+							$cabeceras["precio_venta"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_venta", $nuevoOrden, $cantidad, 1)."\">Precio de venta</a>";
+							$cabeceras["precio_venta_minorista"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_venta_minorista", $nuevoOrden, $cantidad, 1)."\">Precio de venta (minorista)</a>";
+							$cabeceras["precio_compra"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_compra", $nuevoOrden, $cantidad, 1)."\">Precio de compra</a>";
+							$cabeceras["primer_ano"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "primer_ano", $nuevoOrden, $cantidad, 1)."\">Primer año de fabricación</a>";
+							$cabeceras["fabricante"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "fabricante", $nuevoOrden, $cantidad, 1)."\">Fabricante</a>";
+
+							if ($cantidadModelos > 0)
+								echo "Mostrando ".((($pagina-1)*$cantidad)+1)." - ".min($pagina*$cantidad, $cantidadModelos)." de ".$cantidadModelos." modelos encontrados.";
+							else
+								echo "No se han encontrado modelos con esos criterios de búsqueda.";
+								
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";
-							echo "<td class=\"columnaid\"><a href=\"index.php?ordenar=id&orden=$orden\">ID<img src=\"estilo/ascendente.png\"/></a></td>";
-							echo "<td class=\"columnamodelo\">Código de referencia</td>";
-							echo "<td class=\"columnadescripcion\">Descripción</td>";
-							echo "<td class=\"columnaprecio\">Precio de venta</td>";
-							echo "<td class=\"columnaprecio\">Precio de venta (minorista)</td>";
-							echo "<td class=\"columnaprecio\">Precio de compra</td>";
-							echo "<td class=\"columnaprimerano\">Primer año de fabricación</td>";
-							echo "<td class=\"columnafabricante\">Fabricante</td>";
-							if ($miniaturas != "no")
-								echo "<td class=\"columnafoto\">Última foto añadida</td>";
+							echo "<td class=\"columnaid ".(($ordenar == "id") ? $nuevoOrden : "")."\">".$cabeceras['id']."</td>";
+							echo "<td class=\"columnamodelo ".(($ordenar == "modelo") ? $nuevoOrden : "")."\">".$cabeceras['modelo']."</td>";
+							echo "<td class=\"columnadescripcion ".(($ordenar == "descripcion") ? $nuevoOrden : "")."\">".$cabeceras['descripcion']."</td>";
+							echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta']."</td>";
+							echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta_minorista") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta_minorista']."</td>";
+							echo "<td class=\"columnaprecio ".(($ordenar == "precio_compra") ? $nuevoOrden : "")."\">".$cabeceras['precio_compra']."</td>";
+							echo "<td class=\"columnaprimerano ".(($ordenar == "primer_ano") ? $nuevoOrden : "")."\">".$cabeceras['primer_ano']."</td>";
+							echo "<td class=\"columnafabricante ".(($ordenar == "fabricante") ? $nuevoOrden : "")."\">".$cabeceras['fabricante']."</td>";
+							echo "<td class=\"columnafoto\" $miniaturasOcultas>Última foto añadida</td>";
 							echo "</tr>\n";
 							$contador = 0;
 							foreach ($modelos as $i)
@@ -123,13 +178,13 @@
 									else
 										$cantidadFotos = "(1 foto)";
 									if (count($fotos)>0)
-										echo "<td class=\"columnafoto\"><img src=\"".$fotos[0]->getRutaMiniatura()."\" alt=\"Foto nº ".$fotos[0]->getId()."\"/></td>";
+										echo "<td class=\"columnafoto\" $miniaturasOcultas><img src=\"".$fotos[0]->getRutaMiniatura()."\" alt=\"Foto nº ".$fotos[0]->getId()."\"/></td>";
 									else
-										echo "<td class=\"columnafoto\">(sin foto)</td>";
+										echo "<td class=\"columnafoto\" $miniaturasOcultas>(sin foto)</td>";
 								}
 								else
 								{
-									echo "<td class=\"columnafoto\">(sin foto)</td>";
+									echo "<td class=\"columnafoto\" $miniaturasOcultas>(sin foto)</td>";
 								}
 								
 								echo "\n";
@@ -141,6 +196,19 @@
 					}
 
 					?>
+					</div>
+					<div id="cantidad" style="float: left;">
+						Cantidad de modelos por página:
+						<select onchange="location.href='<?php echo obtenerRuta($busqueda, $filtro, $fabricante, $ordenar, $orden, "", "1"); ?>&cantidad='+this.value;">
+							<option value="1" <?php if ($cantidad == 1) echo "selected=\"selected\""; ?>>1</option>
+							<option value="3" <?php if ($cantidad == 3) echo "selected=\"selected\""; ?>>3</option>
+							<option value="5" <?php if ($cantidad == 5) echo "selected=\"selected\""; ?>>5</option>
+							<option value="10" <?php if ($cantidad == 10) echo "selected=\"selected\""; ?>>10</option>
+							<option value="25" <?php if ($cantidad == 25) echo "selected=\"selected\""; ?>>25</option>
+							<option value="50" <?php if ($cantidad == 50) echo "selected=\"selected\""; ?>>50</option>
+							<option value="75" <?php if ($cantidad == 75) echo "selected=\"selected\""; ?>>75</option>
+							<option value="100" <?php if ($cantidad == 100) echo "selected=\"selected\""; ?>>100</option>
+						</select>
 					</div>
 					<?php include 'paginacion.php' ?>
 				</div>

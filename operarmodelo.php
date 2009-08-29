@@ -10,6 +10,7 @@
 	$primer_ano = filtrarCadena($_POST["primer_ano"]);
 	$fabricante = filtrarCadena($_POST["fabricante"]);
 
+	// Comprobamos si se trata de una inserción.
 	if ($_POST["operacion"] == "insertar")
 	{
 		$nuevo = new ENModelo();
@@ -57,6 +58,7 @@
 	}
 	else
 	{
+		// Comprobamos si se trata de una edición.
 		if ($_POST["operacion"] == "editar")
 		{
 			$actualizado = false;
@@ -82,6 +84,7 @@
 		}
 		else
 		{
+			// Comprobamos si se trata de un borrado.
 			if ($_POST["operacion"] == "borrar")
 			{
 				$fotos = ENFoto::obtenerTodos($id);
@@ -105,6 +108,7 @@
 			}
 			else
 			{
+				// Comprobamos si se trata de una inserción (foto).
 				if ($_POST["operacion"] == "insertarfoto")
 				{
 					$subida = false;
@@ -129,6 +133,7 @@
 				}
 				else
 				{
+					// Comprobamos si se trata de un borrado (foto).
 					if ($_POST["operacion"] == "eliminarfoto")
 					{
 						$foto = ENFoto::obtenerPorId($id);
@@ -141,6 +146,19 @@
 						else
 						{
 							echo "FALLO";
+						}
+					}
+					else
+					{
+						// Permutamos el estado de las miniaturas (mostrarlas o no).
+						if ($_POST["operacion"] == "miniaturas")
+						{
+							if ($_SESSION["miniaturas"] != "no")
+								$_SESSION["miniaturas"] = "no";
+							else
+								$_SESSION["miniaturas"] = "si";
+
+							echo "OK";
 						}
 					}
 				}

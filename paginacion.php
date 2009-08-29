@@ -1,11 +1,11 @@
 <?php
-// Este módulo requiere tener inicializados las variables $cantidad (cantidad de
+// Este módulo requiere tener inicializados las variables $cantidadModelos (cantidad de
 // artículos totales), $maxpagina (mayor página posible), $pagina (página actual) y
 // $otrosparametros (por ejemeplo, para clientes.php, es necesario indicar los criterios
 // de búsqueda en cada página
 ?>
 
-					<div id="paginacion"  <?php if ($cantidad<=0) echo 'class="oculto"'; ?>>
+					<div id="paginacion"  <?php if ($cantidadModelos<=0) echo 'class="oculto"'; ?>>
 						<div id="botones">
 <?php
 							

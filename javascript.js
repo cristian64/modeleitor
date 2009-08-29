@@ -275,8 +275,11 @@ function ocultarImagenRaton()
 
 function registrarCoordenadas(event)
 {
-	document.getElementById("capaimagenraton").style.top = (event.clientY) + "px";
-	document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width) + "px";
+	if (!miniaturas)
+	{
+		document.getElementById("capaimagenraton").style.top = (event.clientY) + "px";
+		document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width) + "px";
+	}
 }
 
 function permutarMiniaturas()
@@ -304,4 +307,24 @@ function permutarMiniaturas()
 				tds[i].style.display = '';
 		}
 	}
+
+	ajax=nuevoAjax();
+	ajax.open("POST", "operarmodelo.php",true);
+	ajax.onreadystatechange = function()
+	{
+		/*if (ajax.readyState==4)
+		{
+			// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
+			if(ajax.responseText!="OK")
+			{
+				alert ("No se ha podido eliminar la foto.\n" + ajax.responseText);
+			}
+			else
+			{
+				alert (ajax.responseText);
+			}
+		}*/
+	}
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	ajax.send("operacion=miniaturas");
 }
