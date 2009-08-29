@@ -1,3 +1,5 @@
+drop table if exists registro;
+
 drop table if exists precios;
 drop table if exists anos_modelos;
 
@@ -259,6 +261,18 @@ create table precios
 */
 
 
+
+create table registro
+(
+	id int auto_increment,
+	fecha datetime not null,
+	nombre_usuario varchar(50) not null,
+	accion varchar(50) not null,
+	detalles varchar(10000) not null,
+	ip varchar(56) not null,
+	primary key (id),
+	foreign key (nombre_usuario) references usuarios (nombre) on delete restrict on update cascade
+);
 
 
 

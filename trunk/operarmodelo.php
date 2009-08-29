@@ -24,6 +24,7 @@
 
 		if ($nuevo->guardar())
 		{
+			registrar($_SESSION["usuario"], $nuevo->toString(), "Insertar nuevo modelo", $_SERVER["REMOTE_ADDR"]);
 			if ($_FILES["foto"]["tmp_name"] == "")
 			{
 				header("location: modelo.php?id=".$nuevo->getId()."&exito=El modelo se ha creado correctamente.&aviso=No has introducido ninguna foto para el modelo.");
@@ -38,6 +39,7 @@
 					if ($foto->crearFicheroFoto($_FILES["foto"]))
 					{
 						$subida = true;
+						registrar($_SESSION["usuario"], $foto->toString(), "Insertar nueva foto (adjunta)", $_SERVER["REMOTE_ADDR"]);
 					}
 					else
 					{

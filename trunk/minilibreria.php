@@ -39,4 +39,21 @@
 		}
 		return $cadena;
 	}
+
+	function registrar ($usuario, $detalles, $accion, $ip)
+	{
+		$usuario = filtrarCadena($usuario);
+		$accion = filtrarCadena($accion);
+		$ip = filtrarCadena($ip);
+		$sentencia = "insert into registro (nombre_usuario, detalles, accion, ip, fecha) values ('$usuario', '$detalles', '$accion', '$ip', now());";
+		$resultado = @mysql_query($sentencia, BD::conectar());
+		if ($resultado)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 ?>

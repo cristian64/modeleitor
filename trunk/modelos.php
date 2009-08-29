@@ -3,7 +3,7 @@
 
 	function obtenerRuta ($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, $pagina)
 	{
-		$ruta = "index.php?";
+		$ruta = "modelos.php?";
 		$parametros = "";
 
 		if ($busqueda != "")
@@ -66,7 +66,7 @@
 				<?php include 'mensajes.php'; ?>
 				<div id="panel">
 					<div id="buscador">
-						<form action="index.php" method="get">
+						<form action="modelos.php" method="get">
 							<div>
 								<input id="busqueda" type="text" name="busqueda" class="busqueda" value="<?php echo $busqueda; ?>"/>
 								<select name="filtro" class="filtrobusqueda">
