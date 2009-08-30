@@ -1,3 +1,4 @@
+drop table if exists accesos;
 drop table if exists registro;
 
 drop table if exists precios;
@@ -54,6 +55,8 @@ create table fabricantes
 	primary key (id),
 	unique (nombre)
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
+insert into fabricantes (nombre, fecha_insercion) values ('--NO ESPECIFICADO--', now());
 
 create table fabricantes_telefonos
 (
