@@ -4,6 +4,7 @@
 	require_once 'ENFabricante.php';
 	require_once 'ENFoto.php';
 	require_once 'ENModelo.php';
+	require_once 'ENCatalogo.php';
 
 	function accesoValido()
 	{

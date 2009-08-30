@@ -328,3 +328,33 @@ function permutarMiniaturas()
 	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	ajax.send("operacion=miniaturas");
 }
+
+/************************************************************************
+// Eliminar un catálogo
+*************************************************************************/
+function eliminarCatalogo(id)
+{
+	var alerta = "¿Está seguro de que quiere eliminar el catálogo? No podrá volver a imprimirlo ni editarlo.";
+	if (confirm(alerta))
+	{
+		ajax=nuevoAjax();
+		ajax.open("POST", "operarcatalogo.php",true);
+		ajax.onreadystatechange = function()
+		{
+			if (ajax.readyState==4)
+			{
+				// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
+				if(ajax.responseText!="OK")
+				{
+					alert ("No se ha podido eliminar el catálogo.\n");
+				}
+				else
+				{
+					document.getElementById('catalogo'+id).style.visibility = "hidden";
+				}
+			}
+		}
+		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		ajax.send("operacion=borrar&id="+id);
+	}
+}

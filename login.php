@@ -24,15 +24,15 @@
 	{
 		$conectado = false;
 
-		$login = $_POST["login"];
-		$password = $_POST["password"];
+		$login = filtrarCadena($_POST["login"]);
+		$password = filtrarCadena($_POST["password"]);
 
 		// Comprobamos que las cadenas sean válidas.
 		$patron = "/^[a-zA-Z0-9]{1,25}$/";
 		if (preg_match($patron, $login) && preg_match($patron, $password))
 		{
 			// Comprobamos que existe un usuario en la base de datos con ese usuario y contraseña.
-			$sentencia = "select count(*) from usuarios where nombre = '$login' and contrasena = '".sha1($password)."'";
+			$sentencia = "select id from usuarios where nombre = '$login' and contrasena = '".sha1($password)."'";
 			$resultado = @mysql_query($sentencia, BD::conectar());
 			if ($resultado)
 			{
@@ -41,6 +41,7 @@
 				{
 					if ($fila[0]>0)
 					{
+						$_SESSION["id_usuario"] = $fila[0];
 						$conectado = true;
 					}
 				}
@@ -55,6 +56,7 @@
 		{
 			$_SESSION["usuario"] = $login;
 			$_SESSION["conectado"] = "si";
+			$_SESSION["id_catalogo"] = 0;
 			
 			// Quitamos todos los intentos de "exito=no" a "exito=conseguido".
 			// Añadimos un nuevo intento con "exito=si".

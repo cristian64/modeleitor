@@ -20,35 +20,35 @@
 
 			<div id="contenido">
 				<div id="titulo">
-					<p>Fabricantes</p>
+					<p>Catálogos de <?php echo $_SESSION["usuario"]; ?></p>
 				</div>
 				<?php include 'mensajes.php'; ?>
 				<div id="panel">
 					<div id="resultados">
 					<?php
 
-					$fabricantes = ENFabricante::obtenerTodos();
-
-					if ($fabricantes != NULL)
+					$catalogos = ENCatalogo::obtenerTodos($_SESSION["id_usuario"]);
+					if ($catalogos != NULL)
 					{
-						if (count($fabricantes)>0)
+						if (count($catalogos)>0)
 						{
+							$hayCatalogos = true;
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";
 							echo "<td>Nombre</td>";
 							echo "<td>Información adicional</td>";
 							echo "</tr>\n";
 							$contador = 0;
-							foreach ($fabricantes as $i)
+							foreach ($catalogos as $i)
 							{
-								$enlace = "onclick=\"location.href='fabricante.php?id=".$i->getId()."';\"";
+								//$enlace = "onclick=\"location.href='fabricante.php?id=".$i->getId()."';\"";
 								$impar = "";
 								if ($contador%2 != 0)
 									$impar = "class=\"impar\"";
 
-								echo "<tr $impar title=\"Haz clic para ver el fabricante en detalle.\" $enlace>\n";
-								echo "<td>".$i->getNombre()."</td>";
-								echo "<td>".$i->getInformacionAdicional()."</td>";
+								echo "<tr id=\"catalogo".$i->getId()."\" $impar title=\"Haz clic para abrir el catálogo\" $enlace>\n";
+								echo "<td>".$i->getTitulo()."</td>";
+								echo "<td><a href=\"javascript: eliminarCatalogo(".$i->getId().");\"><img src=\"estilo/papelera.png\" alt=\"Eliminar catálogo\" title=\"Eliminar catálogo\" /></a></td>";
 								echo "\n";
 								echo "<tr>\n";
 								$contador++;
@@ -57,7 +57,21 @@
 						}
 					}
 
+					if ($catalogos != true)
+					{
+						echo "<p>El usuario todavía no tiene catálogos.</p>\n";
+					}
+
 					?>
+					</div>
+					<div id="crearcatalogo">
+						<form action="operarcatalogo.php" method="post">
+							<div>
+								<input type="hidden" name="operacion" value="insertar" />
+								<input type="text" name="titulo" />
+								<input type="submit" value="Crear catálogo" />
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
