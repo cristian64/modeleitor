@@ -166,7 +166,7 @@
 								echo "<tr class=\"fila$impar\" title=\"Haz clic para ver el modelo en detalle\" $enlace>\n";
 								echo "<td class=\"columnaid\">".rellenar($i->getId(), "0", "6")."</td>";
 								echo "<td class=\"columnamodelo\">".$i->getModelo()."</td>";
-								echo "<td class=\"columnadescripcion\">".$i->getDescripcion()."</td>";
+								echo "<td class=\"columnadescripcion\"><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
 								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVenta())."</td>";
 								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
 								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioCompra())."</td>";

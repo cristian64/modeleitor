@@ -297,7 +297,19 @@ a.enlace_menu span
 	text-align: center;
 }
 
-tr.fila td.columnamodelo, tr.fila td.columnaprecio, tr.fila td.columnaprimerano
+.columnadescripcion
+{
+	
+}
+
+.columnadescripciondiv
+{
+	overflow: auto;
+	max-height: 35px;
+	display: block;
+}
+
+tr.fila td.columnaprecio, tr.fila td.columnaprimerano
 {
 	text-align: right;
 	padding-right: 2% !important;
