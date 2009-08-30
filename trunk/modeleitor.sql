@@ -1,6 +1,9 @@
 drop table if exists accesos;
 drop table if exists registro;
 
+drop table if exists catalogos_modelos;
+drop table if exists catalogos;
+
 drop table if exists precios;
 drop table if exists anos_modelos;
 
@@ -15,8 +18,8 @@ drop table if exists estados;
 drop table if exists colores_modelos;
 drop table if exists colores;
 
-drop table if exists fotos;
 drop table if exists notas;
+drop table if exists fotos;
 drop table if exists modelos;
 
 drop table if exists fabricantes_telefonos;
@@ -111,7 +114,17 @@ create table modelos
 	foreign key (id_fabricante) references fabricantes (id) on delete restrict on update cascade
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
-create table notas
+create table fotos
+(
+	id int auto_increment,
+	id_modelo int not null,
+	descripcion varchar(5000),
+	fecha_insercion datetime not null,
+	primary key (id),
+	foreign key (id_modelo) references modelos (id) on delete restrict on update cascade
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
+
+/*create table notas
 (
 	id int auto_increment,
 	id_modelo int not null,
@@ -121,16 +134,6 @@ create table notas
 	primary key (id),
 	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade,
 	foreign key (id_usuario) references usuarios (id) on delete restrict on update cascade
-) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
-
-create table fotos
-(
-	id int auto_increment,
-	id_modelo int not null,
-	descripcion varchar(5000),
-	fecha_insercion datetime not null,
-	primary key (id),
-	foreign key (id_modelo) references modelos (id) on delete restrict on update cascade
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
 
@@ -227,12 +230,7 @@ create table temporadas_modelos
 	primary key (id_temporada, id_modelo),
 	foreign key (id_temporada) references temporadas (id) on delete restrict on update cascade,
 	foreign key (id_modelo) references modelos (id)	on delete cascade on update cascade 
-) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
-
-
-
-
-
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;*/
 
 /*
 --create table anos_modelos
@@ -244,11 +242,6 @@ create table temporadas_modelos
 --	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade
 --) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 */
-
-
-
-
-
 
 /*
 create table precios
@@ -263,7 +256,25 @@ create table precios
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 */
 
+create table catalogos
+(
+	id int auto_increment,
+	titulo varchar(100) not null,
+	id_usuario int not null,
+	fecha_insercion datetime not null,
+	primary key (id),
+	foreign key (id_usuario) references usuarios (id) on delete cascade on update cascade
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
+create table catalogos_modelos
+(
+	id_catalogo int not null,
+	id_modelo int not null,
+	fecha_insercion datetime not null,
+	primary key (id_catalogo, id_modelo),
+	foreign key (id_catalogo) references catalogos (id) on delete cascade on update cascade,
+	foreign key (id_modelo) references modelos (id) on delete cascade on update cascade
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
 create table registro
 (
@@ -275,7 +286,7 @@ create table registro
 	ip varchar(56) not null,
 	primary key (id),
 	foreign key (nombre_usuario) references usuarios (nombre) on delete restrict on update cascade
-);
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
 create table accesos
 (
@@ -285,7 +296,7 @@ create table accesos
 	exito varchar(50) not null,
 	intento varchar(100) not null,
 	primary key (id)
-);
+) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
 
 insert into usuarios (nombre, contrasena, fecha_insercion) values ('cristian', '123456', now());
