@@ -20,7 +20,7 @@
 
 			<div id="contenido">
 				<div id="titulo">
-					<p>Catálogos de <?php echo $_SESSION["usuario"]; ?></p>
+					<p>Catálogos de <strong><?php echo $_SESSION["usuario"]; ?></strong></p>
 				</div>
 				<?php include 'mensajes.php'; ?>
 				<div id="panel">

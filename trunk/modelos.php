@@ -55,7 +55,7 @@
 		?>
 	</head>
 	<body onload="document.getElementById('busqueda').focus();" onmousemove="registrarCoordenadas(event);">
-		<div id="capaimagenraton" style="display: none; position: absolute; "><img id="imagenraton" src="" alt="" style="border: 1px solid #000;"/></div>
+		<div id="capaimagenraton" style="display: none; position: absolute; z-index: 10;"><img id="imagenraton" src="" alt="" style="border: 1px solid #000;"/></div>
 		<div id="contenedor">
 			<div id="menu">
 				<?php include 'menu.html'; ?>
@@ -175,28 +175,29 @@
 										$enlace = $enlace." onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('".$fotos[0]->getRutaMiniatura()."')\"";
 									}
 								}
+								$title =  "title=\"Haz clic para ver el modelo en detalle\"";
 
 								$impar = "";
 								if ($contador%2 != 0)
 									$impar = " impar";
 
-								echo "<tr class=\"fila$impar\" title=\"Haz clic para ver el modelo en detalle\">\n";
+								echo "<tr class=\"fila$impar\">\n";
 
 								if ($_SESSION["id_catalogo"] != 0)
 								{
 									if ($catalogo->existeModelo($i->getId()))
-										echo "<td class=\"columnacatalogo\" onclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/dentro.png\" alt=\"\" /></td>\n";
+										echo "<td class=\"columnacatalogo\" title=\"Haz doble clic para cambiar estado del modelo en el catálogo actual\" ondblclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/dentro.png\" alt=\"\" /></td>\n";
 									else
-										echo "<td class=\"columnacatalogo\" onclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/fuera.png\" alt=\"\" /></td>\n";
+										echo "<td class=\"columnacatalogo\" title=\"Haz doble clic para cambiar estado del modelo en el catálogo actual\" ondblclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/fuera.png\" alt=\"\" /></td>\n";
 								}
 									
-								echo "<td class=\"columnaid\" $enlace>".rellenar($i->getId(), "0", "6")."</td>";
-								echo "<td class=\"columnamodelo\" $enlace>".$i->getModelo()."</td>";
-								echo "<td class=\"columnadescripcion\" $enlace><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
-								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioVenta())."</td>";
-								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
-								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioCompra())."</td>";
-								echo "<td class=\"columnaprimerano\" $enlace>".$i->getPrimerAno()."</td>";
+								echo "<td class=\"columnaid\" $enlace $title>".rellenar($i->getId(), "0", "6")."</td>";
+								echo "<td class=\"columnamodelo\" $enlace $title>".$i->getModelo()."</td>";
+								echo "<td class=\"columnadescripcion\" $enlace $title><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
+								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVenta())."</td>";
+								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
+								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioCompra())."</td>";
+								echo "<td class=\"columnaprimerano\" $enlace $title>".$i->getPrimerAno()."</td>";
 								echo "<td class=\"columnafabricante\" $enlace>".$i->getFabricante()->getNombre()."</td>";
 
 								if ($fotos != NULL)
