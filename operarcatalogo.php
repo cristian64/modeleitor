@@ -6,7 +6,8 @@
 	$id = filtrarCadena($_POST["id"]);
 	$titulo = filtrarCadena($_POST["titulo"]);
 	$id_usuario = $_SESSION["id_usuario"];
-	$id_usuario = filtrarCadena($_POST["id_modelo"]);
+	$id_modelo = filtrarCadena($_POST["id_modelo"]);
+	$fabricantes = $_POST["fabricantes"]; // Vector de identificadores.
 
 	if ($_POST["operacion"] == "insertar")
 	{
@@ -15,6 +16,21 @@
 
 		if ($nuevo->guardar())
 		{
+			// Comprobamos si hay fabricantes seleccionados para insertar todos sus modelos en el catálogo recién creado.
+			if ($fabricantes != NULL)
+			{
+				foreach ($fabricantes as $i)
+				{
+					$modelos = ENModelo::obtenerTodos(filtrarCadena($i));
+					if ($modelos != NULL)
+					{
+						foreach ($modelos as $j)
+						{
+							$nuevo->insertarModelo($j->getId());
+						}
+					}
+				}
+			}
 			registrar($nuevo->toString(), "Insertar nuevo catálogo");
 			header("location: catalogos.php?exito=El catálogo ha sido insertado correctamente.");
 			exit();
@@ -54,10 +70,18 @@
 			{
 				if (CADCatalogo::existePorId($id))
 				{
-					$_SESSION["id_catalogo"] = $id;
-					echo "OK";
-					exit();
-
+					if ($_SESSION["id_catalogo"] != $id)
+					{
+						$_SESSION["id_catalogo"] = $id;
+						echo "SELECCIONADO";
+						exit();
+					}
+					else
+					{
+						$_SESSION["id_catalogo"] = 0;
+						echo "DESSELECCIONADO";
+						exit();
+					}
 				}
 				else
 				{
@@ -72,7 +96,7 @@
 					$catalogo = CADCatalogo::obtenerPorId($_SESSION["id_catalogo"]);
 					if ($catalogo != NULL)
 					{
-						if ($catalogo->insertarModelo($id_modelo))
+						if ($catalogo->existeModelo($id_modelo) || $catalogo->insertarModelo($id_modelo))
 						{
 							echo "OK";
 							exit();
@@ -88,7 +112,7 @@
 						$catalogo = CADCatalogo::obtenerPorId($_SESSION["id_catalogo"]);
 						if ($catalogo != NULL)
 						{
-							if ($catalogo->quitarModelo($id_modelo))
+							if (!$catalogo->existeModelo($id_modelo) || $catalogo->quitarModelo($id_modelo))
 							{
 								echo "OK";
 								exit();
@@ -96,6 +120,41 @@
 						}
 						echo "FALLO";
 						exit();
+					}
+					else
+					{
+						if ($_POST["operacion"] == "permutarmodelo")
+						{
+							$catalogo = ENCatalogo::obtenerPorId($_SESSION["id_catalogo"]);
+							if ($catalogo != NULL)
+							{
+								//echo "distinto null\n";
+								if ($catalogo->existeModelo($id_modelo))
+								{
+									//echo "existe\n";
+									if ($catalogo->quitarModelo($id_modelo))
+									{
+										echo "QUITADO";
+										exit();
+									}
+								}
+								else
+								{
+									//echo "no existe\n";
+									if ($catalogo->insertarModelo($id_modelo))
+									{
+										echo "INSERTADO";
+										exit();
+									}
+									/*else
+									{
+										echo "NO INSERTO";
+									}*/
+								}
+							}
+							echo "FALLO";//.$_SESSION["id_catalogo"];
+							exit();
+						}
 					}
 				}
 			}

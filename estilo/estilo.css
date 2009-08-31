@@ -12,7 +12,7 @@ body
 
 a img
 {
-	border: 1px solid #000;
+	border: 0;
 }
 
 /******************************************************************************
@@ -276,6 +276,12 @@ a.enlace_menu span
 	width: 40%;
 }
 
+.columnacatalogo
+{
+	width: 20px;
+	text-align: center;
+}
+
 .columnaid
 {
 	width: 5%;
@@ -337,17 +343,16 @@ tr.fila td.columnaid
 	float: left;
 	margin: 10px;
 	position: relative;
-	border: 1px solid #BBB;
 }
 
 #fotos .foto img
 {
 	padding: 0;
 	margin: 0;
-	border: 0;
+	border: 1px solid #BBB;
 }
 
-#fotos .foto:hover
+#fotos .foto img:hover
 {
 	border: 1px solid #000;
 }
@@ -377,9 +382,46 @@ tr.fila td.columnaid
 *******************************************************************************
 ******************************************************************************/
 
+#catalogoseleccionado
+{
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	border: 1px solid #5fc44e;
+	-moz-border-radius: 10px;
+	background-color: #5fc44e;
+	color: #ffffff;
+	padding: 15px;
+}
+
 #crearcatalogo
 {
+	margin-top: 60px;
+}
+
+#checkboxesfabricante
+{
 	margin-top: 20px;
+	margin-bottom: 10px
+}
+
+.checkboxfabricante
+{
+	float: left;
+	padding: 10px;
+}
+
+.columnacantidadmodelos
+{
+	width: 120px;
+	text-align: center;
+}
+
+.columnaacciones
+{
+	vertical-align: middle;
+	text-align: center;
+	width: 30px;
 }
 
 /*--------------------------------------------------------------------------*/

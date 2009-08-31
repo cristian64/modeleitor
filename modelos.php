@@ -102,8 +102,21 @@
 							</div>
 						</form>
 					</div>
+					<?php
+						if ($_SESSION["id_catalogo"] != 0)
+						{
+							$catalogo = ENCatalogo::obtenerPorId($_SESSION["id_catalogo"]);
+							if ($catalogo != NULL)
+							{
+								echo "<div id=\"catalogoseleccionado\">\n";
+								echo "Catálogo seleccionado: <strong>".$catalogo->getTitulo()."</strong>";
+								echo "</div>\n";
+							}
+						}
+					?>
+
 					<div id="resultados">
-						<div style="text-align: right;"><input type="checkbox" <?php if ($miniaturas == "no") echo "checked=\"checked\""; ?> onclick="permutarMiniaturas();" />&nbsp;Ocultar miniaturas</div>
+						<div style="float: right;"><input type="checkbox" <?php if ($miniaturas == "no") echo "checked=\"checked\""; ?> onclick="permutarMiniaturas();" />&nbsp;Ocultar miniaturas</div>
 					<?php
 
 
@@ -135,6 +148,10 @@
 								
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";
+
+							if ($_SESSION["id_catalogo"] != 0)
+								echo "<td class=\"columnacatalogo\"></td>\n";
+
 							echo "<td class=\"columnaid ".(($ordenar == "id") ? $nuevoOrden : "")."\">".$cabeceras['id']."</td>";
 							echo "<td class=\"columnamodelo ".(($ordenar == "modelo") ? $nuevoOrden : "")."\">".$cabeceras['modelo']."</td>";
 							echo "<td class=\"columnadescripcion ".(($ordenar == "descripcion") ? $nuevoOrden : "")."\">".$cabeceras['descripcion']."</td>";
@@ -163,15 +180,24 @@
 								if ($contador%2 != 0)
 									$impar = " impar";
 
-								echo "<tr class=\"fila$impar\" title=\"Haz clic para ver el modelo en detalle\" $enlace>\n";
-								echo "<td class=\"columnaid\">".rellenar($i->getId(), "0", "6")."</td>";
-								echo "<td class=\"columnamodelo\">".$i->getModelo()."</td>";
-								echo "<td class=\"columnadescripcion\"><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
-								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVenta())."</td>";
-								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
-								echo "<td class=\"columnaprecio\">".str_replace(".", ",", $i->getPrecioCompra())."</td>";
-								echo "<td class=\"columnaprimerano\">".$i->getPrimerAno()."</td>";
-								echo "<td class=\"columnafabricante\">".$i->getFabricante()->getNombre()."</td>";
+								echo "<tr class=\"fila$impar\" title=\"Haz clic para ver el modelo en detalle\">\n";
+
+								if ($_SESSION["id_catalogo"] != 0)
+								{
+									if ($catalogo->existeModelo($i->getId()))
+										echo "<td class=\"columnacatalogo\" onclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/dentro.png\" alt=\"\" /></td>\n";
+									else
+										echo "<td class=\"columnacatalogo\" onclick=\"permutarModeloCatalogo(".$i->getId().");\"><img id=\"permutarModeloCatalogo".$i->getId()."\" src=\"estilo/fuera.png\" alt=\"\" /></td>\n";
+								}
+									
+								echo "<td class=\"columnaid\" $enlace>".rellenar($i->getId(), "0", "6")."</td>";
+								echo "<td class=\"columnamodelo\" $enlace>".$i->getModelo()."</td>";
+								echo "<td class=\"columnadescripcion\" $enlace><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
+								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioVenta())."</td>";
+								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
+								echo "<td class=\"columnaprecio\" $enlace>".str_replace(".", ",", $i->getPrecioCompra())."</td>";
+								echo "<td class=\"columnaprimerano\" $enlace>".$i->getPrimerAno()."</td>";
+								echo "<td class=\"columnafabricante\" $enlace>".$i->getFabricante()->getNombre()."</td>";
 
 								if ($fotos != NULL)
 								{
@@ -180,13 +206,13 @@
 									else
 										$cantidadFotos = "(1 foto)";
 									if (count($fotos)>0)
-										echo "<td class=\"columnafoto\" $miniaturasOcultas><img src=\"".$fotos[0]->getRutaMiniatura()."\" alt=\"Foto nº ".$fotos[0]->getId()."\"/></td>";
+										echo "<td class=\"columnafoto\" $miniaturasOcultas $enlace><img src=\"".$fotos[0]->getRutaMiniatura()."\" alt=\"Foto nº ".$fotos[0]->getId()."\"/></td>";
 									else
-										echo "<td class=\"columnafoto\" $miniaturasOcultas>(sin foto)</td>";
+										echo "<td class=\"columnafoto\" $miniaturasOcultas $enlace>(sin foto)</td>";
 								}
 								else
 								{
-									echo "<td class=\"columnafoto\" $miniaturasOcultas>(sin foto)</td>";
+									echo "<td class=\"columnafoto\" $miniaturasOcultas $enlace>(sin foto)</td>";
 								}
 								
 								echo "\n";

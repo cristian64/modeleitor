@@ -59,7 +59,7 @@ create table fabricantes
 	unique (nombre)
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
-insert into fabricantes (nombre, fecha_insercion) values ('--NO ESPECIFICADO--', now());
+insert into fabricantes (nombre, informacion_adicional, fecha_insercion) values ('--NO ESPECIFICADO--', 'Ã‰ste es el fabricante ficticio que debe seleccionarse cuando se desconoce el fabricante real o no es muy importante indicar quiÃ©n es.\n\nNo se puede modificar ni eliminar.', now());
 
 create table fabricantes_telefonos
 (
@@ -299,7 +299,7 @@ create table accesos
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
 
-insert into usuarios (nombre, contrasena, fecha_insercion) values ('cristian', '123456', now());
+insert into usuarios (nombre, contrasena, fecha_insercion) values ('cristian', '7c4a8d09ca3762af61e59520943dc26494f8941b', now());
 
 insert into colores (nombre, rgb, fecha_insercion) values ('negro', '000000', now());
 insert into colores (nombre, rgb, fecha_insercion) values ('blanco', 'ff0000', now());

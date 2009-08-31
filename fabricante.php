@@ -58,6 +58,9 @@
 					<?php
 						if ($operacion == "editar")
 						{
+							if ($objetoFabricante->getId() != 1)
+							{
+
 					?>
 						<form id="formularioeliminarfabricante" action="operarfabricante.php" method="post" onsubmit="return confirmarEliminarFabricante();">
 							<div style="text-align: center; margin-bottom: 10px;">
@@ -69,6 +72,7 @@
 							</div>
 						</form>
 					<?php
+							}
 						}
 					?>
 
@@ -86,12 +90,27 @@
 								<td class="etiqueta">Información adicional:</td>
 								<td><textarea rows="15" cols="50" name="informacion_adicional" autocomplete="off" <?php echo $soloLectura; ?>><?php echo $informacion_adicional; ?></textarea></td>
 							</tr>
+							<?php
+								$mostrarBotones = true;
+								if ($objetoFabricante != NULL)
+								{
+									if ($objetoFabricante->getId() == 1)
+									{
+										$mostrarBotones = false;
+									}
+								}
+								if ($mostrarBotones == true)
+								{
+							?>
 							<tr>
 								<td colspan="2" class="botones">
 									<input id="botonsubmit" type="submit" value="<?php echo $textoSubmit; ?>" <?php echo $deshabilitado; ?>/>
 									<input id="botonreset" type="reset" value="<?php echo $textoReset; ?>" <?php echo $deshabilitado; ?>/>
 								</td>
 							</tr>
+							<?php
+								}
+							?>
 						</table>
 					</form>
 				</div>

@@ -61,7 +61,7 @@ function validarModelo(formulario)
 *************************************************************************/
 function confirmarEliminarModelo()
 {
-	var alerta = "Se eliminará toda la información del modelo (incluidas las fotos asociadas).\n¿Desea continuar?";
+	var alerta = "Se eliminará toda la información del modelo (incluidas las fotos asociadas) y desaparecerá de todos los catálogos.\n¿Desea continuar?";
 	if (confirm(alerta))
 	{
 		return true;
@@ -357,4 +357,69 @@ function eliminarCatalogo(id)
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		ajax.send("operacion=borrar&id="+id);
 	}
+}
+
+/************************************************************************
+// Seleccionar catálogo
+*************************************************************************/
+function seleccionarCatalogo(id)
+{
+	ajax=nuevoAjax();
+	ajax.open("POST", "operarcatalogo.php",true);
+	ajax.onreadystatechange = function()
+	{
+		if (ajax.readyState==4)
+		{
+			// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
+			var trs = document.getElementsByTagName("tr");
+			for (i = 0; i < trs.length; i++)
+			{
+				trs[i].style.backgroundImage = 'none';
+			}
+			if(ajax.responseText=="SELECCIONADO")
+			{
+				document.getElementById('catalogo'+id).style.backgroundImage = "url('estilo/seleccionado.png')";
+			}
+			else if(ajax.responseText=="DESSELECCIONADO")
+			{
+
+			}
+			else
+			{
+				alert ("No se pudo seleccionar el catálogo.\n");
+			}
+		}
+	}
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	ajax.send("operacion=seleccionar&id="+id);
+}
+
+/************************************************************************
+// Permutael estado de un modelo en el catálogo abierto
+*************************************************************************/
+function permutarModeloCatalogo(id)
+{
+	ajax=nuevoAjax();
+	ajax.open("POST", "operarcatalogo.php",true);
+	ajax.onreadystatechange = function()
+	{
+		if (ajax.readyState==4)
+		{
+			// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
+			if(ajax.responseText=="INSERTADO")
+			{
+				document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/dentro.png';
+			}
+			else if (ajax.responseText=="QUITADO")
+			{
+				document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/fuera.png';
+			}
+			else
+			{
+				alert (ajax.responseText);
+			}
+		}
+	}
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	ajax.send("operacion=permutarmodelo&id_modelo="+id);
 }
