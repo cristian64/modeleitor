@@ -211,26 +211,30 @@ class ENFoto
 					}*/
 
 					$miniatura=new thumbnail($rutaFoto);
-					$miniatura->size_width(100);
-					$miniatura->size_height(100);
+					//$miniatura->size_width(100);
+					//$miniatura->size_height(100);
+					$miniatura->size_auto(150);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura);
 
 					$miniatura=new thumbnail($rutaFoto);
-					$miniatura->size_width(200);
-					$miniatura->size_height(200);
+					//$miniatura->size_width(200);
+					//$miniatura->size_height(200);
+					$miniatura->size_auto(250);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura2);
 
 					$miniatura=new thumbnail($rutaFoto);
-					$miniatura->size_width(300);
-					$miniatura->size_height(300);
+					//$miniatura->size_width(300);
+					//$miniatura->size_height(300);
+					$miniatura->size_auto(350);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura3);
 
 					$miniatura=new thumbnail($rutaFoto);
-					$miniatura->size_width(400);
-					$miniatura->size_height(400);
+					//$miniatura->size_width(400);
+					//$miniatura->size_height(400);
+					$miniatura->size_auto(450);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura4);
 

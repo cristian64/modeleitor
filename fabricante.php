@@ -49,7 +49,7 @@
 						if ($operacion == "insertar")
 							echo "<p>Añadir un nuevo fabricante</p>";
 						else
-							echo "<p>$nombre</p>";
+							echo "<p>Fabricante <strong>$nombre</strong></p>";
 					?>
 				</div>
 				<?php include 'mensajes.php'; ?>

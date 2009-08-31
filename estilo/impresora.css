@@ -1,0 +1,47 @@
+*
+{
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+#mosaicoImpresora
+{
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+
+#mosaicoImpresora tr
+{
+	vertical-align: baseline;
+	height: 200px;
+}
+
+#mosaicoImpresora .informacion
+{
+	position: relative;
+	border: 1px solid #999;
+	background: url('estilo.php');
+	text-align: left;
+	padding-left: 30px;
+	padding-bottom: 0;
+	margin: 20px;
+	margin-top: 0;
+	font-size: 8pt;
+	font-family: sans;
+}
+
+#mosaicoImpresora .precio
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding-right: 30px;
+}
+
+#menu, #modos, #titulo, #mosaico, #imprimir
+{
+	display: none;
+}
+

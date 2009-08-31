@@ -60,7 +60,7 @@
 						if ($operacion == "insertar")
 							echo "<p>Añadir un nuevo modelo</p>";
 						else
-							echo "<p>Modelo $modelo</p>";
+							echo "<p>Modelo <strong>$modelo</strong></p>";
 					?>
 				</div>
 				<?php include 'mensajes.php'; ?>

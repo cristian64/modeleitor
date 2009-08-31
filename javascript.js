@@ -399,27 +399,31 @@ function seleccionarCatalogo(id)
 *************************************************************************/
 function permutarModeloCatalogo(id)
 {
-	ajax=nuevoAjax();
-	ajax.open("POST", "operarcatalogo.php",true);
-	ajax.onreadystatechange = function()
-	{
-		if (ajax.readyState==4)
+	//var alerta = "¿Está seguro de hacer el cambio?";
+	//if (confirm(alerta))
+	//{
+		ajax=nuevoAjax();
+		ajax.open("POST", "operarcatalogo.php",true);
+		ajax.onreadystatechange = function()
 		{
-			// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
-			if(ajax.responseText=="INSERTADO")
+			if (ajax.readyState==4)
 			{
-				document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/dentro.png';
-			}
-			else if (ajax.responseText=="QUITADO")
-			{
-				document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/fuera.png';
-			}
-			else
-			{
-				alert (ajax.responseText);
+				// Aquí deberá comprobarse si la petición AJAX ha sido correcta.
+				if(ajax.responseText=="INSERTADO")
+				{
+					document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/dentro.png';
+				}
+				else if (ajax.responseText=="QUITADO")
+				{
+					document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/fuera.png';
+				}
+				else
+				{
+					alert (ajax.responseText);
+				}
 			}
 		}
-	}
-	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	ajax.send("operacion=permutarmodelo&id_modelo="+id);
+		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		ajax.send("operacion=permutarmodelo&id_modelo="+id);
+	//}
 }
