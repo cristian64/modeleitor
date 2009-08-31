@@ -12,7 +12,7 @@ class CADModelo
 	 * @param array $fila Tantas componentes como columnas tiene la tabla "modelos" de la base de datos.
 	 * @return ENModelo Devuelve el modelo con todos sus atributos.
 	 */
-	private static function obtenerDatos($fila)
+	public static function obtenerDatos($fila)
 	{
 		$modelo = new ENModelo;
 		$modelo->setId($fila[0]);

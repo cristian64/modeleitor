@@ -284,7 +284,7 @@ class CADCatalogo
 		{
 			if (!self::existeModelo($catalogo, $id_modelo))
 			{
-				$sentencia = "insert into catalogos_modelos (id_catalogo, id_modelo) values ($id_modelo, ".$catalogo->getId().")";
+				$sentencia = "insert into catalogos_modelos (id_modelo, id_catalogo, fecha_insercion) values ($id_modelo, ".$catalogo->getId().", now())";
 				$resultado = @mysql_query ($sentencia, BD::conectar());
 				if ($resultado)
 				{

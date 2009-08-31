@@ -64,12 +64,39 @@ class ENFoto
 	}
 
 	/**
-	 * Obtiene la ruta relativa del fichero de la miniatura.
+	 * Obtiene la ruta relativa del fichero de la miniatura 100x100.
 	 * @return string Devuelve una cadena de caracteres.
 	 */
 	public function getRutaMiniatura()
 	{
 		return self::$rutaImagenes.$this->id."m.jpg";
+	}
+
+	/**
+	 * Obtiene la ruta relativa del fichero de la miniatura 200x200.
+	 * @return string Devuelve una cadena de caracteres.
+	 */
+	public function getRutaMiniatura2()
+	{
+		return self::$rutaImagenes.$this->id."m2.jpg";
+	}
+
+	/**
+	 * Obtiene la ruta relativa del fichero de la miniatura 300x300.
+	 * @return string Devuelve una cadena de caracteres.
+	 */
+	public function getRutaMiniatura3()
+	{
+		return self::$rutaImagenes.$this->id."m3.jpg";
+	}
+
+	/**
+	 * Obtiene la ruta relativa del fichero de la miniatura 400x400.
+	 * @return string Devuelve una cadena de caracteres.
+	 */
+	public function getRutaMiniatura4()
+	{
+		return self::$rutaImagenes.$this->id."m4.jpg";
 	}
 
 	/**
@@ -149,10 +176,16 @@ class ENFoto
 		{
 			$rutaFoto = $this->getRutaFoto();
 			$rutaMiniatura = $this->getRutaMiniatura();
+			$rutaMiniatura2 = $this->getRutaMiniatura2();
+			$rutaMiniatura3 = $this->getRutaMiniatura3();
+			$rutaMiniatura4 = $this->getRutaMiniatura4();
 			
 			// Hay que intentar borrar las anteriores. No importa si falla.
 			Imagen::borrar($rutaFoto);
 			Imagen::borrar($rutaMiniatura);
+			Imagen::borrar($rutaMiniatura2);
+			Imagen::borrar($rutaMiniatura3);
+			Imagen::borrar($rutaMiniatura4);
 
 			// Luego hay que copiar el fichero de la imagen a la ruta de la foto.
 			if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
@@ -182,6 +215,25 @@ class ENFoto
 					$miniatura->size_height(100);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura);
+
+					$miniatura=new thumbnail($rutaFoto);
+					$miniatura->size_width(200);
+					$miniatura->size_height(200);
+					$miniatura->jpeg_quality(100);
+					$miniatura->save($rutaMiniatura2);
+
+					$miniatura=new thumbnail($rutaFoto);
+					$miniatura->size_width(300);
+					$miniatura->size_height(300);
+					$miniatura->jpeg_quality(100);
+					$miniatura->save($rutaMiniatura3);
+
+					$miniatura=new thumbnail($rutaFoto);
+					$miniatura->size_width(400);
+					$miniatura->size_height(400);
+					$miniatura->jpeg_quality(100);
+					$miniatura->save($rutaMiniatura4);
+
 					$creada = true;
 
 					/*if ($foto->redimensionar($width, $height, $rutaMiniatura))
@@ -207,9 +259,15 @@ class ENFoto
 	{
 		$rutaFoto = $this->getRutaFoto();
 		$rutaMiniatura = $this->getRutaMiniatura();
+		$rutaMiniatura2 = $this->getRutaMiniatura2();
+		$rutaMiniatura3 = $this->getRutaMiniatura3();
+		$rutaMiniatura4 = $this->getRutaMiniatura4();
 
 		$borrado = Imagen::borrar($rutaFoto);
 		$borrado = $borrado && Imagen::borrar($rutaMiniatura);
+		$borrado = $borrado && Imagen::borrar($rutaMiniatura2);
+		$borrado = $borrado && Imagen::borrar($rutaMiniatura3);
+		$borrado = $borrado && Imagen::borrar($rutaMiniatura4);
 
 		return $borrado;
 	}
