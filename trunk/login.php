@@ -63,7 +63,7 @@
 			$sentencia = "insert into accesos (ip, fecha, intento, exito) values ('$ip', now(), '$login', 'si')";
 			@mysql_query ($sentencia, BD::conectar());
 
-			$sentencia = "update accesos set exito = 'conseguido', intento = '$login' where ip = '$ip'";
+			$sentencia = "update accesos set exito = 'conseguido', intento = '$login' where ip = '$ip' and exito = 'no'";
 			@mysql_query ($sentencia, BD::conectar());
 
 			header("location: modelos.php");
