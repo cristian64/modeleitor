@@ -277,8 +277,8 @@ function registrarCoordenadas(event)
 {
 	if (!miniaturas)
 	{
-		document.getElementById("capaimagenraton").style.top = (event.clientY) + "px";
-		document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width) + "px";
+		document.getElementById("capaimagenraton").style.top = (event.clientY)+document.documentElement.scrollTop + "px";
+		document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
 	}
 }
 
