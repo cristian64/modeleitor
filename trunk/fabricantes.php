@@ -35,8 +35,8 @@
 						{
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";
-							echo "<td>Nombre</td>";
-							echo "<td>Información adicional</td>";
+							echo "<td class=\"columnanombre\">Nombre</td>";
+							echo "<td class=\"columnainformacionadicional\">Información adicional</td>";
 							echo "</tr>\n";
 							$contador = 0;
 							foreach ($fabricantes as $i)
@@ -46,9 +46,9 @@
 								if ($contador%2 != 0)
 									$impar = "class=\"impar\"";
 
-								echo "<tr $impar title=\"Haz clic para ver el fabricante en detalle.\" $enlace>\n";
-								echo "<td>".$i->getNombre()."</td>";
-								echo "<td>".$i->getInformacionAdicional()."</td>";
+								echo "<tr $impar title=\"Haz clic para ver el fabricante en detalle\" $enlace>\n";
+								echo "<td class=\"columnanombre\">".$i->getNombre()."</td>";
+								echo "<td class=\"columnainformacionadicional\"><span class=\"columnainformacionadicionaldiv\">".$i->getInformacionAdicional()."</span></td>";
 								echo "\n";
 								echo "<tr>\n";
 								$contador++;
