@@ -48,7 +48,7 @@
 								if ($contador%2 != 0)
 									$impar = "class=\"impar\"";
 									
-								$seleccionado = ($i->getId() == $_SESSION["id_catalogo"]) ? "style=\"background-image: url('estilo/seleccionado.png');\"" : "";
+								$seleccionado = ($i->getId() == $_SESSION["id_catalogo"]) ? "style=\"background-image: url('estilo/seleccionado.png'); font-weight: bold;\"" : "";
 
 								echo "<tr id=\"catalogo".$i->getId()."\" $impar $seleccionado title=\"Haz clic para abrir el catálogo\">\n";
 								echo "<td class=\"columnatitulo\" $enlace>".$i->getTitulo()."</td>";

@@ -55,6 +55,7 @@
 				<div id="imprimir">
 					<a href="javascript: print()"<img src="estilo/impresora.png" alt="Imprimir" /></a>
 					<a href="generarpdf.php?id=<?php echo $id; ?>"><img src="estilo/pdf.png" alt="Generar documento PDF" /></a>
+					<div id="imprimirAviso">Ha quitado un modelo del catálogo. Debe recargar la página antes de imprimir.</div>
 				</div>
 				<div id="panel">
 

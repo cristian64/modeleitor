@@ -119,6 +119,7 @@ a.enlace_menu span
 {
 	text-align: right;
 }
+
 #mensajes table tr td.columnaderecha
 {
 	text-align: left;
@@ -388,7 +389,11 @@ tr.fila td.columnaid
 	top: 20px;
 	right: 20px;
 	border: 1px solid #5fc44e;
-	-moz-border-radius: 10px;
+	border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -khtml-border-radius: 10px;
 	background-color: #5fc44e;
 	color: #ffffff;
 	padding: 15px;
@@ -466,6 +471,29 @@ tr.fila td.columnaid
 	position: fixed;
 	top: 15px;
 	right: 15px;
+}
+
+#imprimirAviso
+{
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	border: 1px solid #f46d00;
+	background-color: #f46d00;
+	width: 500px;
+	padding: 15px;
+	color: #fff;
+
+	border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -khtml-border-radius: 10px;
+
+	filter:alpha(opacity=0);
+	-moz-opacity:0.0;
+	-khtml-opacity: 0.0;
+	opacity: 0.0;
 }
 
 /*--------------------------------------------------------------------------*/
