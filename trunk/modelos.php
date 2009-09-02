@@ -172,7 +172,7 @@
 								{
 									if (count($fotos)>0)
 									{
-										$enlace = $enlace." onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('".$fotos[0]->getRutaMiniatura()."')\"";
+										$enlace = $enlace." onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('".$fotos[0]->getRutaMiniatura2()."')\"";
 									}
 								}
 								$title =  "title=\"Haz clic para ver el modelo en detalle\"";

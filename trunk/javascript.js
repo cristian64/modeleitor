@@ -418,43 +418,6 @@ function permutarModeloCatalogo(id)
 				else if (ajax.responseText=="QUITADO")
 				{
 					document.getElementById("permutarModeloCatalogo"+id).src = 'estilo/fuera.png';
-					var capa = document.getElementById("imprimirAviso");
-					if (capa)
-					{
-						if (capa.style.display != 'none')
-						{
-							setTimeout (function () { cambiarOpacidad(capa, 10) },50);
-							setTimeout (function () { cambiarOpacidad(capa, 20) },100);
-							setTimeout (function () { cambiarOpacidad(capa, 30) },150);
-							setTimeout (function () { cambiarOpacidad(capa, 40) },200);
-							setTimeout (function () { cambiarOpacidad(capa, 50) },250);
-							setTimeout (function () { cambiarOpacidad(capa, 60) },300);
-							setTimeout (function () { cambiarOpacidad(capa, 70) },350);
-							setTimeout (function () { cambiarOpacidad(capa, 80) },400);
-							setTimeout (function () { cambiarOpacidad(capa, 90) },450);
-							setTimeout (function () { cambiarOpacidad(capa, 99) },500);
-
-							setTimeout (function () { cambiarOpacidad(capa, 95) },4450);
-							setTimeout (function () { cambiarOpacidad(capa, 90) },4500);
-							setTimeout (function () { cambiarOpacidad(capa, 85) },4550);
-							setTimeout (function () { cambiarOpacidad(capa, 80) },4600);
-							setTimeout (function () { cambiarOpacidad(capa, 75) },4650);
-							setTimeout (function () { cambiarOpacidad(capa, 70) },4700);
-							setTimeout (function () { cambiarOpacidad(capa, 65) },4750);
-							setTimeout (function () { cambiarOpacidad(capa, 60) },4800);
-							setTimeout (function () { cambiarOpacidad(capa, 55) },4850);
-							setTimeout (function () { cambiarOpacidad(capa, 50) },4900);
-							setTimeout (function () { cambiarOpacidad(capa, 45) },4950);
-							setTimeout (function () { cambiarOpacidad(capa, 40) },5000);
-							setTimeout (function () { cambiarOpacidad(capa, 35) },5050);
-							setTimeout (function () { cambiarOpacidad(capa, 30) },5100);
-							setTimeout (function () { cambiarOpacidad(capa, 25) },5150);
-							setTimeout (function () { cambiarOpacidad(capa, 20) },5200);
-							setTimeout (function () { cambiarOpacidad(capa, 15) },5250);
-							setTimeout (function () { cambiarOpacidad(capa, 10) },5300);
-							setTimeout (function () { capa.style.display = 'none'; },5350);
-						}
-					}
 				}
 				else
 				{
@@ -467,8 +430,9 @@ function permutarModeloCatalogo(id)
 	//}
 }
 
+/*setTimeout (function () { cambiarOpacidad(capa, 65) },4750);
 function cambiarOpacidad (obj, nivel)
 {
 		obj.style.opacity = "." + nivel;
 		obj.style.filter = "alpha(opacity = " + nivel + ")";
-}
+}*/
