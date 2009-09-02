@@ -36,7 +36,6 @@
 		<title>Modeleitor</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" media="screen" type="text/css" href="estilo/estilo.css" />
-		<link rel="stylesheet" media="print" type="text/css" href="estilo/impresora.css" />
 		<script src="javascript.js" type="text/JavaScript"></script>
 	</head>
 	<body>
@@ -53,9 +52,12 @@
 				</div>
 				<?php include 'mensajes.php'; ?>
 				<div id="imprimir">
-					<a href="javascript: print()"><img src="estilo/impresora.png" alt="Imprimir" /></a>
-					<a href="generarpdf.php?id=<?php echo $id; ?>"><img src="estilo/pdf.png" alt="Generar documento PDF" /></a>
-					<div id="imprimirAviso">Ha quitado un modelo del catálogo. Debe recargar la página antes de imprimir.</div>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=1x1"><img src="estilo/formato1x1.png" alt="1x1 (un modelo por página)" title="1x1 (1 modelo por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=1x3"><img src="estilo/formato1x3.png" alt="1x3 (3 modelos por página)" title="1x3 (3 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=2x4"><img src="estilo/formato2x4.png" alt="2x4 (8 modelos por página)" title="2x4 (8 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=4x3"><img src="estilo/formato4x3.png" alt="4x3 (12 modelos por página)" title="4x3 (12 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=4x4"><img src="estilo/formato4x4.png" alt="4x4 (16 modelos por página)" title="4x4 (16 modelos por página)"/></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=5x7"><img src="estilo/formato5x7.png" alt="5x7 (35 modelos por página)" title="5x7 (35 modelos por página)" /></a>
 				</div>
 				<div id="panel">
 
@@ -65,37 +67,9 @@
 						{
 							if (count($modelos) > 0)
 							{
-								echo "<table id=\"mosaicoImpresora\"><tr>\n";
-								$hayModelos = true;
-								$contador = 0;
-								//$modelos = array_merge($modelos, $modelos);
-								//$modelos = array_merge($modelos, $modelos);
-								foreach ($modelos as $i)
-								{
-									$rutaMiniatura = "";
-									$fotos = ENFoto::obtenerTodos($i->getId());
-									if ($fotos != NULL)
-									{
-										if (count($fotos) > 0)
-											$rutaMiniatura = $fotos[0]->getRutaMiniatura2();
-									}
-
-									$nuevaFila = ($contador % $columnasImpresora == 0 && $contador >= $columnasImpresora);
-									if ($nuevaFila)
-										echo "</tr><tr>\n";
-										
-										echo "<td class=\"mosaicomodelo\"><img src=\"".$rutaMiniatura."\" alt=\"Modelo ".$i->getModelo()."\" /><div class=\"informacion\"><p class=\"modelo\">Mod. ".$i->getModelo()."</p><p class=\"precio\">".$i->getPrecioVenta()." €</p></div></td>\n";
-
-									$contador++;
-								}
-								echo "</tr></table>\n";
-
-
 								echo "<table id=\"mosaico\"><tr>\n";
 								$hayModelos = true;
 								$contador = 0;
-								//$modelos = array_merge($modelos, $modelos);
-								//$modelos = array_merge($modelos, $modelos);
 								foreach ($modelos as $i)
 								{
 									$rutaMiniatura = "";

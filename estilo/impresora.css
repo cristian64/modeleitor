@@ -3,6 +3,7 @@
 	margin: 0;
 	border: 0;
 	padding: 0;
+	font-family: sans, Verdana, 'DejaVu Sans', Arial, Calibri;
 }
 
 #mosaicoImpresora
@@ -10,38 +11,40 @@
 	border-collapse: collapse;
 	width: 100%;
 	text-align: center;
+	font-size: 7pt;
 }
 
 #mosaicoImpresora tr
 {
-	vertical-align: baseline;
-	height: 200px;
+	vertical-align: bottom;
 }
 
 #mosaicoImpresora .informacion
 {
-	position: relative;
-	border: 1px solid #999;
-	background: url('estilo.php');
-	text-align: left;
-	padding-left: 30px;
-	padding-bottom: 0;
-	margin: 20px;
+	margin: 5%;
 	margin-top: 0;
-	font-size: 8pt;
-	font-family: sans;
+
+	border: 1px solid #bbb;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-khtml-border-radius: 10px;
+}
+
+#mosaicoImpresora .modelo
+{
+	margin-left: 5px;
+	float: left;
 }
 
 #mosaicoImpresora .precio
 {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding-right: 30px;
+	margin-right: 5px;
+	float: right;
 }
 
-#menu, #modos, #titulo, #mosaico, #imprimir
+#mosaicoImpresora .clearboth
 {
-	display: none;
+	clear: both;
 }
-
