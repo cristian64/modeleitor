@@ -358,7 +358,7 @@ class CADCatalogo
 		{
 			try
 			{
-				$sentencia = "select modelos.* from modelos, catalogos_modelos where modelos.id = catalogos_modelos.id_modelo and catalogos_modelos.id_catalogo = ".$catalogo->getId()." order by catalogos_modelos.fecha_insercion asc";
+				$sentencia = "select modelos.* from modelos, catalogos_modelos where modelos.id = catalogos_modelos.id_modelo and catalogos_modelos.id_catalogo = ".$catalogo->getId()." order by modelos.id_fabricante asc, modelos.precio_venta asc, catalogos_modelos.fecha_insercion asc";
 				$resultado = mysql_query($sentencia, BD::conectar());
 
 				if ($resultado)

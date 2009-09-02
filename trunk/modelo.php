@@ -174,7 +174,7 @@
 												foreach ($fotos as $i)
 												{
 													echo "<div class=\"foto\" id=\"foto".$i->getId()."\">\n";
-													echo "<a class=\"miniatura\" href=\"".$i->getRutaFoto()."\"><img src=\"".$i->getRutaMiniatura()."\" alt=\"".$i->getId()."\" title=\"Haz click para ampliar la foto\" /></a>\n";
+													echo "<a class=\"miniatura\" href=\"".$i->getRutaFoto()."\"><img src=\"".$i->getRutaMiniatura2()."\" alt=\"".$i->getId()."\" title=\"Haz click para ampliar la foto\" /></a>\n";
 													echo "<a class=\"papelera\" href=\"javascript: eliminarFoto(".$i->getId().")\"><img title=\"¿Eliminar foto?\" src=\"estilo/papelera.png\" alt=\"Eliminar foto\" /></a>\n";
 													echo "</div>\n";
 												}
