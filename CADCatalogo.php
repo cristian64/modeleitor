@@ -16,7 +16,7 @@ class CADCatalogo
 	{
 		$catalogo = new ENCatalogo;
 		$catalogo->setId($fila[0]);
-		$catalogo->setTitulo($fila[1]);
+		$catalogo->setTitulo(utf8_encode($fila[1]));
 		$catalogo->setIdUsuario($fila[2]);
 		return $catalogo;
 	}
@@ -140,7 +140,7 @@ class CADCatalogo
 
 					// Insertamos el catálogo.
 					$sentencia = "insert into catalogos (titulo, id_usuario, fecha_insercion) ";
-					$sentencia = $sentencia."values ('".$catalogo->getTitulo()."', '".$catalogo->getIdUsuario()."', now());\n";
+					$sentencia = $sentencia."values ('".utf8_decode($catalogo->getTitulo())."', '".$catalogo->getIdUsuario()."', now());\n";
 					$resultado = mysql_query($sentencia, BD::conectar());
 					
 					if ($resultado)
@@ -206,7 +206,7 @@ class CADCatalogo
 			{
 				// Actualizamos los datos de la foto.
 				$sentencia = "update catalogos set ";
-				$sentencia = $sentencia."titulo = '".$catalogo->getTitulo()."'";
+				$sentencia = $sentencia."titulo = '".utf8_decode($catalogo->getTitulo())."'";
 				$sentencia = $sentencia.", id_usuario = ".$catalogo->getIdUsuario();
 				$sentencia = $sentencia." where id = ".$catalogo->getId();
 
@@ -303,7 +303,7 @@ class CADCatalogo
 	 */
 	public static function existeModelo ($catalogo, $id_modelo)
 	{
-		if ($catalogo != NULL && $id_modelo)
+		if ($catalogo != NULL && $id_modelo != NULL)
 		{
 			$sentencia = "select count(*) from catalogos_modelos where id_modelo = $id_modelo and id_catalogo = ".$catalogo->getId();
 			$resultado = @mysql_query ($sentencia, BD::conectar());

@@ -196,6 +196,7 @@ function desbloquearFormularioFabricante()
 {
 	var formulario = document.getElementById("formularioeditarfabricante");
 	formulario.nombre.readOnly = false;
+	formulario.telefono.readOnly = false;
 	formulario.informacion_adicional.readOnly = false;
 	document.getElementById("bloquear").style.width = document.getElementById("desbloquear").offsetWidth+"px";
 	document.getElementById("bloquear").style.display = 'inline';
@@ -209,6 +210,7 @@ function bloquearFormularioFabricante()
 {
 	var formulario = document.getElementById("formularioeditarfabricante");
 	formulario.nombre.readOnly = true;
+	formulario.telefono.readOnly = true;
 	formulario.informacion_adicional.readOnly = true;
 	document.getElementById("bloquear").style.display = 'none';
 	document.getElementById("desbloquear").style.display = 'inline';
@@ -234,6 +236,11 @@ function validarFabricante(formulario)
 		{
 			alerta = alerta + "El nombre debe tener como mucho 50 caracteres.\n";
 		}
+	}
+
+	if (formulario.telefono.value.length > 500)
+	{
+		alerta = alerta + "El campo del teléfono debe tener como mucho 500 caracteres.\n";
 	}
 
 	if (formulario.informacion_adicional.value.length > 5000)

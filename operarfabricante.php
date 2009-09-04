@@ -5,12 +5,14 @@
 
 	$id = filtrarCadena($_POST["id"]);
 	$nombre = filtrarCadena($_POST["nombre"]);
+	$telefono = filtrarCadena($_POST["telefono"]);
 	$informacion_adicional = filtrarCadena($_POST["informacion_adicional"]);
 
 	if ($_POST["operacion"] == "insertar")
 	{
 		$nuevo = new ENFabricante();
 		$nuevo->setNombre($nombre);
+		$nuevo->setTelefono($telefono);
 		$nuevo->setInformacionAdicional($informacion_adicional);
 
 		if (!ENFabricante::existePorNombre($nombre))
@@ -55,6 +57,7 @@
 				{
 					registrar($existente->toString(), "Editar fabricante (antes)");
 					$existente->setNombre($nombre);
+					$existente->setTelefono($telefono);
 					$existente->setInformacionAdicional($informacion_adicional);
 					if ($existente->actualizar())
 					{

@@ -21,6 +21,12 @@ class ENFabricante
 	private $nombre;
 
 	/**
+	 * Teléfono del fabricante (cadena de caracteres).
+	 * @var string
+	 */
+	 private $telefono;
+
+	/**
 	 * Información adicional del fabricante: dirección, email, teléfonos...
 	 * @var string
 	 */
@@ -41,6 +47,8 @@ class ENFabricante
 	{
 		$this->id = 0;
 		$this->nombre = $nombre;
+		$this->telefono = "";
+		$this->informacion_adicional = "";
 		$this->telefonos = array();
 	}
 
@@ -99,6 +107,33 @@ class ENFabricante
 	}
 
 	/**
+	 * Obtiene el teléfono del fabricante.
+	 * @return string
+	 */
+	public function getTelefono()
+	{
+		return $this->telefono;
+	}
+
+	/**
+	 * Modifica el teléfono del fabricante.
+	 * @param string $telefono Nuevo valor para el teléfono del fabricante.
+	 * @return bool Devuelve verdadero si ha modificado el teléfono.
+	 */
+	public function setTelefono($telefono)
+	{
+		if (is_string($telefono))
+		{
+			$this->telefono = $telefono;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
 	 * Obtiene la información adicional del fabricante.
 	 * @return string
 	 */
@@ -129,17 +164,17 @@ class ENFabricante
 	 * Obtiene los números de teléfono junto a la descripción de cada uno.
 	 * @return array Lista de listas con el listado de teléfonos. Cada lista tiene dos componentes: (teléfono, descripción).
 	 */
-	public function getTelefonos()
+	/*public function getTelefonos()
 	{
 		return $this->telefonos;
-	}
+	}*/
 
 	/**
 	 * Establece un listado de teléfonos para el fabricante.
 	 * @param array $telefonos Listado de teléfonos.
 	 * @return bool Devuelve verdadero si ha modificado la información.
 	 */
-	public function setTelefonos($telefonos)
+	/*public function setTelefonos($telefonos)
 	{
 		if ($telefonos != NULL)
 		{
@@ -150,13 +185,13 @@ class ENFabricante
 			}
 		}
 		return false;
-	}
+	}*/
 
 	/**
 	 * Obtiene el listado de teléfonos en formato HTML (ul, li).
 	 * @return string
 	 */
-	public function getTelefonosHTML()
+	/*public function getTelefonosHTML()
 	{
 		$codigo = "<ul>";
 		foreach ($this->telefonos as $i)
@@ -168,27 +203,27 @@ class ENFabricante
 		$codigo = $codigo."</ul>";
 
 		return $codigo;
-	}
+	}*/
 
 	/**
 	 * Inserta un teléfono en el fabricante.
 	 * @param string $telefono Teléfono a introducir.
 	 * @param string $descripcion Descripción del teléfono.
 	 */
-	public function insertarTelefono($telefono, $descripcion)
+	/*public function insertarTelefono($telefono, $descripcion)
 	{
 		$telefonoAux = array();
 		$telefonoAux[0] = $telefono;
 		$telefonoAux[1] = $descripcion;
 		$this->telefonos[count($this->telefonos)] = $telefonoAux;
-	}
+	}*/
 
 	/**
 	 * Elimina un teléfono en el fabricante.
 	 * @param string $telefono Teléfono que se quiere eliminar.
 	 * @return bool Devuelve verdadero si se ha borrado el teléfono o no.
 	 */
-	public function borrarTelefono($telefono)
+	/*public function borrarTelefono($telefono)
 	{
 		$borrado = false;
 		$telefonosAux = array();
@@ -206,7 +241,7 @@ class ENFabricante
 		$this->telefonos = $telefonosAux;
 
 		return $borrado;
-	}
+	}*/
 
 	/**
 	 * Obtiene un conjunto de caracteres con los atributos del fabricante. Sobre todo para depuración.
@@ -214,7 +249,7 @@ class ENFabricante
 	 */
 	public function toString()
 	{
-		return "----- FABRICANTE :: $this->nombre($this->id) :: $this->informacion_adicional -----";
+		return "----- FABRICANTE :: $this->nombre($this->id) :: $this->telefono :: $this->informacion_adicional -----";
 	}
 
 	/**

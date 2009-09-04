@@ -304,12 +304,12 @@ a.enlace_menu span
 	text-align: center;
 }
 
-.columnanombre
+.columnanombre, .columnatelefono
 {
 	width: 20%;
 }
 
-.columnadescripciondiv, .columnainformacionadicionaldiv
+.columnadescripciondiv, .columnainformacionadicionaldiv, .columnatelefonodiv
 {
 	overflow: auto;
 	max-height: 35px;

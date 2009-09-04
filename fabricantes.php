@@ -36,6 +36,7 @@
 							echo "<table class=\"selectiva\">\n";
 							echo "<tr class=\"cabecera\">\n";
 							echo "<td class=\"columnanombre\">Nombre</td>";
+							echo "<td class=\"columnatelefono\">Teléfono</td>";
 							echo "<td class=\"columnainformacionadicional\">Información adicional</td>";
 							echo "</tr>\n";
 							$contador = 0;
@@ -48,9 +49,10 @@
 
 								echo "<tr $impar title=\"Haz clic para ver el fabricante en detalle\" $enlace>\n";
 								echo "<td class=\"columnanombre\">".$i->getNombre()."</td>";
+								echo "<td class=\"columnatelefono\"><span class=\"columnatelefonodiv\">".$i->getTelefono()."</span></td>";
 								echo "<td class=\"columnainformacionadicional\"><span class=\"columnainformacionadicionaldiv\">".$i->getInformacionAdicional()."</span></td>";
 								echo "\n";
-								echo "<tr>\n";
+								echo "</tr>\n";
 								$contador++;
 							}
 							echo "</table>\n";
