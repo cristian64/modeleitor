@@ -74,7 +74,7 @@
 		<div id="capaimagenraton" style="display: none; position: absolute; z-index: 10;"><img id="imagenraton" src="" alt="" style="border: 1px solid #000;"/></div>
 		<div id="contenedor">
 			<div id="menu">
-				<?php include 'menu.html'; ?>
+				<?php include 'menu.php'; ?>
 			</div>
 
 			<div id="contenido">
@@ -157,7 +157,7 @@
 							$cabeceras["modelo"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "modelo", $nuevoOrden, $cantidad, 1)."\">Código de referencia</a>";
 							$cabeceras["descripcion"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "descripcion", $nuevoOrden, $cantidad, 1)."\">Descripción</a>";
 							$cabeceras["precio_venta"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_venta", $nuevoOrden, $cantidad, 1)."\">Precio de venta</a>";
-							$cabeceras["precio_venta_minorista"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_venta_minorista", $nuevoOrden, $cantidad, 1)."\">Precio de venta (minorista)</a>";
+							$cabeceras["precio_venta_minorista"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_venta_minorista", $nuevoOrden, $cantidad, 1)."\">Precio de venta</a>";
 							$cabeceras["precio_compra"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "precio_compra", $nuevoOrden, $cantidad, 1)."\">Precio de compra</a>";
 							$cabeceras["primer_ano"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "primer_ano", $nuevoOrden, $cantidad, 1)."\">Primer año de fabricación</a>";
 							$cabeceras["fabricante"] = "<a href=\"".obtenerRuta($busqueda, $filtro, $fabricante, "fabricante", $nuevoOrden, $cantidad, 1)."\">Fabricante</a>";
@@ -171,9 +171,12 @@
 							echo "<td class=\"columnaid ".(($ordenar == "id") ? $nuevoOrden : "")."\">".$cabeceras['id']."</td>";
 							echo "<td class=\"columnamodelo ".(($ordenar == "modelo") ? $nuevoOrden : "")."\">".$cabeceras['modelo']."</td>";
 							echo "<td class=\"columnadescripcion ".(($ordenar == "descripcion") ? $nuevoOrden : "")."\">".$cabeceras['descripcion']."</td>";
-							echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta']."</td>";
-							echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta_minorista") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta_minorista']."</td>";
-							echo "<td class=\"columnaprecio ".(($ordenar == "precio_compra") ? $nuevoOrden : "")."\">".$cabeceras['precio_compra']."</td>";
+							if ($_SESSION["usuario"] != "nadapoderoso")
+								echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta']."</td>";
+							if ($_SESSION["usuario"] == "todopoderoso" || $_SESSION["usuario"] == "nadapoderoso")
+								echo "<td class=\"columnaprecio ".(($ordenar == "precio_venta_minorista") ? $nuevoOrden : "")."\">".$cabeceras['precio_venta_minorista']."</td>";
+							if ($_SESSION["usuario"] == "todopoderoso")
+								echo "<td class=\"columnaprecio ".(($ordenar == "precio_compra") ? $nuevoOrden : "")."\">".$cabeceras['precio_compra']."</td>";
 							echo "<td class=\"columnaprimerano ".(($ordenar == "primer_ano") ? $nuevoOrden : "")."\">".$cabeceras['primer_ano']."</td>";
 							echo "<td class=\"columnafabricante ".(($ordenar == "fabricante") ? $nuevoOrden : "")."\">".$cabeceras['fabricante']."</td>";
 							echo "<td class=\"columnafoto\" $miniaturasOcultas>Última foto añadida</td>";
@@ -210,9 +213,12 @@
 								echo "<td class=\"columnaid\" $enlace $title>".rellenar($i->getId(), "0", "6")."</td>";
 								echo "<td class=\"columnamodelo\" $enlace $title>".$i->getModelo()."</td>";
 								echo "<td class=\"columnadescripcion\" $enlace $title><span class=\"columnadescripciondiv\">".$i->getDescripcion()."</span></td>";
-								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVenta())."</td>";
-								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
-								echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioCompra())."</td>";
+								if ($_SESSION["usuario"] != "nadapoderoso")
+									echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVenta())."</td>";
+								if ($_SESSION["usuario"] == "todopoderoso" || $_SESSION["usuario"] == "nadapoderoso")
+									echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioVentaMinorista())."</td>";
+								if ($_SESSION["usuario"] == "todopoderoso")
+									echo "<td class=\"columnaprecio\" $enlace $title>".str_replace(".", ",", $i->getPrecioCompra())."</td>";
 								echo "<td class=\"columnaprimerano\" $enlace $title>".$i->getPrimerAno()."</td>";
 								echo "<td class=\"columnafabricante\" $enlace>".$i->getFabricante()->getNombre()."</td>";
 

@@ -170,8 +170,6 @@ class CADModelo
 					$sentencia = $sentencia.") ";
 			}
 
-			echo $sentencia."\n<br/>";
-
 			$sentencia = $sentencia.$order.$limit;
 
 			// Finalmente, realizamos la consulta.

@@ -15,7 +15,7 @@
 	<body>
 		<div id="contenedor">
 			<div id="menu">
-				<?php include 'menu.html'; ?>
+				<?php include 'menu.php'; ?>
 			</div>
 
 			<div id="contenido">

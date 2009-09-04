@@ -51,7 +51,7 @@
 	<body>
 		<div id="contenedor">
 			<div id="menu">
-				<?php include 'menu.html'; ?>
+				<?php include 'menu.php'; ?>
 			</div>
 
 			<div id="contenido">
@@ -101,15 +101,15 @@
 											<td class="etiqueta">Descripción:</td>
 											<td><textarea rows="5" cols="50" name="descripcion" autocomplete="off" <?php echo $soloLectura; ?> ><?php echo $descripcion; ?></textarea></td>
 										</tr>
-										<tr>
+										<tr <?php echo (($_SESION["usuario"] != "nadapoderoso") ? "" : "style=\"display: none;\""); ?>>
 											<td class="etiqueta">Precio de venta:</td>
 											<td><input type="text" name="precio_venta" autocomplete="off" value="<?php echo $precio_venta; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>
-										<tr>
+										<tr <?php echo (($_SESION["usuario"] == "todopoderoso" || $_SESION["usuario"] == "nadapoderoso") ? "" : "style=\"display: none;\""); ?>>
 											<td class="etiqueta">Precio de venta (minorista):</td>
 											<td><input type="text" name="precio_venta_minorista" autocomplete="off" value="<?php echo $precio_venta_minorista; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>
-										<tr>
+										<tr <?php echo (($_SESION["usuario"] == "todopoderoso") ? "" : "style=\"display: none;\""); ?>>
 											<td class="etiqueta">Precio de compra:</td>
 											<td><input type="text" name="precio_compra" autocomplete="off" value="<?php echo $precio_compra; ?>" <?php echo $soloLectura; ?> /></td>
 										</tr>

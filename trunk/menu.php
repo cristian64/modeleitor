@@ -1,4 +1,5 @@
-<a class="enlace_menu" href="modelos.php">
+
+				<a class="enlace_menu" href="modelos.php">
 					<span>Modelos</span>
 					<span class="sombra_menu">Modelos</span>
 				</a>
@@ -19,6 +20,6 @@
 					<span class="sombra_menu">Catálogos del usuario</span>
 				</a>
 				<a class="enlace_menu" href="logout.php">
-					<span>Cerrar sesión</span>
-					<span class="sombra_menu2">Cerrar sesión</span>
+					<span>Cerrar sesión de <?php echo $_SESSION["usuario"]; ?></span>
+					<span class="sombra_menu">Cerrar sesión de <?php echo $_SESSION["usuario"]; ?></span>
 				</a>
