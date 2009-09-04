@@ -20,7 +20,7 @@ class CADColor
 		{
 			$color = new ENColor;
 			$color->setId($fila[0]);
-			$color->setNombre($fila[1]);
+			$color->setNombre(utf8_encode($fila[1]));
 			$color->setRGB($fila[2]);
 		}
 		catch (Exception $e)
@@ -83,7 +83,7 @@ class CADColor
 
 		try
 		{
-			$sentencia = "select * from colores where nombre = '$nombre'";
+			$sentencia = "select * from colores where nombre = '".utf8_decode($nombre)."'";
 			$resultado = mysql_query($sentencia, BD::conectar());
 
 			if ($resultado)
@@ -174,7 +174,7 @@ class CADColor
 			try
 			{
 				// Insertamos el color.
-				$sentencia = "insert into colores (nombre, rgb, fecha_insercion) values ('".$color->getNombre()."','".$color->getRGB()."',now());\n";
+				$sentencia = "insert into colores (nombre, rgb, fecha_insercion) values ('".utf8_decode($color->getNombre())."','".$color->getRGB()."',now());\n";
 
 				$resultado = mysql_query($sentencia, BD::conectar());
 				if ($resultado)
@@ -217,7 +217,7 @@ class CADColor
 		{
 			if (self::existePorId($color->getId()))
 			{
-				$sentencia = "update colores set nombre = '".$color->getNombre()."', rgb = '".$color->getRGB()."' where nombre = '".$color->getNombre()."';";
+				$sentencia = "update colores set nombre = '".utf8_decode($color->getNombre())."', rgb = '".$color->getRGB()."' where nombre = '".$color->getNombre()."';";
 
 				$resultado = mysql_query($sentencia, BD::conectar());
 				if ($resultado)
@@ -266,7 +266,7 @@ class CADColor
 		{
 			if (self::existePorNombre($nombre))
 			{
-				$sentencia = "delete from colores where nombre = '".$nombre."'";
+				$sentencia = "delete from colores where nombre = '".utf8_decode($nombre)."'";
 				$resultado = mysql_query($sentencia, BD::conectar());
 				if ($resultado)
 				{

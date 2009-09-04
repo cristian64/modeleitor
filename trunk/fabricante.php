@@ -8,6 +8,7 @@
 	$textoReset = "Limpiar formulario";
 	$id = "";
 	$nombre = "";
+	$telefono = "";
 	$informacion_adicional = "";
 	$soloLectura = "";
 	$deshabilitado = "";
@@ -24,6 +25,7 @@
 
 			$id = $objetoFabricante->getId();
 			$nombre = $objetoFabricante->getNombre();
+			$telefono = $objetoFabricante->getTelefono();
 			$informacion_adicional = $objetoFabricante->getInformacionAdicional();
 		}
 	}
@@ -85,6 +87,10 @@
 									<input type="hidden" name="operacion" value="<?php echo $operacion; ?>" />
 									<?php if ($operacion == "editar") echo "<input type=\"hidden\" name=\"id\" value=\"$id\" />\n"; ?>
 								</td>
+							</tr>
+							<tr>
+								<td class="etiqueta">Teléfono:</td>
+								<td><textarea rows="6" cols="50" name="telefono" autocomplete="off" <?php echo $soloLectura; ?>><?php echo $telefono; ?></textarea></td>
 							</tr>
 							<tr>
 								<td class="etiqueta">Información adicional:</td>

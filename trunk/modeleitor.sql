@@ -53,13 +53,14 @@ create table fabricantes
 (
 	id int auto_increment,
 	nombre varchar(50),
+	telefono varchar(500),
 	informacion_adicional varchar(5000),
 	fecha_insercion datetime not null,
 	primary key (id),
 	unique (nombre)
 ) engine = innodb default charset=utf8 collate=utf8_spanish_ci;
 
-insert into fabricantes (nombre, informacion_adicional, fecha_insercion) values ('--NO ESPECIFICADO--', 'Ã‰ste es el fabricante ficticio que debe seleccionarse cuando se desconoce el fabricante real o no es muy importante indicar quiÃ©n es.\n\nNo se puede modificar ni eliminar.', now());
+insert into fabricantes (nombre, informacion_adicional, fecha_insercion) values ('--NO ESPECIFICADO--', 'Éste es el fabricante ficticio que debe seleccionarse cuando se desconoce el fabricante real o no es muy importante indicar quién es.\n\nNo se puede modificar ni eliminar.', now());
 
 create table fabricantes_telefonos
 (

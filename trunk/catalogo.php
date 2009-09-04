@@ -52,12 +52,12 @@
 				</div>
 				<?php include 'mensajes.php'; ?>
 				<div id="imprimir">
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=1x1"><img src="estilo/formato1x1.png" alt="1x1 (un modelo por página)" title="1x1 (1 modelo por página)" /></a>
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=1x3"><img src="estilo/formato1x3.png" alt="1x3 (3 modelos por página)" title="1x3 (3 modelos por página)" /></a>
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=2x4"><img src="estilo/formato2x4.png" alt="2x4 (8 modelos por página)" title="2x4 (8 modelos por página)" /></a>
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=4x3"><img src="estilo/formato4x3.png" alt="4x3 (12 modelos por página)" title="4x3 (12 modelos por página)" /></a>
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=4x4"><img src="estilo/formato4x4.png" alt="4x4 (16 modelos por página)" title="4x4 (16 modelos por página)"/></a>
-					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&formato=5x7"><img src="estilo/formato5x7.png" alt="5x7 (35 modelos por página)" title="5x7 (35 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=1x1"><img src="estilo/formato1x1.png" alt="1x1 (un modelo por página)" title="1x1 (1 modelo por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=1x3"><img src="estilo/formato1x3.png" alt="1x3 (3 modelos por página)" title="1x3 (3 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=2x4"><img src="estilo/formato2x4.png" alt="2x4 (8 modelos por página)" title="2x4 (8 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=4x3"><img src="estilo/formato4x3.png" alt="4x3 (12 modelos por página)" title="4x3 (12 modelos por página)" /></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=4x4"><img src="estilo/formato4x4.png" alt="4x4 (16 modelos por página)" title="4x4 (16 modelos por página)"/></a>
+					<a href="imprimir.php?id=<?php echo $objetoCatalogo->getId(); ?>&amp;formato=5x7"><img src="estilo/formato5x7.png" alt="5x7 (35 modelos por página)" title="5x7 (35 modelos por página)" /></a>
 				</div>
 				<div id="panel">
 

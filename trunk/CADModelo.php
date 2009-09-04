@@ -16,8 +16,8 @@ class CADModelo
 	{
 		$modelo = new ENModelo;
 		$modelo->setId($fila[0]);
-		$modelo->setModelo($fila[1]);
-		$modelo->setDescripcion($fila[2]);
+		$modelo->setModelo(utf8_encode($fila[1]));
+		$modelo->setDescripcion(utf8_encode($fila[2]));
 		$modelo->setPrecioVenta($fila[3]);
 		$modelo->setPrecioCompra($fila[4]);
 		$modelo->setPrecioVentaMinorista($fila[5]);
@@ -146,23 +146,36 @@ class CADModelo
 				$busqueda = self::limpiarEspacios($busqueda);
 				$busquedas = split(" ", $busqueda);
 				if (count($busquedas)>0)
-					$sentencia = $sentencia." and (1=2 ";
-				foreach ($busquedas as $palabra)
-				{
-					if ($filtro != "descripcion")
-						$sentencia = $sentencia." or modelo like '%$palabra%'";
+					$sentencia = $sentencia." and (1=1 ";
 
-					if ($filtro != "modelo")
-						$sentencia = $sentencia." or descripcion like '%$palabra%'";
-				}
+				if ($filtro == "modelo")
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (modelo like '%$palabra%')";
+					}
+
+				else if ($filtro == "descripcion")
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (descripcion like '%$palabra%')";
+					}
+
+				else
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (modelo like '%$palabra%' or descripcion like '%$palabra%')";
+					}
+
 				if (count($busquedas)>0)
 					$sentencia = $sentencia.") ";
 			}
 
+			echo $sentencia."\n<br/>";
+
 			$sentencia = $sentencia.$order.$limit;
 
 			// Finalmente, realizamos la consulta.
-			$resultado = mysql_query($sentencia, BD::conectar());
+			$resultado = mysql_query(utf8_decode($sentencia), BD::conectar());
 
 			if ($resultado)
 			{
@@ -223,21 +236,34 @@ class CADModelo
 				$busqueda = self::limpiarEspacios($busqueda);
 				$busquedas = split(" ", $busqueda);
 				if (count($busquedas)>0)
-					$sentencia = $sentencia." and (1=2 ";
-				foreach ($busquedas as $palabra)
-				{
-					if ($filtro != "descripcion")
-						$sentencia = $sentencia." or modelo like '%$palabra%'";
+					$sentencia = $sentencia." and (1=1 ";
 
-					if ($filtro != "modelo")
-						$sentencia = $sentencia." or descripcion like '%$palabra%'";
-				}
+				if ($filtro == "modelo")
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (modelo like '%$palabra%')";
+					}
+
+				else if ($filtro == "descripcion")
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (descripcion like '%$palabra%')";
+					}
+
+				else
+					foreach ($busquedas as $palabra)
+					{
+						$sentencia = $sentencia." and (modelo like '%$palabra%' or descripcion like '%$palabra%')";
+					}
+
 				if (count($busquedas)>0)
 					$sentencia = $sentencia.") ";
 			}
 
+			$sentencia = $sentencia.$order.$limit;
+
 			// Finalmente, realizamos la consulta.
-			$resultado = mysql_query($sentencia, BD::conectar());
+			$resultado = mysql_query(utf8_decode($sentencia), BD::conectar());
 
 			if ($resultado)
 			{
@@ -335,7 +361,7 @@ class CADModelo
 
 					// Insertamos el modelo.
 					$sentencia = "insert into modelos (modelo, descripcion, precio_venta, precio_compra, precio_venta_minorista, primer_ano, id_fabricante, fecha_insercion) ";
-					$sentencia = $sentencia."values ('".$modelo->getModelo()."', '".$modelo->getDescripcion()."', ".$modelo->getPrecioVenta().", ".$modelo->getPrecioCompra().", ".$modelo->getPrecioVentaMinorista().", ".$modelo->getPrimerAno().", ".$modelo->getFabricante()->getId().", now());\n";					
+					$sentencia = $sentencia."values ('".utf8_decode($modelo->getModelo())."', '".utf8_decode($modelo->getDescripcion())."', ".$modelo->getPrecioVenta().", ".$modelo->getPrecioCompra().", ".$modelo->getPrecioVentaMinorista().", ".$modelo->getPrimerAno().", ".$modelo->getFabricante()->getId().", now());\n";
 					$resultado = mysql_query($sentencia, BD::conectar());
 
 					if ($resultado)
@@ -393,8 +419,8 @@ class CADModelo
 			{
 				// Actualizamos los datos de la foto.
 				$sentencia = "update modelos set ";
-				$sentencia = $sentencia."modelo = '".$modelo->getModelo()."'";
-				$sentencia = $sentencia.", descripcion = '".$modelo->getDescripcion()."'";
+				$sentencia = $sentencia."modelo = '".utf8_decode($modelo->getModelo())."'";
+				$sentencia = $sentencia.", descripcion = '".utf8_decode($modelo->getDescripcion())."'";
 				$sentencia = $sentencia.", precio_venta = ".$modelo->getPrecioVenta();
 				$sentencia = $sentencia.", precio_compra = ".$modelo->getPrecioCompra();
 				$sentencia = $sentencia.", precio_venta_minorista = ".$modelo->getPrecioVentaMinorista();

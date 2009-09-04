@@ -1,6 +1,6 @@
 <?php
 	require_once 'BD.php';
-	BD::espeficarDatos("localhost", "root", "8520", "modeleitor");
+	BD::espeficarDatos("localhost", "root", "8520", "modelaich");
 	require_once 'ENFabricante.php';
 	require_once 'ENFoto.php';
 	require_once 'ENModelo.php';
@@ -54,7 +54,7 @@
 		$detalles = filtrarCadena($detalles);
 		$accion = filtrarCadena($accion);
 		$ip = $_SERVER["REMOTE_ADDR"];
-		$sentencia = "insert into registro (nombre_usuario, detalles, accion, ip, fecha) values ('$usuario', '$detalles', '$accion', '$ip', now());";
+		$sentencia = "insert into registro (nombre_usuario, detalles, accion, ip, fecha) values ('".utf8_decode($usuario)."', '".utf8_decode($detalles)."', '".utf8_decode($accion)."', '$ip', now());";
 		$resultado = @mysql_query($sentencia, BD::conectar());
 		if ($resultado)
 		{

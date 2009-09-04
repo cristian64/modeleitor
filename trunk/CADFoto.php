@@ -16,7 +16,7 @@ class CADFoto
 	{
 		$foto = new ENFoto;
 		$foto->setId($fila[0]);
-		$foto->setDescripcion($fila[2]);
+		$foto->setDescripcion(utf8_encode($fila[2]));
 		$foto->setIdModelo($fila[1]);
 		return $foto;
 	}
@@ -140,7 +140,7 @@ class CADFoto
 					$error = true;
 					
 					// Insertamos la foto.
-					$sentencia = "insert into fotos (id_modelo, descripcion, fecha_insercion) values (".$foto->getIdModelo().",'".$foto->getDescripcion()."', now());\n";
+					$sentencia = "insert into fotos (id_modelo, descripcion, fecha_insercion) values (".$foto->getIdModelo().",'".utf8_decode($foto->getDescripcion())."', now());\n";
 					$resultado = mysql_query($sentencia, BD::conectar());
 					
 					if ($resultado)
@@ -197,7 +197,7 @@ class CADFoto
 			if (self::existePorId($foto->getId()))
 			{
 				// Actualizamos los datos de la foto.
-				$sentencia = "update fotos set descripcion = '".$foto->getDescripcion()."', id_modelo = ".$foto->getIdModelo()." where id = ".$foto->getId();
+				$sentencia = "update fotos set descripcion = '".utf8_decode($foto->getDescripcion())."', id_modelo = ".$foto->getIdModelo()." where id = ".$foto->getId();
 				$resultado = mysql_query($sentencia, BD::conectar());
 				if ($resultado)
 				{

@@ -11,17 +11,17 @@
 		if ($busqueda != "")
 			$parametros = $parametros."busqueda=$busqueda";
 		if ($filtro != "")
-			$parametros = $parametros."&filtro=$filtro";
+			$parametros = $parametros."&amp;filtro=$filtro";
 		if ($fabricante != "")
-			$parametros = $parametros."&fabricante=$fabricante";
+			$parametros = $parametros."&amp;fabricante=$fabricante";
 		if ($ordenar != "")
-			$parametros = $parametros."&ordenar=$ordenar";
+			$parametros = $parametros."&amp;ordenar=$ordenar";
 		if ($orden != "")
-			$parametros = $parametros."&orden=$orden";
+			$parametros = $parametros."&amp;orden=$orden";
 		if ($cantidad != "")
-			$parametros = $parametros."&cantidad=$cantidad";
+			$parametros = $parametros."&amp;cantidad=$cantidad";
 		if ($pagina != "")
-			$parametros = $parametros."&pagina=$pagina";
+			$parametros = $parametros."&amp;pagina=$pagina";
 
 		return $ruta.$parametros;
 	}
@@ -30,11 +30,27 @@
 	$filtro = $_GET["filtro"];
 	$fabricante = $_GET["fabricante"];
 	$ordenar = $_GET["ordenar"];
+	if ($_GET["ordenar"] == NULL)
+		$ordenar = $_SESSION["ordenar"];
+	else
+		$_SESSION["ordenar"] = $ordenar;
+
 	$orden = $_GET["orden"];
+	if ($_GET["orden"] == NULL)
+		$orden = $_SESSION["orden"];
+	else
+		$_SESSION["orden"] = $orden;
+
 	$cantidad = $_GET["cantidad"];
 	if ($cantidad <= 0) $cantidad = 10;
+	if ($_GET["cantidad"] == NULL)
+		$cantidad = $_SESSION["cantidad"];
+	else
+		$_SESSION["cantidad"] = $cantidad;
+
 	$pagina = $_GET["pagina"];
 	$otrosparametros = obtenerRuta($busqueda, $filtro, $fabricante, $ordenar, $orden, $cantidad, "");
+
 	$miniaturas = $_SESSION["miniaturas"];
 	if ($miniaturas == "no")
 		$miniaturasOcultas = "style=\"display: none\"";
@@ -72,9 +88,9 @@
 							<div>
 								<input id="busqueda" type="text" name="busqueda" class="busqueda" value="<?php echo $busqueda; ?>"/>
 								<select name="filtro" class="filtrobusqueda">
+									<option value="ambos" <?php if ($filtro == "ambos") echo "selected=\"selected\""; ?>>Buscar en todos los campos</option>
 									<option value="modelo" <?php if ($filtro == "modelo") echo "selected=\"selected\""; ?>>Buscar sólo en el código de referencia</option>
 									<option value="descripcion" <?php if ($filtro == "descripcion") echo "selected=\"selected\""; ?>>Buscar sólo en la descripción del modelo</option>
-									<option value="ambos" <?php if ($filtro == "ambos") echo "selected=\"selected\""; ?>>Buscar en todos los campos</option>
 								</select>
 								<select name="fabricante" class="filtrobusqueda">
 									<option value="cualquiera">Cualquier fabricante</option>
@@ -217,7 +233,7 @@
 								}
 								
 								echo "\n";
-								echo "<tr>\n";
+								echo "</tr>\n";
 								$contador++;
 							}
 							echo "</table>\n";
@@ -228,7 +244,7 @@
 					</div>
 					<div id="cantidad" style="float: left;">
 						Cantidad de modelos por página:
-						<select onchange="location.href='<?php echo obtenerRuta($busqueda, $filtro, $fabricante, $ordenar, $orden, "", "1"); ?>&cantidad='+this.value;">
+						<select onchange="location.href='<?php echo obtenerRuta($busqueda, $filtro, $fabricante, $ordenar, $orden, "", "1"); ?>&amp;cantidad='+this.value;">
 							<option value="1" <?php if ($cantidad == 1) echo "selected=\"selected\""; ?>>1</option>
 							<option value="3" <?php if ($cantidad == 3) echo "selected=\"selected\""; ?>>3</option>
 							<option value="5" <?php if ($cantidad == 5) echo "selected=\"selected\""; ?>>5</option>
@@ -237,6 +253,10 @@
 							<option value="50" <?php if ($cantidad == 50) echo "selected=\"selected\""; ?>>50</option>
 							<option value="75" <?php if ($cantidad == 75) echo "selected=\"selected\""; ?>>75</option>
 							<option value="100" <?php if ($cantidad == 100) echo "selected=\"selected\""; ?>>100</option>
+							<option value="500" <?php if ($cantidad == 500) echo "selected=\"selected\""; ?>>500</option>
+							<option value="1000" <?php if ($cantidad == 1000) echo "selected=\"selected\""; ?>>1000</option>
+							<option value="2000" <?php if ($cantidad == 2000) echo "selected=\"selected\""; ?>>2000</option>
+							<option value="5000" <?php if ($cantidad == 5000) echo "selected=\"selected\""; ?>>5000</option>
 						</select>
 					</div>
 					<?php include 'paginacion.php' ?>

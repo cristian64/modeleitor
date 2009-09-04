@@ -58,7 +58,7 @@
 								echo "<a href=\"javascript: eliminarCatalogo(".$i->getId().");\"><img src=\"estilo/papelera.png\" alt=\"Eliminar catálogo\" title=\"Eliminar catálogo\" /></a>\n";
 								echo "</td>";
 								echo "\n";
-								echo "<tr>\n";
+								echo "</tr>\n";
 								$contador++;
 							}
 							echo "</table>\n";

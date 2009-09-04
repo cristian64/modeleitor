@@ -32,7 +32,7 @@
 		if (preg_match($patron, $login) && preg_match($patron, $password))
 		{
 			// Comprobamos que existe un usuario en la base de datos con ese usuario y contraseña.
-			$sentencia = "select id from usuarios where nombre = '$login' and contrasena = '".sha1($password)."'";
+			$sentencia = "select id from usuarios where nombre = '".utf8_decode($login)."' and contrasena = '".sha1($password)."'";
 			$resultado = @mysql_query($sentencia, BD::conectar());
 			if ($resultado)
 			{
@@ -57,13 +57,16 @@
 			$_SESSION["usuario"] = $login;
 			$_SESSION["conectado"] = "si";
 			$_SESSION["id_catalogo"] = 0;
+			$_SESSION["ordenar"] = "";
+			$_SESSION["orden"] = "";
+			$_SESSION["cantidad"] = "10";
 			
 			// Quitamos todos los intentos de "exito=no" a "exito=conseguido".
 			// Añadimos un nuevo intento con "exito=si".
-			$sentencia = "insert into accesos (ip, fecha, intento, exito) values ('$ip', now(), '$login', 'si')";
+			$sentencia = "insert into accesos (ip, fecha, intento, exito) values ('$ip', now(), '".utf8_decode($login)."', 'si')";
 			@mysql_query ($sentencia, BD::conectar());
 
-			$sentencia = "update accesos set exito = 'conseguido', intento = '$login' where ip = '$ip' and exito = 'no'";
+			$sentencia = "update accesos set exito = 'conseguido', intento = '".utf8_decode($login)."' where ip = '$ip' and exito = 'no'";
 			@mysql_query ($sentencia, BD::conectar());
 
 			header("location: modelos.php");
@@ -72,7 +75,7 @@
 		else
 		{
 			// Añadimos un nuevo intento con "exito=no".
-			$sentencia = "insert into accesos (ip, fecha, intento, exito) values ('$ip', now(), '$login ::: $password', 'no')";
+			$sentencia = "insert into accesos (ip, fecha, intento, exito) values ('$ip', now(), '".utf8_decode($login)." ::: ".utf8_decode($password)."', 'no')";
 			@mysql_query ($sentencia, BD::conectar());
 			header("location: index.php?error=Usuario o contraseña incorrecta (quedan ".($intentosMaximos-$intentos)." intentos).");
 			exit();
