@@ -252,7 +252,7 @@ class ENFoto
 					$miniatura=new thumbnail($rutaFoto);
 					//$miniatura->size_width(400);
 					//$miniatura->size_height(400);
-					$miniatura->size_auto(50);
+					$miniatura->size_auto(70);
 					$miniatura->jpeg_quality(100);
 					$miniatura->save($rutaMiniatura5);
 
