@@ -104,7 +104,7 @@ class CADModelo
 	/**
 	 * Realiza una consulta siguiendo unos criterios de búsqueda.
 	 * @param string $busqueda Cadena de caracteres por la que se filtrará la consulta.
-	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelos|descripcion|ambos}
+	 * @param string $filtro Indica en qué campos se realizará la búsqueda: {modelo|descripcion|ambos}
 	 * @param int $fabricante Identificador numérico del fabricante. Si no es un número, se ignora el parámetro.
 	 * @param string $ordenar Campo por el que se ordena la búsqueda: {id, modelo, descripcion, precios..., primer_ano, fabricante}
 	 * @param string $orden Orden descendente o ascendente: {descendente|ascendente}

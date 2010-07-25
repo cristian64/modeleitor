@@ -3,7 +3,7 @@
 require_once 'resize.php';
 
 echo "Hay que modificar el valor del contador del bucle para que funcione.";
-for ($i = 0; $i < 400; $i++)
+for ($i = 0; $i < 0; $i++)
 {
 	$rutaFoto = "imagenes/".$i.".jpg";
 	$rutaMiniatura5 = "imagenes/".$i."m5.jpg";
