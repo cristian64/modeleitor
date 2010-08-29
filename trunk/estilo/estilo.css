@@ -23,58 +23,21 @@ a img
 #menu
 {
 	background-color: #415a82;
-	width: 150px;
-	height: 100%;
-	float: left;
-	position: fixed;
-	top: 0;
-	left: 0;
+	padding: 5px;
 }
 
-#menu span
+#menu a span
 {
-	display: block;
-}
-
-a.enlace_menu
-{
-	width: 112px;
-	height: 90px;
-	background: url('normal.png') no-repeat center center;
-	display: block;
-	color: #000;
-	position: relative;
-	margin: auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-a.enlace_menu:hover
-{
-	background: url('encima.png') no-repeat center center;
-}
-
-a.enlace_menu span
-{
-	padding: 10px;
-	padding-top: 30px;
-	text-align: center;
-	font-weight: bold;
+	color: white;
 	font-size: 10pt;
+	margin-right: 10px;
+	margin-left: 10px;
+	text-shadow: 1px 1px 1px #000;
 }
 
-.sombra_menu, .sombra_menu2
+#menu a:hover span
 {
-	width: 92px;
-	position: absolute;
-	top: -1px;
-	left: -1px;
-	color: #f9f39b;
-}
-
-.sombra_menu2
-{
-	color: #fe5369;
+	color: yellow;
 }
 
 /******************************************************************************
@@ -132,7 +95,6 @@ a.enlace_menu span
 
 #contenido
 {
-	margin-left: 150px;
 	background-color: #fff;
 	height: 100%;
 }
