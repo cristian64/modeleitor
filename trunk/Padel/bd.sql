@@ -32,7 +32,8 @@ create table reservas
 	fecha_fin datetime not null,
     reservable int not null default 1,
 	primary key (id),
-    unique (id_pista, fecha_inicio)
+    unique (id_pista, fecha_inicio),
+    unique (id_pista, fecha_fin)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 

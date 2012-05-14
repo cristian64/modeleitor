@@ -45,14 +45,14 @@
         else
             echo "No guardado correctamente!";
         
-        $cristian = ENUsuario::obtenerPorId(1);
+        /*$cristian = ENUsuario::obtenerPorId(1);
         $cristian->setDni($cristian->getDni()."a");
         $cristian->setEmail($cristian->getEmail()."a");
         $cristian->setTelefono($cristian->getEmail()."a");
         $cristian->setNombre($cristian->getNombre()."a");
         $cristian->setAdmin($cristian->getAdmin() == 0 ? 1 : 0);
         $cristian->setSexo($cristian->getSexo() == "mujer" ? "hombre" : "mujer");
-        $cristian->actualizar();
+        $cristian->actualizar();*/
         
                 echo "<hr 7>";
                 
@@ -73,10 +73,14 @@
         $reserva = new ENReserva();
         $reserva->setIdUsuario(3);
         $reserva->setIdPista(3);
-        $reserva->setFechaInicio("2012/05/14 20:00:00");
-        $reserva->setFechaFin("2012/05/14 17:00:01");
+        $reserva->setFechaInicio("2012/05/15 21:30:00");
+        $reserva->setFechaFin("2012/05/15 22:30:00");
         $reserva->setReservable(1);
         echo ($reserva->comprobarDisponibilidad() == true ? "true" : "false")."<br/>";
+        if ($reserva->guardar())
+            echo "Guardado correctamente!";
+        else
+            echo "No guardado correctamente!";
         ?>
         
     </body>
