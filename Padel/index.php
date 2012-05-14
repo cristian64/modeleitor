@@ -62,22 +62,21 @@
             echo $reserva->toString()."<br />";
         }
         
+        /*$reserva = new ENReserva();
+        $reserva->setIdUsuario(3);
+        $reserva->setIdPista(3);
+        $reserva->setFechaInicio("2012/05/14 17:00:00");
+        $reserva->setFechaFin("2012/05/14 18:00:00");
+        $reserva->setReservable(1);
+        $reserva->guardar();*/
+        
         $reserva = new ENReserva();
         $reserva->setIdUsuario(3);
         $reserva->setIdPista(3);
-        $reserva->setFechaInicio("2011/06/08 17:00:00");
-        $reserva->setFechaFin("2001/01/01 18:00:00");
-        $reserva->setReservable(0);
-        $reserva->guardar();
-        
-        
-        ENReserva::borrarPorId(5);
-        ENReserva::borrarPorId(6);
-        
-        ENReserva::borrarPorId(7);
-        ENReserva::borrarPorId(8);
-        
-        ENReserva::borrarPorId(9);
+        $reserva->setFechaInicio("2012/05/14 20:00:00");
+        $reserva->setFechaFin("2012/05/14 17:00:01");
+        $reserva->setReservable(1);
+        echo ($reserva->comprobarDisponibilidad() == true ? "true" : "false")."<br/>";
         ?>
         
     </body>

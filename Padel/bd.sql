@@ -53,6 +53,6 @@ insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono,
 values ('jose', '123456', 'jose@correo.com', '74236860T', 'hombre', '', '+34 600 222 222', 0);
 
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)
-values (1, 1, '2012/05/12 10:30:00', '2012/05/12 12:00:00', 1);
+values (1, 1, '2012/05/14 10:30:00', '2012/05/14 12:00:00', 1);
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)
 values (1, 1, '2012/05/13 12:00:00', '2012/05/13 14:35:00', 1);

@@ -207,17 +207,19 @@ class ENReserva
         {
             try
             {
+                $fechaInicioStr = $this->fecha_inicio->format("Y/m/d H:i:s");
+                $fechaFinStr = $this->fecha_fin->format("Y/m/d H:i:s");
                 $conexion = BD::conectar();
 
-                // Insertamos el usuario.
+                // Insertamos el usuario.                
                 $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)";
-                $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$this->fecha_inicio->format("Y/d/m H:i:s")."', '".$this->fecha_fin->format("Y/d/m H:i:s")."', '".$this->reservable."')";
+                $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', '".$this->reservable."')";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
                 {
                     // Obtenemos el identificador asignado al usuario recién creado.
-                    $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$this->fecha_inicio->format("Y/d/m H:i:s")."' and reservable = '".$this->reservable."'";
+                    $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$fechaInicioStr."' and reservable = '".$this->reservable."'";
                     $resultado = mysql_query($sentencia, $conexion);
 
                     if ($resultado)
@@ -248,6 +250,49 @@ class ENReserva
         }
 
         return $guardado;
+    }
+    
+    public function comprobarDisponibilidad()
+    {
+        $disponible = false;
+
+        if ($this->id == 0)
+        {
+            try
+            {
+                $fechaInicioStr = $this->fecha_inicio->format("Y/m/d H:i:s");
+                $fechaFinStr = $this->fecha_fin->format("Y/m/d H:i:s");
+                
+                $conexion = BD::conectar();
+
+                // Insertamos el usuario.
+                $sentencia = "select id from reservas where id != '".$this->id."' and id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
+                $resultado = mysql_query($sentencia, $conexion);
+
+                if ($resultado)
+                {
+                    $disponible = true;
+                    $fila = mysql_fetch_array($resultado);
+                    if ($fila)
+                    {
+                        $this->id = $fila[0];
+                        $disponible = false;
+                    }
+                }
+                else
+                {
+                    echo "ENReserva::comprobarDisponibilidad() " . mysql_error();
+                }
+
+                BD::desconectar($conexion);
+            }
+            catch (Exception $e)
+            {
+                echo "ENReserva::comprobarDisponibilidad() " . $e->getMessage();
+            }
+        }
+
+        return $disponible;
     }
     
 	public static function borrarPorId($id)
