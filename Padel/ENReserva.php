@@ -207,28 +207,59 @@ class ENReserva
         {
             try
             {
+                $conexion = BD::conectar();
+                
                 $fechaInicioStr = $this->fecha_inicio->format("Y/m/d H:i:s");
                 $fechaFinStr = $this->fecha_fin->format("Y/m/d H:i:s");
-                $conexion = BD::conectar();
 
-                // Insertamos el usuario.                
-                $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)";
-                $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', '".$this->reservable."')";
+                $disponible = false;
+                
+                // Insertamos el usuario.
+                $sentencia = "LOCK TABLES reservas WRITE;\n";
+                mysql_query($sentencia, $conexion);
+                
+                $sentencia = "select id from reservas where id != '".$this->id."' and id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
                 {
-                    // Obtenemos el identificador asignado al usuario recién creado.
-                    $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$fechaInicioStr."' and reservable = '".$this->reservable."'";
+                    $disponible = true;
+                    $fila = mysql_fetch_array($resultado);
+                    if ($fila)
+                    {
+                        $disponible = false;
+                    }
+                }
+                else
+                {
+                    echo "ENReserva::comprobarDisponibilidad() " . mysql_error();
+                }
+                    
+                if ($disponible)
+                {
+                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', '".$this->reservable."');\n";
+
                     $resultado = mysql_query($sentencia, $conexion);
 
                     if ($resultado)
                     {
-                        $fila = mysql_fetch_array($resultado);
-                        if ($fila)
+                        // Obtenemos el identificador asignado al usuario recién creado.
+                        $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$fechaInicioStr."' and reservable = '".$this->reservable."'";
+                        $resultado = mysql_query($sentencia, $conexion);
+
+                        if ($resultado)
                         {
-                            $this->id = $fila[0];
-                            $guardado = true;
+                            $fila = mysql_fetch_array($resultado);
+                            if ($fila)
+                            {
+                                $this->id = $fila[0];
+                                $guardado = true;
+                            }
+                        }
+                        else
+                        {
+                            echo "ENReserva::guardar() " . mysql_error();
                         }
                     }
                     else
@@ -236,10 +267,9 @@ class ENReserva
                         echo "ENReserva::guardar() " . mysql_error();
                     }
                 }
-                else
-                {
-                    echo "ENReserva::guardar() " . mysql_error();
-                }
+                
+                $sentencia = "UNLOCK TABLES;\n";
+                mysql_query($sentencia, $conexion);
 
                 BD::desconectar($conexion);
             }
@@ -275,7 +305,6 @@ class ENReserva
                     $fila = mysql_fetch_array($resultado);
                     if ($fila)
                     {
-                        $this->id = $fila[0];
                         $disponible = false;
                     }
                 }
