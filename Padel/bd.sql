@@ -14,7 +14,7 @@ create table usuarios
 	email varchar(255) not null,
 	nombre text not null,
 	contrasena varchar(40) not null,
-	dni not null,
+	dni text not null,
 	sexo enum ('hombre', 'mujer') not null,
 	direccion text not null,
 	telefono text not null,
@@ -43,14 +43,14 @@ insert into pistas (id) values (4);
 insert into pistas (id) values (5);
 insert into pistas (id) values (6);
 
-insert into usuarios (nombre, contrasena, email, sexo, direccion, telefono, admin)
-values ('cristian', '123456', 'cristian@correo.com', 'hombre', '', '+34 630 276 575', 1);
-insert into usuarios (nombre, contrasena, email, sexo, direccion, telefono, admin)
-values ('santi', '123456', 'santi@correo.com', 'hombre', '', '+34 600 000 000', 1);
-insert into usuarios (nombre, contrasena, email, sexo, direccion, telefono, admin)
-values ('bea', '123456', 'bea@correo.com', 'mujer', '', '+34 600 111 111', 1);
-insert into usuarios (nombre, contrasena, email, sexo, direccion, telefono, admin)
-values ('jose', '123456', 'jose@correo.com', 'hombre', '', '+34 600 222 222', 0);
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
+values ('cristian', '123456', 'cristian@correo.com', '74236860T', 'hombre', '', '+34 630 276 575', 1);
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
+values ('santi', '123456', 'santi@correo.com', 74236860T', 'hombre', '', '+34 600 000 000', 1);
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
+values ('bea', '123456', 'bea@correo.com', 74236860T', 'mujer', '', '+34 600 111 111', 1);
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
+values ('jose', '123456', 'jose@correo.com', 74236860T', 'hombre', '', '+34 600 222 222', 0);
 
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin)
 values (0, 1, '2012/05/12 00:10:00', '2012/05/12 00:11:00');
