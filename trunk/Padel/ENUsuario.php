@@ -189,7 +189,7 @@ class ENUsuario
      */
     public static function obtenerTodos($filtro = "")
     {
-        $filtro = filtrarCadena(utf_decode($filtro));
+        $filtro = filtrarCadena(utf8_decode($filtro));
         $listaUsuarios = NULL;
 
         try
