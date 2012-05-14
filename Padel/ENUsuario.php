@@ -187,13 +187,18 @@ class ENUsuario
      * Obtiene todos los usuarios que hay en la base de datos.
      * @return array Devuelve una lista con todos los usuarios de la base de datos. Si hay algun error, devuelve NULL.
      */
-    public static function obtenerTodos()
+    public static function obtenerTodos($filtro = "")
     {
+        $filtro = filtrarCadena(utf_decode($filtro));
         $listaUsuarios = NULL;
 
         try
         {
-            $sentencia = "select * from usuarios order by id";           
+            $sentencia = "select * from usuarios order by id";
+            if ($filtro != "")
+            {
+                $sentencia = "select * from usuarios where nombre like '%$filtro%' or email like '%$filtro%' order by id";
+            }
             $resultado = mysql_query($sentencia, BD::conectar());
 
             if ($resultado)
