@@ -4,6 +4,7 @@
     require_once 'BD.php';
     BD::espeficarDatos("localhost", "root", "8520", "padel");
     require_once 'ENUsuario.php';
+    require_once 'ENReserva.php';
 
     function accesoValido()
     {
