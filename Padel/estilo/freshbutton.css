@@ -1,0 +1,63 @@
+.freshbutton-big, .freshbutton-blue
+{
+    background: #2180CE;
+    background: -moz-linear-gradient(center top , #33A0E8, #2180CE) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
+    border-color: #2270AB #18639A #0F568B;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #83C5F1 inset;
+    color: #FFFFFF;
+    text-shadow: #355782 0 1px 2px;
+    -webkit-text-shadow: #355782 0 1px 2px;
+    -moz-text-shadow: #355782 0 1px 2px;
+}
+
+.freshbutton-red
+{
+    background: #CE2224;
+    background: -moz-linear-gradient(center top , #E83134, #CE2225) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#E83134), to(#CE2225));
+    border-color: #AB2123 #9A1719 #8B0F11;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #F17F81 inset;
+    color: #FFFFFF;
+    text-shadow: #823435 0 1px 2px;
+    -webkit-text-shadow: #823435 0 1px 2px;
+    -moz-text-shadow: #823435 0 1px 2px;
+}
+
+.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-lightblue, .freshbutton-red
+{
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    overflow: visible;
+    padding: 5px 14px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.freshbutton-big
+{
+    padding: 11px 22px;
+}
+
+body, button, input, select, textarea
+{
+    color: #444444;
+    font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+}
+
+.textinput
+{
+    background: url("topfade.gif") repeat-x scroll center top #FFFFFF;
+    border: 1px solid #AAAAAA;
+    color: #555555;
+    margin: 0;
+    padding: 8px;
+    vertical-align: middle;
+    width: 160px;
+}
