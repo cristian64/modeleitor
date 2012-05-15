@@ -43,12 +43,7 @@
 .freshbutton-big
 {
     padding: 11px 22px;
-}
-
-body, button, input, select, textarea
-{
-    color: #444444;
-    font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+    font-size: 15px;
 }
 
 .textinput
@@ -59,5 +54,204 @@ body, button, input, select, textarea
     margin: 0;
     padding: 8px;
     vertical-align: middle;
-    width: 160px;
+    width: 250px;
+}
+
+html, body, h
+{
+	margin: 0;
+	padding: 0;
+    font-family: "Calibri", "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+    font-size: 11pt;
+    color: #444;
+}
+
+@font-face
+{
+	font-family: "Kabel-Bold";
+	src: url("Kabel-Bold.otf") format("opentype");
+}
+
+h3
+{
+    font-size: 20pt;
+    color: #888;
+}
+
+#contenedor
+{
+    text-align: center;
+}
+
+#cabecera
+{
+    background-color: #F1F1F1;
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 15px;
+}
+
+#titulo, #navegacion, #contenido
+{
+    margin: auto;
+    max-width: 1300px;
+    min-width: 790px;
+    width: 98%;
+}
+
+#titulo h1
+{
+    padding: 15px 0 15px 0;
+    margin: 0;
+}
+
+#titulo h1 a
+{
+    color: #555;
+    text-decoration: none;
+    font-size: 40pt;
+}
+
+#titulo h1 a .otrocolor
+{
+    color: #18639A;
+    font-weight: normal;
+    font-size: 40pt;
+}
+
+#titulo, #navegacion
+{
+    text-align: left;
+}
+
+#navegacion a
+{
+    padding: 5px 15px;
+    color: #888;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11pt;
+    border-right: 1px solid #CCC;
+}
+
+#navegacion a.ultimo
+{
+    border-right: 0;
+}
+
+#navegacion a:hover
+{
+    color: #000000;
+}
+
+#contenido
+{
+    margin-top: 15px;
+}
+
+#cuerpo
+{
+    text-align: left;
+}
+
+#menu
+{
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+/******************************************************************************/
+
+#iniciarsesion label
+{
+    padding: 5px;
+    width: 100px;
+    display: inline-block;
+}
+
+#iniciarsesion div
+{
+    margin: 10px;
+}
+
+#registrarse td
+{
+    padding: 3px 0;
+}
+
+#externo
+{
+    width: 100%;
+    text-align: center;
+}
+
+#interno
+{
+    display: inline-block;
+}
+
+#iniciarsesion, #registrarse
+{
+    text-align: left;
+}
+
+
+/*****************************************************
+Mensajes
+*****************************************************/
+
+#mensajes
+{
+	text-align: center;
+	font-size: 10pt;
+    font-weight: bold;
+	margin: auto;
+	margin-bottom: 10px;
+	
+	border: 1px solid #E6DB55;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+    
+    background: #FFFBCC;
+}
+
+#mensajes table
+{
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+}
+
+#mensajes table tr
+{
+	display: inline;
+}
+
+#mensajes table.exito
+{
+	color: #080;
+}
+
+#mensajes table.info
+{
+	color: #00e;
+}
+
+#mensajes table.aviso
+{
+	color: #b80;
+}
+
+#mensajes table.error
+{
+	color: #e00;
+}
+
+#mensajes table tr td.columnaizquierda
+{
+	text-align: right;
+}
+
+#mensajes table tr td.columnaderecha
+{
+	text-align: left;
 }

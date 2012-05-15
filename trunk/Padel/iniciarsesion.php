@@ -1,31 +1,16 @@
 <?php
-	require_once 'minilibreria.php';
-
-	// Procesar parametros e intentar identificar al usuario.
-	$email = $_POST["email"];
-	$contrasena = $_POST["contrasena"];
-    $usuario = ENUsuario::obtenerPorEmail($email);
-	if ($usuario != null)
-	{
-		if ($usuario->getContrasena() == $contrasena)
-		{
-			$_SESSION["usuario"] = serialize($usuario);
-			$_SESSION["fecha"] = date('D/M/Y');
-
-			// Comprobamos si hay que recordar el usuario.
-			if ($_POST["recordar"] == "on")
-			{
-				// Guardamos el usuario y la contraseña en una cookie.
-				setcookie("nombre", $nombre, time() + (30 * 86400));
-				setcookie("contrasena", $contrasena, time() + (30 * 86400));
-				setcookie("fecha", date('D/M/Y'), time() + (30 * 86400));
-			}
-			header("location: index.php");
-			exit();
-		}
-	}
-
-	header("location: index.php?error=Usuario o contraseña incorrecta");
-	exit();
-
+include_once "base.php";
+baseSuperior("", false);
+?>
+                <div id="iniciarsesion">
+                    <h3><span>Iniciar sesión</span></h3>
+                    <form action="operariniciosesion.php" method="post" onsubmit="return validarIdentificacion(this);">
+                        <div><label>E-mail:</label><input type="text" value="" name="email" class="textinput" /></div>
+                        <div><label>Contraseña:</label><input type="password" value="" name="contrasena" class="textinput" /></div>
+                        <div><label></label><input type="checkbox" value="on" name="recordar" /> <span>Recordarme en este equipo</span></div>
+                        <div><label></label><input type="submit" value="Iniciar sesión" class="freshbutton-big"/><span> o <a href="registrarse.php">registrarse</a> para reservar pista</span></div>
+                    </form>
+                </div>
+<?php
+baseInferior();
 ?>

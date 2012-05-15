@@ -24,7 +24,7 @@
 				{
 					echo "<table class=\"exito\">\n";
 					echo "<tr>\n";
-					echo "<td class=\"columnaizquierda\"><img src=\"estilo/exito.gif\" alt=\"ÉXITO: \" title=\"¡Éxito!\" /></td>";
+					echo "<td class=\"columnaizquierda\"><img src=\"estilo/exito.png\" alt=\"ÉXITO: \" title=\"¡Éxito!\" /></td>";
 					echo "<td class=\"columnaderecha\">".$exito."</td>";
 					echo "</tr>\n";
 					echo "</table>\n";
@@ -40,7 +40,7 @@
 				{
 					echo "<table class=\"info\">\n";
 					echo "<tr>\n";
-					echo "<td class=\"columnaizquierda\"><img src=\"estilo/info.gif\" alt=\"INFORMATIVO: \" title=\"Mensaje de información\" /></td>";
+					echo "<td class=\"columnaizquierda\"><img src=\"estilo/info.png\" alt=\"INFORMATIVO: \" title=\"Mensaje de información\" /></td>";
 					echo "<td class=\"columnaderecha\">".$info."</td>";
 					echo "</tr>\n";
 					echo "</table>\n";
@@ -56,7 +56,7 @@
 				{
 					echo "<table class=\"aviso\">\n";
 					echo "<tr>\n";
-					echo "<td class=\"columnaizquierda\"><img src=\"estilo/aviso.gif\" alt=\"AVISO: \" title=\"¡Cuidado!\" /></td>";
+					echo "<td class=\"columnaizquierda\"><img src=\"estilo/aviso.png\" alt=\"AVISO: \" title=\"¡Cuidado!\" /></td>";
 					echo "<td class=\"columnaderecha\">".$aviso."</td>";
 					echo "</tr>\n";
 					echo "</table>\n";
@@ -72,7 +72,7 @@
 				{
 					echo "<table class=\"error\">\n";
 					echo "<tr>\n";
-					echo "<td class=\"columnaizquierda\"><img src=\"estilo/error.gif\" alt=\"ERROR: \" title=\"Ocurrió un error\" /></td>";
+					echo "<td class=\"columnaizquierda\"><img src=\"estilo/error.png\" alt=\"ERROR: \" title=\"Ocurrió un error\" /></td>";
 					echo "<td class=\"columnaderecha\">".$error."</td>";
 					echo "</tr>\n";
 					echo "</table>\n";
