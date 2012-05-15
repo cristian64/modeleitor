@@ -3,7 +3,7 @@
 	session_destroy();
 	
 	// Hay que eliminar la cookie.
-	setcookie("nombre");
+	setcookie("email");
 	setcookie("contrasena");
 	setcookie("fecha");
 

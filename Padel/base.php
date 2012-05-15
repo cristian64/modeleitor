@@ -32,7 +32,6 @@ function baseSuperior($titulo, $mostrarmenu = true)
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Padel en Matola - <?php echo $titulo; ?></title>
 		<link type="text/css" rel="stylesheet" href="estilo/freshbutton.css" media="screen" title="Estilo principal" />
-		<link type="text/css" rel="stylesheet" href="estilo/imprimible.css" media="print" />
 		<script src="javascript/formularios.js" type="text/javascript"></script>
 		<script src="javascript/cookies.js" type="text/javascript"></script>
 	</head>
