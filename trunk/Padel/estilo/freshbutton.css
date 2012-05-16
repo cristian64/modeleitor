@@ -189,9 +189,22 @@ h3
     display: inline-block;
 }
 
-#iniciarsesion, #registrarse
+#iniciarsesion, #registrarse, #mapa
 {
     text-align: left;
+}
+
+#mapaapi
+{
+    height: 500px;
+    width: 950px;
+}
+
+#mapalinks
+{
+    text-align: right;
+    padding-top: 10px;
+    font-size: 9pt;
 }
 
 

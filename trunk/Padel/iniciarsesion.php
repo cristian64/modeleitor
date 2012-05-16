@@ -1,6 +1,6 @@
 <?php
 include_once "base.php";
-baseSuperior("", false);
+baseSuperior("Iniciar sesión", false);
 ?>
                 <div id="iniciarsesion">
                     <h3><span>Iniciar sesión</span></h3>
