@@ -14,6 +14,7 @@ class ENReserva
     private $id_pista;
     private $fecha_inicio;
     private $fecha_fin;
+    private $fecha_realizacion;
     private $reservable;
 
     public function getId()
@@ -61,6 +62,11 @@ class ENReserva
         $this->fecha_fin = new DateTime($fecha);
     }
     
+    public function getFechaRealizacion()
+    {
+        return $this->fecha_realizacion;
+    }
+    
     public function getDuracion()
     {
         $interval = $this->fecha_inicio->diff($this->fecha_fin, true);
@@ -87,11 +93,12 @@ class ENReserva
         $this->id_pista = 0;
         $this->fecha_inicio = new DateTime();
         $this->fecha_fin = new DateTime();
+        $this->fecha_realizacion = new DateTime();
         $this->reservable = 1;
     }
 
     public function toString() {
-        return "----- RESERVA :: $this->id :: $this->id_usuario :: $this->id_pista :: ".$this->fecha_inicio->format("d/m/Y H:i:s")." :: ".$this->fecha_fin->format("d/m/Y H:i:s")." :: ".$this->getDuracion()." minutos :: ".($this->reservable ? "RESERVABLE" : "NO RESERVABLE")."-----<br />";
+        return "----- RESERVA :: $this->id :: $this->id_usuario :: $this->id_pista :: ".$this->fecha_inicio->format("d/m/Y H:i:s")." :: ".$this->fecha_fin->format("d/m/Y H:i:s")." :: ".$this->getDuracion()." minutos :: ".$this->fecha_realizacion->format("d/m/Y H:i:s")." ::".($this->reservable ? "RESERVABLE" : "NO RESERVABLE")."-----<br />";
     }
 
     private static function obtenerDatos($fila) {
@@ -101,7 +108,8 @@ class ENReserva
         $reserva->id_pista = $fila[2];
         $reserva->fecha_inicio = new DateTime($fila[3]);
         $reserva->fecha_fin = new DateTime($fila[4]);
-        $reserva->reservable = $fila[5];
+        $reserva->fecha_realizacion = new DateTime($fila[5]);
+        $reserva->reservable = $fila[6];
         return $reserva;
     }
 
@@ -237,8 +245,8 @@ class ENReserva
                     
                 if ($disponible)
                 {
-                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)";
-                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', '".$this->reservable."');\n";
+                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".$this->reservable."');\n";
 
                     $resultado = mysql_query($sentencia, $conexion);
 
