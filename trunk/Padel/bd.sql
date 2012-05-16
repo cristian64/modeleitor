@@ -30,6 +30,7 @@ create table reservas
 	id_pista int not null,
 	fecha_inicio datetime not null,
 	fecha_fin datetime not null,
+    fecha_realizacion datetime not null,
     reservable int not null default 1,
 	primary key (id),
     unique (id_pista, fecha_inicio),
@@ -53,7 +54,7 @@ values ('bea', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'bea@correo.com', '74
 insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
 values ('jose', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'jose@correo.com', '74236860T', 'hombre', '', '+34 600 222 222', 0);
 
-insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)
-values (1, 1, '2012/05/14 10:30:00', '2012/05/14 12:00:00', 1);
-insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, reservable)
-values (1, 1, '2012/05/13 12:00:00', '2012/05/13 14:35:00', 1);
+insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)
+values (1, 1, '2012/05/14 10:30:00', '2012/05/14 12:00:00', now(), 1);
+insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)
+values (1, 1, '2012/05/13 12:00:00', '2012/05/13 14:35:00', now(), 1);
