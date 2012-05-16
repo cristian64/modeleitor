@@ -1,4 +1,9 @@
 <?php
+
+    require_once('recaptchalib.php');
+    $pubkey = "6LclgdESAAAAAPO1GX1vx52lCEjeTG0AUlWC6-o3";
+    $privkey = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
+
 	require_once 'minilibreria.php';
 
     $kMinContrasena = 4;
@@ -13,6 +18,13 @@
     $dni = $_POST["dni"];
     $direccion = $_POST["direccion"];
     $telefono = $_POST["telefono"];
+
+    $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+    if (!$verify->is_valid)
+    {
+        header("location: registrarse.php?error=El código de seguridad no se introdujo correctamente");
+        exit();
+    }
 
 	// Se comprueban los parámetros.
     $usuario = ENUsuario::obtenerPorEmail($email);
