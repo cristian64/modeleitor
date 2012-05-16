@@ -37,6 +37,12 @@ create table reservas
     unique (id_pista, fecha_fin)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
+create table intentos
+{
+    ip varchar(40) not null,
+    fecha datetime not null,
+    primary key (ip)
+}
 
 insert into pistas (id) values (1);
 insert into pistas (id) values (2);
