@@ -65,7 +65,7 @@ if (isset($_SESSION["usuario"]))
 if ($usuario->getAdmin() == 1)
 {
 ?>
-                    <a href="usuarios.php" class="freshbutton-blue">Ver usuarios</a>
+                    <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
 <?php
 }
 ?>
