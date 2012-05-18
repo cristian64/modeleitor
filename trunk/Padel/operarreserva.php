@@ -33,7 +33,7 @@
         $reservada = $reserva->guardar();
         if ($reservada)
         {
-            header("location: reservar.php?exito=La reserva se ha realizado correctamente");
+            header("location: reservar.php?dia=$dia&exito=La reserva se ha realizado correctamente");
         }
         else
         {
