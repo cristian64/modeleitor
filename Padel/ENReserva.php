@@ -52,6 +52,12 @@ class ENReserva
         $this->fecha_inicio = new DateTime($fecha);
     }
     
+    public function setFechaInicioDateTime($fecha)
+    {
+        if (is_object($fecha) && get_class($fecha) == "DateTime")
+            $this->fecha_inicio = $fecha;
+    }
+    
     public function getFechaFin()
     {
         return $this->fecha_fin;
@@ -60,6 +66,12 @@ class ENReserva
     public function setFechaFin($fecha)
     {
         $this->fecha_fin = new DateTime($fecha);
+    }
+    
+    public function setFechaFinDateTime($fecha)
+    {
+        if (is_object($fecha) && get_class($fecha) == "DateTime")
+            $this->fecha_fin = $fecha;
     }
     
     public function getFechaRealizacion()
@@ -150,6 +162,50 @@ class ENReserva
         {
             $lista = NULL;
             echo "ENReserva::obtenerTodos()" . $e->getMessage();
+        }
+
+        return $lista;
+    }
+    
+    public static function obtenerPorPistaDia($id_pista, $dia)
+    {
+        $lista = NULL;
+        if (!is_numeric($id_pista))
+            $id_pista = 0;
+
+        try
+        {
+            $sentencia = "select * from reservas where id_pista = '$id_pista' and date(fecha_inicio) = '".$dia->format('Y/m/d')."' order by fecha_inicio asc";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $reserva = self::obtenerDatos($fila);
+                    if ($reserva != NULL)
+                    {
+                        $lista[$contador++] = $reserva;
+                    }
+                    else
+                    {
+                        echo "ENReserva::obtenerPorPistaDia() Reserva nula nº $contador";
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                echo "ENReserva::obtenerPorPistaDia()" . mysql_error();
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            echo "ENReserva::obtenerPorPistaDia()" . $e->getMessage();
         }
 
         return $lista;
