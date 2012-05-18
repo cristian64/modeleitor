@@ -1,7 +1,8 @@
 <?php
 include_once "base.php";
 
-if (getUsuario() == null)
+$usuario = getUsuario();
+if ($usuario == null)
 {
     header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.");
     exit();
@@ -21,13 +22,13 @@ if (isset($_GET["dia"]))
 }
 $dia->setTime(0, 0, 0);
 $intervalo = $dia->diff($dia);
-$intervalo->d = $PERIODORESERVA;
+$intervalo->d = $usuario->getAdmin() != 0 ? $PERIODORESERVA_ADMIN : $PERIODORESERVA;
 $maximodia = new DateTime();
 $maximodia->add($intervalo);
 $maximodia->setTime(0, 0, 0);
 if ($dia > $maximodia)
     $dia = $maximodia;
-if ($dia < $now)
+if ($dia < $now && $usuario->getAdmin() == 0)
     $dia = $now;
 $tiempoInicial = clone $dia;
 $tiempoFinal = clone $dia;
@@ -80,6 +81,12 @@ function determinarEstado($reservas, $tiempo)
                                 <div><label>Pista: </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
                                 <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
                                 <div><label>Duración: </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
+<?php if ($usuario->getAdmin() != 0) { ?>
+                                <div>
+                                    <input type="radio" name="reservable" value="1" checked="checked"/> Reservar
+                                    <input type="radio" name="reservable" value="0" /> Bloquear
+                                </div>
+<?php } ?>
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
                             </form>
                             <div id="tiempo">
@@ -135,7 +142,7 @@ function determinarEstado($reservas, $tiempo)
                                 }
                                 
                                 // Si la nueva celda está en otra pista o no es adjacente, se restaura.
-                                if (!adjacente || (pistaSeleccionada != 0 && pistaSeleccionada != pista) || (!contains(celdasSeleccionadas, celda) && 30 * celdasSeleccionadas.length >= <?php echo $MAXDURACION; ?>))
+                                if (!adjacente || (pistaSeleccionada != 0 && pistaSeleccionada != pista) || (!contains(celdasSeleccionadas, celda) && 30 * celdasSeleccionadas.length >= <?php echo $usuario->getAdmin() != 0 ? $MAXDURACION_ADMIN : $MAXDURACION; ?>))
                                     restaurarSeleccionadas();
                                 pistaSeleccionada = pista;
                                 formulario.elements["pista"].value = pistaSeleccionada;
@@ -235,7 +242,7 @@ while ($tiempoInicial < $tiempoFinal)
                     
                     $(function() {
                         $( "#datepicker" ).datepicker({
-                            minDate: 0, maxDate: '<?php echo $maximodia->format('d/m/Y'); ?>',
+                            minDate: <?php echo $usuario->getAdmin() == 0 ? "0" : "-$PERIODOPASADO_ADMIN"; ?>, maxDate: '<?php echo $maximodia->format('d/m/Y'); ?>',
                             defaultDate: '<?php echo $dia->format('d/m/Y'); ?>',
                             onSelect: function(dateText, inst) { window.location = "reservar.php?dia=" + dateText; }
                         });
