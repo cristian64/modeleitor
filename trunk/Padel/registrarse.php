@@ -1,11 +1,7 @@
 <?php
 include_once "base.php";
-baseSuperior("Registrarse", false);
-
 require_once('recaptchalib.php');
-
-$pubkey = "6LclgdESAAAAAPO1GX1vx52lCEjeTG0AUlWC6-o3";
-$privkey = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
+baseSuperior("Registrarse", false);
 
 ?>
 <script type="text/javascript">
@@ -68,7 +64,7 @@ $privkey = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
                                         </tr>
                                         <tr>
                                             <td class="columna1"></td>
-                                            <td class="columna2"><?php echo recaptcha_get_html($pubkey); ?></td>
+                                            <td class="columna2"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1"></td>

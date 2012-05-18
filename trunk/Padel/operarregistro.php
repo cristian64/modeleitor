@@ -1,72 +1,68 @@
 <?php
-
+    require_once 'minilibreria.php';
     require_once('recaptchalib.php');
-    $pubkey = "6LclgdESAAAAAPO1GX1vx52lCEjeTG0AUlWC6-o3";
-    $privkey = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
-
-	require_once 'minilibreria.php';
 
     $kMinContrasena = 4;
     $kMaxContrasena = 50;
     
-	// Se procesan los parámetros que llegan por post.
-	$nombre = $_POST["nombre"];
-	$contrasena = $_POST["contrasena"];
-	$contrasena2 = $_POST["contrasena2"];
-	$email = $_POST["email"];
-	$sexo = ($_POST["sexo"] == "hombre") ? "hombre" : "mujer";
+    // Se procesan los parámetros que llegan por post.
+    $nombre = $_POST["nombre"];
+    $contrasena = $_POST["contrasena"];
+    $contrasena2 = $_POST["contrasena2"];
+    $email = $_POST["email"];
+    $sexo = ($_POST["sexo"] == "hombre") ? "hombre" : "mujer";
     $dni = $_POST["dni"];
     $direccion = $_POST["direccion"];
     $telefono = $_POST["telefono"];
 
-    $verify = recaptcha_check_answer($privkey, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+    $verify = recaptcha_check_answer($PRIVATEKEY, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
     if (!$verify->is_valid)
     {
         header("location: registrarse.php?error=El código de seguridad no se introdujo correctamente");
         exit();
     }
 
-	// Se comprueban los parámetros.
+    // Se comprueban los parámetros.
     $usuario = ENUsuario::obtenerPorEmail($email);
-	if ($usuario != null)
-	{
-		header("location: registrarse.php?error=Ya existe un usuario con el nombre $email.");
-		exit();
-	}
-	else
-	{
-		if ($contrasena != $contrasena2)
-		{
-			header("location: registrarse.php?error=Las contraseñas no coinciden.");
-			exit();
-		}
-		else
-		{
+    if ($usuario != null)
+    {
+        header("location: registrarse.php?error=Ya existe un usuario con el nombre $email.");
+        exit();
+    }
+    else
+    {
+        if ($contrasena != $contrasena2)
+        {
+            header("location: registrarse.php?error=Las contraseñas no coinciden.");
+            exit();
+        }
+        else
+        {
             if (strlen($contrasena) > $kMaxContrasena || strlen($contrasena) < $kMinContrasena)
             {
-				header("location: registrarse.php?error=La contraseñas debe tener entre $kMinContrasena y $kMaxContrasena");
-				exit();
-			}
-		}
-	}
+                header("location: registrarse.php?error=La contraseñas debe tener entre $kMinContrasena y $kMaxContrasena");
+                exit();
+            }
+        }
+    }
 
-	$nuevo = new ENUsuario;
+    $nuevo = new ENUsuario;
     $nuevo->setEmail($email);
-	$nuevo->setNombre($nombre);
-	$nuevo->setContrasena(sha1($contrasena));
-	$nuevo->setSexo($sexo);
-	$nuevo->setDni($dni);
+    $nuevo->setNombre($nombre);
+    $nuevo->setContrasena(sha1($contrasena));
+    $nuevo->setSexo($sexo);
+    $nuevo->setDni($dni);
     $nuevo->setDireccion($direccion);
     $nuevo->setTelefono($telefono);
-	$registrado = $nuevo->guardar();
+    $registrado = $nuevo->guardar();
 
     if ($registrado)
     {
         $_SESSION["usuario"] = serialize($nuevo);
-		header("location: index.php?exito=Usuario registrado correctamente");
+        header("location: index.php?exito=Usuario registrado correctamente");
     }
-	else
+    else
     {
-		header("location: registrarse.php?exito=Ocurrió un fallo al registrarse");
+        header("location: registrarse.php?exito=Ocurrió un fallo al registrarse");
     }
 ?>

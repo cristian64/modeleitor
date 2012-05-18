@@ -1,8 +1,9 @@
 <?php
     session_start();
 
+    require_once 'constantes.php';
     require_once 'BD.php';
-    BD::espeficarDatos("localhost", "root", "", "padel");
+    BD::espeficarDatos($BDURL, $BDUSER, $BDPASSWORD, $BDNAME);
     require_once 'ENUsuario.php';
     require_once 'ENReserva.php';
 

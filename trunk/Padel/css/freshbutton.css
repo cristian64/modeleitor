@@ -259,6 +259,26 @@ Particulares de cada página
     width: 120px;
 }
 
+#tablapistas table td.ocupado
+{
+    background-color: #FF4545;
+}
+
+#tablapistas table td.noreservable
+{
+    background-color: #BABABA;
+}
+
+#tablapistas table td.libre
+{
+    background-color: #8AE65C;
+}
+
+#tablapistas table td.seleccionado
+{
+    background: #8AE65C url("grid.png");
+}
+
 #datepicker
 {
     font-size: 0.8em;
