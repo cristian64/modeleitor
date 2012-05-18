@@ -1,5 +1,12 @@
 <?php
 include_once "base.php";
+
+if (!isset($_SESSION["usuario"]))
+{
+    header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.");
+    exit();
+}
+
 baseSuperior("Reservar pista");
 
 // Obtenemos el día, el día máximo, y las variables para ir avanzando en el bucle.

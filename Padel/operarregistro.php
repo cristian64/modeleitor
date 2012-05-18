@@ -1,5 +1,12 @@
 <?php
     require_once 'minilibreria.php';
+    
+    if (isset($_SESSION["usuario"]))
+    {
+        header("location: index.php");
+        exit();
+    }
+    
     require_once('recaptchalib.php');
 
     $kMinContrasena = 4;
