@@ -49,7 +49,7 @@ $reservas[5] = ENReserva::obtenerPorPistaDia(6, $dia);
  *
  * @param type $reservas
  * @param type $tiempo 
- * @return 0 si libre, 1 si ocupada, 2 si no reservable
+ * @return 0 si libre, 1 si ocupada, 2 si no reservable, un objeto ENReserva si coincide con la primera celda, para poder usar rowspan
  */
 function determinarEstado($reservas, $tiempo)
 {
@@ -58,6 +58,11 @@ function determinarEstado($reservas, $tiempo)
     {
         if ($reserva->getFechaInicio() <= $tiempo && $tiempo < $reserva->getFechaFin())
         {
+            if ($reserva->getFechaInicio() == $tiempo)
+            {
+                return $reserva;
+            }
+                
             $estado = $reserva->getReservable() ? 1 : 2;
             break;
         }
@@ -186,11 +191,16 @@ while ($tiempoInicial < $tiempoFinal)
     for ($i = 0; $i < 6; $i++)
     {
         $estado = determinarEstado($reservas[$i], $tiempoInicial);
-        $clase = $estado == 0 ? "libre" : ($estado == 1 ? "ocupado" : "noreservable");
-        if ($estado == 0)
-            echo "<td class=\"$clase\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
-        else
-            echo "<td class=\"$clase\"></td>\n";
+        if (is_object($estado))
+        {
+            $clase = $estado->getReservable() == 1 ? "ocupado" : "noreservable";
+            $celdas = $estado->getDuracion() / 30;
+            echo "<td class=\"$clase\" rowspan=\"$celdas\"></td>\n";
+        }
+        else if ($estado == 0)
+        {
+            echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
+        }
     }
     echo "</tr>\n";
     $tiempoInicial = $tiempo;
