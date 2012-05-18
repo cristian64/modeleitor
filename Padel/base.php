@@ -2,22 +2,6 @@
 
 require_once("minilibreria.php");
 
-if (!isset($_SESSION["usuario"]))
-{
-    // Si no hay ninguna sesión abierta, intentamos abrir una desde las cookies.
-    if (isset($_COOKIE["email"]) && isset($_COOKIE["contrasena"]))
-    {
-        $usuario = ENUsuario::obtenerPorEmail($_COOKIE["email"]);
-        if ($usuario != null)
-        {
-            if ($usuario->getContrasena() == $_COOKIE["contrasena"])
-            {
-                $_SESSION["usuario"] = serialize($usuario);
-            }
-        }
-    }
-}
-
 /**
  *
  * @param String $titulo Título (<title>) que tendrá la página.
@@ -58,9 +42,9 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 <div id="menu" <?php if (!$mostrarmenu) echo "style=\"display: none;\""; ?> >
 <?php
 
-if (isset($_SESSION["usuario"]))
+$usuario = getUsuario();
+if ($usuario != null)
 {
-    $usuario = unserialize($_SESSION["usuario"]);
 ?>
                     <span><?php echo $usuario->getNombre(); ?> (<strong><?php echo $usuario->getEmail(); ?></strong>)&nbsp;&nbsp;&nbsp;</span>
                     <a href="reservar.php" class="freshbutton-blue">Reservar pista</a>

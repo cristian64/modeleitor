@@ -15,6 +15,32 @@
             exit();
         }
     }
+    
+    function getUsuario()
+    {
+        $usuario = null;
+        if (!isset($_SESSION["usuario"]))
+        {
+            // Si no hay ninguna sesión abierta, intentamos abrir una desde las cookies.
+            if (isset($_COOKIE["email"]) && isset($_COOKIE["contrasena"]))
+            {
+                $usuario2 = ENUsuario::obtenerPorEmail($_COOKIE["email"]);
+                if ($usuario2 != null)
+                {
+                    if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
+                    {
+                        $_SESSION["usuario"] = serialize($usuario2);
+                        $usuario = $usuario2;
+                    }
+                }
+            }
+        }
+        else
+        {
+            $usuario = unserialize($_SESSION["usuario"]);
+        }
+        return $usuario;
+    }
 
     function filtrarCadena($cadena)
     {

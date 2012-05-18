@@ -1,7 +1,7 @@
 <?php
     require_once 'minilibreria.php';
     
-    if (isset($_SESSION["usuario"]))
+    if (getUsuario() != null)
     {
         header("location: index.php");
         exit();
