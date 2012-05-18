@@ -43,7 +43,7 @@ baseSuperior("Registrarse", true);
                                             <td class="columna2"><input type="password" value="" name="contrasena" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Confirmación de contraseña*:</td>
+                                            <td class="columna1">Confirmación de contraseña*:&nbsp;&nbsp;</td>
                                             <td class="columna2"><input type="password" value="" name="contrasena2" class="textinput" /></td>
                                         </tr>
                                         <tr>

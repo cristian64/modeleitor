@@ -10,4 +10,9 @@ $PRIVATEKEY = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
 $MAXDURACION = 120; //en minutos
 $MAXCANCELACION = 1; //en horas
 $PERIODORESERVA = 7; //en dias
+
+$PRECIOHORA = 20; //euros
+$ABIERTODESDE = 8; //8am
+$ABIERTOHASTA = 0; //0am
+
 ?>

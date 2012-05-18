@@ -28,24 +28,20 @@
     else
         $reserva->setFechaFinDateTime(DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $hasta));
     
-    /*echo $reserva->toString();
-    echo "disponible: ".$reserva->comprobarDisponibilidad();
-    exit();*/
-    
     if ($reserva->comprobarDisponibilidad())
     {
         $reservada = $reserva->guardar();
         if ($reservada)
         {
-            header("location: reservar.php?exito=La reserva de ha realizado correctamente");
+            header("location: reservar.php?exito=La reserva se ha realizado correctamente");
         }
         else
         {
-            header("location: reservar.php?error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
-        }            
+            header("location: reservar.php?dia=$dia&error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
+        }
     }
     else
     {
-        header("location: reservar.php?error=La reserva se no pudo completar porque alguien ha reservado ya este horario");
+        header("location: reservar.php?dia=$dia&error=La reserva se no pudo completar porque alguien ha reservado ya este horario");
     }
 ?>
