@@ -1,7 +1,7 @@
 <?php
     require_once 'minilibreria.php';
 
-    if (isset($_SESSION["usuario"]))
+    if (getUsuario() != null)
     {
         header("location: index.php");
         exit();
@@ -22,7 +22,7 @@
             {
                 // Guardamos el usuario y la contraseña en una cookie.
                 setcookie("email", $email, time() + (30 * 86400));
-                setcookie("contrasena", $contrasena, time() + (30 * 86400));
+                setcookie("contrasena", sha1($contrasena), time() + (30 * 86400));
             }
             header("location: index.php");
             exit();

@@ -2,8 +2,12 @@
 
     require_once 'minilibreria.php';
     
-    if (isset($_SESSION["usuario"]))
-        $usuario = unserialize($_SESSION["usuario"]);
+    $usuario = getUsuario();
+    if ($usuario == null)
+    {
+        header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.");
+        exit();
+    }
     
     // Se procesan los parámetros que llegan por post.
     $dia = $_POST["dia"];

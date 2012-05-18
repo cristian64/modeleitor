@@ -1,7 +1,7 @@
 <?php
 include_once "base.php";
 
-if (isset($_SESSION["usuario"]))
+if (getUsuario() != null)
 {
     header("location: index.php");
     exit();

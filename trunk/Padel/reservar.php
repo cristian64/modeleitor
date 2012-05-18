@@ -1,7 +1,7 @@
 <?php
 include_once "base.php";
 
-if (!isset($_SESSION["usuario"]))
+if (getUsuario() == null)
 {
     header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.");
     exit();
