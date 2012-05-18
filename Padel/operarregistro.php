@@ -22,42 +22,50 @@
     $kMaxNombre = 100;
     
     // Se procesan los parámetros que llegan por post.
-    $nombre = $_POST["nombre"];
-    $contrasena = $_POST["contrasena"];
-    $contrasena2 = $_POST["contrasena2"];
-    $email = $_POST["email"];
-    $sexo = ($_POST["sexo"] == "hombre") ? "hombre" : "mujer";
-    $dni = $_POST["dni"];
-    $direccion = $_POST["direccion"];
-    $telefono = $_POST["telefono"];
+    $nombre = getPost("nombre");
+    $contrasena = getPost("contrasena");
+    $contrasena2 = getPost("contrasena2");
+    $email = getPost("email");
+    $sexo = (getPost("sexo") == "hombre") ? "hombre" : "mujer";
+    $dni = getPost("dni");
+    $direccion = getPost("direccion");
+    $telefono = getPost("telefono");
 
     // Se comprueban los parámetros.
-    $usuario = ENUsuario::obtenerPorEmail($email);
-    if ($usuario != null)
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
     {
-        header("location: registrarse.php?error=Ya existe un usuario con el e-mail $email.");
+        header("location: registrarse.php?error=El e-mail $email no tiene un formato adecuado.");
         exit();
     }
     else
     {
-        if (strlen($nombre) > $kMaxNombre || strlen($nombre) < $kMinNombre)
+        $usuario = ENUsuario::obtenerPorEmail($email);
+        if ($usuario != null)
         {
-            header("location: registrarse.php?error=El nombre debe tener entre $kMinNombre y $kMaxNombre");
+            header("location: registrarse.php?error=Ya existe un usuario con el e-mail $email.");
             exit();
         }
         else
         {
-            if ($contrasena != $contrasena2)
+            if (strlen($nombre) > $kMaxNombre || strlen($nombre) < $kMinNombre)
             {
-                header("location: registrarse.php?error=Las contraseñas no coinciden.");
+                header("location: registrarse.php?error=El nombre debe tener entre $kMinNombre y $kMaxNombre");
                 exit();
             }
             else
             {
-                if (strlen($contrasena) > $kMaxContrasena || strlen($contrasena) < $kMinContrasena)
+                if ($contrasena != $contrasena2)
                 {
-                    header("location: registrarse.php?error=La contraseña debe tener entre $kMinContrasena y $kMaxContrasena");
+                    header("location: registrarse.php?error=Las contraseñas no coinciden.");
                     exit();
+                }
+                else
+                {
+                    if (strlen($contrasena) > $kMaxContrasena || strlen($contrasena) < $kMinContrasena)
+                    {
+                        header("location: registrarse.php?error=La contraseña debe tener entre $kMinContrasena y $kMaxContrasena");
+                        exit();
+                    }
                 }
             }
         }

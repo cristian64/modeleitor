@@ -41,6 +41,16 @@
         }
         return $usuario;
     }
+    
+    function getPost($key)
+    {
+        return (is_string($key) && isset($_POST[$key])) ? $_POST[$key] : "";
+    }
+    
+    function getGet($key)
+    {
+        return (is_string($key) && isset($_GET[$key])) ? $_GET[$key] : "";
+    }
 
     function filtrarCadena($cadena)
     {

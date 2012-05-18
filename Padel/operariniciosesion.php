@@ -8,8 +8,8 @@
     }
         
     // Procesar parametros e intentar identificar al usuario.
-    $email = $_POST["email"];
-    $contrasena = $_POST["contrasena"];
+    $email = getPost("email");
+    $contrasena = getPost("contrasena");
     $usuario = ENUsuario::obtenerPorEmail($email);
     if ($usuario != null)
     {
@@ -18,7 +18,7 @@
             $_SESSION["usuario"] = serialize($usuario);
 
             // Comprobamos si hay que recordar el usuario.
-            if ($_POST["recordar"] == "on")
+            if (getPost("recordar") == "on")
             {
                 // Guardamos el usuario y la contraseña en una cookie.
                 setcookie("email", $email, time() + (30 * 86400));
