@@ -11,6 +11,11 @@ $MAXDURACION = 120; //en minutos
 $MAXCANCELACION = 1; //en horas
 $PERIODORESERVA = 7; //en dias
 
+$MAXDURACION_ADMIN = 5000; //en minutos
+$MAXCANCELACION_ADMIN = 50000; //en horas
+$PERIODORESERVA_ADMIN = 10000; //en dias
+$PERIODOPASADO_ADMIN = 10000; // en dias
+
 $PRECIOHORA = 20; //euros
 $ABIERTODESDE = 8; //8am
 $ABIERTOHASTA = 0; //0am

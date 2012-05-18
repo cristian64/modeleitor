@@ -13,10 +13,12 @@
     $dia = $_POST["dia"];
     $desde = $_POST["desde"];
     $hasta = $_POST["hasta"];
-    $pista = $_POST["pista"];    
+    $pista = $_POST["pista"];   
+    $reservable = $_POST["reservable"] == 0 ? 0 : 1;
     
     $reserva = new ENReserva();
     $reserva->setIdPista($pista);
+    $reserva->setReservable($reservable);
     $reserva->setIdUsuario($usuario->getId());
     $reserva->setFechaInicioDateTime(DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $desde));
     if ($hasta == "00:00")
@@ -27,6 +29,12 @@
     }
     else
         $reserva->setFechaFinDateTime(DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $hasta));
+    
+    if ($reserva->getFechaInicio() >= $reserva->getFechaFin() || $reserva->getDuracion() > ($usuario->getAdmin() == 1 ? $MAXDURACION_ADMIN : $MAXDURACION))
+    {
+        header("location: reservar.php?dia=$dia&error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
+        exit();
+    }
     
     if ($reserva->comprobarDisponibilidad())
     {

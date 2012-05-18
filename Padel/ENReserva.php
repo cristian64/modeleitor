@@ -282,7 +282,7 @@ class ENReserva
                 $sentencia = "LOCK TABLES reservas WRITE;\n";
                 mysql_query($sentencia, $conexion);
                 
-                $sentencia = "select id from reservas where id != '".$this->id."' and id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
+                $sentencia = "select id from reservas where id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -296,7 +296,7 @@ class ENReserva
                 }
                 else
                 {
-                    echo "ENReserva::comprobarDisponibilidad() " . mysql_error();
+                    echo "ENReserva::guardar() " . mysql_error();
                 }
                     
                 if ($disponible)
@@ -360,7 +360,7 @@ class ENReserva
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "select id from reservas where id != '".$this->id."' and id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
+                $sentencia = "select id from reservas where id_pista = '".$this->id_pista."' and ((fecha_inicio <= '$fechaInicioStr' and '$fechaInicioStr' < fecha_fin) or (fecha_inicio < '$fechaFinStr' and '$fechaFinStr' <= fecha_fin))";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
