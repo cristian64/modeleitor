@@ -1,7 +1,14 @@
 <?php
 include_once "base.php";
+
+if (isset($_SESSION["usuario"]))
+{
+    header("location: index.php");
+    exit();
+}
+
 require_once('recaptchalib.php');
-baseSuperior("Registrarse", false);
+baseSuperior("Registrarse", true);
 
 ?>
 <script type="text/javascript">

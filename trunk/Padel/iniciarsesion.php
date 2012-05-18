@@ -1,5 +1,12 @@
 <?php
 include_once "base.php";
+
+if (isset($_SESSION["usuario"]))
+{
+    header("location: index.php");
+    exit();
+}
+    
 baseSuperior("Iniciar sesión", false);
 ?>
                     <div id="externo">
