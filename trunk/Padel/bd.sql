@@ -4,35 +4,35 @@ drop table if exists pistas;
 
 create table pistas
 (
-	id int not null,
-	primary key (id)
+    id int not null,
+    primary key (id)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 create table usuarios
 (
-	id int not null auto_increment,
-	email varchar(255) not null,
-	nombre text not null,
-	contrasena varchar(40) not null,
-	dni text not null,
-	sexo enum ('hombre', 'mujer') not null,
-	direccion text not null,
-	telefono text not null,
-	admin int not null default 0,
-	primary key (id),
-	unique (email)
+    id int not null auto_increment,
+    email varchar(255) not null,
+    nombre text not null,
+    contrasena varchar(40) not null,
+    dni text not null,
+    sexo enum ('hombre', 'mujer') not null,
+    direccion text not null,
+    telefono text not null,
+    admin int not null default 0,
+    primary key (id),
+    unique (email)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 create table reservas
 (
-	id int not null auto_increment,
-	id_usuario int not null,
-	id_pista int not null,
-	fecha_inicio datetime not null,
-	fecha_fin datetime not null,
+    id int not null auto_increment,
+    id_usuario int not null,
+    id_pista int not null,
+    fecha_inicio datetime not null,
+    fecha_fin datetime not null,
     fecha_realizacion datetime not null,
     reservable int not null default 1,
-	primary key (id),
+    primary key (id),
     unique (id_pista, fecha_inicio),
     unique (id_pista, fecha_fin)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
