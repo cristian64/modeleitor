@@ -85,10 +85,48 @@ class ENReserva
         return $interval->h * 60 + $interval->i;
     }
     
+    public function getEstado()
+    {
+        if ($this->fecha_inicio > new DateTime())
+            return "Pendiente";
+        else if ($this->fecha_fin < new DateTime())
+            return "Antigua";
+        else
+            return "En curso";
+    }
+    
+    public function getCuentaAtrasString()
+    {
+        $now = new DateTime();
+        $interval = $this->fecha_inicio->diff($now, true);
+        $dias = $interval->y * 365 + $interval->m * 30 + $interval->d;
+        $horas = $interval->h;
+        $minutos = $interval->i;
+        $segundos = $interval->s;
+        
+        $cadena = "";
+        if ($dias > 0)
+            $cadena = $cadena."$dias días ";
+        if ($horas > 0)
+            $cadena = $cadena."$horas horas ";
+        if ($minutos > 0)
+            $cadena = $cadena."$minutos minutos ";
+        if ($segundos > 0)
+            $cadena = $cadena."$segundos segundos ";
+        
+        return "Faltan ".$cadena."para jugar";
+        //o "La reserva ha comenzado hace X minutos";
+        //o "La reserva acabó hace X días";
+    }
+    
     public function getCuentaAtras()
     {
-        $interval = $this->fecha_inicio->diff(new DateTime(), false);
-        return "falta ".($interval->h * 60 * 60 + $interval->i * 60)." segundos hasta que comience la reserva";
+        $now = new DateTime();
+        $interval = $this->fecha_inicio->diff($now, true);
+        if ($now < $this->fecha_inicio)
+            return $interval->y * 365 * 30 * 24 * 60 + $interval->m * 30 * 24 * 60 + $interval->d * 24 * 60 + $interval->h * 60 + $interval->i;
+        else
+            return -1 * ($interval->y * 365 * 30 * 24 * 60 + $interval->m * 30 * 24 * 60 + $interval->d * 24 * 60 + $interval->h * 60 + $interval->i);
     }
     
     public function getReservable()
@@ -168,6 +206,50 @@ class ENReserva
         {
             $lista = NULL;
             echo "ENReserva::obtenerTodos()" . $e->getMessage();
+        }
+
+        return $lista;
+    }
+    
+    public static function obtenerPorUsuario($id_usuario, $cantidad = 30)
+    {
+        $lista = NULL;
+        if (!is_numeric($id_usuario))
+            $id_usuario = 0;
+
+        try
+        {
+            $sentencia = "select * from reservas where id_usuario = '$id_usuario' order by fecha_inicio desc limit $cantidad";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $reserva = self::obtenerDatos($fila);
+                    if ($reserva != NULL)
+                    {
+                        $lista[$contador++] = $reserva;
+                    }
+                    else
+                    {
+                        echo "ENReserva::obtenerPorUsuario() Reserva nula nº $contador";
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                echo "ENReserva::obtenerPorUsuario()" . mysql_error();
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            echo "ENReserva::obtenerPorUsuario()" . $e->getMessage();
         }
 
         return $lista;

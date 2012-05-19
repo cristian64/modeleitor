@@ -58,8 +58,15 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?>" readonly="readonly" class="textinput" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Cuenta atrás:&nbsp;&nbsp;</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getCuentaAtras(); ?>" readonly="readonly" class="textinput" /></td>
+                        <td class="columna1">Estado:</td>
+                        <td class="columna2"><div class="textinputfake">
+                            <?php
+                                $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Antigua" ? "antigua" : "encurso");
+                                echo "<div class=\"$clase\">".$reserva->getEstado()."</div>";
+                                if ($reserva->getEstado() == "Pendiente")
+                                    echo $reserva->getCuentaAtrasString();
+                            ?>        
+                        </div></td>
                     </tr>
                     <tr>
                         <td class="columna1">Usuario:</td>
@@ -68,7 +75,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         </div></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Fecha de realización:&nbsp;&nbsp;</td>
+                        <td class="columna1">Fecha en la que<br />se realizó la reserva:&nbsp;&nbsp;</td>
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinput" /></td>
                     </tr>
                     <?php if ($usuario->getAdmin() != 0) { ?>
