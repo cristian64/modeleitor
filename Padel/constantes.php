@@ -21,4 +21,5 @@ $ABIERTODESDE = 8; //8am
 $ABIERTOHASTA = 0; //0am
 
 $RELLENO = 4; //longitud minima al mostrar una ID
+$CANTIDAD_RESERVAS = 20;
 ?>

@@ -232,6 +232,76 @@ Particulares de cada página
     text-align: left;
 }
 
+#reservas table
+{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#reservas table, #reservas tr, #reservas td
+{
+    border: 1px solid #000;
+}
+
+#reservas tr.pendiente
+{
+    background-color: #9CFF99;
+}
+
+#reservas tr.encurso
+{
+    background-color: #ffef8f;
+}
+
+#reservas tr.antigua
+{
+    background-color: #EEE;
+    color: #999;
+}
+
+#reservas tr.pendiente:hover
+{
+    cursor: pointer;
+    background-color: #8AE65C;
+}
+
+#reservas tr.encurso:hover
+{
+    cursor: pointer;
+    background-color: #fed22f;
+}
+
+#reservas tr.antigua:hover
+{
+    cursor: pointer;
+    background-color: #DDD;
+}
+
+#reservas tr.pendiente:active, #reservas tr.antigua:active
+{
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#reserva .pendiente
+{
+    font-weight: bold;
+    color: #0A0;
+}
+
+#reserva .encurso
+{
+    font-weight: bold;
+    color: #f6a828;
+}
+
+#reserva .antigua
+{
+    font-weight: bold;
+    color: #888;
+}
+
 #mapaapi
 {
     height: 500px;
