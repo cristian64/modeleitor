@@ -85,6 +85,12 @@ class ENReserva
         return $interval->h * 60 + $interval->i;
     }
     
+    public function getCuentaAtras()
+    {
+        $interval = $this->fecha_inicio->diff(new DateTime(), false);
+        return "falta ".($interval->h * 60 * 60 + $interval->i * 60)." segundos hasta que comience la reserva";
+    }
+    
     public function getReservable()
     {
         return $this->reservable;
