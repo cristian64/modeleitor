@@ -202,7 +202,10 @@ while ($tiempoInicial < $tiempoFinal)
         {
             $clase = $estado->getReservable() == 1 ? "ocupado" : "noreservable";
             $celdas = $estado->getDuracion() / 30;
-            echo "<td class=\"$clase\" rowspan=\"$celdas\"></td>\n";
+            echo "<td class=\"$clase\" rowspan=\"$celdas\">";
+            if ($usuario->getAdmin() != 0)
+                echo "<a href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>";
+            echo "</td>\n";
         }
         else if ($estado == 0)
         {

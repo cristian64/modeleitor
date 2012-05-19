@@ -58,6 +58,10 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?>" readonly="readonly" class="textinput" /></td>
                     </tr>
                     <tr>
+                        <td class="columna1">Cuenta atrás:&nbsp;&nbsp;</td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getCuentaAtras(); ?>" readonly="readonly" class="textinput" /></td>
+                    </tr>
+                    <tr>
                         <td class="columna1">Usuario:</td>
                         <td class="columna2"><div class="textinputfake">
                             <?php echo $usuarioReseva->getEmail(); ?> (<a href="datosusuario.php?id=<?php echo $usuarioReseva->getId(); ?>">Ver usuario</a>)
