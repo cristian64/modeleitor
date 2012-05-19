@@ -106,6 +106,10 @@ function nuevoAjax()
     return xmlhttp;
 }
 
+function confirmarBorrarReserva()
+{
+    return confirm("¿Estás seguro de que quieres borrar la reserva?");
+}
 
 function confirmarEliminarAlbum()
 {

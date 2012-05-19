@@ -6,15 +6,6 @@
     BD::espeficarDatos($BDURL, $BDUSER, $BDPASSWORD, $BDNAME);
     require_once 'ENUsuario.php';
     require_once 'ENReserva.php';
-
-    function accesoValido()
-    {
-        if ($_SESSION["conectado"] != "si")
-        {
-            header("location: index.php");
-            exit();
-        }
-    }
     
     function getUsuario()
     {

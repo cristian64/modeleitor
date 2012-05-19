@@ -76,6 +76,12 @@ Botón y input text
     width: 300px;
 }
 
+.textinputfake
+{
+    margin: 0;
+    padding: 8px 0;
+}
+
 /*****************************************************
 Generales
 *****************************************************/
@@ -205,7 +211,7 @@ Particulares de cada página
     margin: 10px;
 }
 
-#registrarse td
+#registrarse td, #reserva td
 {
     padding: 3px 0;
 }
@@ -221,7 +227,7 @@ Particulares de cada página
     display: inline-block;
 }
 
-#iniciarsesion, #registrarse, #mapa
+#iniciarsesion, #registrarse, #mapa, #reserva
 {
     text-align: left;
 }
