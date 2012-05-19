@@ -14,7 +14,7 @@
     $desde = $_POST["desde"];
     $hasta = $_POST["hasta"];
     $pista = $_POST["pista"];   
-    $reservable = $_POST["reservable"] == 0 ? 0 : 1;
+    $reservable = getPost("reservable") == "0" ? "0" : "1";
     
     $reserva = new ENReserva();
     $reserva->setIdPista($pista);
