@@ -327,9 +327,10 @@ class ENUsuario
         return $usuario;
     }
 
-    public static function contar()
+    public static function contar($filtro = "")
     {
         $cantidad = null;
+        $filtro = filtrarCadena($filtro);
 
         try
         {
@@ -337,6 +338,10 @@ class ENUsuario
 
             // Obtenemos el identificador asignado al usuario recién creado.
             $sentencia = "select count(id) from usuarios";
+            
+            if ($filtro != "")
+                $sentencia = "select count(id) from usuarios where nombre like '%$filtro%' or email like '%$filtro%'";                
+            
             $resultado = mysql_query($sentencia, $conexion);
 
             if ($resultado)
