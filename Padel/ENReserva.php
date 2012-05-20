@@ -114,7 +114,7 @@ class ENReserva
         if ($segundos > 0)
             $cadena = $cadena."$segundos segundos ";
         
-        return "Faltan ".$cadena."para jugar";
+        return "faltan ".$cadena."para que comience";
         //o "La reserva ha comenzado hace X minutos";
         //o "La reserva acabó hace X días";
     }

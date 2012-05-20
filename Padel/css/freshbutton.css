@@ -217,7 +217,6 @@ Particulares de cada página
 
 #iniciarsesion label
 {
-    padding: 5px;
     width: 100px;
     display: inline-block;
 }
@@ -227,9 +226,16 @@ Particulares de cada página
     margin: 10px;
 }
 
-#registrarse td, #reserva td
+.columna2
 {
     padding: 3px 0;
+}
+
+.columna1
+{
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
 }
 
 #externo
