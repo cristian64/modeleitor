@@ -30,7 +30,7 @@
     else
         $reserva->setFechaFinDateTime(DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $hasta));
     
-    if ($reserva->getFechaInicio() >= $reserva->getFechaFin() || $reserva->getDuracion() > ($usuario->getAdmin() == 1 ? $MAXDURACION_ADMIN : $MAXDURACION))
+    if ($reserva->getFechaInicio() >= $reserva->getFechaFin() || $reserva->getDuracion() > ($usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION))
     {
         header("location: reservar.php?dia=$dia&error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
         exit();

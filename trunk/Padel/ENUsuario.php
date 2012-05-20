@@ -135,7 +135,7 @@ class ENUsuario
 
      public function setAdmin($admin)
      {
-         $this->admin = ($admin == 0 || $admin == "0") ? 0 : 1;
+         $this->admin = $admin;
      }
 
     /**
@@ -151,7 +151,7 @@ class ENUsuario
         $this->telefono = "";
         $this->dni = "";
         $this->direccion = "";
-        $this->admin = 0;
+        $this->admin = false;
     }
 
     /**
@@ -179,7 +179,7 @@ class ENUsuario
         $usuario->sexo = $fila[5];
         $usuario->direccion = utf8_encode($fila[6]);
         $usuario->telefono = utf8_encode($fila[7]);
-        $usuario->admin = $fila[8];
+        $usuario->admin = ($fila[8] == "0" || $fila == 0) ? false : true;
         return $usuario;
     }
 
@@ -342,7 +342,7 @@ class ENUsuario
 
                 // Insertamos el usuario.
                 $sentencia = "insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)";
-                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".$this->admin."')";
+                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".($this->admin ? "1" : "0")."')";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -397,7 +397,7 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update usuarios set nombre = '".$this->nombre."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', direccion = '".utf8_decode($this->direccion)."', admin = '".$this->admin."'";
+                $sentencia = "update usuarios set nombre = '".$this->nombre."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', direccion = '".utf8_decode($this->direccion)."', admin = '".($this->admin ? "1" : "0")."'";
                 $sentencia = "$sentencia where id = $this->id";
 
                 $resultado = mysql_query($sentencia, $conexion);

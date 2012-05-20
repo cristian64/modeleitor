@@ -22,7 +22,7 @@ if ($reserva == null)
     exit();
 }
 
-if ($reserva->getIdUsuario() != $usuario->getId() && $usuario->getAdmin() == 0)
+if ($reserva->getIdUsuario() != $usuario->getId() && !$usuario->getAdmin())
 {
     header("location: index.php?aviso=La reserva que se busca no existe en tu lista de resevas");
     exit();
@@ -78,7 +78,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna1">Fecha en la que<br />se realizó la reserva:&nbsp;&nbsp;</td>
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinput" /></td>
                     </tr>
-                    <?php if ($usuario->getAdmin() != 0) { ?>
+                    <?php if ($usuario->getAdmin()) { ?>
                     <tr>
                         <td class="columna1">Tipo de reserva:</td>
                         <td class="columna2"><div class="textinputfake">
@@ -91,7 +91,11 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna1"></td>
                         <td class="columna2"><div class="textinputfake">
                             <a class="freshbutton-blue" onclick="print();">Imprimir reserva</a>
+                            <?php if ($reserva->getEstado() == "Pendiente" || $usuario->getAdmin()) { ?>
                             <a class="freshbutton-red" onclick="if (confirmarBorrarReserva()) document.getElementById('formulario').submit();">Borrar reserva</a>
+                            <?php } else { ?>
+                            <a class="freshbutton-disabled">Borrar reserva</a>
+                            <?php } ?>
                         </div></td>
                     </tr> 
                </table>

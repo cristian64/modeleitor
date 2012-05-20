@@ -51,7 +51,7 @@ if ($usuario != null)
                     <a href="reservas.php" class="freshbutton-blue">Mis reservas</a>
                     <a href="perfil.php" class="freshbutton-blue">Mis datos personales</a>
 <?php
-if ($usuario->getAdmin() == 1)
+if ($usuario->getAdmin())
 {
 ?>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
