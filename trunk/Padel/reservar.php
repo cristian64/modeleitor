@@ -213,7 +213,7 @@ while ($tiempoInicial < $tiempoFinal)
         }
         else if ($estado == 0)
         {
-            if ($tiempoInicial > new DateTime())
+            if ($tiempoInicial > new DateTime() || $usuario->getAdmin())
                 echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
             else
                 echo "<td class=\"noreservable\"></td>\n";
