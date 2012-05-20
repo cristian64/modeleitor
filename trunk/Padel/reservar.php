@@ -15,6 +15,10 @@ baseSuperior("Reservar pista");
 $now = new DateTime();
 $now->setTime(0, 0, 0);
 $dia = new DateTime();
+if (intval($dia->format('H')) >= 22)
+{
+    $dia->add(new DateInterval("P1D"));
+}
 if (isset($_GET["dia"]))
 {
     $dia = DateTime::createFromFormat('d/m/Y', $_GET["dia"]);
