@@ -58,8 +58,12 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Duración (minutos)</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?>" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="columna1">Duración</td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?> minutos" readonly="readonly" class="textinputreadonly" /></td>
+                    </tr>
+                    <tr>
+                        <td class="columna1">Precio</td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion() * $PRECIOHORA / 60; ?>€ a pagar en ventanilla" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
                         <td class="columna1">Estado</td>
