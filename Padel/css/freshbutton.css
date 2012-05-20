@@ -18,11 +18,11 @@ Botón y input text
 }
 
 .freshbutton-red
-{
+{    
     background: #CE2224;
-    background: -moz-linear-gradient(center top , #E83134, #CE2225) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear, left top, left bottom, from(#E83134), to(#CE2225));
-    border-color: #AB2123 #9A1719 #8B0F11;
+    background: -moz-linear-gradient(center top , #DB4457, #C32F39) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#DB4457), to(#C32F39));
+    border-color: #A12B36 #92222C #821721 #8F212B;
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #F17F81 inset;
@@ -47,7 +47,22 @@ Botón y input text
     -moz-text-shadow: #543382 0 1px 2px;
 }
 
-.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-purple, .freshbutton-red
+.freshbutton-disabled
+{
+    background: #9A44E5;
+    background: -moz-linear-gradient(center top , #9E4FE2, #7D1CCC) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9E4FE2), to(#7D1CCC));
+    border-color: #6A1EAB #561B9A #4A118B;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #AD7CF1 inset;
+    color: #FFFFFF;
+    text-shadow: #543382 0 1px 2px;
+    -webkit-text-shadow: #543382 0 1px 2px;
+    -moz-text-shadow: #543382 0 1px 2px;
+}
+
+.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-purple, .freshbutton-red, .freshbutton-disabled
 {
     border-radius: 3px 3px 3px 3px;
     cursor: pointer;

@@ -50,7 +50,7 @@
         $cristian->setEmail($cristian->getEmail()."a");
         $cristian->setTelefono($cristian->getEmail()."a");
         $cristian->setNombre($cristian->getNombre()."a");
-        $cristian->setAdmin($cristian->getAdmin() == 0 ? 1 : 0);
+        $cristian->setAdmin($cristian->getAdmin() ? false : true);
         $cristian->setSexo($cristian->getSexo() == "mujer" ? "hombre" : "mujer");
         $cristian->actualizar();*/
         
