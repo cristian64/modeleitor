@@ -213,7 +213,10 @@ while ($tiempoInicial < $tiempoFinal)
         }
         else if ($estado == 0)
         {
-            echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
+            if ($tiempoInicial > new DateTime())
+                echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
+            else
+                echo "<td class=\"noreservable\"></td>\n";
         }
     }
     echo "</tr>\n";
