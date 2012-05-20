@@ -28,7 +28,7 @@ baseSuperior("Reservas");
 <?php
 foreach ($reservas as $reserva)
 {
-    $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Antigua" ? "antigua" : "encurso");
+    $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
     echo "<td>".$reserva->getIdPista()."</td>\n";

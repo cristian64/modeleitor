@@ -61,7 +61,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna1">Estado</td>
                         <td class="columna2"><div class="textinputfake">
                             <?php
-                                $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Antigua" ? "antigua" : "encurso");
+                                $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
                                 echo "<span class=\"$clase\">".$reserva->getEstado()."</span>\n";
                                 if ($reserva->getEstado() == "Pendiente")
                                     echo "<span style=\"font-size: 0.8em\">(".$reserva->getCuentaAtrasString().")</span>";
