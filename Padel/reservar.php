@@ -200,7 +200,7 @@ while ($tiempoInicial < $tiempoFinal)
         $estado = determinarEstado($reservas[$i], $tiempoInicial);
         if (is_object($estado))
         {
-            $clase = $estado->getReservable() == 1 ? "ocupado" : "noreservable";
+            $clase = $estado->getReservable() ? "ocupado" : "noreservable";
             $celdas = $estado->getDuracion() / 30;
             echo "<td class=\"$clase\" rowspan=\"$celdas\">";
             if ($usuario->getAdmin())
