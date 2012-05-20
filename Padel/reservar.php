@@ -180,7 +180,7 @@ function determinarEstado($reservas, $tiempo)
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
                                     formulario.elements["duracion"].value = 30 * celdasSeleccionadas.length;
-                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * <?php echo $PRECIOHORA / 60; ?>;
+                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * <?php echo $PRECIOHORA; ?> / 60;
                                 }
                             }
                             </script>
