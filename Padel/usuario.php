@@ -10,10 +10,24 @@ if ($usuario == null)
 }
 
 $u = $usuario;
-$id = getGet("id");
-if ($id != "")
+
+if ($usuario->getAdmin())
 {
-    //try to get a new user and check it is you or you're admin...
+    $id = getGet("id");
+    if ($id != "")
+    {
+        $candidato = ENUsuario::obtenerPorId($id);
+        if ($candidato != null)
+        {
+            $u = $candidato;
+        }
+        else
+        {
+            $_SESSION["mensaje_aviso"] = "No se ha encontrado el usuario con el nº $id";
+            header('location: usuarios.php');
+            exit();
+        }
+    }
 }
 
 baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
@@ -84,6 +98,18 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                             <td class="columna1">Teléfono</td>
                                             <td class="columna2"><input type="text" value="<?php echo $u->getTelefono(); ?>" name="telefono" class="textinput" /></td>
                                         </tr>
+                                        <?php if ($usuario->getAdmin()) { ?>
+                                        <tr>
+                                            <td class="columna1">Administrador*</td>
+                                            <td class="columna2">
+                                                <div class="textinputfake">
+                                                <input type="radio" <?php if ($u->getId() == $usuario->getId()) echo "disabled=\"disabled\""; ?> name="admin" value="0" <?php echo !$u->getAdmin() ? "checked=\"checked\" " : ""; ?>/> No
+                                                <input type="radio" <?php if ($u->getId() == $usuario->getId()) echo "disabled=\"disabled\""; ?> name="admin" value="1" <?php echo $u->getAdmin() ? "checked=\"checked\" " : ""; ?>/> Sí
+                                                <?php if ($u->getId() == $usuario->getId()) echo "<br /><span style=\"font-size: 0.8em\">(no puedes editar tu propio estado de administrador)</span>"; ?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
                                         <tr>
                                             <td class="columna1">Fecha de registro</td>
                                             <td class="columna2"><input type="text" value="<?php echo $u->getFechaRegistro()->format('d/m/Y H:i:s'); ?>" name="" class="textinputreadonly" readonly="readonly" /></td>
