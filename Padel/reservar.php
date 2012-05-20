@@ -82,6 +82,7 @@ function determinarEstado($reservas, $tiempo)
                                 <div><label>Pista </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
                                 <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
                                 <div><label>Duración </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
+                                <div><label>Precio </label><input type="text" value="" name="precio" readonly="readonly" style="width: 30px;" /><label> euros</label></div>
 <?php if ($usuario->getAdmin()) { ?>
                                 <div>
                                     <input type="radio" name="reservable" value="1" checked="checked"/> Reservar
@@ -114,6 +115,7 @@ function determinarEstado($reservas, $tiempo)
                                 formulario.elements["desde"].value = "";
                                 formulario.elements["hasta"].value = "";
                                 formulario.elements["duracion"].value = "";
+                                formulario.elements["precio"].value = "";
                             }
                             
                             function contains(a, obj)
@@ -174,6 +176,7 @@ function determinarEstado($reservas, $tiempo)
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
                                     formulario.elements["duracion"].value = 30 * celdasSeleccionadas.length;
+                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * <?php echo $PRECIOHORA / 60; ?>;
                                 }
                             }
                             </script>

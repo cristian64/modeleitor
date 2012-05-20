@@ -65,4 +65,4 @@ values ('jose', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'jose@correo.com', '
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)
 values (1, 1, '2012/05/14 10:30:00', '2012/05/14 12:00:00', now(), 1);
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)
-values (1, 1, '2012/05/13 12:00:00', '2012/05/13 14:35:00', now(), 1);
+values (1, 1, '2012/05/13 12:00:00', '2012/05/13 14:30:00', now(), 1);

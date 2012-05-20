@@ -23,6 +23,7 @@ baseSuperior("Reservas");
                     <td class="cabecera">Hora de inicio</td>
                     <td class="cabecera">Hora de fin</td>
                     <td class="cabecera">Duración<br />(minutos)</td>
+                    <td class="cabecera">Precio<br />(a pagar en ventanilla)</td>
                     <td class="cabecera">Estado</td>
                     <td class="cabecera">Fecha en la que<br />se realizó la reserva</td>
                 </tr>
@@ -37,13 +38,14 @@ foreach ($reservas as $reserva)
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getFechaFin()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getDuracion()."</td>\n";
+    echo "<td>".($reserva->getDuracion() * $PRECIOHORA / 60)."€</td>\n";
     echo "<td>".$reserva->getEstado()."</td>\n";
     echo "<td>".$reserva->getFechaRealizacion()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"8\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"9\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
 }
 ?>
             </table>
