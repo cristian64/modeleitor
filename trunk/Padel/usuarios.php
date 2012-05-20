@@ -18,8 +18,12 @@ if (!$usuario->getAdmin())
 
 $filtro = filtrarCadena(getGet("filtro"));
 $pagina = intval(getGet("pagina"));
+$cuenta = ENUsuario::contar();
+$pagina = $pagina <= 1 ? 1 : $pagina;
+$maxpagina = ceil($cuenta / $CANTIDAD_USUARIOS);
+$pagina = $pagina > $maxpagina ? $maxpagina : $pagina;
 
-$usuarios = ENUsuario::obtenerTodos($pagina, $CANTIDAD_USUARIOS, $filtro);
+$usuarios = ENUsuario::obtenerTodos($pagina - 1, $CANTIDAD_USUARIOS, $filtro);
 
 baseSuperior("Usuarios");
 ?>
@@ -51,6 +55,21 @@ foreach ($usuarios as $u)
 }
 ?>
             </table>
+            <div><br />Mostrando <strong><?php echo count($usuarios); ?> usuarios</strong> de un total de <strong><?php echo $cuenta; ?> usuarios</strong>.</div>
+            <div id="paginacion">
+            <?php
+                if ($pagina > 1)
+                    echo "<a href=\"usuarios.php?pagina=".($pagina - 1)."\" class=\"freshbutton-blue\">Anterior</a>\n";
+                else
+                    echo "<a href=\"\" class=\"freshbutton-disabled\">Anterior</a>\n";
+                
+                echo "<a href=\"\" class=\"freshbutton-blue\">Página $pagina de $maxpagina</a>\n";
+                
+                if ($pagina < $maxpagina)
+                    echo "<a href=\"usuarios.php?pagina=".($pagina + 1)."\" class=\"freshbutton-blue\">Siguiente</a>\n";
+                else
+                    echo "<a href=\"\" class=\"freshbutton-disabled\">Siguiente</a>\n";
+            ?></div>
         </div>
 <?php
 baseInferior();
