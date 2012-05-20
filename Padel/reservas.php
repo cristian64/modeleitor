@@ -41,6 +41,10 @@ foreach ($reservas as $reserva)
     echo "<td>".$reserva->getFechaRealizacion()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";
 }
+if (count($reservas) == 0)
+{
+    echo "<tr><td colspan=\"8\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
+}
 ?>
             </table>
             <div><br />Sólo se muestran las últimas <?php echo $CANTIDAD_RESERVAS; ?> reservas.</div>

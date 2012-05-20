@@ -41,17 +41,16 @@ foreach ($usuarios as $u)
     $clase = "linea";
     echo "<tr class=\"$clase\" onclick=\"window.location = 'usuario.php?id=".$u->getId()."';\">\n";
     echo "<td>".rellenar($u->getId(), '0', $RELLENO)."</td>\n";
-    echo "<td>".$u->getEmail()."</td>\n";
-    echo "<td>".$u->getNombre()."</td>\n";
-    echo "<td>".$u->getDNI()."</td>\n";
+    echo "<td>".ellipsis($u->getEmail(), 30)."</td>\n";
+    echo "<td>".ellipsis($u->getNombre(), 30)."</td>\n";
+    echo "<td>".ellipsis($u->getDNI(), 30)."</td>\n";
     echo "<td>".$u->getSexo()."</td>\n";
-    echo "<td>".$u->getTelefono()."</td>\n";
-    echo "<td>".$u->getDireccion()."</td>\n";
+    echo "<td>".ellipsis($u->getTelefono(), 30)."</td>\n";
+    echo "<td>".ellipsis($u->getDireccion(), 30)."</td>\n";
     echo "</tr>\n";
 }
 ?>
             </table>
-            <div><br />Sólo se muestran las últimas <?php echo $CANTIDAD_RESERVAS; ?> reservas.</div>
         </div>
 <?php
 baseInferior();
