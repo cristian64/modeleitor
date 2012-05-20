@@ -200,7 +200,7 @@ class ENUsuario
                 $sentencia = "select * from usuarios where nombre like '%$filtro%' or email like '%$filtro%' order by id";
             }
             if (is_numeric($pagina) && is_numeric($cantidad))
-                $sentencia = $sentencia." limit ".($pagina * $cantidad).", ".(($pagina + 1) * $cantidad);
+                $sentencia = $sentencia." limit ".($pagina * $cantidad).", ".$cantidad;
             
             $resultado = mysql_query($sentencia, BD::conectar());
 
@@ -327,6 +327,41 @@ class ENUsuario
         return $usuario;
     }
 
+    public static function contar()
+    {
+        $cantidad = null;
+
+        try
+        {
+            $conexion = BD::conectar();
+
+            // Obtenemos el identificador asignado al usuario recién creado.
+            $sentencia = "select count(id) from usuarios";
+            $resultado = mysql_query($sentencia, $conexion);
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+            }
+            else
+            {
+                echo "ENUsuario::contar() ".mysql_error();
+            }
+
+            BD::desconectar($conexion);
+        }
+        catch (Exception $e)
+        {
+            echo "ENUsuario::contar() ".$e->getMessage();
+        }
+
+        return $cantidad;
+    }
+    
     /**
      * Guarda en la base de datos el usuario que invocó el método.
      * Sólo puede guardarse si no existe en la base de datos. Si ya existe, hay que utilizar el método "actualizar".
