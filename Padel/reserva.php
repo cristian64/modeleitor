@@ -45,21 +45,21 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     <tr>
                         <td class="columna1">Nº de reserva</td>
                         <td class="columna2">
-                            <input type="text" value="<?php echo rellenar($reserva->getId(), '0', $RELLENO); ?>" readonly="readonly" class="textinput" />
+                            <input type="text" value="<?php echo rellenar($reserva->getId(), '0', $RELLENO); ?>" readonly="readonly" class="textinputreadonly" />
                             <input type="hidden" value="<?php echo $reserva->getId(); ?>" name="id" />
                         </td>
                     </tr>
                     <tr>
                         <td class="columna1">Pista</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" class="textinput" /></td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
                         <td class="columna1">Horario</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" class="textinput" /></td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
                         <td class="columna1">Duración (minutos)</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?>" readonly="readonly" class="textinput" /></td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?>" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
                         <td class="columna1">Estado</td>
@@ -75,12 +75,12 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     <tr>
                         <td class="columna1">Usuario</td>
                         <td class="columna2"><div class="textinputfake">
-                            <?php echo $usuarioReseva->getEmail(); ?> (<a href="datosusuario.php?id=<?php echo $usuarioReseva->getId(); ?>">Ver usuario</a>)
+                            <?php echo $usuarioReseva->getEmail(); ?> (<a href="usuario.php?id=<?php echo $usuarioReseva->getId(); ?>">Ver usuario</a>)
                         </div></td>
                     </tr>
                     <tr>
                         <td class="columna1">Fecha en la que se realizó la reserva</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinput" /></td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <?php if ($usuario->getAdmin()) { ?>
                     <tr>

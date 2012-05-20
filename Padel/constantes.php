@@ -20,7 +20,7 @@ $PRECIOHORA = 20; //euros
 $ABIERTODESDE = 8; //8am
 $ABIERTOHASTA = 0; //0am
 
-$RELLENO = 4; //longitud minima al mostrar una ID
-$CANTIDAD_RESERVAS = 20;
-$CANTIDAD_USUARIOS = 2;
+$RELLENO = 6; //longitud minima al mostrar una ID
+$CANTIDAD_RESERVAS = 30;
+$CANTIDAD_USUARIOS = 3;
 ?>

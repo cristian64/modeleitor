@@ -178,7 +178,7 @@ function determinarEstado($reservas, $tiempo)
                             }
                             </script>
                             <table>
-                                <tr>
+                                <tr class="filacabecera">
                                     <td class="hora esquina"></td>
                                     <td class="cabecera">Pista 1</td>
                                     <td class="cabecera">Pista 2</td>

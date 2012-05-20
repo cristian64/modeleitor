@@ -53,7 +53,7 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                     <table>
                                         <tr>
                                             <td class="columna1">Nº de usuario</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $u->getId(); ?>" name="id" class="textinput" readonly="readonly" /></td>
+                                            <td class="columna2"><input type="text" value="<?php echo rellenar($u->getId(), '0', $RELLENO); ?>" name="id" class="textinputreadonly" readonly="readonly" /></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1">E-mail*</td>
@@ -86,7 +86,7 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                         </tr>
                                         <tr>
                                             <td class="columna1">Fecha de registro</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $u->getFechaRegistro()->format('d/m/Y H:i:s'); ?>" name="" class="textinput" readonly="readonly" /></td>
+                                            <td class="columna2"><input type="text" value="<?php echo $u->getFechaRegistro()->format('d/m/Y H:i:s'); ?>" name="" class="textinputreadonly" readonly="readonly" /></td>
                                         </tr>
                                         <tr id="contrasenas1" style="display: none;">
                                             <td class="columna1">Contraseña anterior*</td>
@@ -102,7 +102,7 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                         </tr>
                                         <tr id="contrasenas4">
                                             <td class="columna1"></td>
-                                            <td class="columna2"><a href="#" onclick="cambiarContrasena();">Cambiar también la contraseña</a></td>
+                                            <td class="columna2"><div class="textinputfake"><a href="#" onclick="cambiarContrasena();">Cambiar también la contraseña</a></div></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1"></td>
