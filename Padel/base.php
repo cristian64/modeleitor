@@ -49,7 +49,7 @@ if ($usuario != null)
                     <span><?php echo $usuario->getNombre(); ?> (<strong><?php echo $usuario->getEmail(); ?></strong>)&nbsp;&nbsp;&nbsp;</span>
                     <a href="reservar.php" class="freshbutton-blue">Reservar pista</a>
                     <a href="reservas.php" class="freshbutton-blue">Mis reservas</a>
-                    <a href="perfil.php" class="freshbutton-blue">Mis datos personales</a>
+                    <a href="usuario.php" class="freshbutton-blue">Mis datos personales</a>
 <?php
 if ($usuario->getAdmin())
 {

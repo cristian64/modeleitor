@@ -302,7 +302,7 @@ Particulares de cada página
     display: inline-block;
 }
 
-#iniciarsesion, #registrarse, #mapa, #reserva
+#iniciarsesion, #registrarse, #mapa, #reserva, #usuario
 {
     text-align: left;
 }
