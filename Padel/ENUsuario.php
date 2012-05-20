@@ -44,6 +44,7 @@ class ENUsuario
      private $dni;
      private $direccion;
      private $admin;
+     private $fecha_registro;
 
      public function getId()
      {
@@ -137,6 +138,11 @@ class ENUsuario
      {
          $this->admin = $admin;
      }
+     
+     public function getFechaRegistro()
+     {
+         return $this->fecha_registro;
+     }
 
     /**
      * Constructor de la clase.
@@ -152,6 +158,7 @@ class ENUsuario
         $this->dni = "";
         $this->direccion = "";
         $this->admin = false;
+        $this->fecha_registro = new DateTime();
     }
 
     /**
@@ -160,7 +167,7 @@ class ENUsuario
      */
     public function toString()
     {
-        return "----- USUARIO :: $this->nombre($this->id) :: $this->contrasena :: $this->email :: $this->sexo :: $this->dni :: $this->telefono :: $this->direccion :: $this->admin -----<br />";
+        return "----- USUARIO :: $this->nombre($this->id) :: $this->contrasena :: $this->email :: $this->sexo :: $this->dni :: $this->telefono :: $this->direccion :: $this->admin :: ".$this->fecha_registro->format('d/m/y H:i:s')." -----<br />";
     }
 
     /**
@@ -180,6 +187,7 @@ class ENUsuario
         $usuario->direccion = utf8_encode($fila[6]);
         $usuario->telefono = utf8_encode($fila[7]);
         $usuario->admin = ($fila[8] == "0" || $fila == 0) ? false : true;
+        $usuario->fecha_registro = new DateTime($fila[9]);
         return $usuario;
     }
 
@@ -384,8 +392,8 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)";
-                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".($this->admin ? "1" : "0")."')";
+                $sentencia = "insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin, fecha_registro)";
+                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".($this->admin ? "1" : "0")."', now())";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)

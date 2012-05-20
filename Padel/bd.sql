@@ -1,3 +1,4 @@
+drop table if exists intentos;
 drop table if exists reservas;
 drop table if exists usuarios;
 drop table if exists pistas;
@@ -19,6 +20,7 @@ create table usuarios
     direccion text not null,
     telefono text not null,
     admin int not null default 0,
+    fecha_registro datetime not null,
     primary key (id),
     unique (email)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
@@ -38,11 +40,11 @@ create table reservas
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 create table intentos
-{
+(
     ip varchar(40) not null,
     fecha datetime not null,
     primary key (ip)
-}
+) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 insert into pistas (id) values (1);
 insert into pistas (id) values (2);
@@ -51,14 +53,14 @@ insert into pistas (id) values (4);
 insert into pistas (id) values (5);
 insert into pistas (id) values (6);
 
-insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
-values ('cristian', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'cristian@correo.com', '74236860T', 'hombre', '', '+34 630 276 575', 1);
-insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
-values ('santi', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'santi@correo.com', '74236860T', 'hombre', '', '+34 600 000 000', 1);
-insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
-values ('bea', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'bea@correo.com', '74236860T', 'mujer', '', '+34 600 111 111', 1);
-insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin)
-values ('jose', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'jose@correo.com', '74236860T', 'hombre', '', '+34 600 222 222', 0);
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin, fecha_registro)
+values ('cristian', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'cristian@correo.com', '74236860T', 'hombre', '', '+34 630 276 575', 1, now());
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin, fecha_registro)
+values ('santi', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'santi@correo.com', '74236860T', 'hombre', '', '+34 600 000 000', 1, now());
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin, fecha_registro)
+values ('bea', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'bea@correo.com', '74236860T', 'mujer', '', '+34 600 111 111', 1, now());
+insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, admin, fecha_registro)
+values ('jose', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'jose@correo.com', '74236860T', 'hombre', '', '+34 600 222 222', 0, now());
 
 insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)
 values (1, 1, '2012/05/14 10:30:00', '2012/05/14 12:00:00', now(), 1);
