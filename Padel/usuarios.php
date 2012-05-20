@@ -59,16 +59,16 @@ foreach ($usuarios as $u)
             <div id="paginacion">
             <?php
                 if ($pagina > 1)
-                    echo "<a href=\"usuarios.php?pagina=".($pagina - 1)."\" class=\"freshbutton-blue\">Anterior</a>\n";
+                    echo "<a href=\"usuarios.php?pagina=".($pagina - 1)."\" class=\"freshbutton-lightblue\">Anterior</a>\n";
                 else
-                    echo "<a href=\"\" class=\"freshbutton-disabled\">Anterior</a>\n";
+                    echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Anterior</a>\n";
                 
-                echo "<a href=\"\" class=\"freshbutton-blue\">Página $pagina de $maxpagina</a>\n";
+                echo "<a href=\"\" class=\"freshbutton-lightblue\">Página $pagina de $maxpagina</a>\n";
                 
                 if ($pagina < $maxpagina)
-                    echo "<a href=\"usuarios.php?pagina=".($pagina + 1)."\" class=\"freshbutton-blue\">Siguiente</a>\n";
+                    echo "<a href=\"usuarios.php?pagina=".($pagina + 1)."\" class=\"freshbutton-lightblue\">Siguiente</a>\n";
                 else
-                    echo "<a href=\"\" class=\"freshbutton-disabled\">Siguiente</a>\n";
+                    echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Siguiente</a>\n";
             ?></div>
         </div>
 <?php
