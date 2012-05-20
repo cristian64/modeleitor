@@ -80,6 +80,11 @@
         }
         return $cadena;
     }
+    
+    function ellipsis($string, $length, $end = '...')
+    {
+        return (strlen($string) > $length) ? (substr($string, 0, $length - strlen($end)) . $end) : $string;
+    }
 
     /**
      * Cambia el formato de la fecha.
