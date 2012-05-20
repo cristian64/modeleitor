@@ -118,6 +118,17 @@ Botón y input text
     width: 300px;
 }
 
+.textinputreadonly
+{
+    background: #ddd;
+    border: 1px solid #AAAAAA;
+    color: #555555;
+    margin: 0;
+    padding: 8px;
+    vertical-align: middle;
+    width: 300px;
+}
+
 .textinputfake
 {
     margin: 0;
@@ -407,6 +418,12 @@ table, tr
 #tablapistas .esquina
 {
     border: 0;
+    background: #fff;
+}
+
+.filacabecera
+{
+    background-image: url('cabecera2.png');
 }
 
 .cabecera
@@ -414,7 +431,6 @@ table, tr
     font-weight: bold;
     padding: 5px;
     height: 60px;
-    background-image: url('cabecera2.png');
     color: #93CEF8;
 }
 

@@ -35,7 +35,7 @@ baseSuperior("Usuarios");
             </div>
             <h3><span>Usuarios</span></h3>
             <table>
-                <tr>
+                <tr class="filacabecera">
                     <td class="cabecera">Nº de usuario</td>
                     <td class="cabecera">E-mail</td>
                     <td class="cabecera">Nombre</td>

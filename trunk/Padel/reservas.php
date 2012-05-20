@@ -16,7 +16,7 @@ baseSuperior("Reservas");
         <div id="reservas">
             <h3><span>Reservas</span></h3>
             <table>
-                <tr>
+                <tr class="filacabecera">
                     <td class="cabecera">Nº de reserva</td>
                     <td class="cabecera">Pista</td>
                     <td class="cabecera">Día</td>
