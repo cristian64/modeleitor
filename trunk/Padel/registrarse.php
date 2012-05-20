@@ -40,11 +40,11 @@ baseSuperior("Registrarse", true);
                                         </tr>
                                         <tr>
                                             <td class="columna1">Contraseña*</td>
-                                            <td class="columna2"><input type="password" value="" name="contrasena" class="textinput" /></td>
+                                            <td class="columna2"><input type="password" value="" name="contrasena" class="textinput" autocomplete="off" /></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1">Confirmación de contraseña*</td>
-                                            <td class="columna2"><input type="password" value="" name="contrasena2" class="textinput" /></td>
+                                            <td class="columna2"><input type="password" value="" name="contrasena2" class="textinput" autocomplete="off" /></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1">Nombre y apellidos*</td>
@@ -56,10 +56,10 @@ baseSuperior("Registrarse", true);
                                         </tr>
                                         <tr>
                                             <td class="columna1">Sexo*</td>
-                                            <td class="columna2">
+                                            <td class="columna2"><div class="textinputfake">
                                                 <input type="radio" name="sexo" value="mujer" checked="checked"/> Mujer
                                                 <input type="radio" name="sexo" value="hombre" /> Hombre
-                                            </td>
+                                            </div></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1">Dirección</td>
