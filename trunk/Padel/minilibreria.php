@@ -6,6 +6,7 @@
     BD::espeficarDatos($BDURL, $BDUSER, $BDPASSWORD, $BDNAME);
     require_once 'ENUsuario.php';
     require_once 'ENReserva.php';
+    require_once 'ENIntentos.php';
     
     function getUsuario()
     {
