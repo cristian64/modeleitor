@@ -62,7 +62,11 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                      <div id="externo">
                         <div id="interno">
                             <div id="usuario">
-                                <h3><span>Datos del usuario</span></h3>
+                                <?php if ($u->getId() != $usuario->getId()) { ?>
+                                <h3><span>Datos del usuario nº <?php echo rellenar($u->getId(), '0', $RELLENO); ?></span></h3>
+                                <? } else { ?>
+                                <h3><span>Mis datos personales</span></h3>
+                                <?php } ?>
                                 <form id="formulario" action="operarusuario.php" method="post" enctype="multipart/form-data" onsubmit="return validarUsuario(this);">
                                     <table>
                                         <tr>

@@ -76,12 +76,14 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                             ?>        
                         </div></td>
                     </tr>
+                    <?php if ($usuario->getAdmin()) { ?>
                     <tr>
                         <td class="columna1">Usuario</td>
                         <td class="columna2"><div class="textinputfake">
                             <?php echo $usuarioReseva->getEmail(); ?> (<a href="usuario.php?id=<?php echo $usuarioReseva->getId(); ?>">Ver usuario</a>)
                         </div></td>
                     </tr>
+                    <?php } ?>
                     <tr>
                         <td class="columna1">Fecha en la que se realizó la reserva</td>
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinputreadonly" /></td>
