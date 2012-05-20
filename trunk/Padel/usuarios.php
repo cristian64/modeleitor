@@ -42,7 +42,7 @@ baseSuperior("Usuarios");
                     <td class="cabecera">DNI</td>
                     <td class="cabecera">Sexo</td>
                     <td class="cabecera">Teléfono</td>
-                    <td class="cabecera">Dirección</td>
+                    <!-- <td class="cabecera">Dirección</td> -->
                     <td class="cabecera">Fecha de registro</td>
                 </tr>
 <?php
@@ -56,14 +56,14 @@ foreach ($usuarios as $u)
     echo "<td>".ellipsis($u->getDNI(), 30)."</td>\n";
     echo "<td>".$u->getSexo()."</td>\n";
     echo "<td>".ellipsis($u->getTelefono(), 30)."</td>\n";
-    echo "<td>".ellipsis($u->getDireccion(), 30)."</td>\n";
+    //echo "<td>".ellipsis($u->getDireccion(), 30)."</td>\n";
     echo "<td>".$u->getFechaRegistro()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";
 }
 
 if (count($usuarios) == 0)
 {
-    echo "<tr><td colspan=\"8\"><br /><br /><br />No se han encontrado usuarios<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"7\"><br /><br /><br />No se han encontrado usuarios<br /><br /><br /><br /></td>";
 }
 ?>
             </table>
