@@ -29,7 +29,8 @@
         }
     }
 
-    header("location: iniciarsesion.php?error=Usuario o contraseña incorrecta");
+    $_SESSION["mensaje_error"] = "Usuario o contraseña incorrecta";
+    header("location: iniciarsesion.php");
     exit();
 
 ?>
