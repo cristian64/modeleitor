@@ -4,27 +4,31 @@ include_once "base.php";
 $usuario = getUsuario();
 if ($usuario == null)
 {
-    header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder ver los datos.");
+    $_SESSION["mensaje_aviso"] = "Tu sesión ha caducado. Debes iniciar sesión antes de poder ver los datos.";
+    header("location: iniciarsesion.php");
     exit();
 }
 
 $id = getGet("id");
 if ($id == "")
 {
-    header("location: index.php?aviso=No existe la reserva que se buscaba");
+    $_SESSION["mensaje_aviso"] = "No existe la reserva que se buscaba";
+    header("location: index.php");
     exit();
 }
 
 $reserva = ENReserva::obtenerPorId($id);
 if ($reserva == null)
 {
-    header("location: index.php?aviso=No existe la reserva nº $id");
+    $_SESSION["mensaje_aviso"] = "No existe la reserva nº $id";
+    header("location: index.php");
     exit();
 }
 
 if ($reserva->getIdUsuario() != $usuario->getId() && !$usuario->getAdmin())
 {
-    header("location: index.php?aviso=La reserva que se busca no existe en tu lista de resevas");
+    $_SESSION["mensaje_aviso"] = "La reserva que se busca no existe en tu lista de resevas";
+    header("location: index.php");
     exit();
 }
 

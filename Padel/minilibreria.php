@@ -42,6 +42,11 @@
     {
         return (is_string($key) && isset($_GET[$key])) ? $_GET[$key] : "";
     }
+    
+    function getSession($key)
+    {
+        return (is_string($key) && isset($_SESSION[$key])) ? $_SESSION[$key] : "";
+    }
 
     function filtrarCadena($cadena)
     {

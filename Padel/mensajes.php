@@ -1,22 +1,15 @@
 <?php
-    $error = null;
-    $aviso = null;
-    $exito = null;
-    $info = null;
-    
-    if (isset($_GET["error"]))
-        $error = $_GET["error"];
-    if (isset($_GET["aviso"]))
-        $aviso = $_GET["aviso"];
-    if (isset($_GET["exito"]))
-        $exito = $_GET["exito"];
-    if (isset($_GET["info"]))
-        $info = $_GET["info"];
 
-    if ($exito != NULL || $info != NULL || $aviso != NULL || $error != NULL)
+    require_once 'minilibreria.php';
+    $error = getSession('mensaje_error');
+    $aviso = getSession('mensaje_aviso');
+    $exito = getSession('mensaje_exito');
+    $info = getSession('mensaje_info');
+
+    if ($exito != "" || $info != "" || $aviso != "" || $error != "")
     {
         echo "<div id=\"mensajes\">\n";
-        if ($exito != NULL)
+        if ($exito != "")
         {
             if (is_string($exito))
             {
@@ -32,7 +25,7 @@
             }
         }
 
-        if ($info != NULL)
+        if ($info != "")
         {
             if (is_string($info))
             {
@@ -48,7 +41,7 @@
             }
         }
 
-        if ($aviso != NULL)
+        if ($aviso != "")
         {
             if (is_string($aviso))
             {
@@ -64,7 +57,7 @@
             }
         }
 
-        if ($error != NULL)
+        if ($error != "")
         {
             if (is_string($error))
             {
@@ -80,6 +73,11 @@
             }
         }
         echo "</div>\n";
+        
+        unset($_SESSION["mensaje_exito"]);
+        unset($_SESSION["mensaje_error"]);
+        unset($_SESSION["mensaje_info"]);
+        unset($_SESSION["mensaje_aviso"]);
     }
 
 ?>

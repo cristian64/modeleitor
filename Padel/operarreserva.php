@@ -5,7 +5,8 @@
     $usuario = getUsuario();
     if ($usuario == null)
     {
-        header("location: iniciarsesion.php?aviso=Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.");
+        $_SESSION["mensaje_aviso"] = "Tu sesión ha caducado. Debes iniciar sesión antes de poder reservar pista.";
+        header("location: iniciarsesion.php");
         exit();
     }
     
@@ -32,7 +33,8 @@
     
     if ($reserva->getFechaInicio() >= $reserva->getFechaFin() || $reserva->getDuracion() > ($usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION))
     {
-        header("location: reservar.php?dia=$dia&error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
+        $_SESSION["mensaje_error"] = "Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.";
+        header("location: reservar.php?dia=$dia");
         exit();
     }
     
@@ -41,15 +43,18 @@
         $reservada = $reserva->guardar();
         if ($reservada)
         {
-            header("location: reservar.php?dia=$dia&exito=La reserva se ha realizado correctamente");
+            $_SESSION["mensaje_exito"] = "La reserva se ha realizado correctamente";
+            header("location: reservar.php?dia=$dia");
         }
         else
         {
-            header("location: reservar.php?dia=$dia&error=Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.");
+            $_SESSION["mensaje_error"] = "Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.";
+            header("location: reservar.php?dia=$dia");
         }
     }
     else
     {
-        header("location: reservar.php?dia=$dia&error=La reserva se no pudo completar porque alguien ha reservado ya este horario");
+        $_SESSION["mensaje_error"] = "La reserva se no pudo completar porque alguien ha reservado ya este horario";
+        header("location: reservar.php?dia=$dia");
     }
 ?>
