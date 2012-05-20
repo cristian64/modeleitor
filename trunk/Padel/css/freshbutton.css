@@ -254,18 +254,6 @@ Particulares de cada página
     text-align: left;
 }
 
-#reservas table
-{
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-#reservas table, #reservas tr, #reservas td
-{
-    border: 1px solid #000;
-}
-
 #reservas tr.pendiente
 {
     background-color: #9CFF99;
@@ -336,9 +324,25 @@ Particulares de cada página
     font-size: 9pt;
 }
 
-#tablapistas table, #tablapistas tr, #tablapistas td
+table, tr
+{
+    border: 0;
+}
+
+#tablapistas td, #reservas td
 {
     border: 1px solid #000;
+}
+
+#tablapistas .esquina
+{
+    border: 0;
+}
+
+.cabecera
+{
+    font-weight: bold;
+    padding: 5px;
 }
 
 #tablapistas
@@ -356,7 +360,8 @@ Particulares de cada página
 
 #tablapistas table td.hora
 {
-    width: 120px;
+    width: 1%;
+    padding: 0 5px;
 }
 
 #tablapistas table td.ocupado
@@ -377,6 +382,13 @@ Particulares de cada página
 #tablapistas table td.seleccionado
 {
     background: #8AE65C url("grid.png");
+}
+
+#reservas table
+{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
 }
 
 #datepicker

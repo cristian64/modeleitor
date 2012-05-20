@@ -15,15 +15,15 @@ baseSuperior("Reservas");
         <div id="reservas">
             <h3><span>Reservas</span></h3>
             <table>
-                <tr class="cabecera">
-                    <td>Nº de reserva</td>
-                    <td>Pista</td>
-                    <td>Día</td>
-                    <td>Hora de inicio</td>
-                    <td>Hora de fin</td>
-                    <td>Duración<br />(minutos)</td>
-                    <td>Estado</td>
-                    <td>Fecha en la que<br />se realizó la reserva</td>
+                <tr>
+                    <td class="cabecera">Nº de reserva</td>
+                    <td class="cabecera">Pista</td>
+                    <td class="cabecera">Día</td>
+                    <td class="cabecera">Hora de inicio</td>
+                    <td class="cabecera">Hora de fin</td>
+                    <td class="cabecera">Duración<br />(minutos)</td>
+                    <td class="cabecera">Estado</td>
+                    <td class="cabecera">Fecha en la que<br />se realizó la reserva</td>
                 </tr>
 <?php
 foreach ($reservas as $reserva)

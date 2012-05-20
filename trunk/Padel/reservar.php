@@ -178,13 +178,13 @@ function determinarEstado($reservas, $tiempo)
                             </script>
                             <table>
                                 <tr>
-                                    <td class="hora"></td>
-                                    <td>Pista 1</td>
-                                    <td>Pista 2</td>
-                                    <td>Pista 3</td>
-                                    <td>Pista 4</td>
-                                    <td>Pista 5</td>
-                                    <td>Pista 6</td>
+                                    <td class="hora esquina"></td>
+                                    <td class="cabecera">Pista 1</td>
+                                    <td class="cabecera">Pista 2</td>
+                                    <td class="cabecera">Pista 3</td>
+                                    <td class="cabecera">Pista 4</td>
+                                    <td class="cabecera">Pista 5</td>
+                                    <td class="cabecera">Pista 6</td>
                                 </tr>
 <?php
 $fila = 0;
@@ -192,7 +192,7 @@ while ($tiempoInicial < $tiempoFinal)
 {
     $tiempo = clone $tiempoInicial;
     echo "<tr>\n";
-    echo "<td>\n";
+    echo "<td class=\"hora\" nowrap=\"nowrap\">\n";
     echo $tiempo->format("H:i")." - "; $tiempo->add($intervalo); echo $tiempo->format("H:i");
     echo "</td>\n";
     for ($i = 0; $i < 6; $i++)
