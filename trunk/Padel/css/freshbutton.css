@@ -290,7 +290,7 @@ Particulares de cada página
     background-color: #DDD;
 }
 
-#reservas tr.pendiente:active, #reservas tr.finalizada:active
+#reservas tr.pendiente:active, #reservas tr.encurso:active, #reservas tr.finalizada:active
 {
     cursor: pointer;
     background-color: #fff;
@@ -314,6 +314,18 @@ Particulares de cada página
     color: #888;
 }
 
+#usuarios tr.linea:hover
+{
+    cursor: pointer;
+    background-color: #eee;
+}
+
+#usuarios tr.linea:active
+{
+    cursor: pointer;
+    background-color: #ddd;
+}
+
 #mapaapi
 {
     height: 500px;
@@ -331,7 +343,7 @@ table, tr
     border: 0;
 }
 
-#tablapistas td, #reservas td
+#tablapistas td, #reservas td, #usuarios td
 {
     border: 1px solid #000;
 }
@@ -386,7 +398,7 @@ table, tr
     background: #8AE65C url("grid.png");
 }
 
-#reservas table
+#reservas table, #usuarios table
 {
     width: 100%;
     text-align: center;

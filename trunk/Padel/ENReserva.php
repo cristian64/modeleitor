@@ -211,7 +211,7 @@ class ENReserva
         return $lista;
     }
     
-    public static function obtenerPorUsuario($id_usuario, $cantidad = 30)
+    public static function obtenerPorUsuario($id_usuario, $cantidad)
     {
         $lista = NULL;
         if (!is_numeric($id_usuario))
