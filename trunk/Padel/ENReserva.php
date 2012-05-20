@@ -136,7 +136,7 @@ class ENReserva
     
     public function setReservable($reservable)
     {
-        $this->reservable = $reservable == 0 || $reservable == "0" ? 0 : 1;
+        $this->reservable = $reservable;
     }
 
     /**
@@ -150,7 +150,7 @@ class ENReserva
         $this->fecha_inicio = new DateTime();
         $this->fecha_fin = new DateTime();
         $this->fecha_realizacion = new DateTime();
-        $this->reservable = 1;
+        $this->reservable = true;
     }
 
     public function toString() {
@@ -165,7 +165,7 @@ class ENReserva
         $reserva->fecha_inicio = new DateTime($fila[3]);
         $reserva->fecha_fin = new DateTime($fila[4]);
         $reserva->fecha_realizacion = new DateTime($fila[5]);
-        $reserva->reservable = $fila[6];
+        $reserva->reservable = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
         return $reserva;
     }
 
@@ -390,14 +390,14 @@ class ENReserva
                 if ($disponible)
                 {
                     $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)";
-                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".$this->reservable."');\n";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."');\n";
 
                     $resultado = mysql_query($sentencia, $conexion);
 
                     if ($resultado)
                     {
                         // Obtenemos el identificador asignado al usuario recién creado.
-                        $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$fechaInicioStr."' and reservable = '".$this->reservable."'";
+                        $sentencia = "select id from reservas where id_usuario = '" . $this->id_usuario . "' and id_pista = '" . $this->id_pista . "' and fecha_inicio = '".$fechaInicioStr."'";
                         $resultado = mysql_query($sentencia, $conexion);
 
                         if ($resultado)

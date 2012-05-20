@@ -82,8 +82,8 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     <tr>
                         <td class="columna1">Tipo de reserva:</td>
                         <td class="columna2"><div class="textinputfake">
-                            <input type="radio" name="tipo" value="" <?php echo ($reserva->getReservable() != 0) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Reservada
-                            <input type="radio" name="tipo" value="" <?php echo ($reserva->getReservable() == 0) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Bloqueada
+                            <input type="radio" name="tipo" value="" <?php echo ($reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Reservada
+                            <input type="radio" name="tipo" value="" <?php echo (!$reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Bloqueada
                         </div></td>
                     </tr>
                     <?php } ?>
