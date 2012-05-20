@@ -276,7 +276,7 @@ Particulares de cada página
     background-color: #ffef8f;
 }
 
-#reservas tr.antigua
+#reservas tr.finalizada
 {
     background-color: #EEE;
     color: #999;
@@ -294,13 +294,13 @@ Particulares de cada página
     background-color: #fed22f;
 }
 
-#reservas tr.antigua:hover
+#reservas tr.finalizada:hover
 {
     cursor: pointer;
     background-color: #DDD;
 }
 
-#reservas tr.pendiente:active, #reservas tr.antigua:active
+#reservas tr.pendiente:active, #reservas tr.finalizada:active
 {
     cursor: pointer;
     background-color: #fff;
@@ -318,7 +318,7 @@ Particulares de cada página
     color: #f6a828;
 }
 
-#reserva .antigua
+#reserva .finalizada
 {
     font-weight: bold;
     color: #888;

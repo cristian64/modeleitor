@@ -90,7 +90,7 @@ class ENReserva
         if ($this->fecha_inicio > new DateTime())
             return "Pendiente";
         else if ($this->fecha_fin < new DateTime())
-            return "Antigua";
+            return "Finalizada";
         else
             return "En curso";
     }

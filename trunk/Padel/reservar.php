@@ -77,10 +77,10 @@ function determinarEstado($reservas, $tiempo)
                         <div id="resumenreserva">
                             <div id="datepicker"></div>
                             <form id="formulario" action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
-                                <div><label>Día: </label><input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" /></div>
-                                <div><label>Pista: </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
+                                <div><label>Día </label><input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" /></div>
+                                <div><label>Pista </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
                                 <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
-                                <div><label>Duración: </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
+                                <div><label>Duración </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
 <?php if ($usuario->getAdmin()) { ?>
                                 <div>
                                     <input type="radio" name="reservable" value="1" checked="checked"/> Reservar
