@@ -448,7 +448,7 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update usuarios set nombre = '".$this->nombre."', email = '".$this->email."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', direccion = '".utf8_decode($this->direccion)."', admin = '".($this->admin ? "1" : "0")."'";
+                $sentencia = "update usuarios set nombre = '".utf8_decode($this->nombre)."', email = '".$this->email."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', direccion = '".utf8_decode($this->direccion)."', admin = '".($this->admin ? "1" : "0")."'";
                 $sentencia = "$sentencia where id = $this->id";
 
                 $resultado = mysql_query($sentencia, $conexion);
