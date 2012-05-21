@@ -38,7 +38,7 @@ class ENIntentos
 
         try
         {
-            $sentencia = "select count(*) from intentos where ip = '$ip' and fecha > CURDATE() - INTERVAL ".$this->MINUTOS." MINUTE";
+            $sentencia = "select count(*) from intentos where ip = '$ip' and fecha > now() - INTERVAL ".self::$MINUTOS." MINUTE";
             $resultado = mysql_query($sentencia, BD::conectar());
             if ($resultado)
             {
@@ -67,7 +67,7 @@ class ENIntentos
     {
         try
         {
-            $sentencia = "delete from intentos where fecha < CURDATE() - INTERVAL $MINUTOS MINUTE";
+            $sentencia = "delete from intentos where fecha < now() - INTERVAL ".self::$MINUTOS." MINUTE";
             $resultado = mysql_query($sentencia, BD::conectar());
             if (!$resultado)
             {

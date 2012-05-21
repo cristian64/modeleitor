@@ -13,7 +13,7 @@
     $intentos = ENIntentos::contar($ip);
     if ($intentos >= ENIntentos::$MAXINTENTOS)
     {
-        $_SESSION["mensaje_error"] = "Se han superado el número máximo de intentos. Espera ".ENIntentos::$MINUTOS." minutos para poder probar otra vez.";
+        $_SESSION["mensaje_error"] = "Se ha superado el número máximo de intentos. Espera ".ENIntentos::$MINUTOS." minutos para poder probar otra vez.";
         header("location: iniciarsesion.php");
         exit();
     }
@@ -39,12 +39,17 @@
             exit();
         }
     }
-    
-    ENIntentos::guardar($ip);
 
+    ENIntentos::guardar($ip);
+    
+    
     $_SESSION["mensaje_error"] = "Usuario o contraseña incorrecta";
+    
     if ($intentos + 1 == ENIntentos::$MAXINTENTOS)
+        $_SESSION["mensaje_error"] = "Usuario o contraseña incorrecta. Se ha superado el número máximo de intentos. Espera ".ENIntentos::$MINUTOS." minutos para poder probar otra vez.";
+    else if ($intentos + 2 == ENIntentos::$MAXINTENTOS)
         $_SESSION["mensaje_error"] = "Usuario o contraseña incorrecta. Sólo queda un último intento.";
+    
     header("location: iniciarsesion.php");
     exit();
 

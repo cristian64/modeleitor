@@ -41,9 +41,8 @@ create table reservas
 
 create table intentos
 (
-    ip varchar(40) not null,
-    fecha datetime not null,
-    primary key (ip)
+    ip varchar(50) not null,
+    fecha datetime not null
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 insert into pistas (id) values (1);
