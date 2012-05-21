@@ -78,6 +78,33 @@
         unset($_SESSION["mensaje_error"]);
         unset($_SESSION["mensaje_info"]);
         unset($_SESSION["mensaje_aviso"]);
+        
+        if ($error == "" && $aviso == "")
+        {
+        ?>
+            <script type="text/javascript">    
+    
+		function runEffect() {
+			// get effect type from 
+			var selectedEffect = "highlight";
+
+			// most effect types need no options passed by default
+			var options = {};
+			// some effects have required parameters
+			if ( selectedEffect === "scale" ) {
+				options = { percent: 0 };
+			} else if ( selectedEffect === "size" ) {
+				options = { to: { width: 200, height: 60 } };
+			}
+
+			// run the effect
+			$( "#mensajes" ).hide( selectedEffect, options, 1000);
+		};
+                
+                setTimeout("runEffect()", 3000);
+            </script>
+<?php
+        }
     }
 
 ?>
