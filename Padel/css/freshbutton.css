@@ -135,6 +135,33 @@ Botón y input text
     padding: 8px 0;
 }
 
+table.bloques
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+
+table.bloques tr, table.bloques td
+{
+    padding: 0;
+    margin: 0;
+}
+
+.bloque
+{
+    margin: auto;
+    background-color: #FFFFFF;
+    border: 1px solid #AAA;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 2px 2px 0 #C2C2C2;
+    min-height: 100px;
+    padding: 10px;
+    margin: 5px;
+    background-image: url('bg_dotted.png');
+}
+
 /*****************************************************
 Generales
 *****************************************************/
@@ -182,7 +209,7 @@ h3
 {
     margin: auto;
     max-width: 1300px;
-    min-width: 790px;
+    min-width: 960px;
     width: 98%;
 }
 
@@ -318,7 +345,7 @@ Particulares de cada página
     display: inline-block;
 }
 
-#iniciarsesion, #registrarse, #mapa, #reserva, #usuario, #contacto
+#iniciarsesion, #registrarse, #mapa, #reserva, #usuario, #contacto, #inicio
 {
     text-align: left;
 }

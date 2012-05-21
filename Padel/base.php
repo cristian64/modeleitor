@@ -19,6 +19,8 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <link type="text/css" rel="stylesheet" href="css/cupertino/jquery-ui-1.8.20.custom.css" media="screen" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
+       <link type="text/css" rel="stylesheet" type="text/css" href="css/sliderman.css" />
+       <script type="text/javascript" src="js/sliderman.1.3.7.js"></script>
         <script src="js/formularios.js" type="text/javascript"></script>
         <script src="js/cookies.js" type="text/javascript"></script>
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
@@ -34,7 +36,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 </div>
                 
                 <div id="navegacion">
-                    <a href="index.php">Inicio</a><a href="fotos.php">Fotos</a><a href="mapa.php">Mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
+                    <a href="index.php">Inicio</a><a href="fotos.php">Fotos</a><a href="mapa.php">Dirección y mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
                 </div>
             </div>
             
