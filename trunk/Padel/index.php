@@ -1,12 +1,15 @@
 <?php
 include_once "base.php";
-baseSuperior("Inicio");
+
+$usuario = getUsuario();
+if ($usuario != null)
+    baseSuperior("Inicio", true);
+else
+    baseSuperior("Inicio", false);
 ?>
     <div id="externo"><div id="interno">
         <div id="inicio">
-            <h3><span>Inicio</span></h3>
             <div id="slider_container_2">
-
                     <div id="SliderName_2" class="SliderName_2">
                             <img src="fotos/1.png" width="900" height="450" alt="Pista 1" title="Pista 1" usemap="#img1map" />
                             <map name="img1map">
@@ -41,13 +44,18 @@ baseSuperior("Inicio");
                     <div style="clear:both;"></div>
             </div>
             <div style="clear:both;"></div>
+        </div>
+            <?php if ($usuario == null) { ?>
+            <a href="iniciarsesion.php" class="freshbutton-big freshbutton-extrabig"><div>Iniciar sesión<br><small>para reservar pista</small></div></a>&nbsp;&nbsp;&nbsp;
+            <a href="registrarse.php" class="freshbutton-big freshbutton-extrabig"><div>Registrarse<br><small>para reservar pista</small></div></a>
+            <?php } ?>
             <table class="bloques">
                 <tr>
-                    <td><div class="bloque">Bloque 1</div></td>
-                    <td><div class="bloque">Bloque 2</div></td>
+                    <td><div class="bloque">6 pistas de padel recién construidas</div></td>
+                    <td><div class="bloque"><?php echo $PRECIOHORA; ?>€ por hora</div></td>
+                    <td><div class="bloque">Vereda Santa Teresa, Matola (Elche, Alicante)</div></td>
                 </tr>
             </table>
-        </div>
     </div></div>
 
 <?php
