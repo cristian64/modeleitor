@@ -107,6 +107,20 @@ Botón y input text
     font-size: 15px;
 }
 
+.freshbutton-extrabig
+{
+    line-height: 1em;
+    width: 250px;
+    display: inline-block;
+    font-size: 20pt;
+    padding: 15px 25px;
+}
+
+small
+{
+    font-size: 10pt;
+}
+
 .textinput
 {
     background: url("topfade.gif") repeat-x scroll center top #FFFFFF;
@@ -141,25 +155,32 @@ table.bloques
     margin: 0;
     padding: 0;
     border-collapse: collapse;
+    margin-top: 25px;
+    vertical-align: middle;
 }
 
 table.bloques tr, table.bloques td
 {
     padding: 0;
     margin: 0;
+    vertical-align: middle;
 }
 
-.bloque
+table.bloques td
 {
+    vertical-align: middle;
+    width: 33%;
     margin: auto;
-    background-color: #FFFFFF;
+    background-color: #eee;
     border: 1px solid #AAA;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 2px 2px 0 #C2C2C2;
-    min-height: 100px;
-    padding: 10px;
     margin: 5px;
+    padding: 30px;
     background-image: url('bg_dotted.png');
+    text-align: center;
+    font-size: 15pt;
+    color: #444;
 }
 
 /*****************************************************
