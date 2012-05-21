@@ -49,6 +49,11 @@ if (count($reservas) == 0)
 }
 ?>
             </table>
+            <div id="leyenda">
+                <div class="pendiente"></div>Pendiente
+                <div class="encurso"></div>En curso
+                <div class="finalizada"></div>Finalizada
+            </div>
             <div><br />Sólo se muestran las últimas <?php echo $CANTIDAD_RESERVAS; ?> reservas.</div>
         </div>
 <?php
