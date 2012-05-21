@@ -26,7 +26,7 @@ class ENIntentos
         }
         catch (Exception $e)
         {
-            echo "ENIntentos::guardar()" . $e->getMessage();
+            debug("ENIntentos::guardar()" . $e->getMessage());
         }
         return false;
     }
@@ -50,14 +50,14 @@ class ENIntentos
             }
             else
             {
-                echo "ENIntentos::contar() ".mysql_error();
+                debug("ENIntentos::contar() ".mysql_error());
             }
 
             BD::desconectar();
         }
         catch (Exception $e)
         {
-            echo "ENIntentos::contar()" . $e->getMessage();
+            debug("ENIntentos::contar()" . $e->getMessage());
         }
 
         return $intentos;
@@ -71,7 +71,7 @@ class ENIntentos
             $resultado = mysql_query($sentencia, BD::conectar());
             if (!$resultado)
             {
-                echo "ENIntentos::limpiar() ".mysql_error();
+                debug("ENIntentos::limpiar() ".mysql_error());
                 return false;
             }
 
@@ -80,7 +80,7 @@ class ENIntentos
         }
         catch (Exception $e)
         {
-            echo "ENIntentos::limpiar()" . $e->getMessage();
+            debug("ENIntentos::limpiar()" . $e->getMessage());
         }
         return false;
     }

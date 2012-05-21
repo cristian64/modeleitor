@@ -1,5 +1,6 @@
 <?php
 
+require_once 'minilibreria.php';
 /**
  * Clase que representa un conector para la base de datos.
  */
@@ -33,14 +34,14 @@ class BD
     {
         if (!($conexion=mysql_connect(self::$ip,self::$usuario,self::$contrasena)))
         {
-            echo "BD::conectar No se pudo conectar al servidor de la base de datos.";
+            debug("BD::conectar No se pudo conectar al servidor de la base de datos.");
             $conexion = NULL;
             exit();
         }            
 
         if (!mysql_select_db(self::$nombreBd,$conexion))
         {
-            echo "BD::conectar No se pudo seleccionar la base de datos.";
+            debug("BD::conectar No se pudo seleccionar la base de datos.");
             $conexion = NULL;
             exit();
         }
