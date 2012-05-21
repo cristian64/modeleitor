@@ -105,13 +105,21 @@ class ENReserva
         $segundos = $interval->s;
         
         $cadena = "";
-        if ($dias > 0)
+        if ($dias == 1)
+            $cadena = $cadena."$dias día ";
+        if ($dias > 1)
             $cadena = $cadena."$dias días ";
-        if ($horas > 0)
+        if ($horas == 1)
+            $cadena = $cadena."$horas hora ";
+        if ($horas > 1)
             $cadena = $cadena."$horas horas ";
-        if ($minutos > 0)
+        if ($minutos == 1 && $dias == 0)
+            $cadena = $cadena."$minutos minuto ";
+        if ($minutos > 1 && $dias == 0)
             $cadena = $cadena."$minutos minutos ";
-        if ($segundos > 0)
+        if ($segundos == 1 && $dias == 0 && $horas == 0)
+            $cadena = $cadena."$segundos segundo ";
+        if ($segundos > 1 && $dias == 0 && $horas == 0)
             $cadena = $cadena."$segundos segundos ";
         
         return "faltan ".$cadena."para que comience";
