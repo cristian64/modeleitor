@@ -43,14 +43,14 @@
     }
 
     // Se comprueban los parámetros.
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-    {
-        $_SESSION["mensaje_error"] = "El e-mail $email no tiene un formato adecuado";
-        header("location: usuario.php?id=$id");
-        exit();
-    }
-    else
-    {
+    //if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    //{
+    //    $_SESSION["mensaje_error"] = "El e-mail $email no tiene un formato adecuado";
+    //    header("location: usuario.php?id=$id");
+    //    exit();
+    //}
+    //else
+    //{
         //$otrouser = ENUsuario::obtenerPorEmail($email);
         //if ($otrouser != null && $otrouser->getId() != $u->getId())
         //{
@@ -97,7 +97,7 @@
                 }
             }
         //}
-    }
+    //}
 
     //$u->setEmail($email);
     $u->setNombre($nombre);
