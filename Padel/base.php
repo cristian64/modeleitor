@@ -14,7 +14,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Padel en Matola - <?php echo $titulo; ?></title>
+        <title>Club Padel Matola - <?php echo $titulo; ?></title>
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/cupertino/jquery-ui-1.8.20.custom.css" media="screen" />
         <link rel="shortcut icon" href="favicon.ico" />
@@ -30,7 +30,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <div id="contenedor">
             <div id="cabecera">
                 <div id="titulo">
-                    <h1><a href="index.php">Padel <span class="otrocolor">en Matola</span></a></h1>
+                    <h1><a href="index.php">Club Padel <span class="otrocolor">Matola</span></a></h1>
                 </div>
                 
                 <div id="navegacion">
