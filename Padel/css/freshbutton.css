@@ -148,6 +148,11 @@ html, body, h
     color: #444;
 }
 
+img
+{
+    border: 0;
+}
+
 @font-face
 {
     font-family: "Kabel-Bold";
@@ -264,7 +269,7 @@ h3
 .searchinput
 {
     background: url("lupa.png") no-repeat scroll 3% center #FFFFFF;
-    padding-left: 27px;
+    padding-left: 24px;
     padding-right: 22px;
     width: 170px;
     border: 1px solid #BFBFBF;
