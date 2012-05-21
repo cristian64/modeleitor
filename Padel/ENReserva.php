@@ -199,7 +199,7 @@ class ENReserva
                     }
                     else
                     {
-                        echo "ENReserva::obtenerTodos() Reserva nula nº $contador";
+                        debug("ENReserva::obtenerTodos() Reserva nula nº $contador");
                     }
                 }
 
@@ -207,13 +207,13 @@ class ENReserva
             }
             else
             {
-                echo "ENReserva::obtenerTodos()" . mysql_error();
+                debug("ENReserva::obtenerTodos()" . mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            echo "ENReserva::obtenerTodos()" . $e->getMessage();
+            debug("ENReserva::obtenerTodos()" . $e->getMessage());
         }
 
         return $lista;
@@ -243,7 +243,7 @@ class ENReserva
                     }
                     else
                     {
-                        echo "ENReserva::obtenerPorUsuario() Reserva nula nº $contador";
+                        debug("ENReserva::obtenerPorUsuario() Reserva nula nº $contador");
                     }
                 }
 
@@ -251,13 +251,13 @@ class ENReserva
             }
             else
             {
-                echo "ENReserva::obtenerPorUsuario()" . mysql_error();
+                debug("ENReserva::obtenerPorUsuario()" . mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            echo "ENReserva::obtenerPorUsuario()" . $e->getMessage();
+            debug("ENReserva::obtenerPorUsuario()" . $e->getMessage());
         }
 
         return $lista;
@@ -287,7 +287,7 @@ class ENReserva
                     }
                     else
                     {
-                        echo "ENReserva::obtenerPorPistaDia() Reserva nula nº $contador";
+                        debug("ENReserva::obtenerPorPistaDia() Reserva nula nº $contador");
                     }
                 }
 
@@ -295,13 +295,13 @@ class ENReserva
             }
             else
             {
-                echo "ENReserva::obtenerPorPistaDia()" . mysql_error();
+                debug("ENReserva::obtenerPorPistaDia()" . mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            echo "ENReserva::obtenerPorPistaDia()" . $e->getMessage();
+            debug("ENReserva::obtenerPorPistaDia()" . $e->getMessage());
         }
 
         return $lista;
@@ -333,7 +333,7 @@ class ENReserva
                     $usuario = self::obtenerDatos($fila);
                     if ($usuario == NULL)
                     {
-                        echo "ENReserva::obtenerPorId() Reserva nula $id";
+                        debug("ENReserva::obtenerPorId() Reserva nula $id");
                     }
                 }
 
@@ -341,13 +341,13 @@ class ENReserva
             }
             else
             {
-                echo "ENReserva::obtenerPorId() " . mysql_error();
+                debug("ENReserva::obtenerPorId() " . mysql_error());
             }
         }
         catch (Exception $e)
         {
             $usuario = NULL;
-            echo "ENReserva::obtenerPorId() " . $e->getMessage();
+            debug("ENReserva::obtenerPorId() " . $e->getMessage());
         }
 
         return $usuario;
@@ -392,7 +392,7 @@ class ENReserva
                 }
                 else
                 {
-                    echo "ENReserva::guardar() " . mysql_error();
+                    debug("ENReserva::guardar() " . mysql_error());
                 }
                     
                 if ($disponible)
@@ -419,12 +419,12 @@ class ENReserva
                         }
                         else
                         {
-                            echo "ENReserva::guardar() " . mysql_error();
+                            debug("ENReserva::guardar() " . mysql_error());
                         }
                     }
                     else
                     {
-                        echo "ENReserva::guardar() " . mysql_error();
+                        debug("ENReserva::guardar() " . mysql_error());
                     }
                 }
                 
@@ -435,7 +435,7 @@ class ENReserva
             }
             catch (Exception $e)
             {
-                echo "ENReserva::guardar() " . $e->getMessage();
+                debug("ENReserva::guardar() " . $e->getMessage());
             }
         }
 
@@ -470,14 +470,14 @@ class ENReserva
                 }
                 else
                 {
-                    echo "ENReserva::comprobarDisponibilidad() " . mysql_error();
+                    debug("ENReserva::comprobarDisponibilidad() " . mysql_error());
                 }
 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                echo "ENReserva::comprobarDisponibilidad() " . $e->getMessage();
+                debug("ENReserva::comprobarDisponibilidad() " . $e->getMessage());
             }
         }
 
@@ -501,14 +501,14 @@ class ENReserva
 			}
 			else
 			{
-				echo "ENReserva::borrarPorId(id)>".mysql_error();
+				debug("ENReserva::borrarPorId(id)>".mysql_error());
 			}
 
 			BD::desconectar($conexion);
 		}
 		catch (Exception $e)
 		{
-			echo "ENReserva::borrarPorId(id) ".$e->getMessage();
+			debug("ENReserva::borrarPorId(id) ".$e->getMessage());
 		}
 
 		return $borrado;

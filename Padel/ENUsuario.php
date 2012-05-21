@@ -225,7 +225,7 @@ class ENUsuario
                     }
                     else
                     {
-                        echo "ENUsuario::obtenerTodos() Usuario nulo nº $contador";
+                        debug("ENUsuario::obtenerTodos() Usuario nulo nº $contador");
                     }
                 }
 
@@ -233,13 +233,13 @@ class ENUsuario
             }
             else
             {
-                echo "ENUsuario::obtenerTodos()".mysql_error();
+                debug("ENUsuario::obtenerTodos()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $listaUsuarios = NULL;
-            echo "ENUsuario::obtenerTodos()".$e->getMessage();
+            debug("ENUsuario::obtenerTodos()".$e->getMessage());
         }
 
         return $listaUsuarios;
@@ -270,7 +270,7 @@ class ENUsuario
                     $usuario = self::obtenerDatos($fila);
                     if ($usuario == NULL)
                     {
-                        echo "ENUsuario::obtenerPorEmail() Usuario nulo $email";
+                        debug("ENUsuario::obtenerPorEmail() Usuario nulo $email");
                     }
                 }
 
@@ -278,13 +278,13 @@ class ENUsuario
             }
             else
             {
-                echo "ENUsuario::obtenerPorEmail()".mysql_error();
+                debug("ENUsuario::obtenerPorEmail()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $usuario = NULL;
-            echo "ENUsuario::obtenerPorEmail() ".$e->getMessage();
+            debug("ENUsuario::obtenerPorEmail() ".$e->getMessage());
         }
 
         return $usuario;
@@ -315,7 +315,7 @@ class ENUsuario
                     $usuario = self::obtenerDatos($fila);
                     if ($usuario == NULL)
                     {
-                        echo "ENUsuario::obtenerPorId() Usuario nulo $id";
+                        debug("ENUsuario::obtenerPorId() Usuario nulo $id");
                     }
                 }
 
@@ -323,13 +323,13 @@ class ENUsuario
             }
             else
             {
-                echo "ENUsuario::obtenerPorId() ".mysql_error();
+                debug("ENUsuario::obtenerPorId() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $usuario = NULL;
-            echo "ENUsuario::obtenerPorId() ".$e->getMessage();
+            debug("ENUsuario::obtenerPorId() ".$e->getMessage());
         }
 
         return $usuario;
@@ -362,14 +362,14 @@ class ENUsuario
             }
             else
             {
-                echo "ENUsuario::contar() ".mysql_error();
+                debug("ENUsuario::contar() ".mysql_error());
             }
 
             BD::desconectar($conexion);
         }
         catch (Exception $e)
         {
-            echo "ENUsuario::contar() ".$e->getMessage();
+            debug("ENUsuario::contar() ".$e->getMessage());
         }
 
         return $cantidad;
@@ -413,19 +413,19 @@ class ENUsuario
                     }
                     else
                     {
-                        echo "ENUsuario::guardar() ".mysql_error();
+                        debug("ENUsuario::guardar() ".mysql_error());
                     }
                 }
                 else
                 {
-                    echo "ENUsuario::guardar() ".mysql_error();
+                    debug("ENUsuario::guardar() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                echo "ENUsuario::guardar() ".$e->getMessage();
+                debug("ENUsuario::guardar() ".$e->getMessage());
             }
         }
 
@@ -459,14 +459,14 @@ class ENUsuario
                 }
                 else
                 {
-                    echo "ENUsuario::actualizar() ".mysql_error();
+                    debug("ENUsuario::actualizar() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                echo "<ENUsuario::actualizar() ".$e->getMessage();
+                debug("<ENUsuario::actualizar() ".$e->getMessage());
             }
         }
 

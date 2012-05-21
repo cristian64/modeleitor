@@ -72,6 +72,11 @@
         }
         return "";
     }
+    
+    function debug($cadena)
+    {
+        echo $cadena;
+    }
 
     function rellenar($cadena,$caracter,$digitos)
     {
