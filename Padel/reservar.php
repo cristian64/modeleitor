@@ -229,6 +229,11 @@ while ($tiempoInicial < $tiempoFinal)
 }
 ?>
                             </table>
+                            <div id="leyenda">
+                                <div class="libre"></div>Libre
+                                <div class="ocupado"></div>Ocupado
+                                <div class="noreservable"></div>No reservable
+                            </div>
                         </div>
                     </div>
                     <script type="text/javascript">

@@ -323,17 +323,17 @@ Particulares de cada página
     padding: 5px;
 }
 
-#reservas tr.pendiente
+#reservas tr.pendiente, .pendiente
 {
     background-color: #9CFF99;
 }
 
-#reservas tr.encurso
+#reservas tr.encurso, .encurso
 {
     background-color: #ffef8f;
 }
 
-#reservas tr.finalizada
+#reservas tr.finalizada, .finalizada
 {
     background-color: #EEE;
     color: #999;
@@ -366,18 +366,21 @@ Particulares de cada página
 #reserva .pendiente
 {
     font-weight: bold;
+    background: transparent;
     color: #0A0;
 }
 
 #reserva .encurso
 {
     font-weight: bold;
-    color: #f6a828;
+    background: transparent;
+    color: #eb8f00;
 }
 
 #reserva .finalizada
 {
     font-weight: bold;
+    background: transparent;
     color: #888;
 }
 
@@ -453,17 +456,17 @@ table, tr
     padding: 0 5px;
 }
 
-#tablapistas table td.ocupado
+.ocupado
 {
     background-color: #FF4545;
 }
 
-#tablapistas table td.noreservable
+.noreservable
 {
     background-color: #BABABA;
 }
 
-#tablapistas table td.libre
+.libre
 {
     background-color: #8AE65C;
 }
@@ -478,6 +481,22 @@ table, tr
     width: 100%;
     text-align: center;
     border-collapse: collapse;
+}
+
+#leyenda
+{
+    float: right;
+    margin-top: 15px;
+}
+
+#leyenda div
+{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+    margin-left: 10px;
+    border: 1px #000 solid;
 }
 
 #datepicker
