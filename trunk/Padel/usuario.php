@@ -43,7 +43,9 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
     
     function deshacerCambios()
     {
+        <?php if ($usuario->getId() == $u->getId()) { ?>
         document.getElementById('contrasenas1').style.display = "none";
+        <?php } ?>
         document.getElementById('contrasenas2').style.display = "none";
         document.getElementById('contrasenas3').style.display = "none";
         document.getElementById('contrasenas4').style.display = "";
@@ -52,7 +54,9 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
     
     function cambiarContrasena()
     {
+        <?php if ($usuario->getId() == $u->getId()) { ?>
         document.getElementById('contrasenas1').style.display = "";
+        <?php } ?>
         document.getElementById('contrasenas2').style.display = "";
         document.getElementById('contrasenas3').style.display = "";
         document.getElementById('contrasenas4').style.display = "none";
@@ -118,10 +122,12 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                             <td class="columna1">Fecha de registro</td>
                                             <td class="columna2"><input type="text" value="<?php echo $u->getFechaRegistro()->format('d/m/Y H:i:s'); ?>" name="" class="textinputreadonly" readonly="readonly" /></td>
                                         </tr>
+                                        <?php if ($usuario->getId() == $u->getId()) { ?>
                                         <tr id="contrasenas1" style="display: none;">
                                             <td class="columna1">Contraseña anterior*</td>
                                             <td class="columna2"><input type="password" value="" name="contrasena3" class="textinput" autocomplete="off" /></td>
                                         </tr>
+                                        <?php } ?>
                                         <tr id="contrasenas2" style="display: none;">
                                             <td class="columna1">Nueva contraseña*</td>
                                             <td class="columna2"><input type="password" value="" name="contrasena" class="textinput" autocomplete="off" /></td>
