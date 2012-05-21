@@ -34,7 +34,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 </div>
                 
                 <div id="navegacion">
-                    <a href="index.php">Inicio</a><a href="informacion.php">Información</a><a href="mapa.php">Mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
+                    <a href="index.php">Inicio</a><a href="fotos.php">Fotos</a><a href="mapa.php">Mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
                 </div>
             </div>
             
