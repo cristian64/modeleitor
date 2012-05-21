@@ -79,7 +79,7 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                         </tr>
                                         <tr>
                                             <td class="columna1">E-mail*</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $u->getEmail(); ?>" name="email" class="textinput" /></td>
+                                            <td class="columna2"><input type="text" value="<?php echo $u->getEmail(); ?>" name="email" class="textinputreadonly" readonly="readonly" /></td>
                                         </tr>
                                         <tr>
                                             <td class="columna1">Nombre y apellidos*</td>
