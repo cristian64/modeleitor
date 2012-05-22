@@ -48,8 +48,6 @@
     $reserva->setFechaInicioDateTime($fechaInicio);
     $reserva->setFechaFinDateTime($fechaFin);
     
-    $_SESSION["mensaje_info"] = $reserva->toString();
-    
     if ($usuario->getAdmin())
         $reserva->setReservable($reservable);
     

@@ -16,9 +16,10 @@ $MAXCANCELACION_ADMIN = 50000; //en horas
 $PERIODORESERVA_ADMIN = 10000; //en dias
 $PERIODOPASADO_ADMIN = 10000; // en dias
 
-$PRECIOHORA = 20; //euros
+$PRECIOHORA = 10; //euros
 $ABIERTODESDE = 8; //8am
 $ABIERTOHASTA = 0; //0am
+$INTERVALO = 30;
 
 $RELLENO = 6; //longitud minima al mostrar una ID
 $CANTIDAD_RESERVAS = 30;

@@ -45,7 +45,7 @@ $tiempoFinal->setTime($ABIERTOHASTA, 0);
 if ($tiempoInicial >= $tiempoFinal)
     $tiempoFinal->add(new DateInterval("P1D"));
 $intervalo = $tiempoInicial->diff($tiempoInicial);
-$intervalo->i = 30;
+$intervalo->i = $INTERVALO;
 
 // Obtenemos las reservas de las 6 pistas para el día elegido.
 $reservas = array();
@@ -169,7 +169,7 @@ baseSuperior("Reservar pista");
                                 }
                                 
                                 // Si la nueva celda está en otra pista o no es adjacente, se restaura.
-                                if (!adjacente || (pistaSeleccionada != 0 && pistaSeleccionada != pista) || (!contains(celdasSeleccionadas, celda) && 30 * celdasSeleccionadas.length >= <?php echo $usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION; ?>))
+                                if (!adjacente || (pistaSeleccionada != 0 && pistaSeleccionada != pista) || (!contains(celdasSeleccionadas, celda) && (<?php echo $INTERVALO; ?>) * celdasSeleccionadas.length >= <?php echo $usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION; ?>))
                                     restaurarSeleccionadas();
                                 pistaSeleccionada = pista;
                                 formulario.elements["pista"].value = pistaSeleccionada;
@@ -192,7 +192,7 @@ baseSuperior("Reservar pista");
                                     }
                                     
                                     var fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
-                                    fecha.setMinutes(fecha.getMinutes() + minFila * 30);
+                                    fecha.setMinutes(fecha.getMinutes() + minFila * <?php echo $INTERVALO; ?>);
                                     formulario.elements["desde"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                                                         
                                     if (fecha.getHours() >= 0 && fecha.getHours() < <?php echo $ABIERTODESDE; ?>)
@@ -205,11 +205,11 @@ baseSuperior("Reservar pista");
                                     }
                                     
                                     fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
-                                    fecha.setMinutes(fecha.getMinutes() + maxFila * 30 + 30);
+                                    fecha.setMinutes(fecha.getMinutes() + maxFila * <?php echo $INTERVALO; ?> + <?php echo $INTERVALO; ?>);
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
-                                    formulario.elements["duracion"].value = 30 * celdasSeleccionadas.length;
-                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * (<?php echo $PRECIOHORA; ?>) / 60;
+                                    formulario.elements["duracion"].value = <?php echo $INTERVALO; ?> * celdasSeleccionadas.length;
+                                    formulario.elements["precio"].value = <?php echo $INTERVALO; ?> * celdasSeleccionadas.length * (<?php echo $PRECIOHORA; ?>) / 60;
                                 }
                             }
                             </script>
@@ -238,7 +238,7 @@ while ($tiempoInicial < $tiempoFinal)
         if (is_object($estado))
         {
             $clase = $estado->getReservable() ? "ocupado" : "noreservable";
-            $celdas = $estado->getDuracion() / 30;
+            $celdas = $estado->getDuracion() / $INTERVALO;
             echo "<td class=\"$clase\" rowspan=\"$celdas\">";
             if ($usuario->getAdmin())
                 echo "<a href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>";
