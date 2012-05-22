@@ -19,9 +19,9 @@ if (intval($dia->format('H')) >= 22)
 {
     $dia->add(new DateInterval("P1D"));
 }
-if (isset($_GET["dia"]))
+if (getGet("dia") != "")
 {
-    $dia = DateTime::createFromFormat('d/m/Y', $_GET["dia"]);
+    $dia = DateTime::createFromFormat('d/m/Y', getGet("dia"));
     if ($dia == false)
         $dia = new DateTime();
 }
