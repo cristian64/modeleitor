@@ -299,6 +299,7 @@ h3
 
 #pie
 {
+    clear: both;
     padding: 20px;
 }
 
@@ -457,8 +458,7 @@ Particulares de cada página
 #mapalinks
 {
     text-align: right;
-    padding-top: 10px;
-    font-size: 9pt;
+    padding-bottom: 20px;
 }
 
 table, tr

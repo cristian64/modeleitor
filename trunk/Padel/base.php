@@ -35,9 +35,18 @@ function baseSuperior($titulo, $mostrarmenu = true)
                     <h1><a href="index.php">Club Padel <span class="otrocolor">Matola</span></a></h1>
                 </div>
                 
-                <div id="navegacion">
-                    <a href="index.php">Inicio</a><a href="fotos.php">Fotos</a><a href="mapa.php">Dirección y mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
-                </div>
+                <?php
+                function navegacion()
+                {
+                    echo '
+                    <div id="navegacion">
+                        <a href="index.php">Inicio</a><a href="mapa.php">Dirección y mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
+                    </div>
+                    ';
+                }
+                
+                navegacion();
+                ?>
             </div>
             
             <div id="contenido">
