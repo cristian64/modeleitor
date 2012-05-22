@@ -4,10 +4,10 @@ baseSuperior("");
 ?>
         <div id="mapa">
             <h3><span>Mapa</span></h3>
-            <div id="mapaapi"></div>
             <div id="mapalinks">
-                <a href="mapagrande.php">Ver mapa en pantalla completa</a>
+                <a href="mapagrande.php" class="freshbutton-lightblue">Ver mapa en pantalla completa</a>
             </div>
+            <div id="mapaapi"></div>
         </div>
         <script type="text/javascript">
             GoogleMaps3(false, "mapaapi");
