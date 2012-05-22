@@ -1,7 +1,6 @@
-#slider_container_2 { float: left; margin: 0; padding: 15px; width: 900px; background: url(bg.png) no-repeat 0 0; }
+#slider_container_2 { margin: auto; padding: 15px; width: 900px; background: url(bg.png) no-repeat 0 0; }
 
 .SliderName_2 {
-	float: left;
 	width: 900px;
 	height: 450px;
 	overflow: hidden;
