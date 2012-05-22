@@ -36,12 +36,12 @@
     
     function getPost($key)
     {
-        return (is_string($key) && isset($_POST[$key])) ? $_POST[$key] : "";
+        return substr((is_string($key) && isset($_POST[$key])) ? $_POST[$key] : "", 0, 300);
     }
     
     function getGet($key)
     {
-        return (is_string($key) && isset($_GET[$key])) ? $_GET[$key] : "";
+        return substr((is_string($key) && isset($_GET[$key])) ? $_GET[$key] : "", 0, 300);
     }
     
     function getSession($key)
