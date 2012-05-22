@@ -366,7 +366,7 @@ Particulares de cada página
     display: inline-block;
 }
 
-#iniciarsesion, #registrarse, #mapa, #reserva, #usuario, #contacto, #inicio
+#iniciarsesion, #registrarse, #mapa, #reserva, #usuario, #contacto
 {
     text-align: left;
 }
