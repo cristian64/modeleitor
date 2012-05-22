@@ -9,8 +9,6 @@ if ($usuario == null)
     exit();
 }
 
-baseSuperior("Reservar pista");
-
 // Obtenemos el día, el día máximo, y las variables para ir avanzando en el bucle.
 $now = new DateTime();
 $now->setTime(0, 0, 0);
@@ -35,10 +33,17 @@ if ($dia > $maximodia)
     $dia = $maximodia;
 if ($dia < $now && !$usuario->getAdmin())
     $dia = $now;
+
+$siguiente = clone $dia;
+$siguiente->add(new DateInterval("P1D"));
+
 $tiempoInicial = clone $dia;
 $tiempoFinal = clone $dia;
-$tiempoInicial->setTime(8, 0);
-$tiempoFinal->setTime(23, 59, 59);
+$tiempoInicial->setTime($ABIERTODESDE, 0);
+$tiempoFinal->setTime($ABIERTOHASTA, 0);
+
+if ($tiempoInicial >= $tiempoFinal)
+    $tiempoFinal->add(new DateInterval("P1D"));
 $intervalo = $tiempoInicial->diff($tiempoInicial);
 $intervalo->i = 30;
 
@@ -50,6 +55,16 @@ $reservas[2] = ENReserva::obtenerPorPistaDia(3, $dia);
 $reservas[3] = ENReserva::obtenerPorPistaDia(4, $dia);
 $reservas[4] = ENReserva::obtenerPorPistaDia(5, $dia);
 $reservas[5] = ENReserva::obtenerPorPistaDia(6, $dia);
+
+if ($tiempoFinal->format('d') != $dia->format('d'))
+{    
+    $reservas[0] = array_merge($reservas[0], ENReserva::obtenerPorPistaDia(1, $siguiente));
+    $reservas[1] = array_merge($reservas[1], ENReserva::obtenerPorPistaDia(2, $siguiente));
+    $reservas[2] = array_merge($reservas[2], ENReserva::obtenerPorPistaDia(3, $siguiente));
+    $reservas[3] = array_merge($reservas[3], ENReserva::obtenerPorPistaDia(4, $siguiente));
+    $reservas[4] = array_merge($reservas[4], ENReserva::obtenerPorPistaDia(5, $siguiente));
+    $reservas[5] = array_merge($reservas[5], ENReserva::obtenerPorPistaDia(6, $siguiente));
+}
 
 /**
  *
@@ -76,13 +91,18 @@ function determinarEstado($reservas, $tiempo)
     return $estado;
 }
 
+baseSuperior("Reservar pista");
+
 ?>
                     <div id="reservar">
                         <h3><span>Reservar pista</span></h3>
                         <div id="resumenreserva">
                             <div id="datepicker"></div>
                             <form id="formulario" action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
-                                <div><label>Día </label><input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" /></div>
+                                <div><label>Día </label>
+                                    <input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
+                                    <input type="hidden" value="<?php echo $dia->format('d/m/Y'); ?>" name="diaoculto" />
+                                </div>
                                 <div><label>Pista </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
                                 <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
                                 <div><label>Duración </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
@@ -161,7 +181,7 @@ function determinarEstado($reservas, $tiempo)
                                     celdasSeleccionadas.push(celda);
                                     filasSeleccionadas.push(fila);
                                     
-                                    var minFila = 31;
+                                    var minFila = 9999;
                                     var maxFila = 0;
                                     for (var i in filasSeleccionadas)
                                     {
@@ -171,16 +191,25 @@ function determinarEstado($reservas, $tiempo)
                                             maxFila = filasSeleccionadas[i];
                                     }
                                     
-                                    var fecha = new Date(2012, 1, 1, 8, 0, 0);
+                                    var fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
                                     fecha.setMinutes(fecha.getMinutes() + minFila * 30);
                                     formulario.elements["desde"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
+                                                                        
+                                    if (fecha.getHours() >= 0 && fecha.getHours() < <?php echo $ABIERTODESDE; ?>)
+                                    {
+                                        formulario.elements["dia"].value = '<?php echo $siguiente->format('d/m/Y'); ?>';
+                                    }
+                                    else
+                                    {
+                                        formulario.elements["dia"].value = '<?php echo $dia->format('d/m/Y'); ?>';
+                                    }
                                     
-                                    fecha = new Date(2012, 1, 1, 8, 0, 0);
+                                    fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
                                     fecha.setMinutes(fecha.getMinutes() + maxFila * 30 + 30);
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
                                     formulario.elements["duracion"].value = 30 * celdasSeleccionadas.length;
-                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * <?php echo $PRECIOHORA; ?> / 60;
+                                    formulario.elements["precio"].value = 30 * celdasSeleccionadas.length * (<?php echo $PRECIOHORA; ?>) / 60;
                                 }
                             }
                             </script>
@@ -218,9 +247,9 @@ while ($tiempoInicial < $tiempoFinal)
         else if ($estado == 0)
         {
             if ($tiempoInicial > new DateTime() || $usuario->getAdmin())
-                echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
+                echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\">".$tiempoInicial->format('d/m/Y H:i')."</td>\n";
             else
-                echo "<td class=\"noreservable\"></td>\n";
+                echo "<td class=\"noreservable\">".$tiempoInicial->format('d/m/Y H:i')."</td>\n";
         }
     }
     echo "</tr>\n";
