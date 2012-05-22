@@ -79,13 +79,13 @@
         unset($_SESSION["mensaje_info"]);
         unset($_SESSION["mensaje_aviso"]);
         
-        if ($error == "" && $aviso == "")
-        {
         ?>
             <script type="text/javascript">    
     
 		function runEffect() {
-			// get effect type from 
+                    $("#mensajes").animate({ borderColor: "#aaa", backgroundColor: "#f8f8f8"}, 500);
+                    
+			/*/ get effect type from 
 			var selectedEffect = "highlight";
 
 			// most effect types need no options passed by default
@@ -98,13 +98,12 @@
 			}
 
 			// run the effect
-			$( "#mensajes" ).hide( selectedEffect, options, 1000);
+			$( "#mensajes" ).hide( selectedEffect, options, 1000);*/
 		};
                 
-                setTimeout("runEffect()", 3000);
+                setTimeout("runEffect()", 1000);
             </script>
 <?php
-        }
     }
 
 ?>
