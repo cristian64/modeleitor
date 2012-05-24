@@ -18,7 +18,9 @@ $PERIODOPASADO_ADMIN = 10000; // en dias
 
 $PRECIOHORA = 10; //euros
 $ABIERTODESDE = 8; //8am
+$ABIERTODESDEM = 0;
 $ABIERTOHASTA = 0; //0am
+$ABIERTOHASTAM = 0;
 $INTERVALO = 30;
 
 $RELLENO = 6; //longitud minima al mostrar una ID

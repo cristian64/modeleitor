@@ -39,8 +39,8 @@ $siguiente->add(new DateInterval("P1D"));
 
 $tiempoInicial = clone $dia;
 $tiempoFinal = clone $dia;
-$tiempoInicial->setTime($ABIERTODESDE, 0);
-$tiempoFinal->setTime($ABIERTOHASTA, 0);
+$tiempoInicial->setTime($ABIERTODESDE, $ABIERTODESDEM);
+$tiempoFinal->setTime($ABIERTOHASTA, $ABIERTOHASTAM);
 
 if ($tiempoInicial >= $tiempoFinal)
     $tiempoFinal->add(new DateInterval("P1D"));
@@ -191,7 +191,7 @@ baseSuperior("Reservar pista");
                                             maxFila = filasSeleccionadas[i];
                                     }
                                     
-                                    var fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
+                                    var fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, <?php echo $ABIERTODESDEM; ?>, 0);
                                     fecha.setMinutes(fecha.getMinutes() + minFila * <?php echo $INTERVALO; ?>);
                                     formulario.elements["desde"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                                                         
@@ -204,7 +204,7 @@ baseSuperior("Reservar pista");
                                         formulario.elements["dia"].value = '<?php echo $dia->format('d/m/Y'); ?>';
                                     }
                                     
-                                    fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, 0, 0);
+                                    fecha = new Date(2012, 1, 1, <?php echo $ABIERTODESDE; ?>, <?php echo $ABIERTODESDEM; ?>, 0);
                                     fecha.setMinutes(fecha.getMinutes() + maxFila * <?php echo $INTERVALO; ?> + <?php echo $INTERVALO; ?>);
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
