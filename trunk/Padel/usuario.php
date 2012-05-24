@@ -34,22 +34,33 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
 
 ?>
 <script type="text/javascript">
+    var concambios = false;
+    
     function guardarCambios()
     {
-        var formu = document.getElementById('formulario');
-        if (validarUsuario(formu))
-            formu.submit();
+        if (concambios)
+        {
+            var formu = document.getElementById('formulario');
+            if (validarUsuario(formu))
+                formu.submit();
+        }
     }
     
     function deshacerCambios()
     {
-        <?php if ($usuario->getId() == $u->getId()) { ?>
-        document.getElementById('contrasenas1').style.display = "none";
-        <?php } ?>
-        document.getElementById('contrasenas2').style.display = "none";
-        document.getElementById('contrasenas3').style.display = "none";
-        document.getElementById('contrasenas4').style.display = "";
-        document.getElementById('formulario').reset();
+        if (concambios)
+        {
+            <?php if ($usuario->getId() == $u->getId()) { ?>
+            document.getElementById('contrasenas1').style.display = "none";
+            <?php } ?>
+            document.getElementById('contrasenas2').style.display = "none";
+            document.getElementById('contrasenas3').style.display = "none";
+            document.getElementById('contrasenas4').style.display = "";
+            document.getElementById('formulario').reset();
+            
+            $('#botonguardar').attr("class", "freshbutton-disabled");
+            $('#botonreset').attr("class", "freshbutton-disabled");
+        }
     }
     
     function cambiarContrasena()
@@ -143,12 +154,29 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                         <tr>
                                             <td class="columna1"></td>
                                             <td class="columna2"><div class="textinputfake">
-                                                <a class="freshbutton-blue" onclick="guardarCambios();">Guardar cambios</a>
-                                                <a class="freshbutton-red" onclick="deshacerCambios();">Deshacer cambios</a>
+                                                <a id="botonguardar" class="freshbutton-disabled" onclick="guardarCambios();">Guardar cambios</a>
+                                                <a id="botonreset" class="freshbutton-disabled" onclick="deshacerCambios();">Deshacer cambios</a>
                                             </div></td>
                                         </tr>
                                     </table>
                                 </form>
+                                
+
+                                <script type="text/javascript">
+                                    $(":input").change(function() {
+                                            concambios = true;
+                                            
+                                            $('#botonguardar').attr("class", "freshbutton-blue");
+                                            $('#botonreset').attr("class", "freshbutton-red");
+                                        });
+                                        
+                                    $(":input").keydown(function() {
+                                            concambios = true;
+                                            
+                                            $('#botonguardar').attr("class", "freshbutton-blue");
+                                            $('#botonreset').attr("class", "freshbutton-red");
+                                        });
+                                </script>
                             </div>
                         </div>
                      </div>
