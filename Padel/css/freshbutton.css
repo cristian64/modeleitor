@@ -508,6 +508,7 @@ table, tr
 {
     width: 1%;
     padding: 0 5px;
+    white-space: nowrap;
 }
 
 .ocupado

@@ -7,7 +7,7 @@
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" title="Estilo principal" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
-        <script src="http://maps.google.com/maps/api/js?sensor=false&language=es" type="text/javascript"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
     </head>
 

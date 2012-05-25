@@ -104,8 +104,8 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                             <td class="columna1">Sexo*</td>
                                             <td class="columna2">
                                                 <div class="textinputfake">
-                                                <input type="radio" name="sexo" value="mujer" <?php echo $u->getSexo() == "mujer" ? "checked=\"mujer\" " : ""; ?>/> Mujer
-                                                <input type="radio" name="sexo" value="hombre" <?php echo $u->getSexo() == "hombre" ? "checked=\"hombre\" " : ""; ?>/> Hombre
+                                                <input type="radio" name="sexo" value="mujer" <?php echo $u->getSexo() == "mujer" ? "checked=\"checked\" " : ""; ?>/> Mujer
+                                                <input type="radio" name="sexo" value="hombre" <?php echo $u->getSexo() == "hombre" ? "checked=\"checked\" " : ""; ?>/> Hombre
                                                 </div>
                                             </td>
                                         </tr>
