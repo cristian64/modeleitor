@@ -227,6 +227,8 @@ baseSuperior("Reservar pista");
                                 </tr>
 <?php
 $fila = 0;
+$diferencia = $tiempoFinal->diff($tiempoInicial, true);
+$maxfilas = ($diferencia->i + $diferencia->h * 60 + $diferencia->d * 60 * 24) / $INTERVALO;
 while ($tiempoInicial < $tiempoFinal)
 {
     $tiempo = clone $tiempoInicial;
@@ -241,6 +243,8 @@ while ($tiempoInicial < $tiempoFinal)
         {
             $clase = $estado->getReservable() ? "ocupado" : "noreservable";
             $celdas = $estado->getDuracion() / $INTERVALO;
+            if ($fila + $celdas >= $maxfilas)
+                $celdas = $maxfilas - $fila;
             echo "<td class=\"$clase\" rowspan=\"$celdas\">";
             if ($usuario->getAdmin())
                 echo "<a href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>";
