@@ -295,7 +295,7 @@ while ($tiempoInicial < $tiempoFinal)
                             minDate: <?php echo !$usuario->getAdmin() ? "0" : "-$PERIODOPASADO_ADMIN"; ?>, maxDate: '<?php echo $maximodia->format('d/m/Y'); ?>',
                             defaultDate: '<?php echo $dia->format('d/m/Y'); ?>',
                             showOtherMonths: true,
-                            selecshowOtherMonths: true,
+                            selectOtherMonths: true,
                             onSelect: function(dateText, inst) { window.location = "reservar.php?dia=" + dateText; }
                         });
                         $('.selector').datepicker({
