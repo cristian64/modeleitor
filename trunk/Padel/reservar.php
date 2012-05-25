@@ -231,7 +231,7 @@ while ($tiempoInicial < $tiempoFinal)
 {
     $tiempo = clone $tiempoInicial;
     echo "<tr>\n";
-    echo "<td class=\"hora\" nowrap=\"nowrap\">\n";
+    echo "<td class=\"hora\">\n";
     echo $tiempo->format("H:i")." - "; $tiempo->add($intervalo); echo $tiempo->format("H:i");
     echo "</td>\n";
     for ($i = 0; $i < 6; $i++)

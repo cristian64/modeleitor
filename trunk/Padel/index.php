@@ -12,9 +12,9 @@ else
             <div id="slider_container_2">
                     <div id="SliderName_2" class="SliderName_2">
                             <img src="fotos/1.png" width="900" height="450" alt="Pista 1" title="Pista 1" usemap="#img1map" />
-                            <map name="img1map">
-                                    <area href="#img1map-area1" shape="rect" coords="100,100,200,200" />
-                                    <area href="#img1map-area2" shape="rect" coords="300,100,400,200" />
+                            <map name="img1map" id="img1mapid">
+                                    <area href="#img1map-area1" shape="rect" coords="100,100,200,200" alt="" />
+                                    <area href="#img1map-area2" shape="rect" coords="300,100,400,200" alt="" />
                             </map>
                             <div class="SliderName_2Description">Pista <strong>1</strong></div>
                             <img src="fotos/2.png" width="900" height="450" alt="Pista 2" title="Pista 2" />
@@ -73,7 +73,7 @@ else
                                             loading: {background: '#000000', opacity: 0.5, image: 'css/loading.gif'},
                                             buttons: {hide: true, opacity: 1, prev: {className: 'SliderNamePrev_2', label: ''}, next: {className: 'SliderNameNext_2', label: ''}},
                                             description: {hide: true, background: '#000000', opacity: 0.4, height: 50, position: 'bottom'},
-                                            navigation: {container: 'SliderNameNavigation_2', label: '<img src="css/clear.gif" />'}
+                                            navigation: {container: 'SliderNameNavigation_2', label: '<img src="css/clear.gif" alt="" />'}
                                     }
                             });
                     </script>
@@ -83,8 +83,8 @@ else
             <div style="clear:both;"></div>
         </div>
             <?php if ($usuario == null) { ?>
-            <a href="iniciarsesion.php" class="freshbutton-big freshbutton-extrabig"><div>Iniciar sesión<br><small>para reservar pista</small></div></a>&nbsp;&nbsp;&nbsp;
-            <a href="registrarse.php" class="freshbutton-big freshbutton-extrabig"><div>Registrarse<br><small>para reservar pista</small></div></a>
+            <a href="iniciarsesion.php" class="freshbutton-big freshbutton-extrabig"><span>Iniciar sesión<br /><small>para reservar pista</small></span></a>&nbsp;&nbsp;&nbsp;
+            <a href="registrarse.php" class="freshbutton-big freshbutton-extrabig"><span>Registrarse<br /><small>para reservar pista</small></span></a>
             <?php } ?>
             <table class="bloques">
                 <tr>
