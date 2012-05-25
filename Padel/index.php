@@ -12,7 +12,7 @@ else
             <div id="slider_container_2">
                     <div id="SliderName_2" class="SliderName_2">
                             <img src="fotos/1.png" width="900" height="450" alt="Pista 1" title="Pista 1" usemap="#img1map" />
-                            <map name="img1map" id="img1mapid">
+                            <map name="img1map" id="img1map">
                                     <area href="#img1map-area1" shape="rect" coords="100,100,200,200" alt="" />
                                     <area href="#img1map-area2" shape="rect" coords="300,100,400,200" alt="" />
                             </map>
