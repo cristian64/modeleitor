@@ -18,11 +18,10 @@
     $pista = intval(getPost("pista"));
     if ($usuario->getAdmin())
         $reservable = getPost("reservable") == "0" ? false : true;
-
     
     if ($pista < 1 || $pista > 6)
     {
-        $_SESSION["mensaje_error"] = "La pista seleccionada no está disponible";
+        $_SESSION["mensaje_error"] = "La pista seleccionada no existe";
         header("location: reservar.php?dia=$diaoculto");
         exit();
     }
@@ -31,7 +30,7 @@
     $fechaFin = DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $hasta);
     if ($fechaInicio == false || $fechaFin == false)
     {
-        $_SESSION["mensaje_error"] = "La fecha indicada es incorrecta";
+        $_SESSION["mensaje_error"] = "La fecha elegida es incorrecta";
         header("location: reservar.php?dia=$diaoculto");
         exit();
     }
@@ -41,6 +40,21 @@
         $fechaFin = DateTime::createFromFormat("d/m/Y H:i", $dia . " " . $hasta);
         $fechaFin->add(new DateInterval("P1D"));
     }
+    
+    $ahora = new DateTime();
+    $limiteMaximo = clone $ahora;
+    $limiteMaximo->add(new DateInterval("P".$PERIODORESERVA."D"));
+    $limiteMaximo->setTime(0, 0, 0);
+    $limiteMaximo->add(new DateInterval("P1D"));
+    if (($ahora < $fechaInicio && $fechaInicio <= $limiteMaximo && $ahora < $fechaFin && $fechaFin <= $limiteMaximo)  || $usuario->getAdmin())
+    {
+    }
+    else
+    {
+        $_SESSION["mensaje_error"] = "La fecha elegida no se encuentra en un periodo reservable";
+        header("location: reservar.php?dia=$diaoculto");
+        exit();
+    }        
     
     $reserva = new ENReserva();
     $reserva->setIdPista($pista);

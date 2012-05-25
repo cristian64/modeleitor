@@ -29,6 +29,8 @@ $intervalo->d = $usuario->getAdmin() ? $PERIODORESERVA_ADMIN : $PERIODORESERVA;
 $maximodia = new DateTime();
 $maximodia->add($intervalo);
 $maximodia->setTime(0, 0, 0);
+$siguientemaximodia = clone $maximodia;
+$siguientemaximodia->add(new DateInterval("P1D"));
 if ($dia > $maximodia)
     $dia = $maximodia;
 if ($dia < $now && !$usuario->getAdmin())
@@ -246,7 +248,7 @@ while ($tiempoInicial < $tiempoFinal)
         }
         else if ($estado == 0)
         {
-            if ($tiempoInicial > new DateTime() || $usuario->getAdmin())
+            if ((new DateTime() < $tiempoInicial && $tiempoInicial <= $siguientemaximodia && $tiempo <= $siguientemaximodia) || $usuario->getAdmin())
                 echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
             else
                 echo "<td class=\"noreservable\"></td>\n";
@@ -292,6 +294,8 @@ while ($tiempoInicial < $tiempoFinal)
                         $( "#datepicker" ).datepicker({
                             minDate: <?php echo !$usuario->getAdmin() ? "0" : "-$PERIODOPASADO_ADMIN"; ?>, maxDate: '<?php echo $maximodia->format('d/m/Y'); ?>',
                             defaultDate: '<?php echo $dia->format('d/m/Y'); ?>',
+                            showOtherMonths: true,
+                            selecshowOtherMonths: true,
                             onSelect: function(dateText, inst) { window.location = "reservar.php?dia=" + dateText; }
                         });
                         $('.selector').datepicker({
