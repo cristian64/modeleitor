@@ -20,9 +20,9 @@
         $reservable = getPost("reservable") == "0" ? false : true;
 
     $reservasHoy = ENReserva::obtenerPorUsuarioHoy($usuario->getId());
-    if (count($reservasHoy) >= 3 && !$usuario->getAdmin())
+    if (count($reservasHoy) >= $RESERVASPORDIA && !$usuario->getAdmin())
     {
-        $_SESSION["mensaje_error"] = "No se puede reservar más de 3 veces durante un mismo día";
+        $_SESSION["mensaje_error"] = "No se puede reservar más de $RESERVASPORDIA veces durante un mismo día";
         header("location: reservar.php?dia=$diaoculto");
         exit();
     }
@@ -83,9 +83,9 @@
     $duracionHoy = 0;
     foreach ($reservasHoy as $r)
         $duracionHoy += $r->getDuracion();
-    if ($duracionHoy + $reserva->getDuracion() > 3.5 * 60 && !$usuario->getAdmin())
+    if ($duracionHoy + $reserva->getDuracion() > $MINUTOSPORDIA && !$usuario->getAdmin())
     {
-        $_SESSION["mensaje_error"] = "No se pueden reservar más de 210 minutos durante un mismo día";
+        $_SESSION["mensaje_error"] = "No se pueden reservar más de $MINUTOSPORDIA minutos durante un mismo día";
         header("location: reservar.php?dia=$diaoculto");
         exit();
     }
