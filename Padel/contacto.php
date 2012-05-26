@@ -50,7 +50,17 @@ baseSuperior("Contacto", true);
                      <div id="externo">
                         <div id="interno">
                             <div id="contacto">
-                                <h3><span>Contacto</span></h3>
+                                <h3><span>Información de contacto</span></h3>
+                                <p>
+                                Teléfono de contacto de los administradores:
+                                <ul>
+                                    <li>BEATRIZ 605 85 68 70</li>
+                                    <li>SANTIAGO PAMIES 636 67 06 87</li>
+                                    <li>EMILIO MEJIAS  607 382 173</li>
+                                </ul>
+                                </p>
+                                <p>E-mail de contacto: <a href="mailto:<?php echo $EMAILCONTACTO; ?>"><?php echo $EMAILCONTACTO; ?></a></p>
+                                <h3><span>Envíanos un mensaje</span></h3>
                                 <form action="contacto.php" method="post" enctype="multipart/form-data" onsubmit="return validarContacto(this);">
                                     <table>
                                         <tr>
