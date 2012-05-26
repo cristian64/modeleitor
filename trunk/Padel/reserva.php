@@ -54,6 +54,10 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
+                        <td class="columna1">Día</td>
+                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('d/m/Y'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
+                    </tr>
+                    <tr>
                         <td class="columna1">Horario</td>
                         <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
