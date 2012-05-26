@@ -1,7 +1,7 @@
 var map;
 
-var latitud = 38.23983567865117;
-var longitud = -0.7516475214957836;
+var latitud = 38.22808209515297;
+var longitud = -0.7486528351306561;
 
 function GoogleMaps3(fullscreen, divid)
 {
@@ -21,7 +21,7 @@ function GoogleMaps3(fullscreen, divid)
             setInterval (function() { document.getElementById(divid).style.height = document.documentElement.clientHeight+"px"; }, 2000);
         }
         var locations = [
-        ['Club de Padel en Matola', latitud, longitud, 1],
+        ['<strong>Club Padel Matola</strong><br />Vereda Santa Teresa, 23<br />Elche (Alicante)<br />03296', latitud, longitud, 1],
         ];
 
         var map = new google.maps.Map(document.getElementById(divid), {
@@ -53,10 +53,16 @@ function GoogleMaps3(fullscreen, divid)
         }
         
         var poligono = [
-            new google.maps.LatLng(38.23947978397542, -0.7520111362457556),
-            new google.maps.LatLng(38.23975365303111, -0.7512839067458117),
-            new google.maps.LatLng(38.24015365328609, -0.7513697374342883),
-            new google.maps.LatLng(38.24019157332692, -0.7517482797622961)
+            new google.maps.LatLng(38.22785625175806, -0.7487683455467504),
+            new google.maps.LatLng(38.22780963379814, -0.7487206486225659),
+            new google.maps.LatLng(38.227784217779146, -0.7486686369657036),
+            new google.maps.LatLng(38.227771443921675, -0.7486085786819103),
+            new google.maps.LatLng(38.227758274994066, -0.7482771504401171),
+            new google.maps.LatLng(38.228405915311875, -0.7484193075179064),
+            new google.maps.LatLng(38.22828792266518, -0.749028519821195),
+            new google.maps.LatLng(38.227985699680644, -0.7489091615200323),
+            new google.maps.LatLng(38.22791044062793, -0.748873622250585),
+            new google.maps.LatLng(38.22791653183387, -0.7488048906445783)
         ];
 
         var recinto = new google.maps.Polygon({
@@ -65,7 +71,7 @@ function GoogleMaps3(fullscreen, divid)
             strokeOpacity: 0.7,
             strokeWeight: 2,
             fillColor: "#00E043",
-            fillOpacity: 0.35,
+            fillOpacity: 0.60,
             map: map
         });
         
@@ -86,7 +92,7 @@ function GoogleMaps3(fullscreen, divid)
                 var paths = recinto.getPath();
                 for (var i = 0; i < paths.getLength(); i++)
                 {
-                    contenido = contenido + "(" + paths.getAt(i).lat() + ", " + paths.getAt(i).lng() + ") ";
+                    contenido = contenido + "new google.maps.LatLng(" + paths.getAt(i).lat() + ", " + paths.getAt(i).lng() + "),<br />";
                 }
                 infowindow.setContent(contenido);
             }

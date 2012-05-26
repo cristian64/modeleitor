@@ -211,7 +211,7 @@ baseSuperior("Reservar pista");
                                     formulario.elements["hasta"].value = (fecha.getHours() < 10 ? "0" : "") + fecha.getHours() + ":" + (fecha.getMinutes() < 10 ? "0" : "") + fecha.getMinutes();
                                     
                                     formulario.elements["duracion"].value = <?php echo $INTERVALO; ?> * celdasSeleccionadas.length;
-                                    formulario.elements["precio"].value = <?php echo $INTERVALO; ?> * celdasSeleccionadas.length * (<?php echo $PRECIOHORA; ?>) / 60;
+                                    formulario.elements["precio"].value = Math.ceil(<?php echo $INTERVALO; ?> * celdasSeleccionadas.length * (<?php echo $PRECIOHORA; ?>) / 60);
                                 }
                             }
                             </script>
