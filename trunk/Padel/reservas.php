@@ -38,7 +38,7 @@ foreach ($reservas as $reserva)
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getFechaFin()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getDuracion()."</td>\n";
-    echo "<td>".($reserva->getDuracion() * $PRECIOHORA / 60)."€</td>\n";
+    echo "<td>".ceil($reserva->getDuracion() * $PRECIOHORA / 60)."€</td>\n";
     echo "<td>".$reserva->getEstado()."</td>\n";
     echo "<td>".$reserva->getFechaRealizacion()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";

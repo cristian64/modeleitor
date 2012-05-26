@@ -63,7 +63,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     </tr>
                     <tr>
                         <td class="columna1">Precio</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion() * $PRECIOHORA / 60; ?>€ a pagar en ventanilla" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="columna2"><input type="text" value="<?php echo ceil($reserva->getDuracion() * $PRECIOHORA / 60); ?>€ a pagar en ventanilla" readonly="readonly" class="textinputreadonly" /></td>
                     </tr>
                     <tr>
                         <td class="columna1">Estado</td>
