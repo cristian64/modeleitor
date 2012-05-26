@@ -54,13 +54,13 @@ baseSuperior("Contacto", true);
                                 <p>
                                 Teléfono de contacto de los administradores:
                                 <ul>
-                                    <li>BEATRIZ 605 85 68 70</li>
-                                    <li>SANTIAGO PAMIES 636 67 06 87</li>
-                                    <li>EMILIO MEJIAS  607 382 173</li>
+                                    <li>Beatriz 605 85 68 70</li>
+                                    <li>Santiago Pamies 636 67 06 87</li>
+                                    <li>Emilio Mejias  607 382 173</li>
                                 </ul>
                                 </p>
                                 <p>E-mail de contacto: <a href="mailto:<?php echo $EMAILCONTACTO; ?>"><?php echo $EMAILCONTACTO; ?></a></p>
-                                <h3><span>Envíanos un mensaje</span></h3>
+                                <h3><span>También puedes enviarnos un mensaje</span></h3>
                                 <form action="contacto.php" method="post" enctype="multipart/form-data" onsubmit="return validarContacto(this);">
                                     <table>
                                         <tr>
