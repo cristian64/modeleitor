@@ -263,6 +263,51 @@ class ENReserva
         return $lista;
     }
     
+    public static function obtenerPorUsuarioHoy($id_usuario)
+    {
+        $lista = NULL;
+        if (!is_numeric($id_usuario))
+            $id_usuario = 0;
+
+        try
+        {
+            $ahora = new DateTime();
+            $sentencia = "select * from reservas where id_usuario = '$id_usuario' and date(fecha_realizacion) = '".$ahora->format('Y/m/d')."' order by fecha_inicio asc";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $reserva = self::obtenerDatos($fila);
+                    if ($reserva != NULL)
+                    {
+                        $lista[$contador++] = $reserva;
+                    }
+                    else
+                    {
+                        debug("ENReserva::obtenerPorUsuarioHoy() Reserva nula nº $contador");
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::obtenerPorUsuarioHoy()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENReserva::obtenerPorPistaDia()" . $e->getMessage());
+        }
+
+        return $lista;
+    }
+    
     public static function obtenerPorPistaDia($id_pista, $dia)
     {
         $lista = NULL;
