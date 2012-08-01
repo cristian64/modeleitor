@@ -75,7 +75,7 @@
     
     function debug($cadena)
     {
-        echo $cadena;
+        echo $cadena."<br />";
     }
 
     function rellenar($cadena,$caracter,$digitos)
@@ -111,13 +111,51 @@
         $cuerpo = $cuerpo."<td>$mensaje</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<div>Se ha recibido un nuevo mensaje de un usuario:<br /></div>"."$cuerpo";
+        $cuerpo = "<h3>Se ha recibido un nuevo mensaje de un usuario:<br /></h3>"."$cuerpo";
         
         include 'constantes.php';
         
         $to = "$EMAILCONTACTO";
         $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
         return mail($to, "Club Padel Matola", $cuerpo, $cabeceras);
+    }
+    
+    function emailReserva($usuario, $reserva)
+    {
+		include 'constantes.php';
+		
+        $cuerpo = "<tr>";
+        $cuerpo = $cuerpo."<td><strong>Nº de reserva:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getIdPista()."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getFechaInicio()->format('d/m/Y')."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Horario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i')."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Duración:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getDuracion()." minutos</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Precio:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".ceil($reserva->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = "<table>".$cuerpo."</table>";
+        $cuerpo = "<h3>Resumen de la reserva realizada:<br /></h3>"."$cuerpo";
+
+        $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
+        
+        $to = $usuario->getEmail();
+        
+        return mail($to, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
     }
     
     /*
