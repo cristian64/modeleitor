@@ -219,7 +219,7 @@ class ENReserva
         return $lista;
     }
     
-    public static function obtenerPendientes()
+    public static function obtenerPendientes($filtro = "")
     {
         $lista = NULL;
 

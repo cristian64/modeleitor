@@ -203,9 +203,14 @@ class ENUsuario
         try
         {
             $sentencia = "select * from usuarios order by id";
+            
+            $idfiltro = "";
+            if (is_numeric($filtro))
+                $idfiltro = "or id like '%".intval($filtro)."%'";
+            
             if ($filtro != "")
             {
-                $sentencia = "select * from usuarios where nombre like '%$filtro%' or email like '%$filtro%' order by id";
+                $sentencia = "select * from usuarios where nombre like '%$filtro%' or email like '%$filtro%' or dni like '%$filtro%' $idfiltro or telefono like '%$filtro%' order by id";
             }
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".($pagina * $cantidad).", ".$cantidad;
@@ -347,8 +352,12 @@ class ENUsuario
             // Obtenemos el identificador asignado al usuario recién creado.
             $sentencia = "select count(id) from usuarios";
             
+            $idfiltro = "";
+            if (is_numeric($filtro))
+                $idfiltro = "or id like '%".intval($filtro)."%'";
+            
             if ($filtro != "")
-                $sentencia = "select count(id) from usuarios where nombre like '%$filtro%' or email like '%$filtro%'";                
+                $sentencia = "select count(id) from usuarios where nombre like '%$filtro%' or email like '%$filtro%' or dni like '%$filtro%' $idfiltro or telefono like '%$filtro%'";
             
             $resultado = mysql_query($sentencia, $conexion);
 

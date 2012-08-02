@@ -9,19 +9,12 @@ if ($usuario == null)
     exit();
 }
 
-if (!$usuario->getAdmin())
-{
-    $_SESSION["mensaje_error"] = "Esta sección necesita privilegios de administrador";
-    header("location: index.php");
-    exit();
-}
+$reservas = ENReserva::obtenerPorUsuario($usuario->getId(), $CANTIDAD_RESERVAS);
 
-$reservas = ENReserva::obtenerPendientes();
-
-baseSuperior("Reservas pendientes");
+baseSuperior("Reservas");
 ?>
         <div id="reservas">
-            <h3><span>Reservas pendientes</span></h3>
+            <h3><span>Mis Reservas</span></h3>
             <table>
                 <tr class="filacabecera">
                     <td class="cabecera">Nº de reserva</td>
@@ -37,9 +30,6 @@ baseSuperior("Reservas pendientes");
 <?php
 foreach ($reservas as $reserva)
 {
-    if (!$reserva->getReservable())
-        continue;
-        
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
@@ -55,7 +45,7 @@ foreach ($reservas as $reserva)
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"9\"><br /><br /><br />No hay reservas pendientes<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"9\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
 }
 ?>
             </table>
@@ -64,7 +54,7 @@ if (count($reservas) == 0)
                 <div class="encurso"></div>En curso
                 <div class="finalizada"></div>Finalizada
             </div>
-            <div><br />Sólo se muestran las reservas del día de ayer en adelante</div>
+            <div><br />Sólo se muestran las últimas <?php echo $CANTIDAD_RESERVAS; ?> reservas.</div>
         </div>
 <?php
 baseInferior();

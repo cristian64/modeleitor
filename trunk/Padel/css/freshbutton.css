@@ -318,15 +318,21 @@ h3
 .searchinput
 {
     background: url("lupa.png") no-repeat scroll 3% center #FFFFFF;
-    padding-left: 24px;
+    padding-left: 30px;
     padding-right: 22px;
-    width: 170px;
+    width: 300px;
     border: 1px solid #BFBFBF;
     border-radius: 23px;
     box-shadow: 0 0 0 #000000, 0 3px 3px #EEEEEE inset;
     height: 23px;
     font-size: 8pt;
     color: #444;
+}
+
+input.blur
+{
+    color: #888;
+    font-size: 7pt;
 }
 
 /*****************************************************
