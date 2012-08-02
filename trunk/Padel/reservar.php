@@ -123,14 +123,14 @@ baseSuperior("Reservar pista");
                         </div>
                         <div id="tablapistas">
                             <script type="text/javascript">
-								
-							var isDown = false;
-								
-							$(document).ready(function(){
-							  $(document).mousedown(function() { isDown = true; })
-							  .mouseup(function() { isDown = false; });
-							});
-								
+                                
+                            var isDown = false;
+                                
+                            $(document).ready(function(){
+                              $(document).mousedown(function() { isDown = true; })
+                              .mouseup(function() { isDown = false; });
+                            });
+                                
                             var filasSeleccionadas = new Array();
                             var celdasSeleccionadas = new Array();
                             var pistaSeleccionada = 0;

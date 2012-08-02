@@ -37,9 +37,9 @@ baseSuperior("Reservas pendientes");
 <?php
 foreach ($reservas as $reserva)
 {
-	if (!$reserva->getReservable())
-		continue;
-		
+    if (!$reserva->getReservable())
+        continue;
+        
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
@@ -50,10 +50,6 @@ foreach ($reservas as $reserva)
     echo "<td>".$reserva->getDuracion()."</td>\n";
     echo "<td>".ceil($reserva->getDuracion() * $PRECIOHORA / 60)."€</td>\n";
     echo "<td>".$reserva->getEstado()."</td>\n";
-    /*if ($reserva->getReservable())
-		echo "<td><input type=\"checkbox\" checked=\"checked\" readonly=\"readonly\"/></td>\n";
-	else
-		echo "<td><input type=\"checkbox\" readonly=\"readonly\"/></td>\n";*/
     echo "<td>".$reserva->getFechaRealizacion()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";
 }
