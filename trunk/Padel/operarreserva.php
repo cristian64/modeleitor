@@ -17,7 +17,7 @@
     $hasta = getPost("hasta");
     $pista = intval(getPost("pista"));
     if ($usuario->getAdmin())
-        $reservable = getPost("reservable") == "0" ? false : true;
+        $reservable = isset($_POST['bloquear']) ? false : true;
 
     $reservasHoy = ENReserva::obtenerPorUsuarioHoy($usuario->getId());
     if (count($reservasHoy) >= $RESERVASPORDIA && !$usuario->getAdmin())
