@@ -123,6 +123,14 @@ baseSuperior("Reservar pista");
                         </div>
                         <div id="tablapistas">
                             <script type="text/javascript">
+								
+							var isDown = false;
+								
+							$(document).ready(function(){
+							  $(document).mousedown(function() { isDown = true; })
+							  .mouseup(function() { isDown = false; });
+							});
+								
                             var filasSeleccionadas = new Array();
                             var celdasSeleccionadas = new Array();
                             var pistaSeleccionada = 0;
@@ -253,7 +261,7 @@ while ($tiempoInicial < $tiempoFinal)
         else if ($estado == 0)
         {
             if ((new DateTime() < $tiempoInicial && $tiempoInicial <= $siguientemaximodia && $tiempo <= $siguientemaximodia) || $usuario->getAdmin())
-                echo "<td class=\"libre\" onclick=\"seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
+                echo "<td class=\"libre\" onmousedown=\"seleccionar(this, ".($i + 1).", $fila);\" onmouseover=\"if (isDown) seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
             else
                 echo "<td class=\"noreservable\"></td>\n";
         }
