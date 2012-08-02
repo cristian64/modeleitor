@@ -122,8 +122,8 @@
     
     function emailReserva($usuario, $reserva)
     {
-		include 'constantes.php';
-		
+        include 'constantes.php';
+        
         $cuerpo = "<tr>";
         $cuerpo = $cuerpo."<td><strong>Nº de reserva:</strong>&nbsp;&nbsp;&nbsp;</td>";
         $cuerpo = $cuerpo."<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>";

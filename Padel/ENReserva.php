@@ -225,8 +225,8 @@ class ENReserva
 
         try
         {
-			$ayer = new DateTime();
-			$ayer->sub(new DateInterval("P1D"));
+            $ayer = new DateTime();
+            $ayer->sub(new DateInterval("P1D"));
             $sentencia = "select * from reservas where date(fecha_inicio) >= '".$ayer->format('Y/m/d')."' order by fecha_inicio asc";
             $resultado = mysql_query($sentencia, BD::conectar());
 
@@ -573,35 +573,35 @@ class ENReserva
         return $disponible;
     }
     
-	public static function borrarPorId($id)
-	{
-		$id = filtrarCadena($id);
-		$borrado = false;
+    public static function borrarPorId($id)
+    {
+        $id = filtrarCadena($id);
+        $borrado = false;
 
-		try
-		{
-			$conexion = BD::conectar();
+        try
+        {
+            $conexion = BD::conectar();
 
-			$sentencia = "delete from reservas where id = '".$id."'";
-			$resultado = mysql_query($sentencia, $conexion);
-			if ($resultado)
-			{
-				$borrado = true;
-			}
-			else
-			{
-				debug("ENReserva::borrarPorId(id)>".mysql_error());
-			}
+            $sentencia = "delete from reservas where id = '".$id."'";
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $borrado = true;
+            }
+            else
+            {
+                debug("ENReserva::borrarPorId(id)>".mysql_error());
+            }
 
-			BD::desconectar($conexion);
-		}
-		catch (Exception $e)
-		{
-			debug("ENReserva::borrarPorId(id) ".$e->getMessage());
-		}
+            BD::desconectar($conexion);
+        }
+        catch (Exception $e)
+        {
+            debug("ENReserva::borrarPorId(id) ".$e->getMessage());
+        }
 
-		return $borrado;
-	}
+        return $borrado;
+    }
 }
 
 ?>

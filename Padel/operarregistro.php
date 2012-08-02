@@ -101,14 +101,14 @@
         $_SESSION["mensaje_exito"] = "Usuario registrado correctamente";
         $_SESSION["usuario"] = serialize($nuevo);
         
-		$_SESSION["registro_nombre"] = "";
-		$_SESSION["registro_contrasena"] = "";
-		$_SESSION["registro_contrasena2"] = "";
-		$_SESSION["registro_email"] = "";
-		$_SESSION["registro_sexo"] = "";
-		$_SESSION["registro_dni"] = "";
-		$_SESSION["registro_direccion"] = "";
-		$_SESSION["registro_telefono"] = "";
+        $_SESSION["registro_nombre"] = "";
+        $_SESSION["registro_contrasena"] = "";
+        $_SESSION["registro_contrasena2"] = "";
+        $_SESSION["registro_email"] = "";
+        $_SESSION["registro_sexo"] = "";
+        $_SESSION["registro_dni"] = "";
+        $_SESSION["registro_direccion"] = "";
+        $_SESSION["registro_telefono"] = "";
         
         header("location: index.php");
     }
