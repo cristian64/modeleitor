@@ -8,14 +8,6 @@
     }
     
     require_once('recaptchalib.php');
-
-    $verify = recaptcha_check_answer($PRIVATEKEY, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
-    if (!$verify->is_valid)
-    {
-        $_SESSION["mensaje_error"] = "El código de seguridad no se introdujo correctamente";
-        header("location: registrarse.php");
-        exit();
-    }
     
     $kMinContrasena = 3;
     $kMaxContrasena = 100;
@@ -31,6 +23,23 @@
     $dni = getPost("dni");
     $direccion = getPost("direccion");
     $telefono = getPost("telefono");
+    
+    $_SESSION["registro_nombre"] = $nombre;
+    $_SESSION["registro_contrasena"] = $contrasena;
+    $_SESSION["registro_contrasena2"] = $contrasena2;
+    $_SESSION["registro_email"] = $email;
+    $_SESSION["registro_sexo"] = $sexo;
+    $_SESSION["registro_dni"] = $dni;
+    $_SESSION["registro_direccion"] = $direccion;
+    $_SESSION["registro_telefono"] = $telefono;
+
+    $verify = recaptcha_check_answer($PRIVATEKEY, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
+    if (!$verify->is_valid)
+    {
+        $_SESSION["mensaje_error"] = "El código de seguridad no se introdujo correctamente";
+        header("location: registrarse.php");
+        exit();
+    }
 
     // Se comprueban los parámetros.
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -91,6 +100,16 @@
     {
         $_SESSION["mensaje_exito"] = "Usuario registrado correctamente";
         $_SESSION["usuario"] = serialize($nuevo);
+        
+		$_SESSION["registro_nombre"] = "";
+		$_SESSION["registro_contrasena"] = "";
+		$_SESSION["registro_contrasena2"] = "";
+		$_SESSION["registro_email"] = "";
+		$_SESSION["registro_sexo"] = "";
+		$_SESSION["registro_dni"] = "";
+		$_SESSION["registro_direccion"] = "";
+		$_SESSION["registro_telefono"] = "";
+        
         header("location: index.php");
     }
     else
