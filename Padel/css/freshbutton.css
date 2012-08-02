@@ -494,6 +494,9 @@ table, tr
 #tablapistas
 {
     margin-right: 330px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 }
 
 #tablapistas table
