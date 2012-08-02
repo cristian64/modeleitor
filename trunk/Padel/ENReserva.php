@@ -219,6 +219,50 @@ class ENReserva
         return $lista;
     }
     
+    public static function obtenerPendientes()
+    {
+        $lista = NULL;
+
+        try
+        {
+			$ayer = new DateTime();
+			$ayer->sub(new DateInterval("P1D"));
+            $sentencia = "select * from reservas where date(fecha_inicio) >= '".$ayer->format('Y/m/d')."' order by fecha_inicio asc";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $reserva = self::obtenerDatos($fila);
+                    if ($reserva != NULL)
+                    {
+                        $lista[$contador++] = $reserva;
+                    }
+                    else
+                    {
+                        debug("ENReserva::obtenerPendientes() Reserva nula nº $contador");
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::obtenerPendientes()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENReserva::obtenerPendientes()" . $e->getMessage());
+        }
+
+        return $lista;
+    }
+    
     public static function obtenerPorUsuario($id_usuario, $cantidad)
     {
         $lista = NULL;
