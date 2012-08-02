@@ -222,12 +222,25 @@ class ENReserva
     public static function obtenerPendientes($filtro = "")
     {
         $lista = NULL;
+        $filtro = filtrarCadena(utf8_decode($filtro));
 
         try
         {
             $ayer = new DateTime();
-            $ayer->sub(new DateInterval("P1D"));
-            $sentencia = "select * from reservas where date(fecha_inicio) >= '".$ayer->format('Y/m/d')."' order by fecha_inicio asc";
+            $ayer->sub(new DateInterval("P2D"));                
+            if ($filtro == "")
+            {
+                $sentencia = "select * from reservas where date(fecha_inicio) >= '".$ayer->format('Y/m/d')."' order by fecha_inicio asc";
+            }
+            else
+            {   
+                $idfiltro = "";
+                if (is_numeric($filtro))
+                    $idfiltro = "or reservas.id like '%".intval($filtro)."%'";
+                
+                $sentencia = "select reservas.* from reservas, usuarios where reservas.id_usuario = usuarios.id and (email like '%$filtro%' $idfiltro) and date(fecha_inicio) >= '".$ayer->format('Y/m/d')."' order by fecha_inicio asc";
+            }
+            
             $resultado = mysql_query($sentencia, BD::conectar());
 
             if ($resultado)

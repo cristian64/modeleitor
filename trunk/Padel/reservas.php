@@ -23,8 +23,8 @@ baseSuperior("Reservas");
 ?>
         <div id="reservas">
             <div id="busqueda">
-                <form action="usuarios.php" method="get">
-                    <div><input type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de reserva o nombre de usuario" /></div>
+                <form action="reservas.php" method="get">
+                    <div><input type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de reserva o e-mail de usuario" /></div>
                 </form>
             </div>
             <script type="text/javascript">
@@ -37,6 +37,7 @@ baseSuperior("Reservas");
             <table>
                 <tr class="filacabecera">
                     <td class="cabecera">Nº de reserva</td>
+                    <td class="cabecera">Usuario</td>
                     <td class="cabecera">Pista</td>
                     <td class="cabecera">Día</td>
                     <td class="cabecera">Hora de inicio</td>
@@ -55,6 +56,8 @@ foreach ($reservas as $reserva)
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
+    $reservaUsuario = ENUsuario::obtenerPorId($reserva->getIdUsuario());
+    echo "<td><a href=\"usuario.php?id=".$reservaUsuario->getId()."\">".$reservaUsuario->getEmail()."</a></td>\n";
     echo "<td>".$reserva->getIdPista()."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('d/m/Y')."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
@@ -76,7 +79,7 @@ if (count($reservas) == 0)
                 <div class="encurso"></div>En curso
                 <div class="finalizada"></div>Finalizada
             </div>
-            <div><br />Sólo se muestran las reservas del día de ayer en adelante</div>
+            <div><br />Sólo se muestran reservas desde 2 días atrás y en adelante</div>
         </div>
 <?php
 baseInferior();
