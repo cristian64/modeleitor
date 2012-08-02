@@ -111,8 +111,7 @@ baseSuperior("Reservar pista");
                                 <div><label>Precio </label><input type="text" value="" name="precio" readonly="readonly" style="width: 30px;" /><label> euros</label></div>
 <?php if ($usuario->getAdmin()) { ?>
                                 <div>
-                                    <input type="radio" name="reservable" value="1" checked="checked"/> Reservar
-                                    <input type="radio" name="reservable" value="0" /> Bloquear
+                                    <input type="checkbox" name="bloquear" value="0" /> Marcar como no reservable
                                 </div>
 <?php } ?>
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
