@@ -9,11 +9,30 @@ if ($usuario == null)
     exit();
 }
 
-$reservas = ENReserva::obtenerPorUsuario($usuario->getId(), $CANTIDAD_RESERVAS);
+if (!$usuario->getAdmin())
+{
+    $_SESSION["mensaje_error"] = "Esta sección necesita privilegios de administrador";
+    header("location: index.php");
+    exit();
+}
+
+$filtro = filtrarCadena(getGet("filtro"));
+$reservas = ENReserva::obtenerPendientes($filtro);
 
 baseSuperior("Reservas");
 ?>
         <div id="reservas">
+            <div id="busqueda">
+                <form action="usuarios.php" method="get">
+                    <div><input type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de reserva o nombre de usuario" /></div>
+                </form>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(
+                    function() {
+                        textboxHint("busqueda");
+                    });
+            </script>
             <h3><span>Reservas</span></h3>
             <table>
                 <tr class="filacabecera">
@@ -30,6 +49,9 @@ baseSuperior("Reservas");
 <?php
 foreach ($reservas as $reserva)
 {
+    if (!$reserva->getReservable())
+        continue;
+        
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
@@ -45,7 +67,7 @@ foreach ($reservas as $reserva)
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"9\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"9\"><br /><br /><br />No hay reservas con estos criterios de búsqueda<br /><br /><br /><br /></td>";
 }
 ?>
             </table>
@@ -54,7 +76,7 @@ if (count($reservas) == 0)
                 <div class="encurso"></div>En curso
                 <div class="finalizada"></div>Finalizada
             </div>
-            <div><br />Sólo se muestran las últimas <?php echo $CANTIDAD_RESERVAS; ?> reservas.</div>
+            <div><br />Sólo se muestran las reservas del día de ayer en adelante</div>
         </div>
 <?php
 baseInferior();

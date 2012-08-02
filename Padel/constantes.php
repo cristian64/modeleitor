@@ -1,7 +1,7 @@
 <?php
 $BDURL = "localhost";
 $BDUSER = "root";
-$BDPASSWORD = "";
+$BDPASSWORD = "8520";
 $BDNAME = "padel";
 
 $PUBLICKEY = "6LclgdESAAAAAPO1GX1vx52lCEjeTG0AUlWC6-o3";
@@ -28,7 +28,7 @@ $INTERVALO = 30;
 
 $RELLENO = 6; //longitud minima al mostrar una ID
 $CANTIDAD_RESERVAS = 30;
-$CANTIDAD_USUARIOS = 3;
+$CANTIDAD_USUARIOS = 30;
 
 $EMAILCONTACTO = "cristian64@gmail.com";
 ?>

@@ -27,6 +27,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="js/mapa.js" type="text/javascript"></script>
         <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
+        <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="contenedor">
@@ -59,13 +60,14 @@ if ($usuario != null)
 ?>
                     <span><?php echo $usuario->getNombre(); ?> (<strong><?php echo $usuario->getEmail(); ?></strong>)&nbsp;&nbsp;&nbsp;</span>
                     <a href="reservar.php" class="freshbutton-blue">Reservar pista</a>
-                    <a href="reservas.php" class="freshbutton-blue">Mis reservas</a>
+                    <a href="misreservas.php" class="freshbutton-blue">Mis reservas</a>
                     <a href="usuario.php" class="freshbutton-blue">Mis datos personales</a>
 <?php
 if ($usuario->getAdmin())
 {
 ?>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
+                    <a href="reservas.php" class="freshbutton-purple">Reservas</a>
 <?php
 }
 ?>
