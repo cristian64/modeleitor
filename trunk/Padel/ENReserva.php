@@ -455,6 +455,17 @@ class ENReserva
         return $usuario;
     }
 
+    public function copiar()
+    {
+        $nueva = new ENReserva();
+        $nueva->setIdUsuario($this->getIdUsuario());
+        $nueva->setIdPista($this->getIdPista());
+        $nueva->setReservable($this->getReservable());
+        $nueva->setFechaInicioDateTime($this->getFechaInicio());
+        $nueva->setFechaFinDateTime($this->getFechaFin());
+        return $nueva;
+    }
+
     /**
      * Guarda en la base de datos el usuario que invocó el método.
      * Sólo puede guardarse si no existe en la base de datos. Si ya existe, hay que utilizar el método "actualizar".

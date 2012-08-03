@@ -16,8 +16,12 @@
     $desde = getPost("desde");
     $hasta = getPost("hasta");
     $pista = intval(getPost("pista"));
+    $proximos = 0;
     if ($usuario->getAdmin())
+    {
         $reservable = isset($_POST['bloquear']) ? false : true;
+        $proximos = getPost("proximos");
+    }
 
     $reservasHoy = ENReserva::obtenerPorUsuarioHoy($usuario->getId());
     if (count($reservasHoy) >= $RESERVASPORDIA && !$usuario->getAdmin())
@@ -100,6 +104,26 @@
             {
                 $_SESSION["mensaje_info"] = "Recibirás un e-mail con el resumen de la reserva";            
             }
+            
+            $nueva = $reserva->copiar();
+            $reservasProximas = 0;
+            for ($i = 0; $i < $proximos; $i++)
+            {
+                $nueva = $nueva->copiar();
+                $nueva->getFechaInicio()->add(new DateInterval("P1D"));
+                $nueva->getFechaFin()->add(new DateInterval("P1D"));
+                if ($nueva->comprobarDisponibilidad())
+                {
+                    if ($nueva->guardar())
+                        $reservasProximas++;
+                }
+            }
+            
+            if ($reservasProximas > 0)
+            {
+                $_SESSION["mensaje_exito"] = "La reserva se ha realizado correctamente (también se ha reservado para los próximos $reservasProximas días)";
+            }
+            
             header("location: reservar.php?dia=$diaoculto");
         }
         else

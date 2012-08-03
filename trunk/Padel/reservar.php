@@ -114,6 +114,19 @@ baseSuperior("Reservar pista");
                                     <input type="checkbox" name="bloquear" value="0" /> Marcar como no reservable
                                 </div>
 <?php } ?>
+                                <div>Realizar la misma reserva también los próximos
+                                
+                                <select name="proximos">
+                                    <?php
+                                    for ($i = 0; $i < 31; $i++)
+                                    {
+                                        echo "<option value=\"$i\">$i</option>";
+                                    }
+                                    ?>
+                                </select> 
+                                
+                                días</div>
+                                
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
                             </form>
                             <div id="tiempo">
