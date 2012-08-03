@@ -24,13 +24,16 @@ baseSuperior("Reservas");
         <div id="reservas">
             <div id="busqueda">
                 <form action="reservas.php" method="get">
-                    <div><input type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de reserva o e-mail de usuario" /></div>
+                    <div><input id="filtro" type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de reserva o e-mail de usuario" /></div>
                 </form>
             </div>
             <script type="text/javascript">
                 $(document).ready(
                     function() {
                         textboxHint("busqueda");
+                        <?php if ($filtro != "") { ?>
+                            $("#filtro").focus();
+                        <?php } ?>
                     });
             </script>
             <h3><span>Reservas</span></h3>
@@ -70,7 +73,7 @@ foreach ($reservas as $reserva)
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"9\"><br /><br /><br />No hay reservas con estos criterios de búsqueda<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"10\"><br /><br /><br />No hay reservas con estos criterios de búsqueda<br /><br /><br /><br /></td>";
 }
 ?>
             </table>

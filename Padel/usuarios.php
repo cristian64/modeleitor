@@ -30,13 +30,16 @@ baseSuperior("Usuarios");
         <div id="usuarios">
             <div id="busqueda">
                 <form action="usuarios.php" method="get">
-                    <div><input type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" /></div>
+                    <div><input id="filtro" type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" /></div>
                 </form>
             </div>
             <script type="text/javascript">
                 $(document).ready(
                     function() {
                         textboxHint("busqueda");
+                        <?php if ($filtro != "") { ?>
+                            $("#filtro").focus();
+                        <?php } ?>
                     });
             </script>
             <h3><span>Usuarios</span></h3>
