@@ -42,9 +42,9 @@ if ($reserva->getEstado() != "Pendiente" && !$usuario->getAdmin())
 if (ENReserva::borrarPorId($reserva->getId()))
 {
     $_SESSION["mensaje_exito"] = "La reserva ha sido cancelada correctamente";
-    header("location: reservas.php");
+    header("location: reservar.php");
     exit();
 }
 
 $_SESSION["mensaje_error"] = "Ocurrió un error al borrar la reserva";
-header("location: reservas.php");
+header("location: reservar.php");

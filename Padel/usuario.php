@@ -117,6 +117,10 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                             <td class="columna1">Teléfono</td>
                                             <td class="columna2"><input type="text" value="<?php echo $u->getTelefono(); ?>" name="telefono" class="textinput" /></td>
                                         </tr>
+                                        <tr>
+                                            <td class="columna1">Reservas</td>
+                                            <td class="columna2"><?php echo ENReserva::contarPorUsuario($u->getId()); ?> reservas <a href="reservas.php?filtro=<?php echo $u->getEmail(); ?>">(Ver últimas)</a></td>
+                                        </tr>
                                         <?php if ($usuario->getAdmin()) { ?>
                                         <tr>
                                             <td class="columna1">Administrador*</td>

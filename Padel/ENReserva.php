@@ -320,6 +320,41 @@ class ENReserva
         return $lista;
     }
     
+    public static function contarPorUsuario($id_usuario)
+    {
+        $cantidad = 0;
+        if (!is_numeric($id_usuario))
+            $id_usuario = 0;
+
+        try
+        {
+            $sentencia = "select count(*) from reservas where id_usuario = '$id_usuario'";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::contarPorUsuario()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::contarPorUsuario()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
     public static function obtenerPorUsuarioHoy($id_usuario)
     {
         $lista = NULL;
