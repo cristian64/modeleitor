@@ -157,7 +157,7 @@
 
         $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
         
-        return mail(destino, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
+        return mail($destino, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
     }
     
     /*

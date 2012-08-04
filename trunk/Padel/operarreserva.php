@@ -104,6 +104,9 @@
             {
                 $_SESSION["mensaje_info"] = "Recibirás un e-mail con el resumen de la reserva";            
             }
+            emailReserva("beatriz@autofima.com", $usuario, $reserva);
+            emailReserva("Santiago@autofima.com", $usuario, $reserva);
+            emailReserva("fran@padelelche.com", $usuario, $reserva);
             
             $nueva = $reserva->copiar();
             $reservasProximas = 0;
