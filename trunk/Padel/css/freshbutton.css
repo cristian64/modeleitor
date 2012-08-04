@@ -360,7 +360,7 @@ input.blur
 
 .ui-widget-overlay
 {
-    background: url("fondodialogo.png") repeat scroll 10% 10% #EEEEEE !important;
+    background: url("fondodialogo.png") repeat scroll;
 }
 
 /*****************************************************
