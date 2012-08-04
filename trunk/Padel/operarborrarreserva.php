@@ -9,6 +9,10 @@ if ($usuario == null)
     exit();
 }
 
+$retorno = getPost("retorno");
+if ($retorno == "")
+    $retorno = "index.php";
+
 $id = getPost("id");
 if ($id == "")
 {
@@ -35,16 +39,16 @@ if ($reserva->getIdUsuario() != $usuario->getId() && !$usuario->getAdmin())
 if ($reserva->getEstado() != "Pendiente" && !$usuario->getAdmin())
 {
     $_SESSION["mensaje_error"] = "No se puede cancelar la reserva porque ha transcurrido mucho tiempo";
-    header("location: reserva.php?id=$id");
+    header("location: $retorno");
     exit();
 }
 
 if (ENReserva::borrarPorId($reserva->getId()))
 {
     $_SESSION["mensaje_exito"] = "La reserva ha sido cancelada correctamente";
-    header("location: reservar.php");
+    header("location: $retorno");
     exit();
 }
 
 $_SESSION["mensaje_error"] = "Ocurrió un error al borrar la reserva";
-header("location: reservar.php");
+header("location: $retorno");

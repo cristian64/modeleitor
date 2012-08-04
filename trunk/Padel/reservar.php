@@ -113,7 +113,6 @@ baseSuperior("Reservar pista");
                                 <div>
                                     <input type="checkbox" name="bloquear" value="0" /> Marcar como no reservable
                                 </div>
-<?php } ?>
                                 <div>Realizar la misma reserva también los próximos
                                 
                                 <select name="proximos">
@@ -126,7 +125,7 @@ baseSuperior("Reservar pista");
                                 </select> 
                                 
                                 días</div>
-                                
+<?php } ?>
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
                             </form>
                             <div id="tiempo">
@@ -266,8 +265,15 @@ while ($tiempoInicial < $tiempoFinal)
             if ($fila + $celdas >= $maxfilas)
                 $celdas = $maxfilas - $fila;
             echo "<td class=\"$clase\" rowspan=\"$celdas\">";
-            if ($usuario->getAdmin())
-                echo "<a href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>";
+            if ($usuario->getId() == $estado->getIdUsuario() || $usuario->getAdmin())
+            {
+                echo "<form id=\"borrar".$estado->getId()."\" action=\"operarborrarreserva.php\" method=\"post\">";
+                echo "<input type=\"hidden\" name=\"retorno\" value=\"reservar.php?dia=".$dia->format('d/m/Y')."\" />";
+                echo "<input type=\"hidden\" name=\"id\" value=\"".$estado->getId()."\" />";
+                echo "</form>";
+                echo "<a class=\"smallicon\" href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>&nbsp;";
+                echo "<a class=\"smallicon\" onclick=\"if (confirmarBorrarReserva()) document.getElementById('borrar".$estado->getId()."').submit();\"><img src=\"css/papelera.png\" alt=\"Borrar reserva\" title=\"Borrar reserva\" /></a>";
+            }
             echo "</td>\n";
         }
         else if ($estado == 0)
