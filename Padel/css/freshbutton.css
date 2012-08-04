@@ -352,6 +352,17 @@ input.blur
     color: #888;
 }
 
+.dialogoreserva
+{
+    font-size: 10pt;
+    margin: 15px;
+}
+
+.ui-widget-overlay
+{
+    background: url("fondodialogo.png") repeat scroll 10% 10% #EEEEEE !important;
+}
+
 /*****************************************************
 Particulares de cada página
 *****************************************************/

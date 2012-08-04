@@ -15,8 +15,8 @@ function baseSuperior($titulo, $mostrarmenu = true)
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Club Padel Matola - <?php echo $titulo; ?></title>
-        <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/cupertino/jquery-ui-1.8.20.custom.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
         <link type="text/css" rel="stylesheet" href="css/sliderman.css" />

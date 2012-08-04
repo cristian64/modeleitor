@@ -271,8 +271,43 @@ while ($tiempoInicial < $tiempoFinal)
                 echo "<input type=\"hidden\" name=\"retorno\" value=\"reservar.php?dia=".$dia->format('d/m/Y')."\" />";
                 echo "<input type=\"hidden\" name=\"id\" value=\"".$estado->getId()."\" />";
                 echo "</form>";
-                echo "<a class=\"smallicon\" href=\"reserva.php?id=".$estado->getId()."\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>&nbsp;";
+                echo "<a class=\"smallicon\" onclick=\"$('#dialog".$estado->getId()."').dialog('open');\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>&nbsp;";
                 echo "<a class=\"smallicon\" onclick=\"if (confirmarBorrarReserva()) document.getElementById('borrar".$estado->getId()."').submit();\"><img src=\"css/papelera.png\" alt=\"Borrar reserva\" title=\"Borrar reserva\" /></a>";
+                
+                echo "<div class=\"dialogoreserva\" id=\"dialog".$estado->getId()."\" title=\"Reserva nº ".$estado->getId()."\">";
+                $cuerpo = "<tr>";
+                $cuerpo = $cuerpo."<td><strong>Nº de reserva:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".rellenar($estado->getId(), '0', $RELLENO)."</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".$estado->getIdPista()."</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".$estado->getFechaInicio()->format('d/m/Y')."</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Horario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".$estado->getFechaInicio()->format('H:i')." - ".$estado->getFechaFin()->format('H:i')."</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Duración:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".$estado->getDuracion()." minutos</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Usuario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $usuarioReseva = ENUsuario::obtenerPorId($estado->getIdUsuario());
+                $cuerpo = $cuerpo."<td>".$usuarioReseva->getEmail()." (<a href=\"usuario.php?id=".$usuarioReseva->getId()."\">Ver usuario</a>)</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td><strong>Precio:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                $cuerpo = $cuerpo."<td>".ceil($estado->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla</td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = "<table>".$cuerpo."</table>";
+                echo $cuerpo;
+                echo "<br /><a class=\"freshbutton-lightblue\" href=\"reserva.php?id=".$estado->getId()."\">Ver reserva en detalle</a>";
+                echo "</div>";
             }
             echo "</td>\n";
         }
@@ -298,6 +333,18 @@ while ($tiempoInicial < $tiempoFinal)
                         </div>
                     </div>
                     <script type="text/javascript">
+                        
+                    $.fx.speeds._default = 500;
+                    
+                    $(".dialogoreserva").dialog({
+                        autoOpen: false,
+                        show: "scale",
+                        hide: "explode",
+                        width: "auto",
+                        height: "auto",
+                        modal: true
+                    });
+                        
                     jQuery(function($){
                             $.datepicker.regional['es'] = {
                                     closeText: 'Cerrar',
