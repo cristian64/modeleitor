@@ -50,7 +50,7 @@ if (count($reservas) == 0)
 ?>
             </table>
             <div id="leyenda">
-                <div class="pendiente"></div>Pendiente
+                <div class="pendiente"></div>Pendiente de jugar
                 <div class="encurso"></div>En curso
                 <div class="finalizada"></div>Finalizada
             </div>
