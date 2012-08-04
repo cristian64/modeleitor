@@ -47,6 +47,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="columna2">
                             <input type="text" value="<?php echo rellenar($reserva->getId(), '0', $RELLENO); ?>" readonly="readonly" class="textinputreadonly" />
                             <input type="hidden" value="<?php echo $reserva->getId(); ?>" name="id" />
+                            <input type="hidden" value="reservar.php" name="retorno" />
                         </td>
                     </tr>
                     <tr>

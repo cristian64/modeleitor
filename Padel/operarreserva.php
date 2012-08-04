@@ -100,7 +100,7 @@
         if ($reservada)
         {
             $_SESSION["mensaje_exito"] = "La reserva se ha realizado correctamente";
-            if (emailReserva($usuario, $reserva))
+            if (emailReserva($usuario->getEmail(), $usuario, $reserva))
             {
                 $_SESSION["mensaje_info"] = "Recibirás un e-mail con el resumen de la reserva";            
             }

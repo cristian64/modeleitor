@@ -62,16 +62,19 @@ if ($usuario != null)
                     <a href="reservar.php" class="freshbutton-blue">Reservar pista</a>
                     <a href="misreservas.php" class="freshbutton-blue">Mis reservas</a>
                     <a href="usuario.php" class="freshbutton-blue">Mis datos personales</a>
+                    <a href="cerrarsesion.php" class="freshbutton-red">Cerrar sesión</a>
+                    <br /><br />
 <?php
 if ($usuario->getAdmin())
 {
 ?>
+                    <a href="resumen.php" class="freshbutton-purple">Resumen del sistema</a>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
                     <a href="reservas.php" class="freshbutton-purple">Reservas</a>
+                    <a href="backup" class="freshbutton-purple">Copia de seguridad</a>
 <?php
 }
 ?>
-                    <a href="cerrarsesion.php" class="freshbutton-red">Cerrar sesión</a>
 <?php
 }
 else

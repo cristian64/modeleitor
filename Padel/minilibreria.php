@@ -111,7 +111,7 @@
         $cuerpo = $cuerpo."<td>$mensaje</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<h3>Se ha recibido un nuevo mensaje de un usuario:<br /></h3>"."$cuerpo";
+        $cuerpo = "<img src=\"http://www.clubpadelmatola.com/css/logo.png\" /><h2>Se ha recibido un nuevo mensaje desde un usuario:<br /></h2>"."$cuerpo";
         
         include 'constantes.php';
         
@@ -120,7 +120,7 @@
         return mail($to, "Club Padel Matola", $cuerpo, $cabeceras);
     }
     
-    function emailReserva($usuario, $reserva)
+    function emailReserva($destino, $usuario, $reserva)
     {
         include 'constantes.php';
         
@@ -145,17 +145,19 @@
         $cuerpo = $cuerpo."<td>".$reserva->getDuracion()." minutos</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Usuario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$usuario->getEmail()."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
         $cuerpo = $cuerpo."<td><strong>Precio:</strong>&nbsp;&nbsp;&nbsp;</td>";
         $cuerpo = $cuerpo."<td>".ceil($reserva->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<h3>Resumen de la reserva realizada:<br /></h3>"."$cuerpo";
+        $cuerpo = "<img src=\"http://www.clubpadelmatola.com/css/logo.png\" /><h2>Resumen de la reserva realizada:<br /></h2>"."$cuerpo";
 
         $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
         
-        $to = $usuario->getEmail();
-        
-        return mail($to, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
+        return mail(destino, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
     }
     
     /*
