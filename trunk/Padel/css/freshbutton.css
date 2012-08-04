@@ -254,6 +254,19 @@ h3
     font-size: 40pt;
 }
 
+#titulo span
+{
+    display: none;
+}
+
+#titulo a
+{
+    display: block;
+    background-image: url("logo.png");
+    background-repeat: no-repeat;
+    height: 94px;
+}
+
 #titulo, #navegacion
 {
     text-align: left;

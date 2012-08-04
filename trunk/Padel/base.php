@@ -33,7 +33,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <div id="contenedor">
             <div id="cabecera">
                 <div id="titulo">
-                    <h1><a href="index.php">Club Padel <span class="otrocolor">Matola</span></a></h1>
+                    <h1><a href="index.php"><span>Club Padel </span><span class="otrocolor">Matola</span></a></h1>
                 </div>
                 
                 <?php
