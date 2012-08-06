@@ -41,7 +41,9 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 {
                     echo '
                     <div id="navegacion">
-                        <a href="index.php">Inicio</a><a href="mapa.php">Dirección y mapa</a><a href="contacto.php" class="ultimo">Contacto</a>
+                        <div id="linksnavegacion">
+                            <a href="index.php" id="inicionavegacion">Inicio</a><a href="mapa.php" id="mapanavegacion">Localización</a><a href="fotos.php" id="fotosnavegacion">Fotos</a><a href="contacto.php" id="contactonavegacion" class="ultimo">Contacto</a>
+                        </div>
                     </div>
                     ';
                 }
