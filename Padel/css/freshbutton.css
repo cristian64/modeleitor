@@ -227,7 +227,6 @@ h3
 {
     background-color: #F1F1F1;
     border-bottom: 1px solid #DDD;
-    padding-bottom: 15px;
     margin-bottom: 15px;
 }
 
@@ -295,6 +294,39 @@ h3
 #navegacion a:hover
 {
     color: #000000;
+}
+
+#linksnavegacion
+{
+    margin-top: -100px;
+    float: right;
+}
+
+#linksnavegacion a
+{
+    padding-top: 45px;
+    display: block;
+    float: left;
+}
+
+#inicionavegacion
+{
+    background: url("casa.png") no-repeat top center;
+}
+
+#mapanavegacion
+{
+    background: url("mapa.png") no-repeat top center;
+}
+
+#fotosnavegacion
+{
+    background: url("camara.png") no-repeat top center;
+}
+
+#contactonavegacion
+{
+    background: url("sobre.png") no-repeat top center;
 }
 
 #cuerpo
@@ -619,6 +651,28 @@ table, tr
     margin-top: 40px;
     overflow: hidden;
     height: 200px;
+}
+
+#lineasresumen
+{
+    margin-left: 50px;
+    border-left: 1px solid #444;
+    padding-left: 20px;
+}
+
+#lineasresumen .descripcion
+{
+    font-size: 12pt;
+}
+
+#lineasresumen .dato
+{
+    font-size: 20pt;
+}
+
+#lineasresumen div
+{
+    margin-top: 30px;
 }
 
 /*****************************************************
