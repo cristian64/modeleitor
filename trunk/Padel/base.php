@@ -28,6 +28,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
+        <script src="js/jquery.masonry.min.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="contenedor">
