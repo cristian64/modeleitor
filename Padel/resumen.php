@@ -21,13 +21,14 @@ baseSuperior("Resumen del sistema");
         <div id="resumen">
             <h3><span>Resumen del sistema</span></h3>
             <div id="lineasresumen">
-                <div><span class="descripcion">Reservas totales: </span><span class="dato">103</span></div>
-                <div><span class="descripcion">Reservas para hoy: </span><span class="dato">6</span></div>
-                <div><span class="descripcion">Reservas durante los últimos 7 días: </span><span class="dato">59</span></div>
-                <div><span class="descripcion">Tiempo total de reservas: </span><span class="dato">581230 minutos</span></div>
-                <div><span class="descripcion">Tiempo medio por reserva: </span><span class="dato">90 minutos</span></div>
-                <div><span class="descripcion">Usuarios registrados: </span><span class="dato">507</span></div>
-                <div><span class="descripcion">Usuarios registrados durante los últimos 7 días: </span><span class="dato">21</span></div>
+                <div><span class="descripcion">Reservas totales: </span><span class="dato"><?php echo ENReserva::contar(); ?></span></div>
+                <div><span class="descripcion">Reservas para hoy: </span><span class="dato"><?php echo ENReserva::contarHoy(); ?></span></div>
+                <div><span class="descripcion">Reservas durante los últimos 7 días: </span><span class="dato"><?php echo ENReserva::contarUltimos7(); ?></span></div>
+                <div><span class="descripcion">Reservas durante los próximos 7 días: </span><span class="dato"><?php echo ENReserva::contarProximos7(); ?></span></div>
+                <div><span class="descripcion">Tiempo total de reservas: </span><span class="dato"><?php echo ENReserva::totalMinutos(); ?> minutos</span></div>
+                <div><span class="descripcion">Tiempo medio por reserva: </span><span class="dato"><?php echo round(ENReserva::totalMinutos() / ENReserva::contar()); ?> minutos por reserva</span></div>
+                <div><span class="descripcion">Usuarios registrados: </span><span class="dato"><?php echo ENUsuario::contar(); ?></span></div>
+                <div><span class="descripcion">Usuarios registrados durante los últimos 7 días: </span><span class="dato"><?php echo ENUsuario::contarUltimos7(); ?></span></div>
             </div>
             
         </div>

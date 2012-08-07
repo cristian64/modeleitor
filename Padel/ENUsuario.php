@@ -384,6 +384,47 @@ class ENUsuario
         return $cantidad;
     }
     
+    public static function contarUltimos7()
+    {
+        $cantidad = null;
+
+        try
+        {
+            $conexion = BD::conectar();
+
+            $ahora = new DateTime();
+            $ahora->sub(new DateInterval("P7D"));
+            $ahora2 = new DateTime();
+            $ahora2->add(new DateInterval("P1D"));
+
+            // Obtenemos el identificador asignado al usuario recién creado.
+            $sentencia = "select count(id) from usuarios where date(fecha_registro) >= '".$ahora->format('Y/m/d')."' and date(fecha_registro) < '".$ahora2->format('Y/m/d')."'";
+            
+            $resultado = mysql_query($sentencia, $conexion);
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+            }
+            else
+            {
+                debug("ENUsuario::contarUltimos7() ".mysql_error());
+            }
+
+            BD::desconectar($conexion);
+        }
+        catch (Exception $e)
+        {
+            debug("ENUsuario::contarUltimos7() ".$e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
     /**
      * Guarda en la base de datos el usuario que invocó el método.
      * Sólo puede guardarse si no existe en la base de datos. Si ya existe, hay que utilizar el método "actualizar".

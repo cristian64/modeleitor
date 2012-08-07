@@ -320,6 +320,146 @@ class ENReserva
         return $lista;
     }
     
+    public static function contar()
+    {
+        $cantidad = 0;
+
+        try
+        {
+            $sentencia = "select count(*) from reservas where reservable = 1";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::contar()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::contar()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function contarHoy()
+    {
+        $cantidad = 0;
+
+        try
+        {
+            $ahora = new DateTime();
+            $sentencia = "select count(*) from reservas where date(fecha_inicio) = '".$ahora->format('Y/m/d')."' and reservable = 1";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::contarHoy()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::contarHoy()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function contarUltimos7()
+    {
+        $cantidad = 0;
+
+        try
+        {
+            $ahora = new DateTime();
+            $ahora->sub(new DateInterval("P7D"));
+            $ahora2 = new DateTime();
+            $ahora2->add(new DateInterval("P1D"));
+            $sentencia = "select count(*) from reservas where date(fecha_inicio) >= '".$ahora->format('Y/m/d')."' and date(fecha_fin) < '".$ahora2->format('Y/m/d')."' and reservable = 1";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::contarUltimos7()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::contarUltimos7()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function contarProximos7()
+    {
+        $cantidad = 0;
+
+        try
+        {
+            $ahora = new DateTime();
+            $ahora2 = new DateTime();
+            $ahora2->add(new DateInterval("P7D"));
+            $sentencia = "select count(*) from reservas where date(fecha_inicio) >= '".$ahora->format('Y/m/d')."' and date(fecha_fin) <= '".$ahora2->format('Y/m/d')."' and reservable = 1";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::contarProximos7()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::contarProximos7()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
     public static function contarPorUsuario($id_usuario)
     {
         $cantidad = 0;
@@ -350,6 +490,39 @@ class ENReserva
         {
             $cantidad = 0;
             debug("ENReserva::contarPorUsuario()" . $e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function totalMinutos()
+    {
+        $cantidad = 0;
+
+        try
+        {
+            $sentencia = "select sum(TIMESTAMPDIFF(MINUTE, fecha_inicio,fecha_fin)) from reservas where reservable = 1";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::totalMinutos()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = 0;
+            debug("ENReserva::totalMinutos()" . $e->getMessage());
         }
 
         return $cantidad;
