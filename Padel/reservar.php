@@ -334,11 +334,10 @@ while ($tiempoInicial < $tiempoFinal)
                     </div>
                     <script type="text/javascript">
                         
-                    $.fx.speeds._default = 500;
+                    $.fx.speeds._default = 300;
                     
                     $(".dialogoreserva").dialog({
                         autoOpen: false,
-                        show: "scale",
                         hide: "explode",
                         width: "auto",
                         height: "auto",
