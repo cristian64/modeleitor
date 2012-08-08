@@ -72,7 +72,7 @@ if ($usuario != null)
 if ($usuario->getAdmin())
 {
 ?>
-                    <a href="resumen.php" class="freshbutton-purple">Resumen del sistema</a>
+                    <a href="estadisticas.php" class="freshbutton-purple">Estadísticas</a>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
                     <a href="reservas.php" class="freshbutton-purple">Reservas</a>
                     <a href="backup" class="freshbutton-purple">Copia de seguridad</a>

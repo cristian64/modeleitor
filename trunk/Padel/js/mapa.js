@@ -21,11 +21,18 @@ function GoogleMaps3(fullscreen, divid)
             setInterval (function() { document.getElementById(divid).style.height = document.documentElement.clientHeight+"px"; }, 2000);
         }
         var locations = [
-        ['<strong>Club Padel Matola</strong><br />Vereda Santa Teresa, 23<br />Elche (Alicante)<br />03296', latitud, longitud, 1],
+        ['<img src="css/logo.png" title="Club Padel Matola" alt="Club Padel Matola" width="300px" /><br /><strong>Club Padel Matola</strong><br />Vereda Santa Teresa, 23<br />Elche (Alicante)<br />03296<br /><br /><a href="mapagrande.php" class="freshbutton-lightblue">Pantalla completa</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />', latitud, longitud, 1],
         ];
+        
+        if (fullscreen)
+        {
+        	locations = [
+        ['<img src="css/logo.png" title="Club Padel Matola" alt="Club Padel Matola" width="300px" /><br /><strong>Club Padel Matola</strong><br />Vereda Santa Teresa, 23<br />Elche (Alicante)<br />03296<br /><br /><a href="mapa.php" class="freshbutton-lightblue">Tamaño normal</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />', latitud, longitud, 1],
+        ];
+        }
 
         var map = new google.maps.Map(document.getElementById(divid), {
-        zoom: 18,
+        zoom: 17,
         center: new google.maps.LatLng(latitud, longitud),
         mapTypeId: google.maps.MapTypeId.HYBRID
         });

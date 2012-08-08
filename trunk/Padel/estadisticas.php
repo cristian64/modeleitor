@@ -16,11 +16,11 @@ if (!$usuario->getAdmin())
     exit();
 }
 
-baseSuperior("Resumen del sistema");
+baseSuperior("Estadísticas");
 ?>
-        <div id="resumen">
-            <h3><span>Resumen del sistema</span></h3>
-            <div id="lineasresumen">
+        <div id="estadisticas">
+            <h3><span>Estadísticas</span></h3>
+            <div id="lineas">
                 <div><span class="descripcion">Reservas totales: </span><span class="dato"><?php echo ENReserva::contar(); ?></span></div>
                 <div><span class="descripcion">Reservas para hoy: </span><span class="dato"><?php echo ENReserva::contarHoy(); ?></span></div>
                 <div><span class="descripcion">Reservas durante los últimos 7 días: </span><span class="dato"><?php echo ENReserva::contarUltimos7(); ?></span></div>
