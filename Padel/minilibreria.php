@@ -7,6 +7,7 @@
     require_once 'ENUsuario.php';
     require_once 'ENReserva.php';
     require_once 'ENIntentos.php';
+    require_once 'resize.php';
     
     function getUsuario()
     {
@@ -71,6 +72,48 @@
             }
         }
         return "";
+    }
+    
+    function borrar($rutaFichero)
+    {
+        return $rutaFichero != NULL && file_exists($rutaFichero) && @unlink($rutaFichero);
+    }
+    
+    function crearFicheroFoto($httpPostFile)
+    {
+        //http://emilio.aesinformatica.com/2007/05/03/subir-una-imagen-con-php/
+        $creada = false;
+
+        if (is_uploaded_file($httpPostFile['tmp_name']))
+        {
+            $ahora = new DateTime();
+            $nombre = $ahora->format("dmYHis");
+            $extension = pathinfo($httpPostFile['name'], PATHINFO_EXTENSION);
+            $rutaFoto = "fotos/$nombre."."$extension";
+            $rutaMiniatura = "fotos/$nombre.thumb."."$extension";
+
+            // Hay que intentar borrar las anteriores. No importa si falla.
+            borrar($rutaFoto);
+            borrar($rutaMiniatura);
+
+            // Luego hay que copiar el fichero de la imagen a la ruta de la foto.
+            if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
+            {
+                if (@chmod($rutaFoto,0777))
+                {
+                    $miniatura=new thumbnail($rutaFoto);
+                    //$miniatura->size_width(100);
+                    //$miniatura->size_height(100);
+                    $miniatura->size_auto(300);
+                    $miniatura->jpeg_quality(100);
+                    $miniatura->save($rutaMiniatura);
+
+                    $creada = true;
+                }
+            }
+        }
+
+        return $creada;
     }
     
     function debug($cadena)
@@ -160,115 +203,32 @@
         return mail($destino, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
     }
     
-    /*
-    require_once 'Mail.php';
-    require_once 'phpmailer.inc.php';
-    
-    function email2($nombre, $asunto, $email, $mensaje)
+    function getDirectoryList ($directory) 
     {
-        
-        $newMail = new Mail();
-        
-        $cuerpo = "<tr>";
-        $cuerpo = $cuerpo."<td><strong>Nombre:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$nombre</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>Asunto:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$asunto</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>E-mail:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$email</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>Mensaje:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$mensaje</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<div>Se ha recibido un nuevo mensaje de un usuario:<br /></div>"."$cuerpo";
-        
-        $subject = "Club Padel Matola";
-        $mail_body = $cuerpo;
-        $from = "From: Club Padel Matola <noreply@clubpadelmatola.com>";
-        $to = "To: Cristian <cristian64@gmail.com>";
-        $receiver = "cristian64@gmail.com";
-        // Setting up the headers
-        $headers["From"] = $from;
-        $headers["To"] = $to;
-        $headers["Subject"] = $subject;
-        //$headers["Reply-To"] = "reply@address.com";
-        $headers["Content-Type"] = "text/html";
-        //$headers["Return-path"] = "returnpath@address.com";
 
-        // Setting up the SMTP setting
-        $smtp_info["host"] = "ssl://smtp.server.com";
-        $smtp_info["port"] = "587";
-        $smtp_info["auth"] = true;
-        $smtp_info["username"] = "criludage@gmail.com";
-        $smtp_info["password"] = "123456criludage";
+        // create an array to hold directory list
+        $results = array();
 
-        // Creating the PEAR mail object :
-        $mail_obj =& $newMail->factory("smtp", $smtp_info);
+        // create a handler for the directory
+        $handler = opendir($directory);
 
-        // Sending the mail now
-        $mail_sent = $mail_obj->send($receiver, $headers, $mail_body);
+        // open directory and walk through the filenames
+        while ($file = readdir($handler)) {
 
-        // If any error the see for that here:
-        if (PEAR::isError($mail_sent)) { print($mail_sent->getMessage());}
-    }
-    
-    function email($nombre, $asunto, $email, $mensaje)
-    {        
-        $cuerpo = "<tr>";
-        $cuerpo = $cuerpo."<td><strong>Nombre:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$nombre</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>Asunto:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$asunto</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>E-mail:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$email</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = $cuerpo."<tr>";
-        $cuerpo = $cuerpo."<td><strong>Mensaje:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>$mensaje</td>";
-        $cuerpo = $cuerpo."</tr>";
-        $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<div>Se ha recibido un nuevo mensaje de un usuario:<br /></div>"."$cuerpo";
-        
-        $to = "cristian64@gmail.com";
-        //$cabeceras = "From: noreply@clubpadelmatola.com\r\nContent-type: text/html\r\n";
-        //return mail($to, "Club Padel Matola", $cuerpo, $cabeceras);
-        
-        $mail = new PHPMailer(true);
-        
-        $mail->IsSMTP(); // telling the class to use SMTP
-        $mail->SMTPAuth = true; // enable SMTP authentication
-        $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
-        $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-        $mail->Port = 587; // set the SMTP port for the GMAIL server
-        $mail->Username = "criludage@gmail.com"; // GMAIL username
-        $mail->Password = "123456criludage"; // GMAIL password
+            // if file isn't this directory or its parent, add it to the results
+            if ($file != "." && $file != "..") {
+            $results[] = $file;
+            }
 
-        $mail->AddAddress("cristian64@gmail.com");
-        $mail->SetFrom("criludage@gmail.com", "Club Padel Matola");
-        $mail->Subject = "Club Padel Matola";
-        $mail->Body = $cuerpo;
-
-        try
-        {
-            $mail->Send();
-            echo "Success!";
-            return true;
-        } catch(Exception $e) {
-            //Something went bad
-            echo "Fail :( ";
-            return false;
         }
-    }*/
+
+        // tidy up: close the handler
+        closedir($handler);
+
+        // done!
+        return $results;
+
+    }
 
     /**
      * Cambia el formato de la fecha.
