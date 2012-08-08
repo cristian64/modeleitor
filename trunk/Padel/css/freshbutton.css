@@ -395,6 +395,34 @@ input.blur
     background: url("fondodialogo.png") repeat scroll;
 }
 
+.foto
+{
+    float: left;
+    margin: 5px;
+    position: relative;
+}
+
+.borrarfoto
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    display: block;
+    padding: 4px;
+}
+
+.borrarfoto:hover
+{
+    background: #bbb;
+}
+
+#fotos ol
+{
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
 /*****************************************************
 Particulares de cada página
 *****************************************************/

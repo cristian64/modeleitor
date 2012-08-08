@@ -17,6 +17,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <title>Club Padel Matola - <?php echo $titulo; ?></title>
         <link type="text/css" rel="stylesheet" href="css/cupertino/jquery-ui-1.8.20.custom.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/thickbox.css" media="screen" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
         <link type="text/css" rel="stylesheet" href="css/sliderman.css" />
@@ -28,7 +29,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
-        <script src="js/jquery.masonry.min.js" type="text/javascript"></script>
+        <script src="js/thickbox.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="contenedor">
