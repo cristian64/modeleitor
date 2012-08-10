@@ -567,10 +567,43 @@ class ENReserva
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENReserva::obtenerPorPistaDia()" . $e->getMessage());
+            debug("ENReserva::obtenerPorUsuarioHoy()" . $e->getMessage());
         }
 
         return $lista;
+    }
+    
+    public static function comprobanteDia($dia)
+    {
+        $comprobante = NULL;
+
+        try
+        {
+            $sentencia = "select count(*), max(id) from reservas where date(fecha_inicio) = '".$dia->format('Y/m/d')."'";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                {
+                    $comprobante = "";
+                    $comprobante = $fila[0]."-".$fila[1];
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::comprobanteDia()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $comprobante = NULL;
+            debug("ENReserva::comprobanteDia()" . $e->getMessage());
+        }
+
+        return $comprobante;
     }
     
     public static function obtenerPorPistaDia($id_pista, $dia)

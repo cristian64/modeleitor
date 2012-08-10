@@ -54,7 +54,11 @@ baseSuperior("Fotos");
 ?>
                 <div style="clear: both;"></div>
             </div>
-            
+
+<?php
+    if ($esAdmin)
+    {
+?>
             <div>
             <h3><span>Añadir foto</span></h3>
             <form action="fotos.php" method="POST" enctype="multipart/form-data">
@@ -69,6 +73,9 @@ baseSuperior("Fotos");
                 <li>Es recomendable subir fotos JPG con un tamaño no superior a 500 KB</li>
             </ol>
             </div>
+<?php
+}
+?>
         </div>
 <?php
 baseInferior();

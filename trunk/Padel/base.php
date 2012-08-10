@@ -22,14 +22,14 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <link rel="icon" type="image/png" href="favicon.png" />
         <link type="text/css" rel="stylesheet" href="css/sliderman.css" />
         <script type="text/javascript" src="js/sliderman.1.3.7.js"></script>
-        <script src="js/formularios.js" type="text/javascript"></script>
-        <script src="js/cookies.js" type="text/javascript"></script>
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
         <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
         <script src="js/thickbox.js" type="text/javascript"></script>
+        <script src="js/formularios.js" type="text/javascript"></script>
+        <script src="js/cookies.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="contenedor">

@@ -9,9 +9,17 @@ if ($usuario == null)
     exit();
 }
 
+    
+$scroll = getPost("scroll");
+if ($scroll != "")
+    $scroll = "&scroll=".$scroll;
+
 $retorno = getPost("retorno");
 if ($retorno == "")
     $retorno = "index.php";
+else
+    $retorno = $retorno.$scroll;
+        
 
 $id = getPost("id");
 if ($id == "")
