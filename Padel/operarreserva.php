@@ -10,6 +10,10 @@
         exit();
     }
     
+    $scroll = getPost("scroll");
+    if ($scroll != "")
+        $scroll = "&scroll=".$scroll;
+    
     // Se procesan los parámetros que llegan por post.
     $diaoculto = getPost("diaoculto");
     $dia = getPost("dia");
@@ -27,7 +31,7 @@
     if (count($reservasHoy) >= $RESERVASPORDIA && !$usuario->getAdmin())
     {
         $_SESSION["mensaje_error"] = "No se puede reservar más de $RESERVASPORDIA veces durante un mismo día";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
         exit();
     }
     
@@ -43,7 +47,7 @@
     if ($fechaInicio == false || $fechaFin == false)
     {
         $_SESSION["mensaje_error"] = "La fecha elegida es incorrecta";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
         exit();
     }
     
@@ -64,7 +68,7 @@
     else
     {
         $_SESSION["mensaje_error"] = "La fecha elegida no se encuentra en un periodo reservable";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
         exit();
     }        
     
@@ -80,7 +84,7 @@
     if ($reserva->getDuracion() > ($usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION))
     {
         $_SESSION["mensaje_error"] = "La duración de la reserva supera los ".($usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION)." minutos máximos";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
         exit();
     }
     
@@ -90,7 +94,7 @@
     if ($duracionHoy + $reserva->getDuracion() > $MINUTOSPORDIA && !$usuario->getAdmin())
     {
         $_SESSION["mensaje_error"] = "No se pueden reservar más de $MINUTOSPORDIA minutos durante un mismo día";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
         exit();
     }
     
@@ -127,17 +131,17 @@
                 $_SESSION["mensaje_exito"] = "La reserva se ha realizado correctamente (también se ha reservado para los próximos $reservasProximas días)";
             }
             
-            header("location: reservar.php?dia=$diaoculto");
+            header("location: reservar.php?dia=$diaoculto".$scroll);
         }
         else
         {
             $_SESSION["mensaje_error"] = "Ocurrió un fallo inesperado y la reserva no se pudo completar. Por favor, vuelve a intentarlo.";
-            header("location: reservar.php?dia=$diaoculto");
+            header("location: reservar.php?dia=$diaoculto".$scroll);
         }
     }
     else
     {
         $_SESSION["mensaje_error"] = "La reserva se no pudo completar porque alguien ha reservado ya este horario";
-        header("location: reservar.php?dia=$diaoculto");
+        header("location: reservar.php?dia=$diaoculto".$scroll);
     }
 ?>

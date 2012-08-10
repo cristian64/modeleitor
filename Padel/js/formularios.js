@@ -104,6 +104,8 @@ function validarReserva(formulario)
 {
     var alerta = "";
 
+    formulario.scroll.value = $(document).scrollTop();
+
     // Comprobamos que la contraseña es válida.
     if (!new RegExp("^[0-9_]+$").test(formulario.duracion.value))
         alerta = alerta + "Debes elegir un horario para confirmar la reserva.";
@@ -151,65 +153,21 @@ function confirmarBorrarReserva()
     return confirm("¿Estás seguro de que quieres borrar la reserva?");
 }
 
-function confirmarEliminarAlbum()
-{
-    return confirm("Se eliminarán todas las fotos del álbum y no se podrán recuperar.\n¿Desea continuar?")
-}
-
-function eliminarAlbum(id)
-{
-    if (confirmarEliminarAlbum())
+function comprobanteDia(dia, anterior)
+{    
+    ajax = nuevoAjax();
+    ajax.open("POST", "comprobante.php", true);
+    ajax.onreadystatechange = function()
     {
-        ajax=nuevoAjax();
-        ajax.open("POST", "eliminaralbum.php",true);
-        ajax.onreadystatechange = function()
+        if (ajax.readyState == 4)
         {
-            if (ajax.readyState==4)
+            if (anterior != ajax.responseText)
             {
-                // Aquí deberá comprobarse si la petición AJAX ha sido correcta.
-                if(ajax.responseText!="OK")
-                {
-                    alert ("No se ha podido eliminar el álbum.\n");
-                }
-                else
-                {
-                    document.getElementById('album'+id).style.display = "none";
-                }
+                var scrollposition = $(document).scrollTop();
+                window.location.href = "reservar.php?dia=" + dia + "&scroll=" + scrollposition;
             }
         }
-        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send("id="+id);
     }
-}
-
-function confirmarEliminarFoto()
-{
-    return confirm("Se eliminará la foto y no se podrá recuperar.\n¿Desea continuar?")
-}
-
-function eliminarFoto(id)
-{
-    if (confirmarEliminarFoto())
-    {
-        ajax=nuevoAjax();
-        ajax.open("POST", "eliminarfoto.php",true);
-        ajax.onreadystatechange = function()
-        {
-            if (ajax.readyState==4)
-            {
-                // Aquí deberá comprobarse si la petición AJAX ha sido correcta.
-                if(ajax.responseText!="OK")
-                {
-                    alert ("No se ha podido eliminar la foto.\n");
-                }
-                else
-                {
-                    document.getElementById('foto'+id).style.display = "none";
-                    document.getElementById('cantidad').firstChild.textContent = document.getElementById('cantidad').firstChild.textContent - 1;
-                }
-            }
-        }
-        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        ajax.send("id="+id);
-    }
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajax.send("dia="+dia);
 }

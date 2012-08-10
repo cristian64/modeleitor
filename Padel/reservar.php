@@ -104,6 +104,7 @@ baseSuperior("Reservar pista");
                                 <div><label>Día </label>
                                     <input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
                                     <input type="hidden" value="<?php echo $dia->format('d/m/Y'); ?>" name="diaoculto" />
+                                    <input type="hidden" value="0" name="scroll" />
                                 </div>
                                 <div><label>Pista </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
                                 <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
@@ -135,11 +136,31 @@ baseSuperior("Reservar pista");
                         <div id="tablapistas">
                             <script type="text/javascript">
                                 
+                            function aux()
+                            {
+                                comprobanteDia(<?php echo "'".$dia->format('d/m/Y')."'"; ?>, <?php echo "'".ENReserva::comprobanteDia($dia)."'"; ?>);
+                            }
+                                
                             var isDown = false;
                                 
                             $(document).ready(function(){
-                              $(document).mousedown(function() { isDown = true; })
-                              .mouseup(function() { isDown = false; });
+                                $(document).mousedown(function() { isDown = true; })
+                                .mouseup(function() { isDown = false; });
+                                setInterval(aux, 15000);
+                                
+                                <?php
+                                
+                                $scroll = getGet("scroll");
+                                if ($scroll != "")
+                                {
+                                    echo "var mensajesHeight = 0;\n";
+                                    //echo "if ($(\"#mensajes\").length > 0) {\n";
+                                    //echo "    mensajesHeight = $(\"#mensajes\").height() + 10;\n";
+                                    //echo "}\n";
+                                    echo "$('html, body').animate({scrollTop: $scroll + mensajesHeight}, 1);\n";
+                                }
+                                
+                                ?>
                             });
                                 
                             var filasSeleccionadas = new Array();
@@ -270,9 +291,10 @@ while ($tiempoInicial < $tiempoFinal)
                 echo "<form id=\"borrar".$estado->getId()."\" action=\"operarborrarreserva.php\" method=\"post\">";
                 echo "<input type=\"hidden\" name=\"retorno\" value=\"reservar.php?dia=".$dia->format('d/m/Y')."\" />";
                 echo "<input type=\"hidden\" name=\"id\" value=\"".$estado->getId()."\" />";
+                echo "<input type=\"hidden\" name=\"scroll\" value=\"".$estado->getId()."\" />";
                 echo "</form>";
                 echo "<a class=\"smallicon\" onclick=\"$('#dialog".$estado->getId()."').dialog('open');\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>&nbsp;";
-                echo "<a class=\"smallicon\" onclick=\"if (confirmarBorrarReserva()) document.getElementById('borrar".$estado->getId()."').submit();\"><img src=\"css/papelera.png\" alt=\"Borrar reserva\" title=\"Borrar reserva\" /></a>";
+                echo "<a class=\"smallicon\" onclick=\"if (confirmarBorrarReserva()) { document.getElementById('borrar".$estado->getId()."').scroll.value = $(document).scrollTop(); document.getElementById('borrar".$estado->getId()."').submit(); }\"><img src=\"css/papelera.png\" alt=\"Borrar reserva\" title=\"Borrar reserva\" /></a>";
                 
                 echo "<div class=\"dialogoreserva\" id=\"dialog".$estado->getId()."\" title=\"Reserva nº ".$estado->getId()."\">";
                 $cuerpo = "<tr>";
