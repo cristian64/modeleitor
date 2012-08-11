@@ -218,6 +218,18 @@ h3
     color: #888;
 }
 
+fieldset
+{
+    padding: 10px;
+    border: 1px solid #bbb;
+}
+
+#reservar textarea
+{
+    width: 100%;
+    margin-top: 5px;
+}
+
 #contenedor
 {
     text-align: center;
@@ -388,6 +400,11 @@ input.blur
 {
     font-size: 10pt;
     margin: 15px;
+}
+
+.dialogoreserva table td
+{
+    vertical-align: top;
 }
 
 .ui-widget-overlay
@@ -684,10 +701,10 @@ table, tr
 
 #tiempo
 {
-    margin-left: 20px;
-    margin-top: 40px;
+    margin-top: 15px;
     overflow: hidden;
-    height: 200px;
+    height: 110px;
+    float: left;
 }
 
 #lineas

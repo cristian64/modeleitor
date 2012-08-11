@@ -101,6 +101,10 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                             <input type="radio" name="tipo" value="" <?php echo (!$reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> No reservable
                         </div></td>
                     </tr>
+                    <tr>
+                        <td class="columna1">Notas</td>
+                        <td class="columna2"><textarea readonly="readonly" class="textinputreadonly" rows="6" cols="30"><?php echo $reserva->getNotas(); ?></textarea></td>
+                    </tr>
                     <?php } ?>
                     <tr>
                         <td class="columna1"></td>

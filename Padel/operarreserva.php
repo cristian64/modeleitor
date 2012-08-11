@@ -21,8 +21,10 @@
     $hasta = getPost("hasta");
     $pista = intval(getPost("pista"));
     $proximos = 0;
+    $notas = "";
     if ($usuario->getAdmin())
     {
+        $notas = getPost("notas");
         $reservable = isset($_POST['bloquear']) ? false : true;
         $proximos = getPost("proximos");
     }
@@ -77,6 +79,7 @@
     $reserva->setIdUsuario($usuario->getId());
     $reserva->setFechaInicioDateTime($fechaInicio);
     $reserva->setFechaFinDateTime($fechaFin);
+    $reserva->setNotas($notas);
     
     if ($usuario->getAdmin())
         $reserva->setReservable($reservable);
