@@ -155,7 +155,7 @@ class ENReserva
     
     public function setNotas($notas)
     {
-        $this->notas = $notas;
+        $this->notas = filtrarCadena($notas);
     }
 
     /**
