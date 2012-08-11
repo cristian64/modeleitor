@@ -16,6 +16,7 @@ class ENReserva
     private $fecha_fin;
     private $fecha_realizacion;
     private $reservable;
+    private $notas;
 
     public function getId()
     {
@@ -146,6 +147,16 @@ class ENReserva
     {
         $this->reservable = $reservable;
     }
+    
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+    
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+    }
 
     /**
      * Constructor de la clase.
@@ -159,6 +170,7 @@ class ENReserva
         $this->fecha_fin = new DateTime();
         $this->fecha_realizacion = new DateTime();
         $this->reservable = true;
+        $this->notas = "";
     }
 
     public function toString() {
@@ -174,6 +186,7 @@ class ENReserva
         $reserva->fecha_fin = new DateTime($fila[4]);
         $reserva->fecha_realizacion = new DateTime($fila[5]);
         $reserva->reservable = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
+        $reserva->notas = utf8_encode($fila[7]);
         return $reserva;
     }
 
@@ -702,6 +715,7 @@ class ENReserva
         $nueva->setIdUsuario($this->getIdUsuario());
         $nueva->setIdPista($this->getIdPista());
         $nueva->setReservable($this->getReservable());
+        $nueva->setNotas($this->getNotas());
         $nueva->setFechaInicioDateTime($this->getFechaInicio());
         $nueva->setFechaFinDateTime($this->getFechaFin());
         return $nueva;
@@ -751,8 +765,8 @@ class ENReserva
                     
                 if ($disponible)
                 {
-                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable)";
-                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."');\n";
+                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable, notas)";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."', '".utf8_decode($this->notas)."');\n";
 
                     $resultado = mysql_query($sentencia, $conexion);
 

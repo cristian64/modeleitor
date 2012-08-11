@@ -126,12 +126,15 @@ baseSuperior("Reservar pista");
                                 </select> 
                                 
                                 días</div>
+
+                                <div>
+                                    <label>Notas</label>
+                                    <textarea name="notas" rows="5" cols="25"></textarea>
+                                </div>
+
 <?php } ?>
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
                             </form>
-                            <div id="tiempo">
-                                <div id="TT_tyswbxdhtIEjjFaA7fujzzDDD9lA1A2lLY1tkciIq1j"></div>
-                            </div>
                         </div>
                         <div id="tablapistas">
                             <script type="text/javascript">
@@ -326,6 +329,13 @@ while ($tiempoInicial < $tiempoFinal)
                 $cuerpo = $cuerpo."<td><strong>Precio:</strong>&nbsp;&nbsp;&nbsp;</td>";
                 $cuerpo = $cuerpo."<td>".ceil($estado->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla</td>";
                 $cuerpo = $cuerpo."</tr>";
+                if ($usuario->getAdmin())
+                {
+                    $cuerpo = $cuerpo."<tr>";
+                    $cuerpo = $cuerpo."<td><strong>Notas:</strong>&nbsp;&nbsp;&nbsp;</td>";
+                    $cuerpo = $cuerpo."<td>".nl2br($estado->getNotas())."</td>";
+                    $cuerpo = $cuerpo."</tr>";
+                }
                 $cuerpo = "<table>".$cuerpo."</table>";
                 echo $cuerpo;
                 echo "<br /><a class=\"freshbutton-lightblue\" href=\"reserva.php?id=".$estado->getId()."\">Ver reserva en detalle</a>";
@@ -347,6 +357,12 @@ while ($tiempoInicial < $tiempoFinal)
 }
 ?>
                             </table>
+
+                            <div id="tiempo">
+                                <div id="TT_vitgrhthdcYBDIsU7AuDDDjDzKlULUa1kxEzzhCKglI"></div>
+                                <script type="text/javascript" src="http://www.tutiempo.net/widget/eltiempo_vitgrhthdcYBDIsU7AuDDDjDzKlULUa1kxEzzhCKglI"></script>
+                            </div>
+                            
                             <div id="leyenda">
                                 <div class="libre"></div>Libre
                                 <div class="ocupado"></div>Ocupado
@@ -400,7 +416,6 @@ while ($tiempoInicial < $tiempoFinal)
                         });
                     });
                     </script>
-                    <script type="text/javascript" src="http://www.tutiempo.net/widget/eltiempo_tyswbxdhtIEjjFaA7fujzzDDD9lA1A2lLY1tkciIq1j"></script>
 <?php
 baseInferior();
 ?>
