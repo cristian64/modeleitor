@@ -8,6 +8,7 @@
     require_once 'ENFabricante.php';
     require_once 'ENMarca.php';
     require_once 'ENCategoria.php';
+    require_once 'ENUsuario.php';
     
     function getUsuario()
     {

@@ -7,6 +7,7 @@ class ENCategoria
     private $id;
     private $id_padre;
     private $nombre;
+    private $mostrar;
     private $descripcion;
 
     public function getId()
@@ -34,6 +35,16 @@ class ENCategoria
         $this->nombre = $nombre;
     }
     
+    public function getMostrar()
+    {
+        return $this->mostrar;
+    }
+
+    public function setMostrar($mostrar)
+    {
+        $this->mostrar = $mostrar;
+    }
+    
     public function getDescripcion()
     {
         return $this->descripcion;
@@ -44,31 +55,34 @@ class ENCategoria
         $this->descripcion = $descripcion;
     }
 
-    public function  __construct()
+    public function __construct()
     {
         $this->id = 0;
         $this->id_padre = 0;
         $this->nombre = "";
+        $this->mostrar = true;
         $this->descripcion = "";
     }
 
     private static function getRow($fila)
     {
-        $obj = new ENFabricante;
+        $obj = new ENCategoria();
         $obj->id = $fila[0];
         $obj->id_padre = $fila[1];
         $obj->nombre = utf8_encode($fila[2]);
-        $obj->descripcion = utf8_encode($fila[3]);
+        $obj->mostrar = ($fila[3] == "0" || $fila[3] == 0) ? false : true;
+        $obj->descripcion = utf8_encode($fila[4]);
         return $obj;
     }
 
-    public static function get()
+    public static function get($todas = false)
     {
         $lista = NULL;
 
         try
         {
-            $sentencia = "select * from categorias order by id_padre asc, nombre asc";
+            $condicion = $todas ? "" : "where mostrar = true";
+            $sentencia = "select * from categorias $condicion order by id_padre asc, nombre asc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -105,14 +119,15 @@ class ENCategoria
         return $lista;
     }
 
-    public static function getByPadre($id_padre)
+    public static function getByPadre($id_padre, $todas = false)
     {
         $id_padre = secure(utf8_decode($id_padre));
         $lista = NULL;
 
         try
         {
-            $sentencia = "select * from categorias where id_padre = '$id_padre' order by nombre asc";
+            $condicion = $todas ? "" : "mostrar = true and";
+            $sentencia = "select * from categorias where $condicion id_padre = '$id_padre' order by nombre asc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -157,7 +172,7 @@ class ENCategoria
         try
         {
             $sentencia = "select *";
-            $sentencia = "$sentencia from marcas";
+            $sentencia = "$sentencia from categorias";
             $sentencia = "$sentencia where id = '$id'";
             $resultado = mysql_query($sentencia, BD::conectar());
 
@@ -169,7 +184,7 @@ class ENCategoria
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENMarca::getById() Marca nula $id");
+                        debug("ENCategoria::getById() Categoria nula $id");
                     }
                 }
 
@@ -177,13 +192,13 @@ class ENCategoria
             }
             else
             {
-                debug("ENMarca::getById() ".mysql_error());
+                debug("ENCategoria::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENMarca::getById() ".$e->getMessage());
+            debug("ENCategoria::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -200,8 +215,8 @@ class ENCategoria
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into categorias (id_padre, nombre, descripcion)";
-                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_padre))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->descripcion))."')";
+                $sentencia = "insert into categorias (id_padre, nombre, mostrar, descripcion)";
+                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_padre))."', '".secure(utf8_decode($this->nombre))."', '".($this->mostrar ? 1 : 0)."', '".secure(utf8_decode($this->descripcion))."')";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -251,7 +266,7 @@ class ENCategoria
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
+                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', mostrar = '".($this->mostrar ? 1 : 0)."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);

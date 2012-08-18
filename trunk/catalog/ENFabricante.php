@@ -55,7 +55,7 @@ class ENFabricante
         $this->descripcion = $descripcion;
     }
 
-    public function  __construct()
+    public function __construct()
     {
         $this->id = 0;
         $this->nombre = "";

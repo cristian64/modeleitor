@@ -2,15 +2,41 @@
 
 require_once 'minilibreria.php';
 
-class ENMarca
+class ENUsuario
 {
     private $id;
+    private $email;
+    private $contrasena;
     private $nombre;
-    private $logo;
+    private $telefono;
+    private $direccion;
+    private $admin;
+    private $activo;
+    private $fecha_registro;
 
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    
+    public function getContrasena()
+    {
+        return $this->contrasena;
+    }
+    
+    public function setContrasena($contrasena)
+    {
+        $this->contrasena = $contrasena;
     }
 
     public function getNombre()
@@ -23,43 +49,86 @@ class ENMarca
         $this->nombre = $nombre;
     }
     
-    public function getLogo()
+    public function getTelefono()
     {
-        return $this->logo;
+        return $this->telefono;
     }
 
-    public function setLogo($logo)
+    public function setTelefono($telefono)
     {
-        $this->logo = $logo;
+        $this->telefono = $telefono;
+    }
+    
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+    
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+    }
+    
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+    }
+    
+    public function getFechaRegistro()
+    {
+        return $this->fecha_registro;
     }
 
     public function __construct()
     {
         $this->id = 0;
+        $this->email = "";
+        $this->contrasena = "";
         $this->nombre = "";
-        $this->logo = "";
+        $this->telefono = "";
+        $this->direccion = "";
+        $this->admin = false;
+        $this->activo = false;
+        $this->fecha_registro = new DateTime();
     }
 
     private static function getRow($fila)
     {
-        $obj = new ENMarca();
+        $obj = new ENUsuario();
         $obj->id = $fila[0];
-        $obj->nombre = utf8_encode($fila[1]);
-        $obj->logo = utf8_encode($fila[2]);
+        $obj->email = utf8_encode($fila[1]);
+        $obj->nombre = utf8_encode($fila[2]);
+        $obj->contrasena = utf8_encode($fila[3]);
+        $obj->telefono = utf8_encode($fila[4]);
+        $obj->direccion = utf8_encode($fila[5]);
+        $obj->admin = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
+        $obj->activo = ($fila[7] == "0" || $fila[7] == 0) ? false : true;
+        $obj->fecha_registro = new DateTime($fila[8]);
         return $obj;
     }
 
-    public static function get($filtro = "")
+    public static function get()
     {
-        $filtro = secure(utf8_decode($filtro));
         $lista = NULL;
 
         try
         {
-            $sentencia = "select * from marcas order by nombre asc";
-            
-            if ($filtro != "")
-                $sentencia = "select * from marcas where nombre like '%$filtro%' order by nombre asc";
+            $sentencia = "select * from usuarios order by id asc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -76,7 +145,7 @@ class ENMarca
                     }
                     else
                     {
-                        debug("ENMarca::get() Marca nula nº $contador");
+                        debug("ENUsuario::get() Usuario nulo nº $contador");
                     }
                 }
 
@@ -84,18 +153,18 @@ class ENMarca
             }
             else
             {
-                debug("ENMarca::get()".mysql_error());
+                debug("ENUsuario::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENMarca::get()".$e->getMessage());
+            debug("ENUsuario::get()".$e->getMessage());
         }
 
         return $lista;
     }
-    
+
     public static function getById($id)
     {
         $id = secure(utf8_decode($id));
@@ -104,7 +173,7 @@ class ENMarca
         try
         {
             $sentencia = "select *";
-            $sentencia = "$sentencia from marcas";
+            $sentencia = "$sentencia from usuarios";
             $sentencia = "$sentencia where id = '$id'";
             $resultado = mysql_query($sentencia, BD::conectar());
 
@@ -116,7 +185,7 @@ class ENMarca
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENMarca::getById() Marca nula $id");
+                        debug("ENUsuario::getById() Usuario nulo $id");
                     }
                 }
 
@@ -124,13 +193,13 @@ class ENMarca
             }
             else
             {
-                debug("ENMarca::getById() ".mysql_error());
+                debug("ENUsuario::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENMarca::getById() ".$e->getMessage());
+            debug("ENUsuario::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -147,14 +216,18 @@ class ENMarca
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into marcas (nombre, logo)";
-                $sentencia = "$sentencia values ('".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->logo))."')";
+                $sentencia = "insert into usuarios (email, contrasena, nombre, telefono, direccion, admin, activo, fecha_registro)";
+                $sentencia = "$sentencia values ('".secure(utf8_decode($this->email))."', '".secure(utf8_decode($this->contrasena))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->telefono))."', '".secure(utf8_decode($this->direccion))."', '".($this->admin ? 1 : 0)."', '".($this->activo ? 1 : 0)."', now())";
                 $resultado = mysql_query($sentencia, $conexion);
 
+
+
+                echo "<br/>".$sentencia."<br/>";
+                
                 if ($resultado)
                 {
                     // Obtenemos el identificador asignado al usuario recién creado.
-                    $sentencia = "select id from marcas where nombre = '".secure(utf8_decode($this->nombre))."'";
+                    $sentencia = "select max(id) from usuarios where email = '".secure(utf8_decode($this->email))."'";
                     $resultado = mysql_query($sentencia, $conexion);
 
                     if ($resultado)
@@ -168,19 +241,19 @@ class ENMarca
                     }
                     else
                     {
-                        debug("ENMarca::save() ".mysql_error());
+                        debug("ENUsuario::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENMarca::save() ".mysql_error());
+                    debug("ENUsuario::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENMarca::save() ".$e->getMessage());
+                debug("ENUsuario::save() ".$e->getMessage());
             }
         }
 
@@ -198,7 +271,7 @@ class ENMarca
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update marcas set nombre = '".secure(utf8_decode($this->nombre))."', logo = '".secure(utf8_decode($this->logo))."'";
+                $sentencia = "update usuarios set email = '".secure(utf8_decode($this->email))."', contrasena = '".secure(utf8_decode($this->contrasena))."', nombre = '".secure(utf8_decode($this->nombre))."', telefono = '".secure(utf8_decode($this->telefono))."', direccion = '".secure(utf8_decode($this->direccion))."', admin = '".($this->admin ? 1 : 0)."', activo = '".($this->activo ? 1 : 0)."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);
@@ -209,14 +282,14 @@ class ENMarca
                 }
                 else
                 {
-                    debug("ENMarca::update() ".mysql_error());
+                    debug("ENUsuario::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENMarca::update() ".$e->getMessage());
+                debug("ENUsuario::update() ".$e->getMessage());
             }
         }
 
