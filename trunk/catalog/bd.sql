@@ -31,9 +31,10 @@ create table modelos
     id int not null auto_increment,
     id_fabricante int not null,
     id_marca int not null,
-    nombre varchar(100) not null,
     referencia varchar(100) not null,
-    numeracion char(5) not null default '',
+    nombre varchar(100) not null,
+    talla_menor int not null default 0,
+    talla_mayor int not null default 0,
     descripcion text not null default '',
     precio decimal(10,2) not null,
     oferta tinyint(1) not null default 0,
@@ -61,15 +62,6 @@ create table categorias_modelos
     primary key (id_categoria, id_modelo)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
---create table fotos
---(
---    id int not null auto_increment,
---    id_modelo int not null,
---    nombre_original varchar(256) not null,
---    fecha_creacion datetime not null,
---    primary key (id)
---) engine = myisam default charset=utf8 collate=utf8_general_ci;
-
 create table usuarios
 (
     id int not null auto_increment,
@@ -83,6 +75,15 @@ create table usuarios
     fecha_registro datetime not null,
     primary key (id),
     unique (email)
+) engine = myisam default charset=utf8 collate=utf8_general_ci;
+
+create table fotos
+(
+    id int not null auto_increment,
+    id_modelo int not null,
+    nombre_original varchar(256) not null,
+    fecha_creacion datetime not null,
+    primary key (id)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 create table pedidos
