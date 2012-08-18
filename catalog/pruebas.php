@@ -7,10 +7,10 @@ $nuevo->setNombre("Antonio");
 $nuevo->setTelefono("Holaaaa");
 $nuevo->setDescripcion("pollicaaa'''!");
 $nuevo->setEmail("cristian@gmal.com");
-echo $nuevo->save();
+$nuevo->save();
 
-echo "<br/>".count(ENCategoria::getByPadre(4, false));
-
+echo "Cantidad categorias: ".count(ENCategoria::getByPadre(4, false))."<br />";
+/*
 $categoria = new ENCategoria();
 $categoria->setNombre("Bota");
 $categoria->setIdPadre(4);
@@ -30,6 +30,21 @@ $usuario->save();
 
 $usuario = ENUsuario::getById(1);
 $usuario->setEmail("pollonga@gmail.com");
-$usuario->update();
+$usuario->update();*/
 
+$modelo = ENModelo::getById(2);
+$modelo->setReferencia("7001");
+$modelo->setNombre("Californiana Piel Negro");
+$modelo->setPrecio(14.50);
+$modelo->setDescripcion("Fabricado en España");
+$modelo->setTallaMenor(39);
+$modelo->setTallaMayor(46);
+$modelo->setOferta(true);
+$modelo->setDescatalogado(true);
+$modelo->setPrioridad(7);
+$modelo->setIdFabricante(124);
+$modelo->setIdMarca(124);
+$modelo->update();
+
+echo "Cantidad modelos: ".count(ENModelo::get())."<br />";
 ?>
