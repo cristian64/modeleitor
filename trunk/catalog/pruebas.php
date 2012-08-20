@@ -46,5 +46,18 @@ $modelo->setIdFabricante(124);
 $modelo->setIdMarca(124);
 $modelo->update();
 
+echo "Cantidad modelos en categoria 3: ".count(ENModelo::getByCategoria(3, 1, 10))."<br />";
+echo "Cantidad modelos en categoria 3: ".ENModelo::countByCategoria(3)."<br />";
+
+echo "Cantidad modelos en fabricante 3: ".count(ENModelo::getByFabricante(3, 1, 10))."<br />";
+echo "Cantidad modelos en fabricante 3: ".ENModelo::countByFabricante(3)."<br />";
+
+echo "Cantidad modelos en marca 3: ".count(ENModelo::getByMarca(3, 1, 10))."<br />";
+echo "Cantidad modelos en marca 3: ".ENModelo::countByMarca(3)."<br />";
+
 echo "Cantidad modelos: ".count(ENModelo::get())."<br />";
+
+ENModelo::getById(5)->setCategoriasToDB(array(1, 5, 6, 7, 8, 9, 10));
+echo "Cantidad categorias modelo 5: ".count(ENModelo::getById(5)->getCategoriasFromDB())."<br />";
+
 ?>
