@@ -151,15 +151,89 @@ class ENModelo
     
     public function getCategoriasFromDB()
     {
-        return array();
+        $lista = NULL;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $sentencia = "select id_categoria from categorias_modelos where id_modelo = '".secure(utf8_decode($this->id))."'";
+                
+                $conexion = BD::conectar();
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {
+                    $lista = array();
+                    $contador = 0;
+                    while ($fila = mysql_fetch_array($resultado))
+                    {
+                        $categoria = $fila[0];
+                        if ($categoria != NULL)
+                        {
+                            $lista[$contador++] = $categoria;
+                        }
+                        else
+                        {
+                            debug("ENModelo::getCategoriasFromDB() Categoria nulo nº $contador");
+                        }
+                    }
+
+                    BD::desconectar($conexion);
+                }
+                else
+                {
+                    debug("ENModelo::getCategoriasFromDB()".mysql_error());
+                }
+            }
+            catch (Exception $e)
+            {
+                $lista = NULL;
+                debug("ENModelo::getCategoriasFromDB()".$e->getMessage());
+            }
+        }
+
+        return $lista;
     }
     
     public function setCategoriasToDB($categorias)
     {
+        $guardado = false;
+
         if ($this->id > 0)
         {
-            return false;
+            try
+            {
+                $conexion = BD::conectar();
+
+                $sentencia = "delete from categorias_modelos where id_modelo = '".secure(utf8_decode($this->id))."';";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {
+                    foreach ($categorias as $i)
+                    {                
+                        $sentencia = "insert into categorias_modelos (id_categoria, id_modelo)";
+                        $sentencia = "$sentencia values ('".$i."', '".secure(utf8_decode($this->id))."');";
+                        $resultado = mysql_query($sentencia, $conexion);
+                        if (!$resultado)
+                        {
+                            debug("ENModelo::setCategoriasToDB() ".mysql_error());
+                        }
+                    }
+                }
+                else
+                {
+                    debug("ENModelo::setCategoriasToDB() ".mysql_error());
+                }
+                
+                BD::desconectar($conexion);
+            }
+            catch (Exception $e)
+            {
+                debug("ENModelo::setCategoriasToDB() ".$e->getMessage());
+            }
         }
+
+        return $guardado;
     }
 
     public function __construct()
@@ -199,6 +273,321 @@ class ENModelo
         $obj->fecha_modificacion = new DateTime($fila[13]);
         return $obj;
     }
+    
+    public static function getByCategoria($id_categoria, $pagina, $cantidad)
+    {
+        $id_categoria = secure(utf8_decode($id_categoria));
+        $lista = NULL;
+
+        try
+        {
+            $sentencia = "select * from modelos order by prioridad desc";
+            
+            if (is_numeric($id_categoria))
+                $sentencia = "select * from modelos, categorias_modelos where modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by prioridad desc";
+                
+            if (is_numeric($pagina) && is_numeric($cantidad))
+                $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $obj = self::getRow($fila);
+                    if ($obj != NULL)
+                    {
+                        $lista[$contador++] = $obj;
+                    }
+                    else
+                    {
+                        debug("ENModelo::get() Modelo nulo nº $contador");
+                    }
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $lista;
+    }
+    
+    public static function countByCategoria($id_categoria)
+    {
+        $id_categoria = secure(utf8_decode($id_categoria));
+        $cantidad = NULL;
+
+        try
+        {
+            $sentencia = "select count(*) from modelos";
+            
+            if (is_numeric($id_categoria))
+                $sentencia = "select count(*) from modelos, categorias_modelos where modelos.id = id_modelo and id_categoria = '".$id_categoria."'";
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $cantidad = 0;
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function getByFabricante($id_fabricante, $pagina, $cantidad)
+    {
+        $id_fabricante = secure(utf8_decode($id_fabricante));
+        $lista = NULL;
+
+        try
+        {
+            $sentencia = "select * from modelos order by prioridad desc";
+            
+            if (is_numeric($id_fabricante))
+                $sentencia = "select * from modelos where id_fabricante = '".$id_fabricante."' order by prioridad desc";
+                
+            if (is_numeric($pagina) && is_numeric($cantidad))
+                $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $obj = self::getRow($fila);
+                    if ($obj != NULL)
+                    {
+                        $lista[$contador++] = $obj;
+                    }
+                    else
+                    {
+                        debug("ENModelo::get() Modelo nulo nº $contador");
+                    }
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $lista;
+    }
+    
+    public static function countByFabricante($id_fabricante)
+    {
+        $id_fabricante = secure(utf8_decode($id_fabricante));
+        $cantidad = NULL;
+
+        try
+        {
+            $sentencia = "select count(*) from modelos";
+            
+            if (is_numeric($id_fabricante))
+                $sentencia = "select count(*) from modelos where id_fabricante = '".$id_fabricante."'";
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $cantidad = 0;
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $cantidad;
+    }
+    
+    public static function getByMarca($id_marca, $pagina, $cantidad)
+    {
+        $id_marca = secure(utf8_decode($id_marca));
+        $lista = NULL;
+
+        try
+        {
+            $sentencia = "select * from modelos order by prioridad desc";
+            
+            if (is_numeric($id_marca))
+                $sentencia = "select * from modelos where id_marca = '".$id_marca."' order by prioridad desc";
+                
+            if (is_numeric($pagina) && is_numeric($cantidad))
+                $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $obj = self::getRow($fila);
+                    if ($obj != NULL)
+                    {
+                        $lista[$contador++] = $obj;
+                    }
+                    else
+                    {
+                        debug("ENModelo::get() Modelo nulo nº $contador");
+                    }
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $lista;
+    }
+    
+    public static function countByMarca($id_marca)
+    {
+        $id_marca = secure(utf8_decode($id_marca));
+        $cantidad = NULL;
+
+        try
+        {
+            $sentencia = "select count(*) from modelos";
+            
+            if (is_numeric($id_marca))
+                $sentencia = "select count(*) from modelos where id_marca = '".$id_marca."'";
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $cantidad = 0;
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $cantidad = $fila[0];
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $cantidad = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $cantidad;
+    }
+
+    public static function getSearch($filtro, $oferta, $descatalogado, $orden, $pagina, $cantidad)
+    {
+        //TODO
+        $filtro = secure(utf8_decode($filtro));
+        $lista = NULL;
+
+        try
+        {
+            $sentencia = "select * from modelos order by nombre asc";
+            
+            if ($filtro != "")
+                $sentencia = "select * from modelos where referencia like '%$filtro%' or nombre like '%$filtro%' or descripcion like '%$filtro%' order by nombre asc, prioridad desc";
+            
+            $conexion = BD::conectar();
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $obj = self::getRow($fila);
+                    if ($obj != NULL)
+                    {
+                        $lista[$contador++] = $obj;
+                    }
+                    else
+                    {
+                        debug("ENModelo::get() Modelo nulo nº $contador");
+                    }
+                }
+
+                BD::desconectar($conexion);
+            }
+            else
+            {
+                debug("ENModelo::get()".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENModelo::get()".$e->getMessage());
+        }
+
+        return $lista;
+    }
 
     public static function get($filtro = "")
     {
@@ -210,7 +599,7 @@ class ENModelo
             $sentencia = "select * from modelos order by nombre asc";
             
             if ($filtro != "")
-                $sentencia = "select * from modelos where referencia like '%$filtro%' or nombre like '%$filtro%' order by nombre asc, prioridad desc";
+                $sentencia = "select * from modelos where referencia like '%$filtro%' or nombre like '%$filtro%' or descripcion like '%$filtro%' order by nombre asc, prioridad desc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);

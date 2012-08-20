@@ -107,9 +107,44 @@ create table pedidos_linea
 
 
 
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (0, "Mujer", 1, "Zapatos de mujer");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (0, "Hombre", 1, "Zapatos de hombre");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (0, "Niño y Niña", 1, "Zapatos de niño y niña");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (0, "Tallas Especiales", 1, "Números de tamaño especial tanto de mujer como hombre");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (0, "Ofertas", 1, "Modelos en oferta");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Zapatos", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Botas", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Botas y Botines", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Anchos Especiales", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Fiesta", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Anatómicos", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Sandalias", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (1, "Anchos Especiales", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Zapatos", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Casual", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Suela de Cuero", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Deportivos", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Mocasines", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Clásicos", 1, "");
+insert into categorias (id_padre, nombre, mostrar, descripcion) values (2, "Trenzados", 1, "");
 
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Antonio Méndez", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Par y Medio", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Carlos Mora", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("José Cutillas", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Paquito", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Juan", "", "", "");
+insert into fabricantes (nombre, telefono, descripcion, email) values ("Herminio", "", "", "");
 
-
+insert into marcas (nombre) values ("Agata Shoes");
+insert into marcas (nombre) values ("Candy");
+insert into marcas (nombre) values ("Ibérico");
+insert into marcas (nombre) values ("Anchos Calzados");
+insert into marcas (nombre) values ("JAM");
+insert into marcas (nombre) values ("Wheti's");
+insert into marcas (nombre) values ("Beppi");
+insert into marcas (nombre) values ("Annora");
+insert into marcas (nombre) values ("Morxiva");
 
 
 drop table if exists intentos;
