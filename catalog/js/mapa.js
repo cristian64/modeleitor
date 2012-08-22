@@ -3,6 +3,8 @@ var map;
 var latitud = 38.22808209515297;
 var longitud = -0.7486528351306561;
 
+//https://maps.google.es/maps?q=Calzados+JAM&sll=38.281431,-0.719326&sspn=0.01297,0.033023&t=h&hq=Calzados+JAM&z=16&iwloc=A
+
 function GoogleMaps3(fullscreen, divid)
 {
     document.isLoaded=true;
