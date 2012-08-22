@@ -40,7 +40,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
     <body>
         <div id="contenedor">
             <div id="cabecera">
-                <div id="busquedarapida"><form id="busquedarapidaform" method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /><a href="busqueda">Búsqueda avanzada</a></form><div style="clear:both;"></div></div>
+                <div id="busquedarapida"><form id="busquedarapidaform" method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /></form><div style="clear:both;"></div></div>
             </div>
             <div id="barra">
                 
