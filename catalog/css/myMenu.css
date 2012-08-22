@@ -1,11 +1,11 @@
-.myMenu { margin:0; padding:0; float: right;}
-.myMenu li { list-style:none; float:left; font:11pt Arial, Helvetica, sans-serif #111; }
-.myMenu li a:link, .myMenu li a:visited { display:block; text-decoration:none; padding: 0.5em 2em; margin:0; border-left: 1px solid #eee; color:#111; }
-.myMenu li a:hover { background-color:#0CF; } /*style the sub menu*/
-.myMenu li ul { font-size: 11pt; position:absolute; visibility:hidden; border: 1px solid #ddd; margin:0; padding:0; }
-.myMenu li ul li { display:inline; float:none; }
-.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:#fff; width:auto; border: 0;}
-.myMenu li ul li a:hover { background-color:#DBF6FF; }
+.myMenu { margin:0; padding:0; float: right; z-index: 5; }
+.myMenu li { list-style:none; float:left; font:11pt Arial, Helvetica, sans-serif #111; z-index: 5;}
+.myMenu li a:link, .myMenu li a:visited { display:block; text-decoration:none; padding: 0.5em 2em; margin:0; border-left: 1px solid #eee; color:#111; z-index: 5;}
+.myMenu li a:hover { background-color:#0CF; z-index: 5;} /*style the sub menu*/
+.myMenu li ul { font-size: 11pt; position:absolute; visibility:hidden; border: 1px solid #ddd; margin:0; padding:0; z-index: 5;}
+.myMenu li ul li { display:inline; float:none; z-index: 5;}
+.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:#fff; width:auto; border: 0;z-index: 5;}
+.myMenu li ul li a:hover { background-color:#DBF6FF; z-index: 5;}
 
 .myMenu li a:link.firstLevel, .myMenu li a:visited.firstLevel
 {
@@ -26,9 +26,7 @@
     font-size: 9pt;
     font-weight: bold;
     margin-left: 10px;
-    padding: 5px 20px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    padding: 10px 20px;
 }
 
 .myMenu li a:hover.expandirbuscar
@@ -39,7 +37,5 @@
     font-size: 9pt;
     font-weight: bold;
     margin-left: 10px;
-    padding: 5px 20px;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    padding: 10px 20px;
 }

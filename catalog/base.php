@@ -17,6 +17,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <title>Calzados JAM - <?php echo $titulo; ?></title>
         
         <link type="text/css" rel="stylesheet" href="css/jquery-ui-1.8.23.custom.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/orbit/orbit-1.2.3.css">
         <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
@@ -29,6 +30,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+        <script src="js/jquery.orbit-1.2.3.min.js"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
         <script src="js/thickbox.js" type="text/javascript"></script>
