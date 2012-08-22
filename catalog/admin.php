@@ -27,6 +27,7 @@ baseSuperior("Administración");
             <a class="freshbutton-big" href="marcas">Marcas</a>
             <a class="freshbutton-big" href="modelos">Modelos</a>
             <a class="freshbutton-big" href="usuarios">Usuarios</a>
+            <a class="freshbutton-big" href="shell">Shell</a>
         </div>
 </div></div>
         
