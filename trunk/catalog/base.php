@@ -47,7 +47,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
             <div id="barra">
                 
                 <div id="titulo">
-                    <h1><a href="http://www.calzadosjam.es"><span>Calzados JAM</span></a></h1>
+                    <h1><a href="index.php"><span>Calzados JAM</span></a></h1>
                 </div>
                 
                 <?php bloqueCategorias(); ?>
@@ -64,7 +64,6 @@ function baseSuperior($titulo, $mostrarmenu = true)
                     });
                     
                     $("#busquedarapidaform").hide();
-                    
                     var mostradaBusquedaRapida = false;
                     function mostrarBusquedaRapida()
                     {
@@ -110,7 +109,10 @@ function bloqueCategorias()
         echo "    </li>\n";
     }
     echo "    <li><a href=\"#\" class=\"firstLevel expandirbuscar\" onclick=\"mostrarBusquedaRapida();\">Buscar</a></li>\n";
-    echo "    <li><a href=\"iniciarsesion\" class=\"firstLevel expandirbuscar expandiracceso\">Iniciar sesión</a></li>\n";
+    if (getUsuario() == null)
+        echo "    <li><a href=\"#\" class=\"firstLevel expandirbuscar expandirinicio\" onclick=\"$('#dialogo-iniciarsesion').dialog('open');\">Iniciar sesión</a></li>\n";
+    else
+        echo "    <li><a href=\"cerrarsesion\" class=\"firstLevel expandirbuscar expandircierre\">Cerrar sesión</a></li>\n";
 
     echo "</ul>\n";
     echo "</div>\n";
@@ -120,7 +122,34 @@ function baseInferior()
 {
 ?>
                 </div>
-
+                <div id="dialogo-iniciarsesion" title="Iniciar sesión">
+                    <form id="form-iniciarsesion" method="POST" action="iniciarsesion">
+                    <table class="guapo-form">
+                        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td>
+                        <tr><td class="guapo-label">Contraseña</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td>
+                        <tr><td class="guapo-label"></td><td class="guapo-input"><input type="checkbox" value="on" name="recordar" /> Recordar sesión</td>
+                    </table>
+                    </form>
+                </div>
+                <script>
+                $(function() {
+                    $("#dialogo-iniciarsesion").dialog({
+                        resizable: false,
+                        autoOpen: false,
+                        width: 'auto',
+                        height: 'auto',
+                        modal: true,
+                        buttons: {
+                            "Iniciar sesión": function() {
+                                $("#form-iniciarsesion").submit();
+                            },
+                            "Cancelar": function() {
+                                $( this ).dialog("close");
+                            }
+                        }
+                    });
+                });
+                </script>
             </div>
             <div id="pie">
                 <div id="google_translate_element"></div>

@@ -40,8 +40,14 @@
     padding: 10px 20px;
 }
 
-.myMenu li a:link.expandiracceso, .myMenu li a:visited.expandiracceso, .myMenu li a:hover.expandiracceso
+.myMenu li a:link.expandirinicio, .myMenu li a:visited.expandirinicio, .myMenu li a:hover.expandirinicio
 {
     background: #1695D6;
+    margin-left: 3px;
+}
+
+.myMenu li a:link.expandircierre, .myMenu li a:visited.expandircierre, .myMenu li a:hover.expandircierre
+{
+    background: #D63016;
     margin-left: 3px;
 }
