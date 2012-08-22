@@ -112,8 +112,8 @@ class ENUsuario
         $obj = new ENUsuario();
         $obj->id = $fila[0];
         $obj->email = utf8_encode($fila[1]);
-        $obj->nombre = utf8_encode($fila[2]);
-        $obj->contrasena = utf8_encode($fila[3]);
+        $obj->contrasena = utf8_encode($fila[2]);
+        $obj->nombre = utf8_encode($fila[3]);
         $obj->telefono = utf8_encode($fila[4]);
         $obj->direccion = utf8_encode($fila[5]);
         $obj->admin = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
@@ -200,6 +200,46 @@ class ENUsuario
         {
             $obj = NULL;
             debug("ENUsuario::getById() ".$e->getMessage());
+        }
+
+        return $obj;
+    }
+    
+    public static function getByEmail($email)
+    {
+        $email = secure(utf8_decode($email));
+        $obj = NULL;
+
+        try
+        {
+            $sentencia = "select *";
+            $sentencia = "$sentencia from usuarios";
+            $sentencia = "$sentencia where email = '$email'";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $fila = mysql_fetch_array($resultado);
+                if ($fila)
+                {
+                    $obj = self::getRow($fila);
+                    if ($obj == NULL)
+                    {
+                        debug("ENUsuario::getByEmail() Usuario nulo $id");
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENUsuario::getByEmail() ".mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $obj = NULL;
+            debug("ENUsuario::getByEmail() ".$e->getMessage());
         }
 
         return $obj;

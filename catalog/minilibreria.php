@@ -19,7 +19,7 @@
             // Si no hay ninguna sesión abierta, intentamos abrir una desde las cookies.
             if (isset($_COOKIE["email"]) && isset($_COOKIE["contrasena"]))
             {
-                $usuario2 = ENUsuario::obtenerPorEmail($_COOKIE["email"]);
+                $usuario2 = ENUsuario::getByEmail($_COOKIE["email"]);
                 if ($usuario2 != null)
                 {
                     if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
@@ -259,6 +259,11 @@
         // done!
         return $results;
 
+    }
+
+    function sha512($string)
+    {
+        return openssl_digest($string, "sha512");
     }
 
     /**
