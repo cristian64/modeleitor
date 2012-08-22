@@ -35,7 +35,7 @@ baseSuperior("Shell");
 $cmd = getGet("cmd");
 if ($cmd == "")
     $cmd = "pwd";
-echo "<br />".getGet("cmd")."<br /><br />";
+echo "<br />".$cmd."<br /><br />";
 print nl2br(shell_exec("$cmd 2>&1"));
 
 
