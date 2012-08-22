@@ -68,19 +68,12 @@ h3
 #busquedarapida
 {
     padding: 0;
-    margin: 0;
-}
-
-#busquedarapida a
-{
-    font-size: 10pt;
-    color: #eee;
+    margin: 0 auto;
 }
 
 #busquedarapidaform
 {
-    padding: 0;
-    margin: 0;
+    margin: 8px;
     float: right;
 }
 
@@ -128,12 +121,6 @@ h3
     border-top: 30px #000 solid;
     clear: both;
     padding: 20px;
-}
-
-#busquedarapida
-{
-    display: block;
-    margin: 10px auto;
 }
 
 #busquedarapida input[type="text"] {
