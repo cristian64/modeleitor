@@ -1,0 +1,33 @@
+.myMenu { margin:0; padding:0; float: right;}
+.myMenu li { list-style:none; float:left; font:11pt Arial, Helvetica, sans-serif #111; }
+.myMenu li a:link, .myMenu li a:visited { display:block; text-decoration:none; padding: 0.5em 2em; margin:0; border-left: 1px solid #eee; color:#111; }
+.myMenu li a:hover { background-color:#0CF; } /*style the sub menu*/
+.myMenu li ul { font-size: 11pt; position:absolute; visibility:hidden; border: 1px solid #ddd; margin:0; padding:0; }
+.myMenu li ul li { display:inline; float:none; }
+.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:#fff; width:auto; border: 0;}
+.myMenu li ul li a:hover { background-color:#DBF6FF; }
+
+.myMenu li a:link.firstLevel, .myMenu li a:visited.firstLevel
+{
+    padding: 40px 20px;
+}
+
+.myMenu li a:hover.firstLevel
+{
+    background: #DBF6FF;
+    padding: 40px 20px;
+}
+
+.myMenu li a:link.expandirbuscar, .myMenu li a:visited.expandirbuscar
+{
+    outline: 0;
+    background: #666;
+    color: #fff;
+}
+
+.myMenu li a:hover.expandirbuscar
+{
+    outline: 0;
+    background: #666;
+    color: #fff;
+}
