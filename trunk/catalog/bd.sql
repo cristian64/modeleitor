@@ -51,6 +51,7 @@ create table categorias
     id_padre int not null default 0,
     nombre varchar(100) not null,
     mostrar tinyint(1) not null default 1,
+    zindex int not null default 0,
     descripcion text not null default '',
     primary key (id)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;

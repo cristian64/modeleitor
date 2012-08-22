@@ -8,6 +8,7 @@ class ENCategoria
     private $id_padre;
     private $nombre;
     private $mostrar;
+    private $zindex;
     private $descripcion;
 
     public function getId()
@@ -45,6 +46,16 @@ class ENCategoria
         $this->mostrar = $mostrar;
     }
     
+    public function getZindex()
+    {
+        return $this->zindex;
+    }
+
+    public function setZindex($zindex)
+    {
+        $this->zindex = $zindex;
+    }
+    
     public function getDescripcion()
     {
         return $this->descripcion;
@@ -61,6 +72,7 @@ class ENCategoria
         $this->id_padre = 0;
         $this->nombre = "";
         $this->mostrar = true;
+        $this->zindex = 0;
         $this->descripcion = "";
     }
 
@@ -71,7 +83,8 @@ class ENCategoria
         $obj->id_padre = $fila[1];
         $obj->nombre = utf8_encode($fila[2]);
         $obj->mostrar = ($fila[3] == "0" || $fila[3] == 0) ? false : true;
-        $obj->descripcion = utf8_encode($fila[4]);
+        $obj->zindex = $fila[4];
+        $obj->descripcion = utf8_encode($fila[5]);
         return $obj;
     }
 
@@ -82,7 +95,7 @@ class ENCategoria
         try
         {
             $condicion = $todas ? "" : "where mostrar = true";
-            $sentencia = "select * from categorias $condicion order by id_padre asc, nombre asc";
+            $sentencia = "select * from categorias $condicion order by id_padre asc, zindex desc, nombre asc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -127,7 +140,7 @@ class ENCategoria
         try
         {
             $condicion = $todas ? "" : "mostrar = true and";
-            $sentencia = "select * from categorias where $condicion id_padre = '$id_padre' order by nombre asc";
+            $sentencia = "select * from categorias where $condicion id_padre = '$id_padre' order by zindex desc, nombre asc";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -215,8 +228,8 @@ class ENCategoria
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into categorias (id_padre, nombre, mostrar, descripcion)";
-                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_padre))."', '".secure(utf8_decode($this->nombre))."', '".($this->mostrar ? 1 : 0)."', '".secure(utf8_decode($this->descripcion))."')";
+                $sentencia = "insert into categorias (id_padre, nombre, mostrar, zindex, descripcion)";
+                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_padre))."', '".secure(utf8_decode($this->nombre))."', '".($this->mostrar ? 1 : 0)."', '".secure(utf8_decode($this->zindex))."', '".secure(utf8_decode($this->descripcion))."')";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -266,7 +279,7 @@ class ENCategoria
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', mostrar = '".($this->mostrar ? 1 : 0)."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
+                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', mostrar = '".($this->mostrar ? 1 : 0)."', id_padre = '".secure(utf8_decode($this->zindex))."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);

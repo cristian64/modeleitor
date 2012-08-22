@@ -27,10 +27,20 @@ img
     src: url("Kabel-Bold.otf") format("opentype");
 }
 
+@font-face
+{
+    font-family: "La-chata-normal";
+    src: url("La-chata-normal.otf") format("opentype");
+}
+
 h3
 {
-    font-size: 20pt;
-    color: #888;
+    font-weight: normal;
+    font-family: "La-chata-normal";
+    font-size: 25pt;
+    color: #666;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 #contenedor
@@ -108,12 +118,6 @@ h3
 #cuerpo
 {
     text-align: left;
-}
-
-#cuerpo h3
-{
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 #pie
@@ -196,7 +200,65 @@ table, tr
     text-align: left;
 }
 
+#admin
+{
+    margin: 50px 0 100px 0;
+}
+
+#admin a
+{
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 40px;
+}
+
+.categoriapadre
+{
+    padding-left: 50px;
+    margin: 5px 0 5px 0;
+}
+
+.categoria
+{
+    padding: 3px;
+}
+
+.categoria:hover
+{
+    background: #FFFB65;
+}
+
+.categoria span
+{
+    float: right;
+}
+
 #mapaapi
 {
     height: 500px;
+}
+
+
+/**********************************************************/
+
+.guapo-form
+{
+    font-size: 10pt;
+}
+
+.guapo-label
+{
+    padding-right: 5px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.guapo-input
+{
+    padding: 5px 0;
+}
+
+.guapo-input input
+{
+    width: 250px;
 }
