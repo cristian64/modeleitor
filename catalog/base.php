@@ -108,9 +108,14 @@ function bloqueCategorias()
         
         echo "    </li>\n";
     }
-    echo "    <li><a href=\"#\" class=\"firstLevel expandirbuscar\" onclick=\"mostrarBusquedaRapida();\">Buscar</a></li>\n";
-    if (getUsuario() == null)
-        echo "    <li><a href=\"#\" class=\"firstLevel expandirbuscar expandirinicio\" onclick=\"$('#dialogo-iniciarsesion').dialog('open');\">Iniciar sesión</a></li>\n";
+    
+    $usuario = getUsuario();
+    if ($usuario != null && $usuario->getAdmin())
+        echo "    <li><a href=\"admin\" class=\"firstLevel\">Administración</a></li>\n";
+    
+    echo "    <li><a href=\"\" class=\"firstLevel expandirbuscar\" onclick=\"mostrarBusquedaRapida(); return false;\">Buscar</a></li>\n";
+    if ($usuario == null)
+        echo "    <li><a href=\"\" class=\"firstLevel expandirbuscar expandirinicio\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Iniciar sesión</a></li>\n";
     else
         echo "    <li><a href=\"cerrarsesion\" class=\"firstLevel expandirbuscar expandircierre\">Cerrar sesión</a></li>\n";
 

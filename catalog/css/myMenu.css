@@ -46,8 +46,20 @@
     margin-left: 3px;
 }
 
+.myMenu li a:hover.expandirinicio
+{
+    background: #0F78AE;
+    margin-left: 3px;
+}
+
 .myMenu li a:link.expandircierre, .myMenu li a:visited.expandircierre, .myMenu li a:hover.expandircierre
 {
     background: #D63016;
+    margin-left: 3px;
+}
+
+.myMenu li a:hover.expandircierre
+{
+    background: #B8220A;
     margin-left: 3px;
 }
