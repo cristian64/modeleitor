@@ -279,7 +279,7 @@ class ENCategoria
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', mostrar = '".($this->mostrar ? 1 : 0)."', id_padre = '".secure(utf8_decode($this->zindex))."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
+                $sentencia = "update categorias set id_padre = '".secure(utf8_decode($this->id_padre))."', nombre = '".secure(utf8_decode($this->nombre))."', mostrar = '".($this->mostrar ? 1 : 0)."', zindex = '".secure(utf8_decode($this->zindex))."', descripcion = '".secure(utf8_decode($this->descripcion))."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);
@@ -302,6 +302,47 @@ class ENCategoria
         }
 
         return $guardado;
+    }
+    
+    public function delete()
+    {
+        $done = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+                
+                $sentencia = "delete from categorias where id = '".secure(utf8_decode($this->id))."'";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {
+                    $sentencia = "delete from categorias_modelos where id_categoria = '".secure(utf8_decode($this->id))."'";
+                    $resultado = mysql_query($sentencia, $conexion);
+                
+                    if ($resultado)
+                    {
+                        $done = true;
+                        BD::desconectar($conexion);
+                        $subcategorias = ENCategoria::getByPadre($this->id);
+                        foreach ($subcategorias as $i)
+                        {
+                            $i->delete();
+                        }
+                        
+                        return $done;
+                    }
+                }
+                debug("ENCategoria::delete() ".mysql_error());
+            }
+            catch (Exception $e)
+            {
+                debug("ENCategoria::delete() ".$e->getMessage());
+            }
+        }
+
+        return $done;
     }
 }
 ?>

@@ -51,7 +51,7 @@ function imprimirCategoria($categoria)
 <div id="dialogo-eliminar" title="¿Eliminar categoría?">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará la categoría y todas las subcategorías.
     Los modelos que pertenezcan a esta categoría se quedarán sin categoría. ¿Continuar?</p>
-    <form id="form-eliminar" method="GET" action="operarcategoria">
+    <form id="form-eliminar" method="POST" action="operarcategoria">
         <input type="hidden" name="id" value="" />
         <input type="hidden" name="op" value="eliminar" />
     </form>
@@ -64,7 +64,7 @@ function imprimirCategoria($categoria)
         <tr><td class="guapo-label">ID de la categoría padre</td><td class="guapo-input"><input type="text" name="id_padre" value="" readonly="readonly" /></td>
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td>
         <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td>
-        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" name="mostrar" checked="checked" /></td>
+        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td>
         <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td>
     </table>
     </form>
@@ -77,7 +77,7 @@ function imprimirCategoria($categoria)
         <input type="hidden" name="op" value="editar" />
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td>
         <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td>
-        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" name="mostrar" checked="checked" /></td>
+        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td>
         <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td>
     </table>
     </form>

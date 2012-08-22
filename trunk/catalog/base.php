@@ -82,6 +82,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
             
             <div id="contenido">
                 <div id="cuerpo">
+                    <?php include('mensajes.php'); ?>
 <?php
 }
 
