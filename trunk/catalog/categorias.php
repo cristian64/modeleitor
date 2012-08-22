@@ -2,6 +2,21 @@
 
 include_once "base.php";
 
+$usuario = getUsuario();
+if ($usuario == null)
+{
+    $_SESSION["mensaje_aviso"] = "Tu sesión ha caducado. Debes iniciar sesión antes de poder ver los datos.";
+    header("location: index.php");
+    exit();
+}
+
+if (!$usuario->getAdmin())
+{
+    $_SESSION["mensaje_aviso"] = "Área restringida a administradores.";
+    header("location: index.php");
+    exit();
+}
+
 baseSuperior("Categorías");
 
 function imprimirCategoria($categoria)
