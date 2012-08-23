@@ -248,5 +248,47 @@ class ENFabricante
 
         return $guardado;
     }
+    
+    public function delete()
+    {
+        $done = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+                
+                $sentencia = "delete from fabricantes where id = '".secure(utf8_decode($this->id))."'";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {                    
+                    $sentencia = "update modelos set id_fabricante = '0' where id_fabricante = '".secure(utf8_decode($this->id))."'";
+                    $resultado = mysql_query($sentencia, $conexion);
+                
+                    if ($resultado)
+                    {
+                        $done = true;
+                    }
+                    else
+                    {
+                        debug("ENMarca::delete() ".mysql_error());
+                    }
+                }
+                else
+                {
+                    debug("ENMarca::delete() ".mysql_error());
+                }
+                
+                BD::desconectar($conexion);
+            }
+            catch (Exception $e)
+            {
+                debug("ENCategoria::delete() ".$e->getMessage());
+            }
+        }
+
+        return $done;
+    }
 }
 ?>
