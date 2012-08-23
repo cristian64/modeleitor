@@ -28,6 +28,7 @@ baseSuperior("Marcas");
             <td>ID</td>
             <td>Logo</td>
             <td>Nombre</td>
+            <td></td>
         </tr>
 <?php
     $marcas = ENMarca::get();
@@ -35,9 +36,9 @@ baseSuperior("Marcas");
     {
         $thumbs = getThumbs($i->getLogo());
         echo "<tr class=\"fila\">";
-        echo "<td>".$i->getId()."</td><td><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()." ";
+        echo "<td>".$i->getId()."</td><td><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td>";
         
-        echo "<div style=\"float: right;\">";
+        echo "<div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
