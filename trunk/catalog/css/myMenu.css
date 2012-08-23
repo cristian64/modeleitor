@@ -9,13 +9,13 @@
 
 .myMenu li a:link.firstLevel, .myMenu li a:visited.firstLevel
 {
-    padding: 40px 20px;
+    padding: 15px 20px;
 }
 
 .myMenu li a:hover.firstLevel
 {
     background: #DBF6FF;
-    padding: 40px 20px;
+    padding: 15px 20px;
 }
 
 .myMenu li a:link.expandirbuscar, .myMenu li a:visited.expandirbuscar
