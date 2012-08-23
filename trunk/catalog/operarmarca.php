@@ -95,7 +95,7 @@ function anadir()
         $marca->saveLogo($_FILES["logo"]);        
         if ($marca->update())
         {
-            $_SESSION["mensaje_exito"] = "La categoría ha sido añadida correctamente";
+            $_SESSION["mensaje_exito"] = "La marca ha sido añadida correctamente";
             header("location: marcas");
             exit();
         }

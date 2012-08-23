@@ -47,9 +47,11 @@
 #mensajes table tr td.columnaizquierda
 {
     text-align: right;
+    padding: 5px;
 }
 
 #mensajes table tr td.columnaderecha
 {
     text-align: left;
+    padding: 5px;
 }
