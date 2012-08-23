@@ -63,8 +63,7 @@ h3
 #contenido
 {
     background: url("fondo_contenido.png");
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 55px 0;
 }
 
 #titulo, #menu, #cuerpo, #busquedarapida
@@ -87,11 +86,15 @@ h3
     float: right;
 }
 
+#titulo
+{
+    position: relative;
+}
+
 #titulo h1
 {
-    float: left;
-    margin: 0;
-    margin-top: 10px;
+    position: absolute;
+    left: 0;
 }
 
 #titulo h1 a
@@ -99,10 +102,9 @@ h3
     color: #555;
     text-decoration: none;
     display: block;
-    background-image: url("calzadosjam_logo.png");
-    background-repeat: no-repeat;
-    width: 151px;
-    height: 70px;
+    background: url("calzadosjam_tarjeta.png") bottom no-repeat;
+    width: 158px;
+    height: 90px;
 }
 
 #titulo span
@@ -110,15 +112,9 @@ h3
     display: none;
 }
 
-#titulo
-{
-    text-align: left;
-}
-
 #cuerpo
 {
     text-align: left;
-    padding-bottom: 35px;
 }
 
 #pie
