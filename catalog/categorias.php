@@ -55,7 +55,7 @@ function imprimirCategoria($categoria)
 }
 
 ?>
-<h3>Panel de Administración: Categorías</h3>
+<h3>Categorías</h3>
 <div>
 <?php
     $categoria = new ENCategoria();
@@ -76,11 +76,11 @@ function imprimirCategoria($categoria)
     <form id="form-anadir" method="POST" action="operarcategoria">
     <table class="guapo-form">
         <input type="hidden" name="op" value="anadir" />
-        <tr><td class="guapo-label">ID de la categoría padre</td><td class="guapo-input"><input type="text" name="id_padre" value="" readonly="readonly" /></td>
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td>
-        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td>
-        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td>
-        <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td>
+        <tr><td class="guapo-label">ID de la categoría padre</td><td class="guapo-input"><input type="text" name="id_padre" value="" readonly="readonly" /></td><tr/>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
+        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td><tr/>
+        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td><tr/>
+        <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td><tr/>
     </table>
     </form>
 </div>
@@ -88,12 +88,12 @@ function imprimirCategoria($categoria)
 <div id="dialogo-editar" title="Editar categoría">
     <form id="form-editar" method="POST" action="operarcategoria">
     <table class="guapo-form">
-        <input type="hidden" name="id" value="" />
         <input type="hidden" name="op" value="editar" />
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td>
-        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td>
-        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td>
-        <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td>
+        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td><tr/>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
+        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td><tr/>
+        <tr><td class="guapo-label">Mostra en el menú</td><td class="guapo-input"><input type="checkbox" value="yes" name="mostrar" checked="checked" /></td><tr/>
+        <tr><td class="guapo-label">Z-Index</td><td class="guapo-input"><input type="text" name="zindex" value="0" /></td><tr/>
     </table>
     </form>
 </div>

@@ -135,6 +135,98 @@ class ENMarca
 
         return $obj;
     }
+    
+    public function delete()
+    {
+        $done = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+                
+                $sentencia = "delete from marcas where id = '".secure(utf8_decode($this->id))."'";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {                    
+                    $sentencia = "update modelos set id_marca = '0' where id_marca = '".secure(utf8_decode($this->id))."'";
+                    $resultado = mysql_query($sentencia, $conexion);
+                
+                    if ($resultado)
+                    {
+                        $done = true;
+                    }
+                    else
+                    {
+                        debug("ENMarca::delete() ".mysql_error());
+                    }
+                }
+                else
+                {
+                    debug("ENMarca::delete() ".mysql_error());
+                }
+                
+                BD::desconectar($conexion);
+                
+                // Hay que intentar borrar las anteriores. No importa si falla.
+                borrar("img/marcas/".$this->getLogo());
+                $thumbs = getThumbs($this->getLogo());
+                foreach ($thumbs as $thumb)
+                    borrar("img/marcas/".$thumb);
+            }
+            catch (Exception $e)
+            {
+                debug("ENCategoria::delete() ".$e->getMessage());
+            }
+        }
+
+        return $done;
+    }
+    
+    function saveLogo($httpPostFile)
+    {
+        //http://emilio.aesinformatica.com/2007/05/03/subir-una-imagen-con-php/
+        $creada = false;
+
+        if (is_uploaded_file($httpPostFile['tmp_name']))
+        {
+            // Hay que intentar borrar las anteriores. No importa si falla.
+            borrar("img/marcas/".$this->getLogo());
+            $thumbs = getThumbs($this->getLogo());
+            foreach ($thumbs as $thumb)
+                borrar("img/marcas/".$thumb);
+
+            $nombre = $this->id;
+            $extension = pathinfo($httpPostFile['name'], PATHINFO_EXTENSION);
+
+            $this->setLogo("$nombre.$extension");
+            $thumbs = getThumbs("$nombre.$extension");
+            $rutaFoto = "img/marcas/".$this->getLogo();
+
+            // Luego hay que copiar el fichero de la imagen a la ruta de la foto.
+            if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
+            {
+                if (@chmod($rutaFoto,0777))
+                {
+                    $counter = 1;
+                    foreach ($thumbs as $thumb)
+                    {
+                        $rutaThumb = "img/marcas/".$thumb;
+                        $miniatura=new thumbnail($rutaFoto);
+                        $miniatura->size_auto(100 * $counter++);
+                        $miniatura->jpeg_quality(100);
+                        $miniatura->save($rutaThumb);
+                        @chmod($rutaThumb,0777);
+                    }
+
+                    $creada = true;
+                }
+            }
+        }
+
+        return $creada;
+    }
 
     public function save()
     {

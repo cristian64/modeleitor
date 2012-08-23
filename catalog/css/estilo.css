@@ -118,6 +118,7 @@ h3
 #cuerpo
 {
     text-align: left;
+    padding-bottom: 35px;
 }
 
 #pie
@@ -171,6 +172,46 @@ input.blur
     color: #888;
 }
 
+.cabecera td {
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    border-color: #AED0EA #AED0EA #000000 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    font-weight: bold;
+    height: 60px;
+    padding: 5px;
+    text-align: center;
+
+    background: #C2E3FD;
+    background: -moz-linear-gradient(center top , #DAEEFB, #C2E3FD) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#DAEEFB), to(#C2E3FD));
+    border-color: #93CEF8 #79BCEA #79BCEA;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 #EDF9FF inset;
+    color: #1E75BD;
+}
+
+.fila td
+{
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.fila
+{
+    background: #fff;
+}
+
+.fila:hover
+{
+    background-color: #ddd;
+}
+
 ol
 {
     margin-top: 10px;
@@ -186,6 +227,8 @@ ul
 table, tr
 {
     border: 0;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 #externo
@@ -261,4 +304,9 @@ table, tr
 .guapo-input input
 {
     width: 250px;
+}
+
+.guapo-input input[type=file]
+{
+    width: auto;
 }

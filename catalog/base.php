@@ -16,7 +16,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Calzados JAM - <?php echo $titulo; ?></title>
         
-        <link type="text/css" rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.23.custom.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/sunny/jquery-ui-1.8.23.custom.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/orbit/orbit-1.2.3.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />

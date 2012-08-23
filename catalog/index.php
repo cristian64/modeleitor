@@ -2,7 +2,7 @@
 
 include_once "base.php";
 
-baseSuperior("Shell");
+baseSuperior("Inicio");
 ?>
 
     <div id="externo">

@@ -19,7 +19,7 @@ if (!$usuario->getAdmin())
 
 baseSuperior("Shell");
 ?>
-
+<h3>Shell</h3>
         <div id="usuarios">
             <form action="shell.php" method="get">
                 <div><input id="inputcillo" type="text" value="" name="cmd" style="width: 500px;"/></div>
