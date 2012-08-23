@@ -88,34 +88,21 @@ function editar()
 
 function anadir()
 {
-    $id_padre = getPost("id_padre");
-    if (intval($id_padre) == 0 || ENCategoria::getById($id_padre) != null)
+    $marca = new ENMarca();
+    $marca->setNombre(getPost("nombre"));
+    if ($marca->save())
     {
-        $categoria = new ENCategoria();
-        $categoria->setIdPadre($id_padre);
-        $categoria->setNombre(getPost("nombre"));
-        $categoria->setDescripcion(getPost("descripcion"));
-        $categoria->setZindex(getPost("zindex"));
-        $categoria->setMostrar(getPost("mostrar") == "yes");
-        if ($categoria->save())
+        $marca->saveLogo($_FILES["logo"]);        
+        if ($marca->update())
         {
             $_SESSION["mensaje_exito"] = "La categoría ha sido añadida correctamente";
             header("location: marcas");
             exit();
         }
-        else
-        {
-            $_SESSION["mensaje_error"] = "No se pudo añadir la categoría";
-            header("location: marcas");
-            exit();
-        }        
     }
-    else
-    {
-        $_SESSION["mensaje_error"] = "No se pudo encontrar la categoría padre $id_padre";
-        header("location: marcas");
-        exit();
-    }
+    $_SESSION["mensaje_error"] = "No se pudo añadir la marca";
+    header("location: marcas");
+    exit();
 }
 
 
