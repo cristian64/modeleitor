@@ -130,9 +130,9 @@ function baseInferior()
                 <div id="dialogo-iniciarsesion" title="Iniciar sesión">
                     <form id="form-iniciarsesion" method="POST" action="iniciarsesion">
                     <table class="guapo-form">
-                        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td>
-                        <tr><td class="guapo-label">Contraseña</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td>
-                        <tr><td class="guapo-label"></td><td class="guapo-input"><input type="checkbox" value="on" name="recordar" /> Recordar sesión</td>
+                        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
+                        <tr><td class="guapo-label">Contraseña</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td></tr>
+                        <tr><td class="guapo-label"></td><td class="guapo-input"><input type="checkbox" value="on" name="recordar" /> Recordar sesión</td></tr>
                     </table>
                     </form>
                 </div>

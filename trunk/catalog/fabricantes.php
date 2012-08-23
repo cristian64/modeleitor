@@ -30,15 +30,16 @@ baseSuperior("Fabricantes");
             <td>Email</td>
             <td>Teléfono</td>
             <td>Descripción</td>
+            <td></td>
         </tr>
 <?php
     $fabricantes = ENFabricante::get();
     foreach ($fabricantes as $i)
     {
         echo "<tr class=\"fila\">";
-        echo "<td>".$i->getId()."</td><td>".$i->getNombre()."</td><td>".$i->getEmail()."</td><td>".$i->getTelefono()."</td><td>".$i->getDescripcion()." ";
+        echo "<td>".$i->getId()."</td><td>".$i->getNombre()."</td><td>".$i->getEmail()."</td><td>".$i->getTelefono()."</td><td>".$i->getDescripcion()."</td><td>";
         
-        echo "<div style=\"float: right;\">";
+        echo "<div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
