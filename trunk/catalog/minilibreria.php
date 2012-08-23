@@ -147,6 +147,14 @@
         return $creada;
     }
     
+    function getThumbs($filename)
+    {
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $nombre = basename($filename, ".$extension");
+
+        return array("$nombre.thumb1.$extension", "$nombre.thumb2.$extension", "$nombre.thumb3.$extension", "$nombre.thumb4.$extension", "$nombre.thumb5.$extension");
+    }
+    
     function debug($cadena)
     {
         echo $cadena."<br />";
