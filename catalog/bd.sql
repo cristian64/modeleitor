@@ -40,6 +40,7 @@ create table modelos
     oferta tinyint(1) not null default 0,
     prioridad int not null default 5,
     descatalogado tinyint(1) not null default 0,
+    foto varchar(256) not null default '',
     fecha_creacion datetime not null,
     fecha_modificacion datetime not null,
     primary key (id)

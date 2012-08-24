@@ -37,7 +37,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="js/formularios.js" type="text/javascript"></script>
         <script src="js/cookies.js" type="text/javascript"></script>
         
-        <meta name="google-translate-customization" content="83036bbb495e9259-b92db425e1be685c-g15db1c5c55c82e4b-12" />
+        <!--<meta name="google-translate-customization" content="83036bbb495e9259-b92db425e1be685c-g15db1c5c55c82e4b-12" />-->
     </head>
     <body>
         <div id="contenedor">
@@ -109,9 +109,26 @@ function bloqueCategorias()
         echo "    </li>\n";
     }
     
+    echo "<li><a href=\"#\" class=\"firstLevel\">Marcas</a><ul>\n";
+    $marcas = ENMarca::get();
+    foreach ($marcas as $i)
+    {
+        echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".$i->getNombre()."</a></li>\n";
+    }
+    echo "</ul></li>\n";
+    
     $usuario = getUsuario();
     if ($usuario != null && $usuario->getAdmin())
-        echo "    <li><a href=\"admin\" class=\"firstLevel\">Administración</a></li>\n";
+    {
+        echo "    <li><a href=\"admin\" class=\"firstLevel\">Administración</a><ul>";
+        echo "<li><a href=\"modelos\">Modelos</a></li>";
+        echo "<li><a href=\"categorias\">Categorías</a></li>";
+        echo "<li><a href=\"marcas\">Marcas</a></li>";
+        echo "<li><a href=\"fabricantes\">Fabricantes</a></li>";
+        echo "<li><a href=\"usuarios\">Usuarios</a></li>";
+        echo "<li><a href=\"shell\">Shell</a></li>";
+        echo "</ul></li>\n";
+    }
     
     echo "    <li><a href=\"\" class=\"firstLevel expandirbuscar\" onclick=\"mostrarBusquedaRapida(); return false;\">Buscar</a></li>\n";
     if ($usuario == null)
@@ -160,7 +177,7 @@ function baseInferior()
                 <div id="google_translate_element"></div>
                 <script type="text/javascript">
                     function googleTranslateElementInit() {
-                    new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+                        new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
                     }
                 </script>
                 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
