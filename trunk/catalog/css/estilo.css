@@ -179,7 +179,7 @@ input.blur
     border-width: 1px !important;
     font-weight: bold;
     height: 60px;
-    padding: 5px;
+    padding: 5px 10px;
     text-align: center;
 
     background: #C2E3FD;
@@ -194,18 +194,24 @@ input.blur
 
 .fila td
 {
-    padding: 8px;
+    padding: 8px 10px;
     border: 1px solid #000;
 }
 
 .fila
 {
     background: #fff;
+    white-space: nowrap;
 }
 
 .fila:hover
 {
     background-color: #ddd;
+}
+
+.estirar
+{
+    width: 100%;
 }
 
 ol

@@ -26,7 +26,7 @@ baseSuperior("Fabricantes");
     <table>
         <tr class="cabecera">
             <td>ID</td>
-            <td>Nombre</td>
+            <td class="estirar">Nombre</td>
             <td>Email</td>
             <td>Teléfono</td>
             <td>Descripción</td>
@@ -37,9 +37,13 @@ baseSuperior("Fabricantes");
     foreach ($fabricantes as $i)
     {
         echo "<tr class=\"fila\">";
-        echo "<td>".$i->getId()."</td><td>".$i->getNombre()."</td><td>".$i->getEmail()."</td><td>".$i->getTelefono()."</td><td>".$i->getDescripcion()."</td><td>";
+        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td>";
+        echo "<td>".$i->getNombre()."</td>";
+        echo "<td align=\"center\">".$i->getEmail()."</td>";
+        echo "<td align=\"center\">".$i->getTelefono()."</td>";
+        echo "<td>".$i->getDescripcion()."</td>";
         
-        echo "<div>";
+        echo "<td align=\"center\"><div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
