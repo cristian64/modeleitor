@@ -1,6 +1,7 @@
 <?php
     session_start();
-
+    
+    require_once 'mobile_device_detect.php';
     require_once 'resize.php';
     require_once 'constantes.php';
     require_once 'BD.php';
