@@ -37,13 +37,13 @@ baseSuperior("Fabricantes");
     foreach ($fabricantes as $i)
     {
         echo "<tr class=\"fila\">";
-        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td>";
+        echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td>".$i->getNombre()."</td>";
-        echo "<td align=\"center\">".$i->getEmail()."</td>";
-        echo "<td align=\"center\">".$i->getTelefono()."</td>";
+        echo "<td class=\"centrada\">".$i->getEmail()."</td>";
+        echo "<td class=\"centrada\">".$i->getTelefono()."</td>";
         echo "<td>".$i->getDescripcion()."</td>";
         
-        echo "<td align=\"center\"><div>";
+        echo "<td class=\"centrada\"><div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
@@ -63,32 +63,32 @@ baseSuperior("Fabricantes");
 <div id="dialogo-eliminar" title="¿Eliminar fabricante?">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará el fabricante. Los modelos que pertenezcan a este fabricante se quedarán sin fabricante. ¿Continuar?</p>
     <form id="form-eliminar" method="POST" action="operarfabricante">
-        <input type="hidden" name="id" value="" />
-        <input type="hidden" name="op" value="eliminar" />
+        <div><input type="hidden" name="id" value="" /></div>
+        <div><input type="hidden" name="op" value="eliminar" /></div>
     </form>
 </div>
 
 <div id="dialogo-anadir" title="Añadir marca">
     <form id="form-anadir" method="POST" action="operarfabricante">
+    <div><input type="hidden" name="op" value="anadir" /></div>
     <table class="guapo-form">
-        <input type="hidden" name="op" value="anadir" />
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td><tr/>
-        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td><tr/>
-        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td><tr/>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
+        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
+        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td></tr>
     </table>
     </form>
 </div>
 
 <div id="dialogo-editar" title="Editar marca">
     <form id="form-editar" method="POST" action="operarfabricante">
+    <div><input type="hidden" name="op" value="editar" /></div>
     <table class="guapo-form">
-        <input type="hidden" name="op" value="editar" />
-        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td><tr/>
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td><tr/>
-        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td><tr/>
-        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td><tr/>
+        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
+        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
+        <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td></tr>
     </table>
     </form>
 </div>
