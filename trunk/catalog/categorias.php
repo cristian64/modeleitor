@@ -69,7 +69,7 @@ function imprimirCategoria($categoria, $nivel)
         <tr class="cabecera">
             <td>ID</td>
             <td class="estirar">Nombre</td>
-            <td>Mostrada</td>
+            <td>Mostrar</td>
             <td>Orden</td>
             <td></td>
         </tr>

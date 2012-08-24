@@ -1,21 +1,26 @@
 .myMenu { margin:0; padding:0; float: right; z-index: 10; }
 .myMenu li { list-style:none; float:left; font:11pt Arial, Helvetica, sans-serif; z-index: 10;}
 .myMenu li a:link, .myMenu li a:visited { display:block; text-decoration:none; padding: 0.5em 2em; margin:0; border-left: 1px solid #eee; color:#111; z-index: 10;}
-.myMenu li a:hover { background-color:#0CF; z-index: 5;} /*style the sub menu*/
-.myMenu li ul { font-size: 11pt; position:absolute; visibility:hidden; border: 1px solid #ddd; margin:0; padding:0; z-index: 10;}
+.myMenu li a:hover { z-index: 5;} /*style the sub menu*/
+.myMenu li ul { font-size: 11pt; position:absolute; visibility:hidden; border: 1px solid #ddd; margin:0; padding:0; z-index: 10; box-shadow: 1px 1px 2px -1px black;}
 .myMenu li ul li { display:inline; float:none; z-index: 10;}
-.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:#fff; width:auto; border: 0;z-index: 10;}
-.myMenu li ul li a:hover { background-color:#DBF6FF; z-index: 10;}
+.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:rgba(255,255,255,0.95); width:auto; border: 0;z-index: 10;}
+.myMenu li ul li a:hover { background-color:rgba(240,240,240,0.95); z-index: 10; }
 
 .myMenu li a:link.firstLevel, .myMenu li a:visited.firstLevel
 {
-    padding: 15px 20px;
+    padding: 10px 20px;
 }
 
 .myMenu li a:hover.firstLevel
 {
-    background: #DBF6FF;
-    padding: 15px 20px;
+    background: rgba(240,240,240,0.95);
+    padding: 10px 20px;
+}
+
+.myMenu li a:hover.seleccionada
+{
+    box-shadow: 0 8px 6px -6px black;
 }
 
 .myMenu li a:link.expandirbuscar, .myMenu li a:visited.expandirbuscar
@@ -26,7 +31,7 @@
     font-size: 9pt;
     font-weight: bold;
     margin-left: 15px;
-    padding: 10px 20px;
+    padding: 5px 20px;
 }
 
 .myMenu li a:hover.expandirbuscar
@@ -37,7 +42,7 @@
     font-size: 9pt;
     font-weight: bold;
     margin-left: 15px;
-    padding: 10px 20px;
+    padding: 5px 20px;
 }
 
 .myMenu li a:link.expandirinicio, .myMenu li a:visited.expandirinicio, .myMenu li a:hover.expandirinicio

@@ -61,7 +61,7 @@ function registrarCoordenadas(event)
     foreach ($modelos as $i)
     {
         $thumbs = getThumbs($i->getFoto());
-        echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[3]."')\">";
+        echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[1]."')\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td class=\"centrada\">".$i->getReferencia()."</td>";
         echo "<td>".$i->getNombre()."</td>";

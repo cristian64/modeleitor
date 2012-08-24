@@ -2,6 +2,12 @@
 
 require_once("minilibreria.php");
 
+if (mobile_device_detect())
+{
+    header('location: http://www.calzadosjam.es/movil');
+    exit();
+}
+
 /**
  *
  * @param String $titulo Título (<title>) que tendrá la página.
