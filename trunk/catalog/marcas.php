@@ -55,15 +55,15 @@ baseSuperior("Marcas");
 <div id="dialogo-eliminar" title="¿Eliminar marca?">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará la marca. Los modelos que pertenezcan a esta marca se quedarán sin marca. ¿Continuar?</p>
     <form id="form-eliminar" method="POST" action="operarmarca">
-        <input type="hidden" name="id" value="" />
-        <input type="hidden" name="op" value="eliminar" />
+        <div><input type="hidden" name="id" value="" /></div>
+        <div><input type="hidden" name="op" value="eliminar" /></div>
     </form>
 </div>
 
 <div id="dialogo-anadir" title="Añadir marca">
     <form id="form-anadir" method="POST" action="operarmarca" enctype="multipart/form-data">
+    <div><input type="hidden" name="op" value="anadir" /></div>
     <table class="guapo-form">
-        <input type="hidden" name="op" value="anadir" />
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
         <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
     </table>
@@ -72,8 +72,8 @@ baseSuperior("Marcas");
 
 <div id="dialogo-editar" title="Editar marca">
     <form id="form-editar" method="POST" action="operarmarca" enctype="multipart/form-data">
+    <div><input type="hidden" name="op" value="editar" /></div>
     <table class="guapo-form">
-        <input type="hidden" name="op" value="editar" />
         <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td><tr/>
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
         <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
