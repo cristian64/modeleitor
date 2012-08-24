@@ -36,7 +36,7 @@ baseSuperior("Marcas");
     {
         $thumbs = getThumbs($i->getLogo());
         echo "<tr class=\"fila\">";
-        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td><td align=\"center\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td align=\"center\">";
+        echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td><td class=\"centrada\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td class=\"centrada\">";
         
         echo "<div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
@@ -64,8 +64,8 @@ baseSuperior("Marcas");
     <form id="form-anadir" method="POST" action="operarmarca" enctype="multipart/form-data">
     <div><input type="hidden" name="op" value="anadir" /></div>
     <table class="guapo-form">
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
     </table>
     </form>
 </div>
@@ -74,9 +74,9 @@ baseSuperior("Marcas");
     <form id="form-editar" method="POST" action="operarmarca" enctype="multipart/form-data">
     <div><input type="hidden" name="op" value="editar" /></div>
     <table class="guapo-form">
-        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td><tr/>
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
+        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
     </table>
     </form>
 </div>

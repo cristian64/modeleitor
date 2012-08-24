@@ -214,6 +214,11 @@ input.blur
     width: 100%;
 }
 
+.centrada
+{
+    text-align: center;
+}
+
 ol
 {
     margin-top: 10px;

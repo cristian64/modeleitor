@@ -17,7 +17,7 @@ if (!$usuario->getAdmin())
     exit();
 }
 
-baseSuperior("Marcas");
+baseSuperior("Modelos");
 
 ?>
 <div id="capaimagenraton" style="display: none; position: absolute; z-index: 10;"><img id="imagenraton" src="img/no_disponible.png" alt="" style="border: 1px solid #000;"/></div>
@@ -62,16 +62,16 @@ function registrarCoordenadas(event)
     {
         $thumbs = getThumbs($i->getFoto());
         echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[3]."')\">";
-        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td>";
-        echo "<td align=\"center\">".$i->getReferencia()."</td>";
+        echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
+        echo "<td class=\"centrada\">".$i->getReferencia()."</td>";
         echo "<td>".$i->getNombre()."</td>";
-        echo "<td align=\"center\">".$i->getPrecio()."</td>";
-        echo "<td align=\"center\">".$i->getNumeracion()."</td>";
-        echo "<td align=\"center\">".$i->getFabricanteStr()."</td>";
-        echo "<td align=\"center\">".$i->getMarcaStr()."</td>";
-        echo "<td align=\"center\">".$i->getPrioridad()."</td>";
+        echo "<td class=\"centrada\">".$i->getPrecio()."</td>";
+        echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
+        echo "<td class=\"centrada\">".$i->getFabricanteStr()."</td>";
+        echo "<td class=\"centrada\">".$i->getMarcaStr()."</td>";
+        echo "<td class=\"centrada\">".$i->getPrioridad()."</td>";
         
-        echo "<td align=\"center\"><div>";
+        echo "<td class=\"centrada\"><div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";

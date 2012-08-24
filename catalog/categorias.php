@@ -30,7 +30,7 @@ function imprimirCategoria($categoria, $nivel)
 {
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     echo "<tr class=\"fila\">";
-    echo "<td align=\"center\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td align=\"center\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td align=\"center\">".$categoria->getZindex()."</td><td align=\"center\"><div>";
+    echo "<td class=\"centrada\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td class=\"centrada\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td class=\"centrada\">".$categoria->getZindex()."</td><td class=\"centrada\"><div>";
     echo "<a class=\"freshbutton-green\" onclick=\"$('#form-anadir input[name=id_padre]').val(".$categoria->getId()."); $('#dialogo-anadir').dialog('open');\">Añadir</a> ";
     
     if ($categoria->getId() > 0)
