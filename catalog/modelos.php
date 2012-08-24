@@ -20,25 +20,58 @@ if (!$usuario->getAdmin())
 baseSuperior("Marcas");
 
 ?>
+<div id="capaimagenraton" style="display: none; position: absolute; z-index: 10;"><img id="imagenraton" src="img/no_disponible.png" alt="" style="border: 1px solid #000;"/></div>
+<script type="text/javascript">
+function mostrarImagenRaton(ruta)
+{
+    document.getElementById("imagenraton").src = ruta;
+    document.getElementById("capaimagenraton").style.display = "block";
+    document.getElementById("capaimagenraton").style.top = (posY) + "px";
+    document.getElementById("capaimagenraton").style.left = (posX-30-document.getElementById("imagenraton").width) + "px";
+}
+
+function ocultarImagenRaton()
+{
+    document.getElementById("capaimagenraton").style.display = "none";
+}
+
+function registrarCoordenadas(event)
+{
+    document.getElementById("capaimagenraton").style.top = (event.clientY)+document.documentElement.scrollTop + "px";
+    document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
+}
+</script>
 <div style="float: right; padding-top: 20px;"><a class="freshbutton-green" onclick="$('#dialogo-anadir').dialog('open');">Añadir</a></div>
-<h3>Marcas</h3>
+<h3>Modelos</h3>
 <div>
-    <table>
+    <table onmousemove="registrarCoordenadas(event);">    
         <tr class="cabecera">
             <td>ID</td>
-            <td>Logo</td>
+            <td>Referencia</td>
             <td class="estirar">Nombre</td>
+            <td>Precio</td>
+            <td>Numeración</td>
+            <td>Fabricante</td>
+            <td>Marca</td>
+            <td>Prioridad</td>
             <td></td>
         </tr>
 <?php
-    $marcas = ENMarca::get();
-    foreach ($marcas as $i)
+    $modelos = ENModelo::get();
+    foreach ($modelos as $i)
     {
-        $thumbs = getThumbs($i->getLogo());
-        echo "<tr class=\"fila\">";
-        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td><td align=\"center\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td align=\"center\">";
+        $thumbs = getThumbs($i->getFoto());
+        echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[3]."')\">";
+        echo "<td align=\"center\">".rellenar($i->getId(), '0', 6)."</td>";
+        echo "<td align=\"center\">".$i->getReferencia()."</td>";
+        echo "<td>".$i->getNombre()."</td>";
+        echo "<td align=\"center\">".$i->getPrecio()."</td>";
+        echo "<td align=\"center\">".$i->getNumeracion()."</td>";
+        echo "<td align=\"center\">".$i->getFabricanteStr()."</td>";
+        echo "<td align=\"center\">".$i->getMarcaStr()."</td>";
+        echo "<td align=\"center\">".$i->getPrioridad()."</td>";
         
-        echo "<div>";
+        echo "<td align=\"center\"><div>";
         echo "<a class=\"freshbutton-blue\" onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
@@ -52,9 +85,9 @@ baseSuperior("Marcas");
 ?>
     </table>
 
-<div id="dialogo-eliminar" title="¿Eliminar marca?">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará la marca. Los modelos que pertenezcan a esta marca se quedarán sin marca. ¿Continuar?</p>
-    <form id="form-eliminar" method="POST" action="operarmarca">
+<div id="dialogo-eliminar" title="¿Eliminar modelo?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará el modelo definitivamente. ¿Continuar?</p>
+    <form id="form-eliminar" method="POST" action="operarmodelo">
         <div><input type="hidden" name="id" value="" /></div>
         <div><input type="hidden" name="op" value="eliminar" /></div>
     </form>
@@ -64,8 +97,8 @@ baseSuperior("Marcas");
     <form id="form-anadir" method="POST" action="operarmarca" enctype="multipart/form-data">
     <div><input type="hidden" name="op" value="anadir" /></div>
     <table class="guapo-form">
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
     </table>
     </form>
 </div>
@@ -74,9 +107,9 @@ baseSuperior("Marcas");
     <form id="form-editar" method="POST" action="operarmarca" enctype="multipart/form-data">
     <div><input type="hidden" name="op" value="editar" /></div>
     <table class="guapo-form">
-        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td><tr/>
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td><tr/>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" value="" /></td><tr/>
+        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
     </table>
     </form>
 </div>

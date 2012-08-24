@@ -30,7 +30,7 @@ function imprimirCategoria($categoria, $nivel)
 {
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     echo "<tr class=\"fila\">";
-    echo "<td>".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td>".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td>".$categoria->getZindex()."</td><td><div>";
+    echo "<td align=\"center\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td align=\"center\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td align=\"center\">".$categoria->getZindex()."</td><td align=\"center\"><div>";
     echo "<a class=\"freshbutton-green\" onclick=\"$('#form-anadir input[name=id_padre]').val(".$categoria->getId()."); $('#dialogo-anadir').dialog('open');\">Añadir</a> ";
     
     if ($categoria->getId() > 0)
@@ -68,7 +68,7 @@ function imprimirCategoria($categoria, $nivel)
     <table>
         <tr class="cabecera">
             <td>ID</td>
-            <td>Nombre</td>
+            <td class="estirar">Nombre</td>
             <td>Mostrada</td>
             <td>Orden</td>
             <td></td>
