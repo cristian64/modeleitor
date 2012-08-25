@@ -13,7 +13,7 @@ if (mobile_device_detect())
  * @param String $titulo Título (<title>) que tendrá la página.
  */
 function baseSuperior($titulo, $mostrarmenu = true)
-{
+{    
     if ($titulo == "")
         $titulo = "Inicio";
 ?><!DOCTYPE html>
@@ -23,7 +23,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <title>Calzados JAM - <?php echo $titulo; ?></title>
         
         <link type="text/css" rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.23.custom.css" media="screen" />
-        <link type="text/css" rel="stylesheet" href="css/orbit/orbit-1.2.3.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/responsiveslides/responsiveslides.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
@@ -36,7 +36,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-        <script src="js/jquery.orbit-1.2.3.min.js"></script>
+        <script src="js/responsiveslides.min.js"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
         <script src="js/thickbox.js" type="text/javascript"></script>
@@ -48,13 +48,32 @@ function baseSuperior($titulo, $mostrarmenu = true)
     <body>
         <div id="contenedor">
             <div id="cabecera">
-                <div id="busquedarapida"><form id="busquedarapidaform" method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /></form><div style="clear:both;"></div></div>
+                <div id="contenido-cabecera">                    
+                    <table id="tabla-cabecera">
+                        <tr>
+                            <td id="titulo">
+                                <h1><a href="index.php"><span>Calzados JAM</span></a></h1>
+                            </td>
+                            <td class="estirar"></td>
+                            <td id="busqueda">
+                                <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /></form>
+                            </td>
+                            <td id="session">
+                                <?php
+                                    $usuario = getUsuario();
+                                    if ($usuario == null)
+                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Iniciar sesión</a>\n";
+                                    else
+                                        echo "<a href=\"cerrarsesion\" class=\"btnrojo\">Cerrar sesión</a>\n";
+                                ?>
+                            </td>
+                            <td><a href="registrarse" class="btnazul">Registrarse</a>
+                            </td>
+                        </tr>                    
+                    </table>
+                </div>
             </div>
             <div id="barra">
-                
-                <div id="titulo">
-                    <h1><a href="index.php"><span>Calzados JAM</span></a></h1>
-                </div>
                 
                 <?php bloqueCategorias(); ?>
                 <script type="text/javascript">
@@ -68,18 +87,6 @@ function baseSuperior($titulo, $mostrarmenu = true)
                             $(this).find('ul').css('visibility', 'hidden');
                         };
                     });
-                    
-                    $("#busquedarapidaform").hide();
-                    var mostradaBusquedaRapida = false;
-                    function mostrarBusquedaRapida()
-                    {
-                        if (!mostradaBusquedaRapida)
-                            $("#busquedarapidaform").show("blind");                        
-                        else
-                            $("#busquedarapidaform").hide("blind");
-                            
-                        mostradaBusquedaRapida = !mostradaBusquedaRapida;
-                    }
                 </script>
                 
                 <div style="clear:both;"></div>
@@ -135,12 +142,6 @@ function bloqueCategorias()
         echo "<li><a href=\"shell\">Shell</a></li>";
         echo "</ul></li>\n";
     }
-    
-    echo "    <li><a href=\"\" class=\"firstLevel expandirbuscar\" onclick=\"mostrarBusquedaRapida(); return false;\">Buscar</a></li>\n";
-    if ($usuario == null)
-        echo "    <li><a href=\"\" class=\"firstLevel expandirbuscar expandirinicio\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Iniciar sesión</a></li>\n";
-    else
-        echo "    <li><a href=\"cerrarsesion\" class=\"firstLevel expandirbuscar expandircierre\">Cerrar sesión</a></li>\n";
 
     echo "</ul>\n";
     echo "</div>\n";

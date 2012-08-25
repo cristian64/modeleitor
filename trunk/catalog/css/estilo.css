@@ -49,8 +49,8 @@ h3
 
 #cabecera
 {
-    background-color: #666;
-    padding: 2px 0;
+    background: #333;
+    border-bottom: 1px solid #333;
 }
 
 #barra
@@ -65,29 +65,30 @@ h3
     box-shadow: inset 0px 1px 1px #999;
 }
 
-#titulo, #menu, #cuerpo, #busquedarapida
+#menu, #cuerpo, #contenido-cabecera
 {
     margin: auto;
     max-width: 1300px;
-    min-width: 960px;
+    min-width: 750px;
     width: 98%;
 }
 
-#busquedarapida
+#tabla-cabecera tr, #tabla-cabecera tr td
 {
-    padding: 0;
-    margin: 0 auto;
+    /*border: 1px solid #fff;*/
 }
 
-#busquedarapidaform
+#tabla-cabecera tr
 {
-    margin: 8px;
-    float: right;
+    white-space: nowrap;
 }
 
-#titulo h1
+#tabla-cabecera
 {
-    float: left;
+    text-align: center;
+    vertical-align: middle;
+    border-collapse: separate;
+    border-spacing: 10px 0;
 }
 
 #titulo h1 a
@@ -95,10 +96,9 @@ h3
     color: #555;
     text-decoration: none;
     display: block;
-    background: url("calzadosjam_logo.png") bottom no-repeat;
-    width: 82px;
-    height: 28px;
-    margin-top: 4px;
+    background: url("logo.png") bottom no-repeat;
+    width: 230px;
+    height: 30px;
 }
 
 #titulo span
@@ -118,29 +118,33 @@ h3
     padding: 20px;
 }
 
-#busquedarapida input[type="text"] {
-    background: url("lupa_oscura.png") no-repeat 10px 6px #444;
+#busqueda input[type="text"] {
+    background: url("lupa_oscura.png") no-repeat 10px 6px #fff;
     border: 0 none;
     font-size: 10pt;
-    color: #aaa;
+    color: #999;
     width: 250px;
     padding: 6px 15px 6px 35px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    
+    /*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
+    
+    /*-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;*/
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
+    
     -webkit-transition: all 0.7s ease 0s;
     -moz-transition: all 0.7s ease 0s;
     -o-transition: all 0.7s ease 0s;
     transition: all 0.7s ease 0s;
     }
 
-#busquedarapida input[type="text"]:focus {
+#busqueda input[type="text"]:focus {
     width: 350px;
-    color: #fff;
+    color: #000;
 }
 
 .searchinput
@@ -161,6 +165,37 @@ input.blur
 {
     color: #888;
 }
+
+.btncabecera, .btnazul, .btnrojo
+{
+    display: block;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+a.btnazul
+{
+    background: #1695D6;
+}
+
+a:hover.btnazul
+{
+    background: #0F78AE;
+}
+
+a.btnrojo
+{
+    background: #D63016;
+}
+
+a:hover.btnrojo
+{
+    background: #B8220A;
+}
+
 
 .cabecera td {
     -moz-border-bottom-colors: none !important;
