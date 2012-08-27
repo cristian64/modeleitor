@@ -3,20 +3,28 @@
 include_once "base.php";
 
 baseSuperior("Inicio");
+$imagenes = getDirectoryList("slidershow/");
 ?>
 
     <div id="externo">
         <div id="interno">
-    <ul class="rslides rslides1">
+<?php
+if (esMovil())
+{
+    echo count($imagenes);
+    echo "<img src=\"slidershow/".$imagenes[rand(0, count($imagenes) - 1)]."\" alt=\"\" style=\"width: 100%;\" />\n";
+}
+else
+{ ?>
+    <ul class="rslides rslides1">        
         <?php
-            $imagenes = getDirectoryList("slidershow/");
             foreach ($imagenes as $i)
             {
-                if (strpos($i,'jpg') !== false || strpos($i,'png') !== false)
-                    echo "<img src=\"slidershow/".$i."\" alt=\"\" />\n";
+                echo "<li><img src=\"slidershow/".$i."\" alt=\"\" /></li>\n";
             }
         ?>
     </ul>
+<?php } ?>
     </div>
     </div>
     <div id="textos">
