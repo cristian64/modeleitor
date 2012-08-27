@@ -11,8 +11,8 @@ baseSuperior("Clientes");
 ?>
 <div id="externo">
 <div id="interno">
-                            <div id="clientes">
-                                <h3><span>Clientes</span></h3>
+                            <div>
+                                <h3><span>Área de clientes</span></h3>
                                 <form action="iniciarsesion" method="post">
                                     <table class="guapo-form">
                                         <tr>

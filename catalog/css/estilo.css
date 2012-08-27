@@ -67,7 +67,7 @@ h3
 #contenido
 {
     background: url("fondo_contenido.png");
-    padding: 15px 0 55px 0;
+    padding: 40px 0 40px 0;
     box-shadow: inset 0px 1px 1px #999;
 }
 
@@ -79,11 +79,6 @@ h3
     width: 98%;
 }
 
-#tabla-cabecera tr, #tabla-cabecera tr td
-{
-    /*border: 1px solid #fff;*/
-}
-
 #tabla-cabecera tr
 {
     white-space: nowrap;
@@ -93,8 +88,6 @@ h3
 {
     text-align: center;
     vertical-align: middle;
-    /*border-collapse: separate;
-    border-spacing: 10px 0;*/
 }
 
 #tabla-cabecera td
@@ -177,8 +170,6 @@ h3
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    
-    /*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
     
     -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
@@ -451,3 +442,11 @@ td.guapo-input
     background: #0F78AE;
 }
 
+.guapo-error
+{
+    display: none;
+    color: #E74E1A;
+    font-size: 10pt;
+    width: 250px;
+    font-weight: bold;
+}

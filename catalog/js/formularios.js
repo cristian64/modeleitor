@@ -1,9 +1,9 @@
 /*************************************************
 // Constantes
 *************************************************/
-var kMinContrasena = 3;
+var kMinContrasena = 4;
 var kMaxContrasena = 100;
-var kMinNombre = 3;
+var kMinNombre = 4;
 var kMaxNombre = 100;
 
 function validarIdentificacion(formulario)
@@ -59,6 +59,71 @@ function validarRegistro(formulario)
         return true;
     }
 }
+
+function comprobarEmail()
+{
+	var formulario = document.getElementById('crearcuenta');
+    var expReg = new RegExp("^[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*@[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*(\\.[a-zA-Z0-9]{2,4})+$");
+    if (!expReg.test(formulario.email.value))
+    {
+    	$('#error-email').show('blind');
+    }
+    else
+    {
+		$('#error-email').hide();
+    }
+}
+
+function comprobarContrasena()
+{
+	var formulario = document.getElementById('crearcuenta');
+    if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
+    {
+    	$('#error-contrasena').show('blind');
+    }
+    else
+    {
+		$('#error-contrasena').hide();
+    }
+}
+
+function comprobarContrasena2()
+{
+	var formulario = document.getElementById('crearcuenta');
+    if (formulario.contrasena.value != formulario.contrasena2.value)
+    {
+    	$('#error-contrasena2').show('blind');
+    }
+    else
+    {
+		$('#error-contrasena2').hide();
+    }
+}
+
+function comprobarNombre()
+{
+	var formulario = document.getElementById('crearcuenta');
+    if (formulario.nombre.value.length < kMinNombre || formulario.nombre.value.length > kMaxNombre)
+    {
+    	$('#error-nombre').show('blind');
+    }
+    else
+    {
+		$('#error-nombre').hide();
+    }
+}
+
+/*function comprobarContrasena(formulario)
+{
+    if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
+    {
+        alerta = alerta + "- La contraseña debe tener entre " + kMinContrasena + " y " + kMaxContrasena + " caracteres.\n\n";
+	}
+
+    // Comprobamos que las contraseñas coinciden.
+    if (formulario.contrasena.value != formulario.contrasena2.value)
+        alerta = alerta + "- Las contraseñas no coinciden.\n\n";
+}*/
 
 function validarUsuario(formulario)
 {
