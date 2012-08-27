@@ -29,6 +29,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/estilo.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/thickbox.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/google-translate.css" media="screen" />
         
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
@@ -58,16 +59,23 @@ function baseSuperior($titulo, $mostrarmenu = true)
                             <td id="busqueda">
                                 <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /></form>
                             </td>
-                            <td id="session">
+                            <td>
                                 <?php
                                     $usuario = getUsuario();
                                     if ($usuario == null)
-                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Iniciar sesión</a>\n";
+                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Acceso clientes</a>\n";
                                     else
                                         echo "<a href=\"cerrarsesion\" class=\"btnrojo\">Cerrar sesión</a>\n";
                                 ?>
                             </td>
-                            <td><a href="registrarse" class="btnazul">Registrarse</a>
+                            <td id="idioma">
+                                <div id="google_translate_element"></div>
+                                <script type="text/javascript">
+                                    function googleTranslateElementInit() {
+                                        new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+                                    }
+                                </script>
+                                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                             </td>
                         </tr>                    
                     </table>
@@ -151,7 +159,7 @@ function baseInferior()
 {
 ?>
                 </div>
-                <div id="dialogo-iniciarsesion" title="Iniciar sesión">
+                <div id="dialogo-iniciarsesion" title="Acceso clientes">
                     <form id="form-iniciarsesion" method="POST" action="iniciarsesion">
                     <table class="guapo-form">
                         <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
@@ -180,14 +188,15 @@ function baseInferior()
                 });
                 </script>
             </div>
+            <div id="barra-pie">
+                <a href="http://www.calzadosjam.es" class="btnpie"><img src="css/casa.png" alt="" /> Página de inicio</a>
+                <a href="mapa" class="btnpie"><img src="css/mundo.png" alt="" /> Mapa</a>
+                <a href="contacto" class="btnpie"><img src="css/sobre.png" alt="" /> Contacto</a>
+                <a href="privacidad" class="btnpie"><img src="css/candado.png" alt="" /> Política de privacidad y datos</a>
+                <a href="condiciones" class="btnpieultimo"><img src="css/condiciones.png" alt="" /> Condiciones de uso</a>
+            </div>
             <div id="pie">
-                <div id="google_translate_element"></div>
-                <script type="text/javascript">
-                    function googleTranslateElementInit() {
-                        new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
-                    }
-                </script>
-                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                <img src="css/calzadosjam_logo.png" alt="Calzados JAM logo" />
             </div>
         </div>
         
