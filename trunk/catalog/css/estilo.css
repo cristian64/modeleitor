@@ -157,6 +157,13 @@ h3
     color: #D2D1C9;
 }
 
+.animacion
+{
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+}
 
 #busqueda input[type="text"] {
     background: url("lupa_oscura.png") no-repeat 10px center #fff;
@@ -176,14 +183,15 @@ h3
     /*-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;*/
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
-    
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-    }
+}
 
-#busqueda input[type="text"]:focus {
+#busqueda input[type="text"]:focus
+{
+    color: #000;
+}
+
+#busqueda input[type="text"]:focus.animacion
+{
     width: 280px;
     color: #000;
 }

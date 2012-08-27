@@ -51,7 +51,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
-                                <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia, descripción" /></form>
+                                <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia, descripción" <?php if (!esMovil()) echo "class=\"animacion\""; ?> /></form>
                             </td>
                             <td>
                                 <?php

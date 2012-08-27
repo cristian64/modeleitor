@@ -108,6 +108,7 @@
     
     function esMovil()
     {
+        //TODO: guardar en la sesion el valor y traerlo, debe ser mas raipdo que calcular semejante tocho de fnucion
         return mobile_device_detect();
     }    
     
