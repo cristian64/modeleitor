@@ -13,18 +13,25 @@ html, body, h
 
 body
 {
-    background: url("fondo.jpg");
+    background: #fff;
 }
 
 img
 {
     border: 0;
+    vertical-align: middle;
 }
 
 @font-face
 {
     font-family: "Kabel-Bold";
     src: url("Kabel-Bold.otf") format("opentype");
+}
+
+@font-face
+{
+    font-family: "Cabin_Bold";
+    src: url("Cabin_Bold.otf") format("opentype");
 }
 
 @font-face
@@ -36,7 +43,7 @@ img
 h3
 {
     font-weight: normal;
-    font-family: "La-chata-normal";
+    font-family: "Cabin_Bold";
     font-size: 25pt;
     color: #666;
     margin-bottom: 15px;
@@ -69,7 +76,7 @@ h3
 {
     margin: auto;
     max-width: 1300px;
-    min-width: 750px;
+    min-width: 650px;
     width: 98%;
 }
 
@@ -87,8 +94,13 @@ h3
 {
     text-align: center;
     vertical-align: middle;
-    border-collapse: separate;
-    border-spacing: 10px 0;
+    /*border-collapse: separate;
+    border-spacing: 10px 0;*/
+}
+
+#tabla-cabecera td
+{
+    height: 70px;
 }
 
 #titulo h1 a
@@ -97,8 +109,8 @@ h3
     text-decoration: none;
     display: block;
     background: url("logo.png") bottom no-repeat;
-    width: 230px;
-    height: 30px;
+    width: 263px;
+    height: 50px;
 }
 
 #titulo span
@@ -113,17 +125,46 @@ h3
 
 #pie
 {
-    border-top: 30px #000 solid;
-    clear: both;
-    padding: 20px;
+    padding: 30px 0 25px 0;
+    background: url("fondo_pie.png") repeat-x;
 }
+
+#barra-pie
+{
+    background: #2E2F2D;
+    font-weight: normal;
+    font-family: "Cabin_Bold";
+    font-size: 12pt;
+    color: #A3A29B;
+}
+
+#barra-pie img
+{
+    vertical-align: middle;
+    width: 28px;
+}
+
+#barra-pie a
+{
+    text-decoration: none;
+    color: #A3A29B;
+    padding: 10px 7px;
+    display: inline-block;
+}
+
+#barra-pie a:hover
+{
+    background: #444;
+    color: #D2D1C9;
+}
+
 
 #busqueda input[type="text"] {
     background: url("lupa_oscura.png") no-repeat 10px 6px #fff;
     border: 0 none;
     font-size: 10pt;
     color: #999;
-    width: 250px;
+    width: 200px;
     padding: 6px 15px 6px 35px;
     
     -webkit-border-radius: 1px;
@@ -143,7 +184,7 @@ h3
     }
 
 #busqueda input[type="text"]:focus {
-    width: 350px;
+    width: 280px;
     color: #000;
 }
 
@@ -168,12 +209,16 @@ input.blur
 
 .btncabecera, .btnazul, .btnrojo
 {
-    display: block;
+    display: inline-block;
     color: #fff;
     font-size: 10pt;
     font-weight: bold;
     text-decoration: none;
-    padding: 15px 20px;
+    padding: 0 15px;
+    height: 100%;
+    margin: 0 10px;
+    vertical-align: middle;
+    line-height: 70px; /*mismo tamaño que #table-celda td*/
 }
 
 a.btnazul

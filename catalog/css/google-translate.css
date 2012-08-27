@@ -1,0 +1,44 @@
+#google_translate_element .goog-te-gadget-simple span
+{
+    display: block;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 67px; /*mismo tamaño que #table-celda td (restandole 3 por alguna razon?)*/
+}
+
+#google_translate_element .goog-te-gadget-icon, #google_translate_element .goog-te-menu-value img, #google_translate_element .goog-te-menu-value span
+{
+    display: none;
+}
+
+#google_translate_element .goog-te-menu-value
+{
+    background: url("banderas.png");
+    width: 52px;
+    height: 42px;
+    margin: 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#google_translate_element .goog-te-gadget-simple
+{
+    background: none;
+    border: 0 none;
+    padding: 0;
+}
+
+#google_translate_element .goog-te-gadget-simple:hover
+{
+    background: #4a4a4a;
+}
+
+#google_translate_element, #google_translate_element div
+{
+    height: 100%;
+}
+
+#google_translate_element
+{
+    width: 62px;
+}
