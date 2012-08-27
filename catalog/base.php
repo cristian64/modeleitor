@@ -80,28 +80,6 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 <?php bloqueCategorias(); ?>
                 <script type="text/javascript">
                     $(document).ready(function() {
-<?php
-if (esMovil())
-{
-?>
-                        var anterior = null;
-                        $('.myMenu > li').bind('click', openSubMenu);
-                        function openSubMenu() {
-                            
-                            if (anterior != null && anterior != $(this).find('ul'))
-                                anterior.hide();
-                            
-                            if ($(this).find('ul').css('display') == 'none')
-                                $(this).find('ul').show();
-                            else
-                                $(this).find('ul').hide();
-                            anterior = $(this).find('ul');
-                        };
-<?php
-}
-else
-{
-?>
                         
                         $('.myMenu > li').bind('mouseover', openSubMenu);
                         $('.myMenu > li').bind('mouseout', closeSubMenu);
@@ -111,9 +89,6 @@ else
                         function closeSubMenu() {
                             $(this).find('ul').hide();
                         };
-<?php
-}
-?>
                     });
                 </script>
                 
@@ -165,7 +140,14 @@ function bloqueCategorias()
     $usuario = getUsuario();
     if ($usuario != null && $usuario->getAdmin())
     {
-        echo "    <li><a href=\"\" class=\"firstLevel\">Administración</a><ul>";
+        if (esMovil())
+        {
+            echo "    <li><a href=\"\" class=\"firstLevel\" onclick=\"return false;\">Administración</a><ul>";
+        }
+        else
+        {
+            echo "    <li><a href=\"\" class=\"firstLevel\">Administración</a><ul>";
+        }
         echo "<li><a href=\"modelos\">Modelos</a></li>";
         echo "<li><a href=\"categorias\">Categorías</a></li>";
         echo "<li><a href=\"marcas\">Marcas</a></li>";
