@@ -2,12 +2,6 @@
 
 require_once("minilibreria.php");
 
-if (mobile_device_detect())
-{
-    header('location: http://www.calzadosjam.es/movil');
-    exit();
-}
-
 /**
  *
  * @param String $titulo Título (<title>) que tendrá la página.
@@ -86,14 +80,40 @@ function baseSuperior($titulo, $mostrarmenu = true)
                 <?php bloqueCategorias(); ?>
                 <script type="text/javascript">
                     $(document).ready(function() {
+<?php
+if (esMovil())
+{
+?>
+                        var anterior = null;
+                        $('.myMenu > li').bind('click', openSubMenu);
+                        function openSubMenu() {
+                            
+                            if (anterior != null && anterior != $(this).find('ul'))
+                                anterior.hide();
+                            
+                            if ($(this).find('ul').css('display') == 'none')
+                                $(this).find('ul').show();
+                            else
+                                $(this).find('ul').hide();
+                            anterior = $(this).find('ul');
+                        };
+<?php
+}
+else
+{
+?>
+                        
                         $('.myMenu > li').bind('mouseover', openSubMenu);
                         $('.myMenu > li').bind('mouseout', closeSubMenu);
                         function openSubMenu() {
-                            $(this).find('ul').css('visibility', 'visible');
+                            $(this).find('ul').show();
                         };
                         function closeSubMenu() {
-                            $(this).find('ul').css('visibility', 'hidden');
+                            $(this).find('ul').hide();
                         };
+<?php
+}
+?>
                     });
                 </script>
                 
@@ -107,22 +127,26 @@ function baseSuperior($titulo, $mostrarmenu = true)
 }
 
 function bloqueCategorias()
-{
+{    
     echo "<div id=\"menu\">\n";
     echo "<ul class=\"myMenu\">\n";
-
+    
     $categorias = ENCategoria::getByPadre(0);
     foreach ($categorias as $i)
     {
-        echo "    <li>\n";
-        echo "         <a href=\"#\" class=\"firstLevel\">".$i->getNombre()."</a>\n";
         $subcategorias = ENCategoria::getByPadre($i->getId());
+        echo "    <li>\n";
+        if (esMovil() && count($subcategorias) > 0)
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\" onclick=\"return false;\">".$i->getNombre()."</a>\n";
+        else
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\">".$i->getNombre()."</a>\n";
+            
         if (count($subcategorias) > 0)
         {
             echo "        <ul>\n";
             foreach ($subcategorias as $j)
             {
-                echo "            <li><a href=\"#\">".$j->getNombre()."</a></li>\n";
+                echo "            <li><a href=\"catalogo?categoria=".$j->getId()."\">".$j->getNombre()."</a></li>\n";
             }
             echo "         </ul>\n";
         }
@@ -141,7 +165,7 @@ function bloqueCategorias()
     $usuario = getUsuario();
     if ($usuario != null && $usuario->getAdmin())
     {
-        echo "    <li><a href=\"admin\" class=\"firstLevel\">Administración</a><ul>";
+        echo "    <li><a href=\"\" class=\"firstLevel\">Administración</a><ul>";
         echo "<li><a href=\"modelos\">Modelos</a></li>";
         echo "<li><a href=\"categorias\">Categorías</a></li>";
         echo "<li><a href=\"marcas\">Marcas</a></li>";

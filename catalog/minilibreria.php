@@ -106,6 +106,11 @@
         return "";
     }
     
+    function esMovil()
+    {
+        return mobile_device_detect();
+    }    
+    
     function borrar($rutaFichero)
     {
         return $rutaFichero != NULL && file_exists($rutaFichero) && @unlink($rutaFichero);
@@ -256,8 +261,8 @@
         while ($file = readdir($handler)) {
 
             // if file isn't this directory or its parent, add it to the results
-            if ($file != "." && $file != "..") {
-            $results[] = $file;
+            if (substr($file, 0, 1) != ".") {
+                $results[] = $file;
             }
 
         }
