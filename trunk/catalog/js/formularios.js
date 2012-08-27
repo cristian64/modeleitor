@@ -62,54 +62,54 @@ function validarRegistro(formulario)
 
 function comprobarEmail()
 {
-	var formulario = document.getElementById('crearcuenta');
+    var formulario = document.getElementById('crearcuenta');
     var expReg = new RegExp("^[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*@[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*(\\.[a-zA-Z0-9]{2,4})+$");
     if (!expReg.test(formulario.email.value))
     {
-    	$('#error-email').show('blind');
+        $('#error-email').show('blind');
     }
     else
     {
-		$('#error-email').hide();
+        $('#error-email').hide();
     }
 }
 
 function comprobarContrasena()
 {
-	var formulario = document.getElementById('crearcuenta');
+    var formulario = document.getElementById('crearcuenta');
     if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
     {
-    	$('#error-contrasena').show('blind');
+        $('#error-contrasena').show('blind');
     }
     else
     {
-		$('#error-contrasena').hide();
+        $('#error-contrasena').hide();
     }
 }
 
 function comprobarContrasena2()
 {
-	var formulario = document.getElementById('crearcuenta');
+    var formulario = document.getElementById('crearcuenta');
     if (formulario.contrasena.value != formulario.contrasena2.value)
     {
-    	$('#error-contrasena2').show('blind');
+        $('#error-contrasena2').show('blind');
     }
     else
     {
-		$('#error-contrasena2').hide();
+        $('#error-contrasena2').hide();
     }
 }
 
 function comprobarNombre()
 {
-	var formulario = document.getElementById('crearcuenta');
+    var formulario = document.getElementById('crearcuenta');
     if (formulario.nombre.value.length < kMinNombre || formulario.nombre.value.length > kMaxNombre)
     {
-    	$('#error-nombre').show('blind');
+        $('#error-nombre').show('blind');
     }
     else
     {
-		$('#error-nombre').hide();
+        $('#error-nombre').hide();
     }
 }
 
@@ -118,7 +118,7 @@ function comprobarNombre()
     if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
     {
         alerta = alerta + "- La contraseña debe tener entre " + kMinContrasena + " y " + kMaxContrasena + " caracteres.\n\n";
-	}
+    }
 
     // Comprobamos que las contraseñas coinciden.
     if (formulario.contrasena.value != formulario.contrasena2.value)
