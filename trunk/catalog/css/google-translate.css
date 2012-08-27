@@ -3,7 +3,7 @@
     display: block;
     display: inline-block;
     vertical-align: middle;
-    line-height: 67px; /*mismo tamaño que #table-celda td (restandole 3 por alguna razon?)*/
+    line-height: 87px; /*mismo tamaño que #table-celda td (restandole 3 por alguna razon?)*/
 }
 
 #google_translate_element .goog-te-gadget-icon, #google_translate_element .goog-te-menu-value img, #google_translate_element .goog-te-menu-value span

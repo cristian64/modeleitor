@@ -57,13 +57,13 @@ function baseSuperior($titulo, $mostrarmenu = true)
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
-                                <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia o descripción" /></form>
+                                <form method="GET" action="buscar"><input type="text" value="" placeholder="nº de referencia, descripción" /></form>
                             </td>
                             <td>
                                 <?php
                                     $usuario = getUsuario();
                                     if ($usuario == null)
-                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Acceso clientes</a>\n";
+                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Clientes</a>\n";
                                     else
                                         echo "<a href=\"cerrarsesion\" class=\"btnrojo\">Cerrar sesión</a>\n";
                                 ?>
