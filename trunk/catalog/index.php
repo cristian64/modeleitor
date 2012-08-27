@@ -8,24 +8,15 @@ $imagenes = getDirectoryList("slidershow/");
 
     <div id="externo">
         <div id="interno">
-<?php
-if (esMovil())
-{
-    echo count($imagenes);
-    echo "<img src=\"slidershow/".$imagenes[rand(0, count($imagenes) - 1)]."\" alt=\"\" style=\"width: 100%;\" />\n";
-}
-else
-{ ?>
-    <ul class="rslides rslides1">        
-        <?php
-            foreach ($imagenes as $i)
-            {
-                echo "<li><img src=\"slidershow/".$i."\" alt=\"\" /></li>\n";
-            }
-        ?>
-    </ul>
-<?php } ?>
-    </div>
+            <ul class="rslides rslides1">        
+                <?php
+                    foreach ($imagenes as $i)
+                    {
+                        echo "<li><img src=\"slidershow/".$i."\" alt=\"\" /></li>\n";
+                    }
+                ?>
+            </ul>
+        </div>
     </div>
     <div id="textos">
         <div class="texto">
