@@ -74,7 +74,7 @@ baseSuperior("Fabricantes");
     <table class="guapo-form">
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
         <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
-        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
+        <tr><td class="guapo-label">Teléfono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
         <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td></tr>
     </table>
     </form>
@@ -87,7 +87,7 @@ baseSuperior("Fabricantes");
         <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
         <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
         <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
-        <tr><td class="guapo-label">Telefono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
+        <tr><td class="guapo-label">Teléfono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
         <tr><td class="guapo-label">Descripción</td><td class="guapo-input"><input type="text" name="descripcion" value="" /></td></tr>
     </table>
     </form>
