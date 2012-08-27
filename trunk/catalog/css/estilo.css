@@ -180,8 +180,8 @@ h3
     
     /*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);*/
     
-    /*-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;*/
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3) inset;
 }
 
@@ -382,27 +382,72 @@ table, tr
 
 .guapo-form
 {
-    font-size: 10pt;
+    border-collapse: separate;
+    border-spacing: 15px;
 }
 
-.guapo-label
+td.guapo-label
 {
     padding-right: 5px;
     text-align: right;
-    font-weight: bold;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 14pt;
+    color: #000;
 }
 
-.guapo-input
+td.guapo-input
 {
-    padding: 5px 0;
 }
 
-.guapo-input input
+.guapo-input input[type=text], .guapo-input input[type=password]
 {
     width: 250px;
+    background: #fff;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 11pt;
+    color: #000;
+    padding: 10px;
+    
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #A4A4A4 #B9B9B9 #B9B9B9;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    border-right: 1px solid #B9B9B9;
+    border-style: solid;
+    border-width: 1px;
+    
+    -webkit-box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
+    -moz-box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
+    box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
 }
 
-.guapo-input input[type=file], .guapo-input input[type=checkbox]
+.guapo-input input[readonly="readonly"]
 {
-    width: auto;
+    background: #ddd;
 }
+
+
+.guapo-input input[type=submit]
+{
+    border: 0 none;
+    background: #1695D6;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.guapo-input input[type=submit]:hover
+{
+    background: #0F78AE;
+}
+

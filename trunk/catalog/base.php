@@ -6,7 +6,7 @@ require_once("minilibreria.php");
  *
  * @param String $titulo Título (<title>) que tendrá la página.
  */
-function baseSuperior($titulo, $mostrarmenu = true)
+function baseSuperior($titulo)
 {    
     if ($titulo == "")
         $titulo = "Inicio";
@@ -57,7 +57,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
                                 <?php
                                     $usuario = getUsuario();
                                     if ($usuario == null)
-                                        echo "<a href=\"\" class=\"btnazul\" onclick=\"$('#dialogo-iniciarsesion').dialog('open'); return false;\">Clientes</a>\n";
+                                        echo "<a href=\"clientes\" class=\"btnazul\">Clientes</a>\n";
                                     else
                                         echo "<a href=\"cerrarsesion\" class=\"btnrojo\">Cerrar sesión</a>\n";
                                 ?>
@@ -140,14 +140,7 @@ function bloqueCategorias()
     $usuario = getUsuario();
     if ($usuario != null && $usuario->getAdmin())
     {
-        if (esMovil())
-        {
-            echo "    <li><a href=\"\" class=\"firstLevel\" onclick=\"return false;\">Administración</a><ul>";
-        }
-        else
-        {
-            echo "    <li><a href=\"\" class=\"firstLevel\">Administración</a><ul>";
-        }
+        echo "<li><a href=\"\" class=\"firstLevel\" onclick=\"return false;\">Administración</a><ul>";
         echo "<li><a href=\"modelos\">Modelos</a></li>";
         echo "<li><a href=\"categorias\">Categorías</a></li>";
         echo "<li><a href=\"marcas\">Marcas</a></li>";
@@ -165,34 +158,6 @@ function baseInferior()
 {
 ?>
                 </div>
-                <div id="dialogo-iniciarsesion" title="Acceso clientes">
-                    <form id="form-iniciarsesion" method="POST" action="iniciarsesion">
-                    <table class="guapo-form">
-                        <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
-                        <tr><td class="guapo-label">Contraseña</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td></tr>
-                        <tr><td class="guapo-label"></td><td class="guapo-input"><input type="checkbox" value="on" name="recordar" /> Recordar sesión</td></tr>
-                    </table>
-                    </form>
-                </div>
-                <script>
-                $(function() {
-                    $("#dialogo-iniciarsesion").dialog({
-                        resizable: false,
-                        autoOpen: false,
-                        width: 'auto',
-                        height: 'auto',
-                        modal: true,
-                        buttons: {
-                            "Iniciar sesión": function() {
-                                $("#form-iniciarsesion").submit();
-                            },
-                            "Cancelar": function() {
-                                $( this ).dialog("close");
-                            }
-                        }
-                    });
-                });
-                </script>
             </div>
             <div id="barra-pie">
                 <a href="http://www.calzadosjam.es" class="btnpie"><img src="css/casa.png" alt="" /> Página de inicio</a>
