@@ -22,6 +22,11 @@ img
     vertical-align: middle;
 }
 
+a
+{
+    cursor: pointer;
+}
+
 @font-face
 {
     font-family: "Cabin_Bold";
