@@ -41,7 +41,7 @@ function registrarCoordenadas(event)
     document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
 }
 </script>
-<div style="float: right; padding-top: 20px;"><a onclick="$('#dialogo-anadir').dialog('open');"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
+<div style="float: right; padding-top: 20px;"><a href="nuevomodelo"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
 <h3>Modelos</h3>
 <div>
     <table onmousemove="registrarCoordenadas(event);">    
@@ -72,10 +72,7 @@ function registrarCoordenadas(event)
         echo "<td class=\"centrada\">".$i->getPrioridad()."</td>";
         
         echo "<td class=\"centrada\"><div>";
-        echo "<a onclick=\"";
-        echo "$('#form-editar input[name=id]').val(".$i->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
-        echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
+        echo "<a href=\"modelo?id=".$i->getId()."\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
         echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
         
@@ -93,27 +90,6 @@ function registrarCoordenadas(event)
     </form>
 </div>
 
-<div id="dialogo-anadir" title="Añadir marca">
-    <form id="form-anadir" method="POST" action="operarmarca" enctype="multipart/form-data">
-    <div><input type="hidden" name="op" value="anadir" /></div>
-    <table class="guapo-form">
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
-    </table>
-    </form>
-</div>
-
-<div id="dialogo-editar" title="Editar marca">
-    <form id="form-editar" method="POST" action="operarmarca" enctype="multipart/form-data">
-    <div><input type="hidden" name="op" value="editar" /></div>
-    <table class="guapo-form">
-        <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
-        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
-        <tr><td class="guapo-label">Logo</td><td class="guapo-input"><input type="file" name="logo" /></td></tr>
-    </table>
-    </form>
-</div>
-
 <script>
 $(function() {
     $("#dialogo-eliminar").dialog({
@@ -125,38 +101,6 @@ $(function() {
         buttons: {
             "Eliminar": function() {
                 $("#form-eliminar").submit();
-            },
-            "Cancelar": function() {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
-
-    $("#dialogo-anadir").dialog({
-        resizable: false,
-        autoOpen: false,
-        width: 'auto',
-        height: 'auto',
-        modal: true,
-        buttons: {
-            "Añadir": function() {
-                $("#form-anadir").submit();
-            },
-            "Cancelar": function() {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
-    
-    $("#dialogo-editar").dialog({
-        resizable: false,
-        autoOpen: false,
-        width: 'auto',
-        height: 'auto',
-        modal: true,
-        buttons: {
-            "Guardar": function() {
-                $("#form-editar").submit();
             },
             "Cancelar": function() {
                 $( this ).dialog( "close" );

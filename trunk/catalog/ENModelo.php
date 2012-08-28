@@ -297,7 +297,7 @@ class ENModelo
         $obj->descripcion = utf8_encode($fila[7]);
         $obj->precio = $fila[8];
         $obj->oferta = ($fila[9] == "0" || $fila[9] == 0) ? false : true;
-        $obj->prioridad = ($fila[10] == "0" || $fila[10] == 0) ? false : true;
+        $obj->prioridad = $fila[10];
         $obj->descatalogado = ($fila[11] == "0" || $fila[11] == 0) ? false : true;
         $obj->foto = utf8_encode($fila[12]);
         $obj->fecha_creacion = new DateTime($fila[13]);
@@ -792,6 +792,98 @@ class ENModelo
         }
 
         return $guardado;
+    }
+    
+    function saveFoto($httpPostFile)
+    {
+        //http://emilio.aesinformatica.com/2007/05/03/subir-una-imagen-con-php/
+        $creada = false;
+
+        if (is_uploaded_file($httpPostFile['tmp_name']))
+        {
+            // Hay que intentar borrar las anteriores. No importa si falla.
+            borrar("img/modelos/".$this->getFoto());
+            $thumbs = getThumbs($this->getFoto());
+            foreach ($thumbs as $thumb)
+                borrar("img/modelos/".$thumb);
+
+            $nombre = $this->id;
+            $extension = pathinfo($httpPostFile['name'], PATHINFO_EXTENSION);
+
+            $this->setFoto("$nombre.$extension");
+            $thumbs = getThumbs("$nombre.$extension");
+            $rutaFoto = "img/modelos/".$this->getFoto();
+
+            // Luego hay que copiar el fichero de la imagen a la ruta de la foto.
+            if (@move_uploaded_file($httpPostFile['tmp_name'], $rutaFoto))
+            {
+                if (@chmod($rutaFoto,0777))
+                {
+                    $counter = 1;
+                    foreach ($thumbs as $thumb)
+                    {
+                        $rutaThumb = "img/modelos/".$thumb;
+                        $miniatura=new thumbnail($rutaFoto);
+                        $miniatura->size_auto(100 * $counter++);
+                        $miniatura->jpeg_quality(100);
+                        $miniatura->save($rutaThumb);
+                        @chmod($rutaThumb,0777);
+                    }
+
+                    $creada = true;
+                }
+            }
+        }
+
+        return $creada;
+    }
+    
+    public function delete()
+    {
+        $done = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+                
+                $sentencia = "delete from modelos where id = '".secure(utf8_decode($this->id))."'";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {
+                    $sentencia = "delete from categorias_modelos where id_modelo = '".secure(utf8_decode($this->id))."'";
+                    $resultado = mysql_query($sentencia, $conexion);
+                
+                    if ($resultado)
+                    {
+                        $done = true;
+                    }
+                    else
+                    {
+                        debug("ENCategoria::delete() ".mysql_error());
+                    }
+                }
+                else
+                {
+                    debug("ENCategoria::delete() ".mysql_error());
+                }
+                
+                BD::desconectar($conexion);
+                
+                // Hay que intentar borrar las anteriores. No importa si falla.
+                borrar("img/modelos/".$this->getFoto());
+                $thumbs = getThumbs($this->getFoto());
+                foreach ($thumbs as $thumb)
+                    borrar("img/modelos/".$thumb);
+            }
+            catch (Exception $e)
+            {
+                debug("ENCategoria::delete() ".$e->getMessage());
+            }
+        }
+
+        return $done;
     }
 }
 ?>

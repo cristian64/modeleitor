@@ -31,6 +31,9 @@ function baseSuperior($titulo)
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/jquery.tinymce.js"></script>
+        <script src="js/jquery.plugins.js" type="text/javascript"></script>
+        <script src="js/jquery.numeric.js" type="text/javascript"></script>
         <script src="js/responsiveslides.min.js"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
