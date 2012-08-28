@@ -455,3 +455,68 @@ td.guapo-input
     width: 250px;
     font-weight: bold;
 }
+
+.guapo-form .ui-combobox {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    background: #fff;
+    padding: 10px;
+    
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #A4A4A4 #B9B9B9 #B9B9B9;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    border-right: 1px solid #B9B9B9;
+    border-style: solid;
+    border-width: 1px;
+    
+    -webkit-box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
+    -moz-box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
+    box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
+}
+.guapo-form .ui-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    /* adjust styles for IE 6/7 */
+    *height: 1.7em;
+    *top: 0.1em;
+    background: #999;
+    border: 0 none;
+}
+
+.ui-autocomplete
+{
+    font-size: 9pt;
+    border: 1px solid #999;
+}
+
+.guapo-form .ui-combobox-toggle:hover
+{
+    background: #444;
+}
+
+.guapo-form .ui-combobox-input {
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 11pt;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 0 none;
+    color: #000;
+}
+
+.guapo-form .categoria
+{
+    padding: 3px;
+}
