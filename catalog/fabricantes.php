@@ -20,7 +20,7 @@ if (!$usuario->getAdmin())
 baseSuperior("Fabricantes");
 
 ?>
-<div style="float: right; padding-top: 20px;"><a class="freshbutton-green" onclick="$('#dialogo-anadir').dialog('open');">Añadir</a></div>
+<div style="float: right; padding-top: 20px;"><a onclick="$('#dialogo-anadir').dialog('open');"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
 <h3>Fabricantes</h3>
 <div>
     <table>
@@ -44,15 +44,15 @@ baseSuperior("Fabricantes");
         echo "<td>".$i->getDescripcion()."</td>";
         
         echo "<td class=\"centrada\"><div>";
-        echo "<a class=\"freshbutton-blue\" onclick=\"";
+        echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
         echo "$('#form-editar input[name=email]').val('".filtrarComillas($i->getEmail())."');";
         echo "$('#form-editar input[name=telefono]').val('".filtrarComillas($i->getTelefono())."');";
         echo "$('#form-editar input[name=descripcion]').val('".filtrarComillas($i->getDescripcion())."');";
-        echo "$('#dialogo-editar').dialog('open');\">Editar</a> ";
+        echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
-        echo "<a class=\"freshbutton-red\" onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\">Eliminar</a>\n";
+        echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
         
         echo "</div></td>";
         echo "</tr>";

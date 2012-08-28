@@ -31,11 +31,11 @@ function imprimirCategoria($categoria, $nivel)
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     echo "<tr class=\"fila\">";
     echo "<td class=\"centrada\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td class=\"centrada\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td class=\"centrada\">".$categoria->getZindex()."</td><td class=\"centrada\"><div>";
-    echo "<a class=\"freshbutton-green\" onclick=\"$('#form-anadir input[name=id_padre]').val(".$categoria->getId()."); $('#dialogo-anadir').dialog('open');\">Añadir</a> ";
+    echo "<a onclick=\"$('#form-anadir input[name=id_padre]').val(".$categoria->getId()."); $('#dialogo-anadir').dialog('open');\"><img src=\"css/anadir.png\" alt=\"Añadir\" title=\"Añadir\" /></a> ";
     
     if ($categoria->getId() > 0)
     {
-        echo "<a class=\"freshbutton-blue\" onclick=\"";
+        echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$categoria->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".$categoria->getNombre()."');";
         echo "$('#form-editar input[name=descripcion]').val('".$categoria->getDescripcion()."');";
@@ -44,16 +44,16 @@ function imprimirCategoria($categoria, $nivel)
         else
             echo "$('#form-editar input[name=mostrar]').attr('checked', false);";
         echo "$('#form-editar input[name=zindex]').val(".$categoria->getZindex().");";
-        echo "$('#dialogo-editar').dialog('open');\">Editar</a> ";
+        echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\"/></a> ";
         
-        echo "<a class=\"freshbutton-red\" onclick=\"$('#form-eliminar input[name=id]').val(".$categoria->getId()."); $('#dialogo-eliminar').dialog('open');\">Eliminar</a></div>\n";
+        echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$categoria->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
     }
     else
     {
-        echo "<a class=\"freshbutton-disabled\">Editar</a> ";
-        echo "<a class=\"freshbutton-disabled\">Eliminar</a></div>\n";
+        /*echo "<a class=\"freshbutton-disabled\">Editar</a> ";
+        echo "<a class=\"freshbutton-disabled\">Eliminar</a>\n";*/
     }
-    echo "</td></tr>";
+    echo "</div></td></tr>";
     
     
     foreach ($subcategorias as $i)

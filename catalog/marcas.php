@@ -20,7 +20,7 @@ if (!$usuario->getAdmin())
 baseSuperior("Marcas");
 
 ?>
-<div style="float: right; padding-top: 20px;"><a class="freshbutton-green" onclick="$('#dialogo-anadir').dialog('open');">Añadir</a></div>
+<div style="float: right; padding-top: 20px;"><a onclick="$('#dialogo-anadir').dialog('open');"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
 <h3>Marcas</h3>
 <div>
     <table>
@@ -39,12 +39,12 @@ baseSuperior("Marcas");
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td><td class=\"centrada\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td class=\"centrada\">";
         
         echo "<div>";
-        echo "<a class=\"freshbutton-blue\" onclick=\"";
+        echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
-        echo "$('#dialogo-editar').dialog('open');\">Editar</a> ";
+        echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
-        echo "<a class=\"freshbutton-red\" onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\">Eliminar</a>\n";
+        echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
         
         echo "</div></td>";
         echo "</tr>";
