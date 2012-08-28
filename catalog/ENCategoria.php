@@ -18,7 +18,7 @@ class ENCategoria
     
     public function getIdPadre()
     {
-        return $this->id;
+        return $this->id_padre;
     }
     
     public function setIdPadre($id_padre)
