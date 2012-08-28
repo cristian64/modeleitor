@@ -181,7 +181,7 @@ $(document).ready(function(){
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-input" style="vertical-align: top; text-align: left;">
-                                                        <?php /*categorias aqui*/
+                                                        <?php
                                                                 $categoriasRaiz = ENCategoria::getByPadre(0);
                                                                 foreach ($categoriasRaiz as $i)
                                                                     imprimirCategoria($i, 0);

@@ -373,6 +373,59 @@ table, tr
     height: 500px;
 }
 
+.modelo
+{
+    border: 1px solid #E3E3E3;
+    background: #fff;
+    display: inline-block;
+    color: #333;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.modelo:hover
+{
+    border: 1px solid #aaa;
+}
+
+
+.modelo-wrapper
+{
+    display: table-cell;
+    vertical-align: middle;
+    width: 200px;
+    height: 300px;
+}
+
+.modelo-titulo
+{
+    text-align: left;
+    padding: 0 15px;
+    margin: 20px auto;
+    color: #000;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+}
+
+.modelo-precio
+{
+    font-weight: 100;
+    font-size: 13pt;
+}
+
+.modelo-ref
+{
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.modelo-nombre
+{
+    font-style: oblique;
+    font-size: 10pt;
+    margin-top: 5px;
+    
+}
+
 
 /**********************************************************/
 
