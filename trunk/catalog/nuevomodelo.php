@@ -180,11 +180,11 @@ $(document).ready(function(){
                                                         <td class="guapo-label" style="vertical-align: top; text-align: left;">Categorías</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="guapo-input" style="vertical-align: top; text-align: left;"><?php /*categorias aqui*/
-                                                                $categoria = new ENCategoria();
-                                                                $categoria->setNombre("Raíz");
-                                                                
-                                                                imprimirCategoria($categoria, 0);
+                                                        <td class="guapo-input" style="vertical-align: top; text-align: left;">
+                                                        <?php /*categorias aqui*/
+                                                                $categoriasRaiz = ENCategoria::getByPadre(0);
+                                                                foreach ($categoriasRaiz as $i)
+                                                                    imprimirCategoria($i, 0);
                                                             ?>
                                                         </td>
                                                     </tr>                                            
@@ -197,14 +197,14 @@ $(document).ready(function(){
 </div></div>
 <?php
 
-function imprimirCategoria($categoria, $nivel)
+function imprimirCategoria($categoria, $nivel, $jscode = "")
 {
-    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".$categoria->getNombre()."</div>\n";
+    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input id=\"cat".$categoria->getId()."\" onclick=\"if (this.checked) { $jscode }\" type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".$categoria->getNombre()."</div>\n";
     
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     foreach ($subcategorias as $i)
     {
-        imprimirCategoria($i, $nivel + 1);
+        imprimirCategoria($i, $nivel + 1, $jscode." $('#cat".$categoria->getId()."').prop('checked', true);");
     }
 }
 
