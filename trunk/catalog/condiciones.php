@@ -2,7 +2,7 @@
 
 include_once "base.php";
 
-baseSuperior("Privacidad y datos");
+baseSuperior("Condiciones de uso");
 ?>
 
 <div class="texto-privacidad">

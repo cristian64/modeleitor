@@ -211,7 +211,42 @@ input.blur
     color: #888;
 }
 
-.btncabecera, .btnazul, .btnrojo
+a.btnazul
+{
+    border: 0 none;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    background: #1695D6;
+}
+
+a:hover.btnazul
+{
+    background: #0F78AE;
+}
+
+a.btnrojo
+{
+    border: 0 none;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    background: #D63016;
+}
+
+a:hover.btnrojo
+{
+    background: #B8220A;
+}
+
+#tabla-cabecera .btncabecera, #tabla-cabecera .btnazul, #tabla-cabecera .btnrojo
 {
     display: inline-block;
     color: #fff;
@@ -223,26 +258,6 @@ input.blur
     margin: 0 10px;
     vertical-align: middle;
     line-height: 90px; /*mismo tamaño que #table-celda td*/
-}
-
-a.btnazul
-{
-    background: #1695D6;
-}
-
-a:hover.btnazul
-{
-    background: #0F78AE;
-}
-
-a.btnrojo
-{
-    background: #D63016;
-}
-
-a:hover.btnrojo
-{
-    background: #B8220A;
 }
 
 #textos
@@ -401,7 +416,7 @@ table, tr
 
 #mapaapi
 {
-    height: 500px;
+    height: 600px;
 }
 
 .modelo
