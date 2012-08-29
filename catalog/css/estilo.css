@@ -419,6 +419,14 @@ table, tr
     height: 600px;
 }
 
+.contacto-detalles
+{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    font-style: italic;
+    margin-top: 10px;
+}
+
 .modelo
 {
     border: 1px solid #E3E3E3;
@@ -495,7 +503,7 @@ td.guapo-input
 {
 }
 
-.guapo-input input[type=text], .guapo-input input[type=password]
+.guapo-input input[type=text], .guapo-input input[type=password], .guapo-input textarea
 {
     width: 250px;
     background: #fff;

@@ -200,13 +200,13 @@
         $cuerpo = $cuerpo."<td>$mensaje</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<img src=\"http://www.clubpadelmatola.com/css/logo.png\" /><h2>Se ha recibido un nuevo mensaje desde un usuario:<br /></h2>"."$cuerpo";
+        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/logo.png\" /><h2>Se ha recibido un nuevo mensaje desde un usuario:<br /></h2>"."$cuerpo";
         
         include 'constantes.php';
         
         $to = "$EMAILCONTACTO";
-        $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
-        return mail($to, "Club Padel Matola", $cuerpo, $cabeceras);
+        $cabeceras = "From: Calzados JAM <noreply@calzadosjam.es>\r\nContent-type: text/html; charset=UTF-8\r\n";
+        return mail($to, "Calzados JAM", $cuerpo, $cabeceras);
     }
     
     function emailReserva($destino, $usuario, $reserva)
