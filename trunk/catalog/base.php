@@ -170,7 +170,7 @@ function baseInferior()
                 <a href="condiciones" class="btnpieultimo"><img src="css/condiciones.png" alt="" /> Condiciones de uso</a>
             </div>
             <div id="pie">
-                <img src="css/calzadosjam_logo.png" alt="Calzados JAM logo" />
+                <a href="http://www.calzadosjam.es"><img src="css/calzadosjam_logo.png" alt="Calzados JAM logo" /></a>
             </div>
         </div>
         

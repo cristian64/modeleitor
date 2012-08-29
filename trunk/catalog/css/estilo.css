@@ -274,6 +274,37 @@ a:hover.btnrojo
     border-bottom: 1px solid #CCCCCC;
 }
 
+.texto-privacidad
+{
+    margin: 45px auto 60px auto;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 18pt;
+    color: #4a4a4a;
+}
+
+.texto-privacidad strong
+{
+    font-weight: bold;
+    display: block;
+}
+
+.texto-privacidad div
+{
+    margin-bottom: 20px;
+}
+
+.texto-privacidad ul
+{
+    padding-left: 20px;
+}
+
+.texto-privacidad li
+{
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
 .cabecera td {
     -moz-border-bottom-colors: none !important;
     -moz-border-image: none !important;

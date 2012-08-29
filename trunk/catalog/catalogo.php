@@ -56,7 +56,7 @@ for ($i = 0; $i < 5; $i++)
             }
             
             if (count($modelos) == 0)
-                echo "<div>En estos momentos esta categoría se encuentra vacía</div>";
+                echo "<br /><br /><br /><div>En estos momentos esta categoría se encuentra vacía</div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
             ?>
         </div>
     </div>
