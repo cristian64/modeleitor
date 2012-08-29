@@ -56,32 +56,59 @@ function editar()
 {
     $id = getPost("id");
     
-    $marca = ENMarca::getById($id);
-    if ($marca != null)
+    $modelo = ENModelo::getById($id);
+    if ($modelo != null)
     {
-        $marca->setNombre(getPost("nombre"));
-        if ($marca->saveLogo($_FILES["logo"]))
-        {
-            $_SESSION["mensaje_info"] = "El logo ha sido cambiado correctamente";
-        }
+        $modelo->setReferencia(getPost("referencia"));
+        $modelo->setNombre(getPost("nombre"));
+        $modelo->setTallaMenor(getPost("talla_menor"));
+        $modelo->setTallaMayor(getPost("talla_mayor"));
+        $modelo->setPrecio(getPost("precio"));
+        $modelo->setDescripcion($_POST["descripcion"]);
+        $modelo->setIdFabricante(getPost("id_fabricante"));
+        $modelo->setIdMarca(getPost("id_marca"));
+        $modelo->setPrioridad(getPost("prioridad"));
         
-        if ($marca->update())
+        if (ENFabricante::getById($modelo->getIdFabricante()) == null)
+            $modelo->setIdFabricante(0);
+        if (ENMarca::getById($modelo->getIdMarca()) == null)
+            $modelo->setIdMarca(0);
+            
+        $modelo->setOferta(getPost("oferta") == "on");
+        $modelo->setDescatalogado(getPost("descatalogado") == "on");
+            
+        if ($modelo->update())
         {
-            $_SESSION["mensaje_exito"] = "La marca $id ha sido guardada correctamente";
-            header("location: marcas");
-            exit();
+            $modelo->saveFoto($_FILES["foto"]);
+            if ($modelo->update())
+            {
+                $categorias = $_POST["categorias"];
+                if (is_array($categorias))
+                {
+                    $categoriasAux = array();
+                    foreach ($categorias as $c)
+                    {
+                        if (ENCategoria::getById($c) != null)
+                        {
+                            $categoriasAux[] = $c;
+                        }
+                    }
+                    $modelo->setCategoriasToDB($categoriasAux);
+                }
+                
+                $_SESSION["mensaje_exito"] = "El modelo ha sido guardado correctamente";
+                header("location: modelo?id=".$modelo->getId());
+                exit();
+            }
         }
-        else
-        {
-            $_SESSION["mensaje_error"] = "No se pudo guardar la marca $id";
-            header("location: marcas");
-            exit();
-        }        
+        $_SESSION["mensaje_error"] = "No se pudo guardar el modelo";
+        header("location: modelo?id=".$modelo->getId());
+        exit();    
     }
     else
     {
-        $_SESSION["mensaje_error"] = "No se pudo encontrar la marca $id";
-        header("location: marcas");
+        $_SESSION["mensaje_error"] = "No se pudo encontrar el modelo $id";
+        header("location: modelos");
         exit();
     }
 }
