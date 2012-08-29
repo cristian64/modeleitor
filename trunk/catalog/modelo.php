@@ -25,7 +25,7 @@ if ($modelo == null)
     exit();    
 }
 
-$categorias = $modelo->getCategoriasFromDB();
+$array_categorias = $modelo->getCategoriasFromDB();
     
 baseSuperior("Modelo ".$modelo->getReferencia());
 ?>
@@ -35,18 +35,12 @@ $(document).ready(function(){
     $(".numerico").numeric();
     $(".entero").numeric(false);
 });
-
-function copiarDescripcion()
-{
-    var formulario = document.getElementById("form-modelo");
-    formulario.descripcion.value = $("#tinymce").html();
-}
 </script>
 <div id="externo">
 <div id="interno">
                             <div>
                                 <h3><span>Modelo <?php echo $modelo->getReferencia(); ?></span></h3>
-                                <form id="form-modelo" action="operarmodelo" method="post" enctype="multipart/form-data" onsubmit="copiarDescripcion();" >
+                                <form action="operarmodelo" method="post" enctype="multipart/form-data">
                                     <table style="vertical-align: top">
                                         <tr>
                                             <td style="vertical-align: top">
@@ -153,7 +147,7 @@ function copiarDescripcion()
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label">Descripción</td>
-                                                        <td class="guapo-input"><textarea rows="15" cols="20" class="tinymce" id="tinymce"><?php echo htmlspecialchars($modelo->getDescripcion()); ?></textarea>
+                                                        <td class="guapo-input"><textarea rows="15" cols="20" name="descripcion" class="tinymce" id="tinymce"><?php echo htmlspecialchars($modelo->getDescripcion()); ?></textarea>
 <script type="text/javascript">
 	$().ready(function() {
 		$('textarea.tinymce').tinymce({
@@ -203,7 +197,6 @@ function copiarDescripcion()
                                                         <td class="guapo-input">
                                                             <input type="hidden" value="editar" name="op" />
                                                             <input type="hidden" value="<?php echo $modelo->getId(); ?>" name="id" />
-                                                            <input type="hidden" value="" name="descripcion" />
                                                             <input type="submit" value="Guardar" /></td>
                                                     </tr>
                                                 </table>
@@ -218,7 +211,7 @@ function copiarDescripcion()
                                                         <?php
                                                                 $categoriasRaiz = ENCategoria::getByPadre(0);
                                                                 foreach ($categoriasRaiz as $i)
-                                                                    imprimirCategoria($i, 0);
+                                                                    imprimirCategoria($i, 0, $array_categorias);
                                                             ?>
                                                         </td>
                                                     </tr>                                            
@@ -231,14 +224,15 @@ function copiarDescripcion()
 </div></div>
 <?php
 
-function imprimirCategoria($categoria, $nivel, $jscode = "")
+function imprimirCategoria($categoria, $nivel, $array_categorias, $jscode = "")
 {
-    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input id=\"cat".$categoria->getId()."\" onclick=\"if (this.checked) { $jscode }\" type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".$categoria->getNombre()."</div>\n";
+    $checked = in_array($categoria->getId(), $array_categorias) ? "checked=\"checked\"" : "";
+    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input id=\"cat".$categoria->getId()."\" $checked onclick=\"if (this.checked) { $jscode }\" type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".$categoria->getNombre()."</div>\n";
     
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     foreach ($subcategorias as $i)
     {
-        imprimirCategoria($i, $nivel + 1, $jscode." $('#cat".$categoria->getId()."').prop('checked', true);");
+        imprimirCategoria($i, $nivel + 1, $array_categorias, $jscode." $('#cat".$categoria->getId()."').prop('checked', true);");
     }
 }
 
