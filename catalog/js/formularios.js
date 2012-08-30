@@ -223,13 +223,27 @@ function cargarModelo(id)
         {
             if (ajax.responseText != "ERROR")
             {
+                $('#modelo-loading').show();
+                $("#modelo-modal").hide();
                 $("#modelo-modal").html(ajax.responseText);
+                
+                $('#modelo-modal').height($(window).height() * 0.95);
+                $('#modelo-img').height($(window).height() * 0.7);
+                
                 $('#myModal').reveal({
                     animation: 'none'
                 });
-                
                 $('#myModal').position({
                     of: $(window)
+                });
+                
+                
+                $('#modelo-img').load(function (){
+                    $("#modelo-modal").show();
+                    $('#modelo-loading').hide();
+                    $('#myModal').position({
+                        of: $(window)
+                    });
                 });
             }
         }

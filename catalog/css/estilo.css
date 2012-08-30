@@ -451,14 +451,11 @@ table, tr
     height: 300px;
 }
 
-.modelo-modal
+.modelo-titulo-modal
 {
-    min-height: 300px;
-}
-
-.modelo-foto
-{
-    width: 750px;
+    color: #000;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    padding: 0 15px 15px 15px;
 }
 
 .modelo-titulo
