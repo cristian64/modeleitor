@@ -7,7 +7,7 @@ baseSuperior("Catálogo");
 $usuario = getUsuario();
 $activo = $usuario != null && $usuario->getActivo();
 $modelos = array();
-$nombreCategoria = "Nombre de la categoría";
+$nombreCategoria = "";
 
 
 $id_categoria = getGet("categoria");
@@ -30,8 +30,15 @@ if ($id_categoria != "")
 $id_marca = getGet("marca");
 if ($id_marca != "" && count($modelos) == 0)
 {
-    $modelos = ENModelo::getByMarca($id_marca, 1, 9999);
+    $modelos = ENModelo::getByMarca($id_marca, 1, 99999);
     $nombreCategoria = ENMarca::getById($id_marca)->getNombre();
+}
+
+$filtro = getGet("busqueda");
+if ($filtro != "" && count($modelos) == 0)
+{
+    $modelos = ENModelo::get($filtro, 1, 99999);
+    $nombreCategoria = "Búsqueda: \"$filtro\"";
 }
 
 /*$modelos = ENModelo::get();
