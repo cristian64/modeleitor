@@ -4,6 +4,8 @@ include_once "base.php";
 
 baseSuperior("Inicio");
 $imagenes = getDirectoryList("slidershow/");
+shuffle($imagenes);
+$imagenes = array_slice($imagenes, 0, 5);
 ?>
 
     <div id="externo">
@@ -21,17 +23,19 @@ $imagenes = getDirectoryList("slidershow/");
     <div id="textos">
         <div class="texto">
             <div class="cabecera-texto">Quiénes somos</div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Calzados JAM es un almacén y fábrica de calzado nacional. También nos suministran fábricas de Elche, Elda, Almansa y Yecla. Venta mayorista.
+            Disponemos de calzado de señora, caballero, niño, deportivos, zapatillas de playa y hasta complementos, como bolsos y cinturones. 
         </div>
         <div class="separador-textos"></div>
         <div class="texto">
-            <div class="cabecera-texto">Historia</div>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div class="cabecera-texto">Cómo</div>
+            Atendemos pedidos en tienda, teléfono o e-mail, e intentamos dar respuesta a todos los pedidos de forma inmediata, entregando el pedido en el término de 24 horas a todo el país.
+            Los clientes pueden decidir entre cajas completas o el denominado <em>surtido libre</em>, donde pueden comprar aquellas tallas que deseen.
         </div>
         <div class="separador-textos"></div>
         <div class="texto">
             <div class="cabecera-texto">Fabricación nacional</div>
-            Nam sit amet euismod nibh. Etiam nec ligula nec lorem luctus lacinia eget eu leo. Donec lectus eros, auctor at bibendum id, faucibus et libero. Sed in quam sed nisi imperdiet venenatis nec sit amet lorem.
+            Nuestros productos han sido elaborados con materias primas nacionales, dando trabajo a un número elevado de personas, y usted con su adquisición contribuye a todo ello.
         </div>
     </div>
 
