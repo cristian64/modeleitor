@@ -7,7 +7,7 @@
 		height: 100%;
 		width: 100%;
 		background: #000;
-		background: rgba(0,0,0,.8);
+		background: rgba(0,0,0,.7);
 		z-index: 100;
 		display: none;
 		top: 0;
@@ -18,19 +18,19 @@
 		visibility: hidden;
 		top: 0;
         left: 0;
-        position: fixed;
+        position: absolute;
         
 		background: #fff url(modal-gloss.png) no-repeat -200px -80px;
 		z-index: 101;
-		padding: 5px;
+		padding: 2px;
         margin: auto;
         
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		border-radius: 2px;
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,.8);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.8);
+		box-shadow: 0 0 10px rgba(0,0,0,.8);
 		}
 		
 	.reveal-modal.small 		{ width: 200px; margin-left: -140px;}

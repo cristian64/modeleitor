@@ -451,6 +451,11 @@ table, tr
     height: 300px;
 }
 
+.modelo-modal
+{
+    min-height: 300px;
+}
+
 .modelo-foto
 {
     width: 750px;
