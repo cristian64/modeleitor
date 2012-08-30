@@ -55,7 +55,7 @@ for ($i = 0; $i < 5; $i++)
                 $thumbs = getThumbs($i->getFoto());
                 echo "<div class=\"modelo\" onclick=\"cargarModelo(".$i->getId().");\">";
                 echo "<div class=\"modelo-wrapper\">";
-                echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\">";
+                echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
                 if ($activo)
                     echo "<div class=\"modelo-precio\">".$i->getPrecio()."€</div>";
