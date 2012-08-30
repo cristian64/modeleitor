@@ -448,7 +448,12 @@ table, tr
     display: table-cell;
     vertical-align: middle;
     width: 200px;
-    height: 300px;
+    height: 320px;
+}
+
+.modelo-foto
+{
+    text-align: center;
 }
 
 .modelo-titulo-modal
@@ -481,7 +486,6 @@ table, tr
 
 .modelo-nombre
 {
-    font-style: oblique;
     font-size: 11pt;
     margin-top: 5px;
     
