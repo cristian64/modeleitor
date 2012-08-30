@@ -312,10 +312,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
             
             if (is_numeric($id_categoria))
-                $sentencia = "select * from modelos, categorias_modelos where modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by prioridad desc";
+                $sentencia = "select * from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by prioridad desc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -362,10 +362,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos";
+            $sentencia = "select count(*) from modelos where descatalogado = 0";
             
             if (is_numeric($id_categoria))
-                $sentencia = "select count(*) from modelos, categorias_modelos where modelos.id = id_modelo and id_categoria = '".$id_categoria."'";
+                $sentencia = "select count(*) from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -401,10 +401,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
             
             if (is_numeric($id_fabricante))
-                $sentencia = "select * from modelos where id_fabricante = '".$id_fabricante."' order by prioridad desc";
+                $sentencia = "select * from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."' order by prioridad desc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -451,10 +451,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos";
+            $sentencia = "select count(*) from modelos where descatalogado = 0";
             
             if (is_numeric($id_fabricante))
-                $sentencia = "select count(*) from modelos where id_fabricante = '".$id_fabricante."'";
+                $sentencia = "select count(*) from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -490,10 +490,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
             
             if (is_numeric($id_marca))
-                $sentencia = "select * from modelos where id_marca = '".$id_marca."' order by prioridad desc";
+                $sentencia = "select * from modelos where descatalogado = 0 and id_marca = '".$id_marca."' order by prioridad desc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -540,10 +540,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos";
+            $sentencia = "select count(*) from modelos where descatalogado = 0";
             
             if (is_numeric($id_marca))
-                $sentencia = "select count(*) from modelos where id_marca = '".$id_marca."'";
+                $sentencia = "select count(*) from modelos where descatalogado = 0 and id_marca = '".$id_marca."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -572,18 +572,31 @@ class ENModelo
         return $cantidad;
     }
 
-    public static function getSearch($filtro, $oferta, $descatalogado, $orden)
+    //TODO
+    //public static function getAdmin($filtro, $id_categoria, $id_fabricante, $_marca, $oferta, $descatalogado, $orden, $pagina, $cantidad)
+    public static function getAdmin($filtro = "")
     {
-        //TODO
+        //TODO, completar todo el rollo que hay ahi de categorias e historias
         $filtro = secure(utf8_decode($filtro));
         $lista = NULL;
 
         try
         {
-            $sentencia = "select * from modelos order by nombre asc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by nombre asc, prioridad desc";
             
             if ($filtro != "")
-                $sentencia = "select * from modelos where referencia like '%$filtro%' or nombre like '%$filtro%' or descripcion like '%$filtro%' order by nombre asc, prioridad desc";
+            {
+                $words = explode(' ', $filtro);
+                $condiciones = "";
+                foreach ($words as $w)
+                {
+                    if ($condiciones == "")
+                        $condiciones = "$condiciones (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                    else
+                        $condiciones = "$condiciones and (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                }
+                $sentencia = "select * from modelos where $condiciones order by nombre asc, prioridad desc";
+            }
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -621,16 +634,27 @@ class ENModelo
     }
 
     public static function get($filtro = "")
-    {
+    {        
         $filtro = secure(utf8_decode($filtro));
         $lista = NULL;
 
         try
         {
-            $sentencia = "select * from modelos order by nombre asc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by nombre asc, prioridad desc";
             
             if ($filtro != "")
-                $sentencia = "select * from modelos where referencia like '%$filtro%' or nombre like '%$filtro%' or descripcion like '%$filtro%' order by nombre asc, prioridad desc";
+            {
+                $words = explode(' ', $filtro);
+                $condiciones = "";
+                foreach ($words as $w)
+                {
+                    if ($condiciones == "")
+                        $condiciones = "$condiciones (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                    else
+                        $condiciones = "$condiciones and (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                }
+                $sentencia = "select * from modelos where descatalogado = 0 and $condiciones order by nombre asc, prioridad desc";
+            }
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
