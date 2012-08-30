@@ -4,8 +4,8 @@
 .myMenu li a:hover { z-index: 5;} /*style the sub menu*/
 .myMenu li ul { font-size: 11pt; position:absolute; display: none; border: 1px solid #ddd; margin:0; padding:0; z-index: 10; box-shadow: 1px 1px 2px -1px black;}
 .myMenu li ul li { display:inline; float:none; z-index: 10;}
-.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:rgba(255,255,255,0.95); width:auto; border: 0;z-index: 10;}
-.myMenu li ul li a:hover { background-color:rgba(240,240,240,0.95); z-index: 10; }
+.myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:rgba(255,255,255,1); width:auto; border: 0;z-index: 10;}
+.myMenu li ul li a:hover {  background: #E8FF7A; z-index: 10; }
 
 .myMenu li a:link.firstLevel, .myMenu li a:visited.firstLevel
 {
@@ -14,6 +14,6 @@
 
 .myMenu li a:hover.firstLevel
 {
-    background: rgba(240,240,240,0.95);
+    background: #E8FF7A;
     padding: 10px 20px;
 }
