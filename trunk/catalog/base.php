@@ -138,7 +138,8 @@ function bloqueCategorias()
     $marcas = ENMarca::get();
     foreach ($marcas as $i)
     {
-        echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".$i->getNombre()."</a></li>\n";
+        if (ENModelo::countByMarca($i->getId()) > 0)
+            echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".$i->getNombre()."</a></li>\n";
     }
     echo "</ul></li>\n";
     
