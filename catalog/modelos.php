@@ -57,7 +57,7 @@ function registrarCoordenadas(event)
             <td></td>
         </tr>
 <?php
-    $modelos = ENModelo::get();
+    $modelos = ENModelo::getAdmin();
     foreach ($modelos as $i)
     {
         $thumbs = getThumbs($i->getFoto());
