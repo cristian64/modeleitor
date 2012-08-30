@@ -23,6 +23,7 @@ function baseSuperior($titulo)
         <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/estilo.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/thickbox.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/reveal.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/google-translate.css" media="screen" />
         
         <link rel="shortcut icon" href="favicon.ico" />
@@ -33,6 +34,7 @@ function baseSuperior($titulo)
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
         <script type="text/javascript" src="js/tinymce/jquery.tinymce.js"></script>
         <script src="js/jquery.plugins.js" type="text/javascript"></script>
+        <script src="js/jquery.reveal.js" type="text/javascript"></script>
         <script src="js/jquery.numeric.js" type="text/javascript"></script>
         <script src="js/responsiveslides.min.js"></script>
         <script src="js/jquery.textbox-hinter.min.js" type="text/javascript"></script>
