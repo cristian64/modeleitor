@@ -69,6 +69,7 @@ for ($i = 0; $i < 5; $i++)
     </div>
     <div id="myModal" class="reveal-modal">
         <div id="modelo-modal"></div>
+        <img id="modelo-loading" src="css/loading.gif" alt="" />
         <a class="close-reveal-modal">&#215;</a>
     </div>
         
