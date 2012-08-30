@@ -213,26 +213,24 @@ function nuevoAjax()
     return xmlhttp;
 }
 
-function confirmarBorrarReserva()
-{
-    return confirm("¿Estás seguro de que quieres borrar la reserva?");
-}
-
-function comprobanteDia(dia, anterior)
+function cargarModelo(id)
 {    
     ajax = nuevoAjax();
-    ajax.open("POST", "comprobante.php", true);
+    ajax.open("POST", "ajax_modelo.php", true);
     ajax.onreadystatechange = function()
     {
         if (ajax.readyState == 4)
         {
-            if (anterior != ajax.responseText)
+            if (ajax.responseText != "ERROR")
             {
-                var scrollposition = $(document).scrollTop();
-                window.location.href = "reservar.php?dia=" + dia + "&scroll=" + scrollposition;
+                $("#modelo-modal").html(ajax.responseText);
+                $('#myModal').reveal();
+                $('#myModal').position({
+                    of: $(window)
+                });
             }
         }
     }
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    ajax.send("dia="+dia);
+    ajax.send("id="+id);
 }

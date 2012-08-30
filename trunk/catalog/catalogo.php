@@ -53,7 +53,7 @@ for ($i = 0; $i < 5; $i++)
             foreach ($modelos as $i)
             {
                 $thumbs = getThumbs($i->getFoto());
-                echo "<div class=\"modelo\">";
+                echo "<div class=\"modelo\" onclick=\"cargarModelo(".$i->getId().");\">";
                 echo "<div class=\"modelo-wrapper\">";
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\">";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
@@ -66,6 +66,10 @@ for ($i = 0; $i < 5; $i++)
                 echo "<br /><br /><br /><div>En estos momentos esta categoría se encuentra vacía</div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";
             ?>
         </div>
+    </div>
+    <div id="myModal" class="reveal-modal">
+        <div id="modelo-modal"></div>
+        <a class="close-reveal-modal">&#215;</a>
     </div>
         
 <?php baseInferior(); ?>
