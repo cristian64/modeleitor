@@ -224,7 +224,10 @@ function cargarModelo(id)
             if (ajax.responseText != "ERROR")
             {
                 $("#modelo-modal").html(ajax.responseText);
-                $('#myModal').reveal();
+                $('#myModal').reveal({
+                    animation: 'none'
+                });
+                
                 $('#myModal').position({
                     of: $(window)
                 });
