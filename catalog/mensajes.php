@@ -8,7 +8,7 @@
 
     if ($exito != "" || $info != "" || $aviso != "" || $error != "")
     {
-        echo "<div id=\"mensajes\">\n";
+        echo "<div id=\"mensajes\" onclick=\"$('#mensajes').hide();\">\n";
         if ($exito != "")
         {
             if (is_string($exito))
@@ -17,8 +17,7 @@
                 {
                     echo "<table class=\"exito\">\n";
                     echo "<tr>\n";
-                    echo "<td class=\"columnaizquierda\"><img src=\"css/exito.png\" alt=\"ÉXITO: \" title=\"¡Éxito!\" /></td>";
-                    echo "<td class=\"columnaderecha\">".$exito."</td>";
+                    echo "<td><img src=\"css/exito.png\" alt=\"ÉXITO: \" title=\"¡Éxito!\" /> ".$exito."</td>";
                     echo "</tr>\n";
                     echo "</table>\n";
                 }
@@ -81,11 +80,14 @@
         
         ?>
             <script type="text/javascript">    
+            $(window).load(function(){
+                $("#mensajes").show();
+            });
     
-		function runEffect() {
+		/*function runEffect() {
                     $("#mensajes").animate({ borderColor: "#aaa", backgroundColor: "#f8f8f8"}, 500);
                     
-			/*/ get effect type from 
+			//get effect type from 
 			var selectedEffect = "highlight";
 
 			// most effect types need no options passed by default
@@ -98,10 +100,10 @@
 			}
 
 			// run the effect
-			$( "#mensajes" ).hide( selectedEffect, options, 1000);*/
+			$( "#mensajes" ).hide( selectedEffect, options, 1000);
 		};
                 
-                setTimeout("runEffect()", 1000);
+                setTimeout("runEffect()", 1000);*/
             </script>
 <?php
     }
