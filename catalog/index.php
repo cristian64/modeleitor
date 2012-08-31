@@ -3,7 +3,7 @@
 include_once "base.php";
 
 baseSuperior("Inicio");
-$imagenes = getDirectoryList("slidershow/");
+$imagenes = getDirectoryList("img/slidershow/");
 shuffle($imagenes);
 $imagenes = array_slice($imagenes, 0, 5);
 ?>
@@ -14,7 +14,7 @@ $imagenes = array_slice($imagenes, 0, 5);
                 <?php
                     foreach ($imagenes as $i)
                     {
-                        echo "<li><img src=\"slidershow/".$i."\" alt=\"\" /></li>\n";
+                        echo "<li><img src=\"img/slidershow/".$i."\" alt=\"\" /></li>\n";
                     }
                 ?>
             </ul>
