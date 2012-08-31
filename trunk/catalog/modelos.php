@@ -65,7 +65,7 @@ function registrarCoordenadas(event)
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td class=\"centrada\">".$i->getReferencia()."</td>";
         echo "<td>".$i->getNombre()."</td>";
-        echo "<td class=\"centrada\">".$i->getPrecio()."</td>";
+        echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
         echo "<td class=\"centrada\">".$i->getFabricanteStr()."</td>";
         echo "<td class=\"centrada\">".$i->getMarcaStr()."</td>";

@@ -8,7 +8,7 @@
 
     if ($exito != "" || $info != "" || $aviso != "" || $error != "")
     {
-        echo "<div id=\"mensajes\" onclick=\"$('#mensajes').hide();\">\n";
+        echo "<div id=\"mensajes\" onclick=\"$('#mensajes').hide('fade');\">\n";
         if ($exito != "")
         {
             if (is_string($exito))
@@ -78,29 +78,8 @@
         ?>
             <script type="text/javascript">    
             $(window).load(function(){
-                $("#mensajes").show();
+                $("#mensajes").show('fade');
             });
-    
-		/*function runEffect() {
-                    $("#mensajes").animate({ borderColor: "#aaa", backgroundColor: "#f8f8f8"}, 500);
-                    
-			//get effect type from 
-			var selectedEffect = "highlight";
-
-			// most effect types need no options passed by default
-			var options = {};
-			// some effects have required parameters
-			if ( selectedEffect === "scale" ) {
-				options = { percent: 0 };
-			} else if ( selectedEffect === "size" ) {
-				options = { to: { width: 200, height: 60 } };
-			}
-
-			// run the effect
-			$( "#mensajes" ).hide( selectedEffect, options, 1000);
-		};
-                
-                setTimeout("runEffect()", 1000);*/
             </script>
 <?php
     }
