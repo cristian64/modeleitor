@@ -27,6 +27,8 @@
                     {
                         $_SESSION["usuario"] = serialize($usuario2);
                         $usuario = $usuario2;
+                        if (!$usuario->getActivo())
+                            $_SESSION["mensaje_aviso"] = "Tu cuenta está a la espera de ser activada por un administrador";
                     }
                 }
             }
