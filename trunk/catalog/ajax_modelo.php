@@ -15,7 +15,7 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "<td class=\"modelo-titulo-modal\">";
     echo "<div class=\"modelo-ref\">Ref. ".$modelo->getReferencia()."</div>";
     if ($activo)
-        echo "<div class=\"modelo-precio\">".$modelo->getPrecio()."€</div>";
+        echo "<div class=\"modelo-precio\">".$modelo->getPrecio()." €</div>";
     echo "<div class=\"modelo-nombre\">".$modelo->getNombre()."</div>";
     echo "<div class=\"modelo-nombre\">Numeración: ".$modelo->getNumeracion()."</div>";
     echo "<div class=\"modelo-descripcion\">".$modelo->getDescripcion()."</div>";
