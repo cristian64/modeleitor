@@ -61,7 +61,7 @@ for ($i = 0; $i < 5; $i++)
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
                 if ($activo)
-                    echo "<div class=\"modelo-precio\">".$i->getPrecio()." €</div>";
+                    echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())." €</div>";
                 echo "<div class=\"modelo-nombre\">".$i->getNombre()."</div></div></div></div>\n";
             }
             

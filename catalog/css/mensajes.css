@@ -8,6 +8,7 @@
     margin: 0;
     
     position: fixed;
+    z-index: 1000;
     bottom: 0;
     width: 84%;
     padding: 50px 8%;
