@@ -197,7 +197,10 @@ $(document).ready(function(){
                                                         <td class="guapo-input">
                                                             <input type="hidden" value="editar" name="op" />
                                                             <input type="hidden" value="<?php echo $modelo->getId(); ?>" name="id" />
-                                                            <input type="submit" value="Guardar" /></td>
+                                                            <input type="submit" value="Guardar" />
+                                                            
+                                                            <?php echo "<a class=\"btnrojo\" onclick=\"$('#form-eliminar input[name=id]').val(".$modelo->getId()."); $('#dialogo-eliminar').dialog('open');\">Eliminar</a>\n"; ?>
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -222,6 +225,34 @@ $(document).ready(function(){
                                 </form>
                             </div>
 </div></div>
+<div id="dialogo-eliminar" title="¿Eliminar modelo?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará el modelo definitivamente. ¿Continuar?</p>
+    <form id="form-eliminar" method="POST" action="operarmodelo">
+        <div><input type="hidden" name="id" value="" /></div>
+        <div><input type="hidden" name="op" value="eliminar" /></div>
+    </form>
+</div>
+
+<script>
+$(function() {
+    $("#dialogo-eliminar").dialog({
+        resizable: false,
+        autoOpen: false,
+        width: 'auto',
+        height: 'auto',
+        modal: true,
+        buttons: {
+            "Eliminar": function() {
+                $("#form-eliminar").submit();
+            },
+            "Cancelar": function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+});
+</script>
+
 <?php
 
 function imprimirCategoria($categoria, $nivel, $array_categorias, $jscode = "")
