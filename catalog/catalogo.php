@@ -61,9 +61,16 @@ for ($i = 0; $i < 5; $i++)
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
                 if ($activo)
-                    echo "<div class=\"modelo-precio\">".$i->getPrecio()."€</div>";
+                    echo "<div class=\"modelo-precio\">".$i->getPrecio()." €</div>";
                 echo "<div class=\"modelo-nombre\">".$i->getNombre()."</div></div></div></div>\n";
             }
+            
+            echo "<div class=\"modelo-pua\"></div>\n";
+            echo "<div class=\"modelo-pua\"></div>\n";
+            echo "<div class=\"modelo-pua\"></div>\n";
+            echo "<div class=\"modelo-pua\"></div>\n";
+            echo "<div class=\"modelo-pua\"></div>\n";
+            echo "<div class=\"modelo-pua\"></div>\n";
             
             if (count($modelos) == 0)
                 echo "<br /><br /><br /><div>En estos momentos esta categoría se encuentra vacía</div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />";

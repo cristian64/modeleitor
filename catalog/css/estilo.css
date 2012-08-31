@@ -420,6 +420,15 @@ table, tr
     cursor: pointer;
 }
 
+.modelo-pua
+{
+    border: 0 none;
+    width: 202px; /* 202 porque no tiene bordes */
+    height: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+
 .modelo:hover
 {
     border: 1px solid #aaa;
@@ -429,7 +438,7 @@ table, tr
 {
     display: table-cell;
     vertical-align: middle;
-    width: 198px;
+    width: 200px;
     height: 320px;
 }
 
@@ -454,23 +463,23 @@ table, tr
     font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
 }
 
-.modelo-precio
-{
-    font-weight: 100;
-    font-size: 14pt;
-}
-
 .modelo-ref
 {
     font-weight: bold;
     font-size: 12pt;
 }
 
+.modelo-precio
+{
+    font-weight: bold;
+    font-size: 13pt;
+    color: #158B00;
+}
+
 .modelo-nombre
 {
     font-size: 11pt;
     margin-top: 5px;
-    
 }
 
 
