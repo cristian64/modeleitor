@@ -1,27 +1,35 @@
 #mensajes
 {
-    text-align: center;
-    font-size: 10pt;
+    display: none;
+
+    font-size: 13pt;
+    font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
     font-weight: bold;
-    margin: 15px auto;
+    margin: 0;
     
-    border: 1px solid #E6DB55;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 84%;
+    padding: 50px 8%;
     
-    background: #FFFBCC;
+    border-top: 1px solid #888;
+    -webkit-box-shadow: 0px -1px 10px rgba(50, 50, 50, 0.8);
+    -moz-box-shadow:    0px -1px 10px rgba(50, 50, 50, 0.8);
+    box-shadow:         0px -1px 10px rgba(50, 50, 50, 0.8);
+    
+
+    background: #fff url("close.png") top right no-repeat;
+}
+
+#mensajes:hover
+{
+    background: #fff url("closeon.png") top right no-repeat;
+    cursor: pointer;
 }
 
 #mensajes table
 {
-    text-align: center;
-    vertical-align: middle;
     margin: auto;
-}
-
-#mensajes table tr
-{
-    display: inline;
 }
 
 #mensajes table.exito
@@ -44,14 +52,7 @@
     color: #e00;
 }
 
-#mensajes table tr td.columnaizquierda
+#mensajes table tr td
 {
-    text-align: right;
-    padding: 5px;
-}
-
-#mensajes table tr td.columnaderecha
-{
-    text-align: left;
-    padding: 5px;
+    text-align: center;
 }

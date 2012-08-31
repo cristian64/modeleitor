@@ -20,8 +20,8 @@ function baseSuperior($titulo)
         <link type="text/css" rel="stylesheet" href="css/responsiveslides/responsiveslides.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
-        <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/estilo.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/thickbox.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/reveal.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/google-translate.css" media="screen" />
@@ -99,10 +99,9 @@ function baseSuperior($titulo)
                 
                 <div style="clear:both;"></div>
             </div>
-            
+            <?php include('mensajes.php'); ?>
             <div id="contenido">
                 <div id="cuerpo">
-                    <?php include('mensajes.php'); ?>
 <?php
 }
 

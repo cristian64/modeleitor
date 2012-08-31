@@ -23,14 +23,12 @@ $imagenes = array_slice($imagenes, 0, 5);
     <div id="textos">
         <div class="texto">
             <div class="cabecera-texto">Quiénes somos</div>
-            Calzados JAM es un almacén y fábrica de calzado nacional. También nos suministran fábricas de Elche, Elda, Almansa y Yecla. Venta mayorista.
-            Disponemos de calzado de señora, caballero, niño, deportivos, zapatillas de playa y hasta complementos, como bolsos y cinturones. 
+            Calzados JAM es un almacén y fábrica de calzado nacional, donde fabricamos y distribuimos las últimas tendencias en moda española. También nos suministran otras fábricas de Elche, Elda, Almansa, Yecla, etc... Nuestros clientes son las tiendas y almacenes de toda Europa. Estamos especializados en la venta mayorista, surtido libre y la entrega en 24h siempre que tengamos existencias en el almacén. Disponemos de todo tipo de calzado y también podemos fabricar modelos adaptándonos a sus necesidades. 
         </div>
         <div class="separador-textos"></div>
         <div class="texto">
-            <div class="cabecera-texto">Cómo</div>
-            Atendemos pedidos en tienda, teléfono o e-mail, e intentamos dar respuesta a todos los pedidos de forma inmediata, entregando el pedido en el término de 24 horas a todo el país.
-            Los clientes pueden decidir entre cajas completas o el denominado <em>surtido libre</em>, donde pueden comprar aquellas tallas que deseen.
+            <div class="cabecera-texto">Cómo</div>            
+            Atendemos pedidos en el almacén, por teléfono o e-mail. Los clientes pueden decidir entre cajas o surtido libre, donde pueden comprar aquellas tallas que deseen y la cantidad que necesiten.
         </div>
         <div class="separador-textos"></div>
         <div class="texto">
