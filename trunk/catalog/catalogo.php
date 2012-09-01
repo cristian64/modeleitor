@@ -23,7 +23,7 @@ if ($id_categoria != "")
         if ($nombreCategoria == "")
             $nombreCategoria = $categoria->getNombre();
         else
-            $nombreCategoria = $categoria->getNombre()." &raquo; ".$nombreCategoria;
+            $nombreCategoria = "<a href=\"".$categoria->getId()."\">".$categoria->getNombre()."</a>"." &raquo; ".$nombreCategoria;
         $categoria = ENCategoria::getById($categoria->getIdPadre());
     }
 }
@@ -32,7 +32,11 @@ $id_marca = getGet("marca");
 if ($id_marca != "" && count($modelos) == 0)
 {
     $modelos = ENModelo::getByMarca($id_marca, 1, 99999);
-    $nombreCategoria = ENMarca::getById($id_marca)->getNombre();
+    if (is_array($modelos))
+        if ($id_marca == 0)
+            $nombreCategoria = "Otras marcas";
+        else
+            $nombreCategoria = ENMarca::getById($id_marca)->getNombre();
 }
 
 $filtro = getGet("busqueda");
@@ -62,7 +66,7 @@ for ($i = 0; $i < 5; $i++)
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
                 if ($activo)
                     echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())." €</div>";
-                echo "<div class=\"modelo-nombre\">".$i->getNombre()."</div></div></div></div>\n";
+                echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".$i->getNumeracion()."</div></div></div></div>\n";
             }
             
             echo "<div class=\"modelo-pua\"></div>\n";
@@ -80,7 +84,7 @@ for ($i = 0; $i < 5; $i++)
     <div id="myModal" class="reveal-modal">
         <div id="modelo-modal"></div>
         <img id="modelo-loading" src="css/loading.gif" alt="" />
-        <a class="close-reveal-modal">&#215;</a>
+        <a class="close-reveal-modal">&nbsp;</a>
     </div>
         
 <?php baseInferior(); ?>

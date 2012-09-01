@@ -19,7 +19,7 @@ function GoogleMaps3(divid)
         *************************************************/
         var enlace = '<a class="btnazul" href="https://maps.google.es/maps?q=Calzados+JAM&sll=38.281431,-0.719326&sspn=0.01297,0.033023&t=h&hq=Calzados+JAM&z=16&iwloc=A">Ver en Google Maps</a>';
         var locations = [
-        ['<div><img src="css/calzadosjam_logo.png" title="Calzados JAM" alt="Calzados JAM" width="190px" /><br /><br />Calle Almansa, 65<br />Elche (Alicante)<br />03206<br /><br />' + enlace + '<br /><br /></div>', latitud, longitud, 1],
+        ['<div style="font-size: 9pt; overflow:hidden;"><div style="text-align: center;"><img src="css/calzadosjam_logo.png" title="Calzados JAM" alt="Calzados JAM" width="160px" /></div><br /><br />Calle Almansa, 65<br />Elche (Alicante)<br />03206<br /><br />' + enlace + '<br /></div>', latitud, longitud, 1],
         ];
 
         var map = new google.maps.Map(document.getElementById(divid), {
@@ -42,6 +42,7 @@ function GoogleMaps3(divid)
             google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                 infowindow.setContent(locations[i][0]);
+                infownidow.setOptions({maxWidth: 100});
                 infowindow.open(map, marker);
                 }
             })(marker, i));

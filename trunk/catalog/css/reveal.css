@@ -40,14 +40,21 @@
 	
 	.reveal-modal .close-reveal-modal {
 		font-size: 30px;
-		line-height: .5;
 		position: absolute;
-		top: 5px;
-		right: 5px;
+        width: 100%;
+        height: 100%;
+		text-align: right;
+        top: 0;
+        left: 0;
 		color: #000;
 		font-weight: bold;
 		cursor: pointer;
-		} 
+        background: url("close.png") top right no-repeat;
+		}
+        
+    .reveal-modal .close-reveal-modal:hover {
+        background: url("closeon.png") top right no-repeat;
+    }
 	/*
 		
 	NOTES

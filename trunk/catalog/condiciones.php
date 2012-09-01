@@ -12,9 +12,8 @@ baseSuperior("Condiciones de uso");
         Utilizar esta página web y/o registrarse como usuario presupone la aceptación de estas condiciones.
     </div>
     <div>
-        <strong>2. Propiedad de esta página web</strong>
-        Esta página web es propiedad de Herederos de José Aguilera Moreno S.L.U. en adelante Calzados JAM. Todos los derechos de su contenido, de las imágenes, textos, diseño y software son propiedad de Calzados JAM.
-        Todos los elementos de esta página, incluyendo sin limitaciones, su diseño y su contenido están protegidos por las leyes de la Propiedad Intelectual, Propiedad Industrial y tratados internacionales referidos a los Derecho de Autor.
+        <strong>2. Propiedad de esta página web</strong>        
+        Esta página web (www.calzadosjam.es) es propiedad de Herederos de José Aguilera Moreno S.L.U. en adelante Calzados JAM con domicilio social en Calle Almansa, 65 Polígono de Carrús 03206 Elche (Alicante), con C.I.F. B53338844. Todos los derechos de su contenido, de las imágenes, textos, diseño y software son propiedad de Calzados JAM. Todos los elementos de esta página, incluyendo sin limitaciones, su diseño y su contenido están protegidos por las leyes de la Propiedad Intelectual, Propiedad Industrial y tratados internacionales referidos a los Derecho de Autor.
     </div>
     <div>
         <strong>3. Uso de su Contenido</strong>
