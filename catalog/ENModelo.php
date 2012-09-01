@@ -312,10 +312,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by id_marca desc, prioridad desc, referencia asc";
             
             if (is_numeric($id_categoria))
-                $sentencia = "select * from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by prioridad desc";
+                $sentencia = "select * from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by id_marca desc, prioridad desc, referencia asc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -401,10 +401,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc, referencia asc";
             
             if (is_numeric($id_fabricante))
-                $sentencia = "select * from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."' order by prioridad desc";
+                $sentencia = "select * from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."' order by prioridad desc, referencia asc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -490,10 +490,10 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc, referencia desc";
             
             if (is_numeric($id_marca))
-                $sentencia = "select * from modelos where descatalogado = 0 and id_marca = '".$id_marca."' order by prioridad desc";
+                $sentencia = "select * from modelos where descatalogado = 0 and id_marca = '".$id_marca."' order by prioridad desc, referencia desc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;

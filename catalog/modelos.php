@@ -26,8 +26,6 @@ function mostrarImagenRaton(ruta)
 {
     document.getElementById("imagenraton").src = ruta;
     document.getElementById("capaimagenraton").style.display = "block";
-    document.getElementById("capaimagenraton").style.top = (posY) + "px";
-    document.getElementById("capaimagenraton").style.left = (posX-30-document.getElementById("imagenraton").width) + "px";
 }
 
 function ocultarImagenRaton()
@@ -37,8 +35,9 @@ function ocultarImagenRaton()
 
 function registrarCoordenadas(event)
 {
-    document.getElementById("capaimagenraton").style.top = (event.clientY)+document.documentElement.scrollTop + "px";
-    document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
+    document.getElementById("capaimagenraton").style.top = (30 + event.clientY)+document.documentElement.scrollTop + "px";
+    document.getElementById("capaimagenraton").style.left = (event.clientX+30)+document.documentElement.scrollLeft + "px";
+    //document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
 }
 </script>
 <div style="float: right; padding-top: 20px;"><a href="nuevomodelo"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
