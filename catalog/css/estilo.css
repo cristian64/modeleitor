@@ -495,6 +495,30 @@ table, tr
     margin-top: 5px;
 }
 
+.modelo-oferta
+{
+    vertical-align: middle;
+    font-weight: bold;
+    color: #FFDC00;
+    font-size: 14pt;
+    text-shadow: -1px 0 1px #C02E00, 0 1px 1px #C02E00, 1px 0 1px #C02E00, 0 -1px 1px #C02E00;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.modelo-oferta-modal
+{
+    vertical-align: middle;
+    font-weight: bold;
+    color: #FFDC00;
+    font-size: 25pt;
+    text-shadow: -1px 0 1px #C02E00, 0 1px 1px #C02E00, 1px 0 1px #C02E00, 0 -1px 1px #C02E00;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
 
 /**********************************************************/
 

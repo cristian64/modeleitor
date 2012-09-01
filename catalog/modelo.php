@@ -122,32 +122,13 @@ $(document).ready(function(){
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="guapo-label">Prioridad</td>
-                                                        <td class="guapo-input">
-                                                            <select id="prioridad" name="prioridad">
-                                                            <?php
-                                                                for ($i = 0; $i <= 10; $i++)
-                                                                {
-                                                                    if ($modelo->getPrioridad() == $i)
-                                                                        echo "<option value=\"$i\" selected=\"selected\">$i</option>";
-                                                                    else
-                                                                        echo "<option value=\"$i\">$i</option>";
-                                                                }
-                                                            ?>
-                                                            </select>
-                                                            <script type="text/javascript">
-                                                                $(function() {
-                                                                    $( "#prioridad" ).combobox();
-                                                                    $( "#toggle" ).click(function() {
-                                                                        $( "#prioridad" ).toggle();
-                                                                    });
-                                                                });
-                                                            </script>
-                                                        </td>
+                                                        <td class="guapo-label">Foto</td>
+                                                        <?php $thumbs = getThumbs($modelo->getFoto()); ?>
+                                                        <td class="guapo-input"><img src="img/modelos/<?php echo $thumbs[1]; ?>" alt="" /><br /><input type="file" name="foto" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label">Descripción</td>
-                                                        <td class="guapo-input"><textarea rows="15" cols="20" name="descripcion" class="tinymce" id="tinymce"><?php echo htmlspecialchars($modelo->getDescripcion()); ?></textarea>
+                                                        <td class="guapo-input"><a id="descripcion-toggle" class="btnazul" onclick="$('#descripcion').show(); $('#descripcion-toggle').hide();">Mostrar</a><div id="descripcion" style="display: none;"><textarea rows="15" cols="20" name="descripcion" class="tinymce" id="tinymce"><?php echo htmlspecialchars($modelo->getDescripcion()); ?></textarea></div>
 <script type="text/javascript">
 	$().ready(function() {
 		$('textarea.tinymce').tinymce({
@@ -180,17 +161,36 @@ $(document).ready(function(){
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td class="guapo-label">Prioridad</td>
+                                                        <td class="guapo-input">
+                                                            <select id="prioridad" name="prioridad">
+                                                            <?php
+                                                                for ($i = 0; $i <= 10; $i++)
+                                                                {
+                                                                    if ($modelo->getPrioridad() == $i)
+                                                                        echo "<option value=\"$i\" selected=\"selected\">$i</option>";
+                                                                    else
+                                                                        echo "<option value=\"$i\">$i</option>";
+                                                                }
+                                                            ?>
+                                                            </select>
+                                                            <script type="text/javascript">
+                                                                $(function() {
+                                                                    $( "#prioridad" ).combobox();
+                                                                    $( "#toggle" ).click(function() {
+                                                                        $( "#prioridad" ).toggle();
+                                                                    });
+                                                                });
+                                                            </script>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="oferta" <?php if($modelo->getOferta()) echo "checked=\"checked\""; ?>/> Oferta</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="descatalogado" <?php if($modelo->getDescatalogado()) echo "checked=\"checked\""; ?>/> Descatalogado</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="guapo-label">Foto</td>
-                                                        <?php $thumbs = getThumbs($modelo->getFoto()); ?>
-                                                        <td class="guapo-input"><img src="img/modelos/<?php echo $thumbs[1]; ?>" alt="" /><br /><input type="file" name="foto" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label"></td>

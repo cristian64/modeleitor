@@ -97,34 +97,12 @@ $(document).ready(function(){
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="guapo-label">Prioridad</td>
-                                                        <td class="guapo-input">
-                                                            <select id="prioridad" name="prioridad">
-                                                                <option value="0">0</option>
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option value="5" selected="selected">5</option>
-                                                                <option value="6">6</option>
-                                                                <option value="7">7</option>
-                                                                <option value="8">8</option>
-                                                                <option value="9">9</option>
-                                                                <option value="10">10</option>
-                                                            </select>
-                                                            <script type="text/javascript">
-                                                                $(function() {
-                                                                    $( "#prioridad" ).combobox();
-                                                                    $( "#toggle" ).click(function() {
-                                                                        $( "#prioridad" ).toggle();
-                                                                    });
-                                                                });
-                                                            </script>
-                                                        </td>
+                                                        <td class="guapo-label">Foto</td>
+                                                        <td class="guapo-input"><input type="file" name="foto" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label">Descripción</td>
-                                                        <td class="guapo-input"><textarea name="descripcion" rows="15" cols="20" class="tinymce"></textarea>
+                                                        <td class="guapo-input"><a id="descripcion-toggle" class="btnazul" onclick="$('#descripcion').show(); $('#descripcion-toggle').hide();">Mostrar</a><div id="descripcion" style="display: none;"><textarea rows="15" cols="20" name="descripcion" class="tinymce" id="tinymce"></textarea></div>
 <script type="text/javascript">
 	$().ready(function() {
 		$('textarea.tinymce').tinymce({
@@ -157,16 +135,38 @@ $(document).ready(function(){
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td class="guapo-label">Prioridad</td>
+                                                        <td class="guapo-input">
+                                                            <select id="prioridad" name="prioridad">
+                                                                <option value="0">0</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5" selected="selected">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                            </select>
+                                                            <script type="text/javascript">
+                                                                $(function() {
+                                                                    $( "#prioridad" ).combobox();
+                                                                    $( "#toggle" ).click(function() {
+                                                                        $( "#prioridad" ).toggle();
+                                                                    });
+                                                                });
+                                                            </script>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="oferta" /> Oferta</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="descatalogado" /> Descatalogado</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="guapo-label">Foto</td>
-                                                        <td class="guapo-input"><input type="file" name="foto" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label"></td>
