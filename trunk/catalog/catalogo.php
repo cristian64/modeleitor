@@ -60,7 +60,9 @@ for ($i = 0; $i < 5; $i++)
                 $thumbs = getThumbs($i->getFoto());
                 echo "<div class=\"modelo\" onclick=\"cargarModelo(".$i->getId().");\">";
                 if ($admin)
-                    echo "<a style=\"position: absolute; top: 0; left: 0;\" href=\"modelo?id=".$i->getId()."\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a>";
+                    echo "<a style=\"position: absolute; top: 0; right: 0;\" href=\"modelo?id=".$i->getId()."\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a>";
+                if ($i->getOferta())
+                    echo "<div class=\"modelo-oferta\">Oferta</div>";
                 echo "<div class=\"modelo-wrapper\">";
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";

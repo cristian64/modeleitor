@@ -10,7 +10,10 @@ $modelo = ENModelo::getById($id);
 if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
 {
     echo "<table style=\"width: 100%; height: 100%;\">";
-    echo "<tr><td class=\"modelo-foto\"><img id=\"modelo-img\" src=\"img/modelos/".$modelo->getFoto()."\" alt=\"\"></td></tr>";
+    echo "<tr><td class=\"modelo-foto\">";
+    if ($modelo->getOferta())
+        echo "<div class=\"modelo-oferta-modal\">Oferta</div>";
+    echo "<img id=\"modelo-img\" src=\"img/modelos/".$modelo->getFoto()."\" alt=\"\"></td></tr>";
     echo "<tr>";
     echo "<td class=\"modelo-titulo-modal\">";
     echo "<div class=\"modelo-ref\">Ref. ".$modelo->getReferencia()."</div>";

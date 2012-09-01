@@ -6,11 +6,16 @@ baseSuperior("Inicio");
 $imagenes = getDirectoryList("img/slidershow/");
 shuffle($imagenes);
 $imagenes = array_slice($imagenes, 0, 5);
+if (rand(0, 3) == 0)
+    array_unshift($imagenes, "s1.jpg");
+else
+    array_unshift($imagenes, "s2.jpg");
+$imagenes = array_unique($imagenes);
 ?>
 
     <div id="externo">
         <div id="interno">
-            <ul class="rslides rslides1">        
+            <ul class="rslides rslides1">
                 <?php
                     foreach ($imagenes as $i)
                     {
