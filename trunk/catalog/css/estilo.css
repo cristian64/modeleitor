@@ -544,7 +544,7 @@ td.guapo-input
 
 .guapo-input input[type=text], .guapo-input input[type=password], .guapo-input textarea
 {
-    width: 250px;
+    width: 290px;
     background: #fff;
     font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
     font-weight: 300;
@@ -605,7 +605,7 @@ td.guapo-input
 .guapo-form .ui-combobox {
     position: relative;
     display: inline-block;
-    width: 250px;
+    width: 290px; /*mismo tamaño que el input text*/
     background: #fff;
     padding: 10px;
     
