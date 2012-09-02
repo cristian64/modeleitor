@@ -54,7 +54,7 @@ function baseSuperior($titulo)
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
-                                <form method="GET" action="catalogo"><input type="text" title="Introduce el nº de referencia o descripción del modelo" value="<?php echo getGet("busqueda"); ?>" name="busqueda" <?php if (!esMovil()) echo "class=\"animacion\""; ?> /></form>
+                                <form method="GET" action="catalogo"><input type="text" title="Introduce el nº de referencia o descripción del modelo" value="<?php echo htmlspecialchars(getGet("busqueda")); ?>" name="busqueda" <?php if (!esMovil()) echo "class=\"animacion\""; ?> /></form>
                             </td>
                             <td>
                                 <?php
@@ -114,16 +114,16 @@ function bloqueCategorias()
         $subcategorias = ENCategoria::getByPadre($i->getId());
         echo "    <li>\n";
         if (esMovil() && count($subcategorias) > 0)
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\" onclick=\"return false;\">".$i->getNombre()."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\" onclick=\"return false;\">".htmlspecialchars($i->getNombre())."</a>\n";
         else
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\">".$i->getNombre()."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."\" class=\"firstLevel\">".htmlspecialchars($i->getNombre())."</a>\n";
             
         if (count($subcategorias) > 0)
         {
             echo "        <ul>\n";
             foreach ($subcategorias as $j)
             {
-                echo "            <li><a href=\"catalogo?categoria=".$j->getId()."\">".$j->getNombre()."</a></li>\n";
+                echo "            <li><a href=\"catalogo?categoria=".$j->getId()."\">".htmlspecialchars($j->getNombre())."</a></li>\n";
             }
             echo "         </ul>\n";
         }
@@ -136,7 +136,7 @@ function bloqueCategorias()
     foreach ($marcas as $i)
     {
         if (ENModelo::countByMarca($i->getId()) > 0)
-            echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".$i->getNombre()."</a></li>\n";
+            echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".htmlspecialchars($i->getNombre())."</a></li>\n";
     }
     echo "<li><a href=\"catalogo?marca=0\">Otras marcas</a></li>\n";
     echo "</ul></li>\n";

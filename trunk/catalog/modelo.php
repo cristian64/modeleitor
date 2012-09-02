@@ -47,11 +47,11 @@ $(document).ready(function(){
                                                 <table class="guapo-form">
                                                     <tr>
                                                         <td class="guapo-label">Referencia</td>
-                                                        <td class="guapo-input"><input type="text" value="<?php echo $modelo->getReferencia(); ?>" name="referencia" /></td>
+                                                        <td class="guapo-input"><input type="text" value="<?php echo htmlspecialchars($modelo->getReferencia()); ?>" name="referencia" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label">Nombre</td>
-                                                        <td class="guapo-input"><input type="text" value="<?php echo $modelo->getNombre(); ?>" name="nombre" /></td>
+                                                        <td class="guapo-input"><input type="text" value="<?php echo htmlspecialchars($modelo->getNombre()); ?>" name="nombre" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="guapo-label">Numeración</td>
@@ -75,9 +75,9 @@ $(document).ready(function(){
                                                                 foreach ($fabricantes as $f)
                                                                 {
                                                                     if ($modelo->getIdFabricante() == $f->getId())
-                                                                        echo "<option value=\"".$f->getId()."\" selected=\"selected\">".$f->getNombre()."</option>\n";
+                                                                        echo "<option value=\"".$f->getId()."\" selected=\"selected\">".htmlspecialchars($f->getNombre())."</option>\n";
                                                                     else
-                                                                        echo "<option value=\"".$f->getId()."\">".$f->getNombre()."</option>\n";
+                                                                        echo "<option value=\"".$f->getId()."\">".htmlspecialchars($f->getNombre())."</option>\n";
                                                                 }
                                                             ?>
                                                             </select>
@@ -105,9 +105,9 @@ $(document).ready(function(){
                                                                 foreach ($marcas as $m)
                                                                 {
                                                                     if ($modelo->getIdMarca() == $m->getId())
-                                                                        echo "<option value=\"".$m->getId()."\" selected=\"selected\">".$m->getNombre()."</option>\n";
+                                                                        echo "<option value=\"".$m->getId()."\" selected=\"selected\">".htmlspecialchars($m->getNombre())."</option>\n";
                                                                     else
-                                                                        echo "<option value=\"".$m->getId()."\">".$m->getNombre()."</option>\n";
+                                                                        echo "<option value=\"".$m->getId()."\">".htmlspecialchars($m->getNombre())."</option>\n";
                                                                 }
                                                             ?>
                                                             </select>
@@ -259,7 +259,7 @@ $(document).ready(function(){
 function imprimirCategoria($categoria, $nivel, $array_categorias, $jscode = "")
 {
     $checked = in_array($categoria->getId(), $array_categorias) ? "checked=\"checked\"" : "";
-    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input id=\"cat".$categoria->getId()."\" $checked onclick=\"if (this.checked) { $jscode }\" type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".$categoria->getNombre()."</div>\n";
+    echo "<div class=\"categoria\" style=\"margin-left: ".($nivel * 40)."px;\"><input id=\"cat".$categoria->getId()."\" $checked onclick=\"if (this.checked) { $jscode }\" type=\"checkbox\" value=\"".$categoria->getId()."\" name=\"categorias[]\" /> ".htmlspecialchars($categoria->getNombre())."</div>\n";
     
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     foreach ($subcategorias as $i)

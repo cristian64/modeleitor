@@ -62,12 +62,12 @@ function registrarCoordenadas(event)
         $thumbs = getThumbs($i->getFoto());
         echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[1]."')\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
-        echo "<td class=\"centrada\">".$i->getReferencia()."</td>";
-        echo "<td>".$i->getNombre()."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getReferencia())."</td>";
+        echo "<td>".htmlspecialchars($i->getNombre())."</td>";
         echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
-        echo "<td class=\"centrada\">".$i->getFabricanteStr()."</td>";
-        echo "<td class=\"centrada\">".$i->getMarcaStr()."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getFabricanteStr())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getMarcaStr())."</td>";
         echo "<td class=\"centrada\">".$i->getPrioridad()."</td>";
         
         echo "<td class=\"centrada\"><div>";

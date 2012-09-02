@@ -36,12 +36,12 @@ baseSuperior("Marcas");
     {
         $thumbs = getThumbs($i->getLogo());
         echo "<tr class=\"fila\">";
-        echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td><td class=\"centrada\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".$i->getNombre()."</td><td class=\"centrada\">";
+        echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td><td class=\"centrada\"><img src=\"img/marcas/".$thumbs[1]."\" alt=\"\" /><td>".htmlspecialchars($i->getNombre())."</td><td class=\"centrada\">";
         
         echo "<div>";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
+        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(filtrarComillas($i->getNombre()))."');";
         echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
         echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";

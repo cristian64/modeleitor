@@ -38,10 +38,10 @@ baseSuperior("Usuarios");
     {
         echo "<tr class=\"fila\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
-        echo "<td>".$i->getNombre()."</td>";
+        echo "<td>".htmlspecialchars($i->getNombre())."</td>";
         echo "<td class=\"centrada\">".$i->getEmail()."</td>";
-        echo "<td class=\"centrada\">".$i->getTelefono()."</td>";
-        echo "<td class=\"centrada\">".$i->getCif()."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getTelefono())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getCif())."</td>";
         echo "<td class=\"centrada\">".($i->getActivo() == 1 ? "sí" : "no")."</td>";
         echo "<td></td>";
         echo "</tr>";
