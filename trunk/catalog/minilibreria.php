@@ -26,7 +26,7 @@
                 {
                     if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
                     {
-                        if (!$usuario->getActivo())
+                        if (!$usuario2->getActivo())
                         {
                             $_SESSION["mensaje_error"] = "No se pudo iniciar sesión. Tu cuenta está a la espera de ser activada por un administrador.";
                         }
