@@ -49,9 +49,8 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
 
                             if ($registrado)
                             {
-                                $_SESSION["mensaje_exito"] = "Cuenta creada correctamente";
-                                $_SESSION["mensaje_aviso"] = "Tu cuenta está a la espera de ser activada por un administrador";
-                                $_SESSION["usuario"] = serialize($nuevo);
+                                $_SESSION["mensaje_exito"] = "Cuenta $email creada correctamente";
+                                $_SESSION["mensaje_aviso"] = "Recibirás un e-mail cuando un administrador valide tu cuenta";
                                 
                                 header("location: index.php");
                                 exit();
