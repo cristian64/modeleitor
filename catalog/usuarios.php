@@ -28,6 +28,7 @@ baseSuperior("Usuarios");
             <td class="estirar">Nombre</td>
             <td>Email</td>
             <td>Teléfono</td>
+            <td>CIF/NIF</td>
             <td>Activo</td>
             <td></td>
         </tr>
@@ -40,6 +41,7 @@ baseSuperior("Usuarios");
         echo "<td>".$i->getNombre()."</td>";
         echo "<td class=\"centrada\">".$i->getEmail()."</td>";
         echo "<td class=\"centrada\">".$i->getTelefono()."</td>";
+        echo "<td class=\"centrada\">".$i->getCif()."</td>";
         echo "<td class=\"centrada\">".($i->getActivo() == 1 ? "sí" : "no")."</td>";
         echo "<td></td>";
         echo "</tr>";
