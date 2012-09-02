@@ -7,6 +7,17 @@ drop table if exists categorias;
 drop table if exists modelos;
 drop table if exists marcas;
 drop table if exists fabricantes;
+drop table if exists accesos;
+
+create table accesos
+(
+    id int not null auto_increment,
+    ip char(15) not null,
+    fecha datetime not null,
+    id_usuario int not null,
+    exito tinyint(1) not null default 0,
+    primary key (id)
+) engine = myisam default charset=utf8 collate=utf8_general_ci;
 
 create table fabricantes
 (

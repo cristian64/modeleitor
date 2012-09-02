@@ -11,6 +11,7 @@
     require_once 'ENCategoria.php';
     require_once 'ENUsuario.php';
     require_once 'ENModelo.php';
+    require_once 'ENAcceso.php';
     
     function getUsuario()
     {
@@ -20,21 +21,34 @@
             // Si no hay ninguna sesión abierta, intentamos abrir una desde las cookies.
             if (isset($_COOKIE["email"]) && isset($_COOKIE["contrasena"]))
             {
-                //TODO: COMPROBAMOS QUE PODEMOS INTENTARLO
-                $usuario2 = ENUsuario::getByEmail($_COOKIE["email"]);
-                if ($usuario2 != null)
+                $ip = $_SERVER['REMOTE_ADDR'];
+                if (ENAcceso::isGranted($ip))
                 {
-                    if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
+                    $usuario2 = ENUsuario::getByEmail($_COOKIE["email"]);
+                    if ($usuario2 != null)
                     {
-                        if (!$usuario2->getActivo())
+                        if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
                         {
-                            $_SESSION["mensaje_error"] = "No se pudo iniciar sesión. Tu cuenta está a la espera de ser activada por un administrador.";
+                            if (!$usuario2->getActivo())
+                            {
+                                $_SESSION["mensaje_error"] = "No se pudo iniciar sesión. Tu cuenta está a la espera de ser activada por un administrador.";
+                            }
+                            else
+                            {
+                                $_SESSION["usuario"] = serialize($usuario2);
+                                $usuario = $usuario2;
+                            }
+                            
+                            ENAcceso::save($ip, $usuario2->getId(), true);
                         }
                         else
                         {
-                            $_SESSION["usuario"] = serialize($usuario2);
-                            $usuario = $usuario2;
+                            ENAcceso::save($ip, $usuario2->getId(), false);
                         }
+                    }
+                    else
+                    {
+                        ENAcceso::save($ip, 0, false);
                     }
                 }
             }
@@ -172,6 +186,9 @@
     
     function debug($cadena)
     {
+        $fp = fopen('/home/cristian/Desktop/data.txt', 'a');
+        fwrite($fp, $cadena."\n");
+        fclose($fp);
         echo $cadena."<br />";
     }
 
