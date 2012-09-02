@@ -9,6 +9,7 @@ $activo = $usuario != null && $usuario->getActivo();
 $admin = $usuario != null && $usuario->getAdmin();
 $modelos = array();
 $nombreCategoria = "";
+$esMovil = esMovil();
 
 
 $id_categoria = getGet("categoria");
@@ -58,17 +59,24 @@ for ($i = 0; $i < 5; $i++)
             foreach ($modelos as $i)
             {
                 $thumbs = getThumbs($i->getFoto());
-                echo "<div class=\"modelo\" onclick=\"cargarModelo(".$i->getId().");\">";
+                if (!$esMovil)
+                    echo "<div class=\"modelo\" onclick=\"cargarModelo(".$i->getId().");\">";
+                else
+                    echo "<a class=\"modelo\" href=\"vermodelo?id=".$i->getId()."\">";
                 if ($admin)
                     echo "<a style=\"position: absolute; top: 0; right: 0;\" href=\"modelo?id=".$i->getId()."\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a>";
                 if ($i->getOferta())
                     echo "<div class=\"modelo-oferta\">Oferta</div>";
                 echo "<div class=\"modelo-wrapper\">";
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
-                echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".$i->getReferencia()."</div>";
+                echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".htmlspecialchars($i->getReferencia())."</div>";
                 if ($activo)
                     echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())." €</div>";
-                echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".$i->getNumeracion()."</div></div></div></div>\n";
+                echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".$i->getNumeracion()."</div></div></div>\n";
+                if (!$esMovil)
+                    echo "</div>\n";
+                else
+                    echo "</a>\n";
             }
             
             echo "<div class=\"modelo-pua\"></div>\n";
