@@ -80,6 +80,14 @@ baseSuperior("Contacto");
                                             <div class="contacto-detalles">
                                                 <p><a href="mailto:calzadosjam@gmail.com">calzadosjam@gmail.com</a></p>
                                             </div>
+                                            
+                                            <p>Visítanos en:</p>
+                                            <div class="contacto-detalles">
+                                                <p>
+                                                    <a href="https://www.facebook.com/calzados.jam"><img src="css/facebook.png" alt="Facebook" title="Facebook" /></a> 
+                                                    <a href="https://plus.google.com/115603135881616840952/"><img src="css/googleplus.png" alt="Google+" title="Google+" /></a>
+                                                </p>
+                                            </div>
                                         </div>
                                     </td>
                                     <td style="vertical-align: top;">
