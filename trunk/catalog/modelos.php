@@ -89,8 +89,8 @@ function registrarCoordenadas(event)
     </form>
 </div>
 
-<script>
-$(function() {
+<script type="text/javascript">
+$(window).load(function() {
     $("#dialogo-eliminar").dialog({
         resizable: false,
         autoOpen: false,
