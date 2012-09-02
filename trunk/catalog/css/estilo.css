@@ -431,6 +431,7 @@ table, tr
     color: #333;
     margin: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .modelo-pua
