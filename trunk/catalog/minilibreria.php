@@ -20,15 +20,21 @@
             // Si no hay ninguna sesión abierta, intentamos abrir una desde las cookies.
             if (isset($_COOKIE["email"]) && isset($_COOKIE["contrasena"]))
             {
+                //TODO: COMPROBAMOS QUE PODEMOS INTENTARLO
                 $usuario2 = ENUsuario::getByEmail($_COOKIE["email"]);
                 if ($usuario2 != null)
                 {
                     if ($usuario2->getContrasena() == $_COOKIE["contrasena"])
                     {
-                        $_SESSION["usuario"] = serialize($usuario2);
-                        $usuario = $usuario2;
                         if (!$usuario->getActivo())
-                            $_SESSION["mensaje_aviso"] = "Tu cuenta está a la espera de ser activada por un administrador";
+                        {
+                            $_SESSION["mensaje_error"] = "No se pudo iniciar sesión. Tu cuenta está a la espera de ser activada por un administrador.";
+                        }
+                        else
+                        {
+                            $_SESSION["usuario"] = serialize($usuario2);
+                            $usuario = $usuario2;
+                        }
                     }
                 }
             }

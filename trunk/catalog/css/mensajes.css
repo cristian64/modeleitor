@@ -18,13 +18,12 @@
     -moz-box-shadow:    0px -1px 10px rgba(50, 50, 50, 0.8);
     box-shadow:         0px -1px 10px rgba(50, 50, 50, 0.8);
     
-
-    background: #fff url("close.png") top right no-repeat;
+    background: #FFF9D0 url("close.png") top right no-repeat;
 }
 
 #mensajes:hover
 {
-    background: #fff url("closeon.png") top right no-repeat;
+    background: #FFF39E url("closeon.png") top right no-repeat;
     cursor: pointer;
 }
 

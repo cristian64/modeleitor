@@ -26,19 +26,23 @@
     {
         if ($usuario->getContrasena() == sha512($contrasena))
         {
-            $_SESSION["usuario"] = serialize($usuario);
-
-            // Comprobamos si hay que recordar el usuario.
-            if (getPost("recordar") == "on")
-            {
-                // Guardamos el usuario y la contraseña en una cookie.
-                setcookie("email", $email, time() + (30 * 86400));
-                setcookie("contrasena", sha512($contrasena), time() + (30 * 86400));
-            }
-            $_SESSION["mensaje_exito"] = "Sesión iniciada correctamente";
-            
             if (!$usuario->getActivo())
-                $_SESSION["mensaje_aviso"] = "Tu cuenta está a la espera de ser activada por un administrador";
+            {
+                $_SESSION["mensaje_error"] = "No se pudo iniciar sesión. Tu cuenta está a la espera de ser activada por un administrador.";
+            }
+            else
+            {
+                $_SESSION["usuario"] = serialize($usuario);
+
+                // Comprobamos si hay que recordar el usuario.
+                if (getPost("recordar") == "on")
+                {
+                    // Guardamos el usuario y la contraseña en una cookie.
+                    setcookie("email", $email, time() + (30 * 86400));
+                    setcookie("contrasena", sha512($contrasena), time() + (30 * 86400));
+                }
+                $_SESSION["mensaje_exito"] = "Sesión iniciada correctamente";
+            }
                 
             header("location: index.php");
             exit();
