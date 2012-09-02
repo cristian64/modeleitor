@@ -72,6 +72,7 @@ create table usuarios
     nombre varchar(100) not null default '',
     telefono varchar(100) not null default '',
     direccion text not null default '',
+    cif varchar(100) not null default '',
     admin tinyint(1) not null default 0,
     activo tinyint(1) not null default 0,
     fecha_registro datetime not null,

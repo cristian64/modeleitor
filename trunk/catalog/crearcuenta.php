@@ -15,6 +15,7 @@ $contrasena2 = getPost("contrasena2");
 $nombre = getPost("nombre");
 $telefono = getPost("telefono");
 $direccion = getPost("direccion");
+$cif = getPost("cif");
 
 $kMinContrasena = 4;
 $kMaxContrasena = 100;
@@ -43,6 +44,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
                             $nuevo->setContrasena(sha512($contrasena));
                             $nuevo->setTelefono($telefono);
                             $nuevo->setDireccion($direccion);
+                            $nuevo->setCif($cif);
                             $registrado = $nuevo->save();
 
                             if ($registrado)
@@ -129,12 +131,16 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="password" value="" name="contrasena2" autocomplete="off" onblur="comprobarContrasena2();" /><div id="error-contrasena2" class="guapo-error">La confirmación de contraseña debe coincidir con la contraseña</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Nombre y apellidos*</td>
+                    <td class="guapo-label">Nombre completo*</td>
                     <td class="guapo-input"><input type="text" value="<?php echo $nombre; ?>" name="nombre" onblur="comprobarNombre();" /><div id="error-nombre" class="guapo-error">El nombre debe tener entre 4 y 100 letras</div></td>
                 </tr>
                 <tr>
                     <td class="guapo-label">Teléfono</td>
                     <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" /></td>
+                </tr>
+                <tr>
+                    <td class="guapo-label">CIF/NIF</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $cif; ?>" name="cif" /></td>
                 </tr>
                 <tr>
                     <td class="guapo-label">Dirección</td>
