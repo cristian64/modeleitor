@@ -189,6 +189,10 @@ $(document).ready(function(){
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="oferta" <?php if($modelo->getOferta()) echo "checked=\"checked\""; ?>/> Oferta</td>
                                                     </tr>
                                                     <tr>
+                                                        <td class="guapo-label">Precio (oferta)</td>
+                                                        <td class="guapo-input"><input type="text" value="<?php echo $modelo->getPrecioOferta(); ?>" name="precio_oferta" class="numerico" /></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="descatalogado" <?php if($modelo->getDescatalogado()) echo "checked=\"checked\""; ?>/> Descatalogado</td>
                                                     </tr>

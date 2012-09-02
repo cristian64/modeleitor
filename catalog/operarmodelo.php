@@ -64,6 +64,7 @@ function editar()
         $modelo->setTallaMenor(getPost("talla_menor"));
         $modelo->setTallaMayor(getPost("talla_mayor"));
         $modelo->setPrecio(getPost("precio"));
+        $modelo->setPrecioOferta(getPost("precio_oferta"));
         $modelo->setDescripcion($_POST["descripcion"]);
         $modelo->setIdFabricante(getPost("id_fabricante"));
         $modelo->setIdMarca(getPost("id_marca"));
@@ -121,6 +122,7 @@ function anadir()
     $modelo->setTallaMenor(getPost("talla_menor"));
     $modelo->setTallaMayor(getPost("talla_mayor"));
     $modelo->setPrecio(getPost("precio"));
+    $modelo->setPrecioOferta(getPost("precio_oferta"));
     $modelo->setDescripcion(getPost("descripcion"));
     $modelo->setIdFabricante(getPost("id_fabricante"));
     $modelo->setIdMarca(getPost("id_marca"));

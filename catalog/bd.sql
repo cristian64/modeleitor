@@ -37,6 +37,7 @@ create table modelos
     talla_mayor int not null default 0,
     descripcion text not null default '',
     precio decimal(10,2) not null,
+    precio_oferta decimal(10,2) not null,
     oferta tinyint(1) not null default 0,
     prioridad int not null default 5,
     descatalogado tinyint(1) not null default 0,
