@@ -30,15 +30,15 @@ function imprimirCategoria($categoria, $nivel)
 {
     $subcategorias = ENCategoria::getByPadre($categoria->getId(), true);
     echo "<tr class=\"fila\">";
-    echo "<td class=\"centrada\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".$categoria->getNombre()."</td><td class=\"centrada\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td class=\"centrada\">".$categoria->getZindex()."</td><td class=\"centrada\"><div>";
+    echo "<td class=\"centrada\">".rellenar($categoria->getId(), '0', 6)."</td><td>".imprimirTabs($nivel)." ".htmlspecialchars($categoria->getNombre())."</td><td class=\"centrada\">".($categoria->getMostrar() == 1 ? "sí" : "no")."</td><td class=\"centrada\">".$categoria->getZindex()."</td><td class=\"centrada\"><div>";
     echo "<a onclick=\"$('#form-anadir input[name=id_padre]').val(".$categoria->getId()."); $('#dialogo-anadir').dialog('open');\"><img src=\"css/anadir.png\" alt=\"Añadir\" title=\"Añadir\" /></a> ";
     
     if ($categoria->getId() > 0)
     {
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$categoria->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".$categoria->getNombre()."');";
-        echo "$('#form-editar input[name=descripcion]').val('".$categoria->getDescripcion()."');";
+        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars($categoria->getNombre())."');";
+        echo "$('#form-editar input[name=descripcion]').val('".htmlspecialchars($categoria->getDescripcion())."');";
         if ($categoria->getMostrar())
             echo "$('#form-editar input[name=mostrar]').attr('checked', true);";
         else

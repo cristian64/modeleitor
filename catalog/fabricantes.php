@@ -38,18 +38,18 @@ baseSuperior("Fabricantes");
     {
         echo "<tr class=\"fila\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
-        echo "<td>".$i->getNombre()."</td>";
-        echo "<td class=\"centrada\">".$i->getEmail()."</td>";
-        echo "<td class=\"centrada\">".$i->getTelefono()."</td>";
-        echo "<td>".$i->getDescripcion()."</td>";
+        echo "<td>".htmlspecialchars($i->getNombre())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getEmail())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getTelefono())."</td>";
+        echo "<td>".htmlspecialchars($i->getDescripcion())."</td>";
         
         echo "<td class=\"centrada\"><div>";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".filtrarComillas($i->getNombre())."');";
-        echo "$('#form-editar input[name=email]').val('".filtrarComillas($i->getEmail())."');";
-        echo "$('#form-editar input[name=telefono]').val('".filtrarComillas($i->getTelefono())."');";
-        echo "$('#form-editar input[name=descripcion]').val('".filtrarComillas($i->getDescripcion())."');";
+        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(filtrarComillas($i->getNombre()))."');";
+        echo "$('#form-editar input[name=email]').val('".htmlspecialchars(filtrarComillas($i->getEmail()))."');";
+        echo "$('#form-editar input[name=telefono]').val('".htmlspecialchars(filtrarComillas($i->getTelefono()))."');";
+        echo "$('#form-editar input[name=descripcion]').val('".htmlspecialchars(filtrarComillas($i->getDescripcion()))."');";
         echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
         echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
