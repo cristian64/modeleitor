@@ -490,6 +490,21 @@ table, tr
     color: #158B00;
 }
 
+.modelo-precio-tachado
+{
+    font-weight: bold;
+    font-size: 10pt;
+    color: #7F7F7F;
+    text-decoration: line-through;
+}
+
+.modelo-precio-oferta
+{
+    font-weight: bold;
+    font-size: 13pt;
+    color: #158B00;
+}
+
 .modelo-nombre
 {
     font-size: 11pt;

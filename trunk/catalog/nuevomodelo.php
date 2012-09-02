@@ -165,6 +165,10 @@ $(document).ready(function(){
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="oferta" /> Oferta</td>
                                                     </tr>
                                                     <tr>
+                                                        <td class="guapo-label">Precio (oferta)</td>
+                                                        <td class="guapo-input"><input type="text" value="" name="precio_oferta" class="numerico" /></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td class="guapo-label"></td>
                                                         <td class="guapo-input"><input type="checkbox" value="on" name="descatalogado" /> Descatalogado</td>
                                                     </tr>

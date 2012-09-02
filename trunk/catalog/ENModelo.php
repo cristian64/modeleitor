@@ -13,6 +13,7 @@ class ENModelo
     private $talla_mayor;
     private $descripcion;
     private $precio;
+    private $precio_oferta;
     private $oferta;
     private $prioridad;
     private $descatalogado;
@@ -126,6 +127,16 @@ class ENModelo
     public function setPrecio($precio)
     {
         $this->precio = $precio;
+    }
+    
+    public function getPrecioOferta()
+    {
+        return $this->precio_oferta;
+    }
+
+    public function setPrecioOferta($precio_oferta)
+    {
+        $this->precio_oferta = $precio_oferta;
     }
     
     public function getOferta()
@@ -276,6 +287,7 @@ class ENModelo
         $this->talla_mayor = 0;
         $this->descripcion = "";
         $this->precio = 0;
+        $this->precio_oferta = 0;
         $this->oferta = 0;
         $this->prioridad = 5;
         $this->descatalogado = 0;
@@ -296,12 +308,13 @@ class ENModelo
         $obj->talla_mayor = utf8_encode($fila[6]);
         $obj->descripcion = utf8_encode($fila[7]);
         $obj->precio = $fila[8];
-        $obj->oferta = ($fila[9] == "0" || $fila[9] == 0) ? false : true;
-        $obj->prioridad = $fila[10];
-        $obj->descatalogado = ($fila[11] == "0" || $fila[11] == 0) ? false : true;
-        $obj->foto = utf8_encode($fila[12]);
-        $obj->fecha_creacion = new DateTime($fila[13]);
-        $obj->fecha_modificacion = new DateTime($fila[14]);
+        $obj->precio_oferta = $fila[9];
+        $obj->oferta = ($fila[10] == "0" || $fila[10] == 0) ? false : true;
+        $obj->prioridad = $fila[11];
+        $obj->descatalogado = ($fila[12] == "0" || $fila[12] == 0) ? false : true;
+        $obj->foto = utf8_encode($fila[13]);
+        $obj->fecha_creacion = new DateTime($fila[14]);
+        $obj->fecha_modificacion = new DateTime($fila[15]);
         return $obj;
     }
     
@@ -742,8 +755,8 @@ class ENModelo
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into modelos (id_fabricante, id_marca, referencia, nombre, talla_menor, talla_mayor, descripcion, precio, oferta, prioridad, descatalogado, foto, fecha_creacion, fecha_modificacion)";
-                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_fabricante))."', '".secure(utf8_decode($this->id_marca))."', '".secure(utf8_decode($this->referencia))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->talla_menor))."', '".secure(utf8_decode($this->talla_mayor))."', '".secure(utf8_decode($this->descripcion))."', '".secure(utf8_decode($this->precio))."', '".($this->oferta ? 1 : 0)."', '".secure(utf8_decode($this->prioridad))."', '".($this->descatalogado ? 1 : 0)."', '".secure(utf8_decode($this->foto))."', now(), now())";
+                $sentencia = "insert into modelos (id_fabricante, id_marca, referencia, nombre, talla_menor, talla_mayor, descripcion, precio, precio_oferta, oferta, prioridad, descatalogado, foto, fecha_creacion, fecha_modificacion)";
+                $sentencia = "$sentencia values ('".secure(utf8_decode($this->id_fabricante))."', '".secure(utf8_decode($this->id_marca))."', '".secure(utf8_decode($this->referencia))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->talla_menor))."', '".secure(utf8_decode($this->talla_mayor))."', '".secure(utf8_decode($this->descripcion))."', '".secure(utf8_decode($this->precio))."', '".secure(utf8_decode($this->precio_oferta))."', '".($this->oferta ? 1 : 0)."', '".secure(utf8_decode($this->prioridad))."', '".($this->descatalogado ? 1 : 0)."', '".secure(utf8_decode($this->foto))."', now(), now())";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -793,7 +806,7 @@ class ENModelo
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update modelos set id_fabricante = '".secure(utf8_decode($this->id_fabricante))."', id_marca = '".secure(utf8_decode($this->id_marca))."', referencia = '".secure(utf8_decode($this->referencia))."', nombre = '".secure(utf8_decode($this->nombre))."', descripcion = '".secure(utf8_decode($this->descripcion))."', precio = '".secure(utf8_decode($this->precio))."', oferta = '".($this->oferta ? 1 : 0)."', descatalogado = '".($this->descatalogado ? 1 : 0)."', prioridad = '".secure(utf8_decode($this->prioridad))."', talla_menor = '".secure(utf8_decode($this->talla_menor))."', talla_mayor = '".secure(utf8_decode($this->talla_mayor))."', foto = '".secure(utf8_decode($this->foto))."', fecha_modificacion = now()";
+                $sentencia = "update modelos set id_fabricante = '".secure(utf8_decode($this->id_fabricante))."', id_marca = '".secure(utf8_decode($this->id_marca))."', referencia = '".secure(utf8_decode($this->referencia))."', nombre = '".secure(utf8_decode($this->nombre))."', descripcion = '".secure(utf8_decode($this->descripcion))."', precio = '".secure(utf8_decode($this->precio))."', precio_oferta = '".secure(utf8_decode($this->precio_oferta))."', oferta = '".($this->oferta ? 1 : 0)."', descatalogado = '".($this->descatalogado ? 1 : 0)."', prioridad = '".secure(utf8_decode($this->prioridad))."', talla_menor = '".secure(utf8_decode($this->talla_menor))."', talla_mayor = '".secure(utf8_decode($this->talla_mayor))."', foto = '".secure(utf8_decode($this->foto))."', fecha_modificacion = now()";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);

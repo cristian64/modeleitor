@@ -18,7 +18,10 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "<td class=\"modelo-titulo-modal\">";
     echo "<div class=\"modelo-ref\">Ref. ".$modelo->getReferencia()."</div>";
     if ($activo)
-        echo "<div class=\"modelo-precio\">".str_replace('.', ',', $modelo->getPrecio())." €</div>";
+        if ($modelo->getOferta())
+            echo "<div class=\"modelo-precio\"><span class=\"modelo-precio-tachado\">".str_replace('.', ',', $modelo->getPrecio())." €</span> <span class=\"modelo-precio-oferta\">".str_replace('.', ',', $modelo->getPrecioOferta())." €</span></div>";
+        else
+            echo "<div class=\"modelo-precio\">".str_replace('.', ',', $modelo->getPrecio())." €</div>";
     echo "<div class=\"modelo-nombre\">".$modelo->getNombre()."</div>";
     echo "<div class=\"modelo-nombre\">Numeración: ".$modelo->getNumeracion()."</div>";
     echo "<div class=\"modelo-descripcion\">".$modelo->getDescripcion()."</div>";
