@@ -54,7 +54,7 @@ function baseSuperior($titulo)
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
-                                <form method="GET" action="catalogo"><input type="text" value="<?php echo getGet("busqueda"); ?>" name="busqueda" <?php if (!esMovil()) echo "class=\"animacion\""; ?> /></form>
+                                <form method="GET" action="catalogo"><input type="text" title="Introduce el nº de referencia o descripción del modelo" value="<?php echo getGet("busqueda"); ?>" name="busqueda" <?php if (!esMovil()) echo "class=\"animacion\""; ?> /></form>
                             </td>
                             <td>
                                 <?php
