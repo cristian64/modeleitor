@@ -186,7 +186,7 @@
     
     function debug($cadena)
     {
-        $fp = fopen('/home/cristian/Desktop/data.txt', 'a');
+        $fp = fopen('debug.log', 'a');
         fwrite($fp, $cadena."\n");
         fclose($fp);
         echo $cadena."<br />";
