@@ -73,7 +73,6 @@ h3 a:hover
 #cabecera
 {
     background: #333;
-    border-bottom: 1px solid #333;
 }
 
 #barra
@@ -110,6 +109,7 @@ h3 a:hover
 #tabla-cabecera td
 {
     height: 90px;
+    padding: 0;
 }
 
 #titulo h1 a
