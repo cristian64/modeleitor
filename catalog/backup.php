@@ -24,7 +24,7 @@ $gzdumpfile = "$BACKUP_FOLDER".$BDNAME.".".$now.".tar.gz";
 shell_exec("/usr/bin/mysqldump --opt --host=$BDURL --user=$BDUSER --password=$BDPASSWORD $BDNAME > $dumpfile");
 shell_exec("chmod 777 $dumpfile");
 
-print nl2br(htmlspecialchars(shell_exec("tar -zcf $gzdumpfile *.php *.png *.ico *.log img/ css/ js/ $SQL_FOLDER 2>&1")));
+print nl2br(htmlspecialchars(shell_exec("tar -zcf $gzdumpfile *.log img/ $SQL_FOLDER 2>&1")));
 shell_exec("chmod 777 $gzdumpfile");
 
 header("location: $gzdumpfile");
