@@ -2,8 +2,9 @@
 .myMenu li { list-style:none; float:left; font:11pt Arial, Helvetica, sans-serif; z-index: 10;}
 .myMenu li a:link, .myMenu li a:visited { display:block; text-decoration:none; padding: 0.5em 2em; margin:0; border-left: 1px solid #eee; color:#111; z-index: 10;}
 .myMenu li a:hover { z-index: 5;} /*style the sub menu*/
-.myMenu li ul { font-size: 11pt; position:absolute; display: none; border: 1px solid #ddd; margin:0; padding:0; z-index: 10; box-shadow: 1px 1px 2px -1px black;}
+.myMenu li ul { max-width: 500px; font-size: 11pt; position:absolute; display: none; border: 1px solid #ddd; margin:0; padding:0; z-index: 10; box-shadow: 1px 1px 2px -1px black; background-color:rgba(255,255,255,1);}
 .myMenu li ul li { display:inline; float:none; z-index: 10;}
+.myMenu li ul li.horizontal { display:inline; float:left; z-index: 10;}
 .myMenu li ul li a:link, .myMenu li ul li a:visited { background-color:rgba(255,255,255,1); width:auto; border: 0;z-index: 10;}
 .myMenu li ul li a:hover {  background: #E8FF7A; z-index: 10; }
 
