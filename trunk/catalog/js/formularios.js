@@ -216,7 +216,7 @@ function nuevoAjax()
 function cargarModelo(id)
 {    
     ajax = nuevoAjax();
-    ajax.open("POST", "ajax_modelo.php", true);
+    ajax.open("POST", "ajax_modelo", true);
     ajax.onreadystatechange = function()
     {
         if (ajax.readyState == 4)

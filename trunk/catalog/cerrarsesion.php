@@ -6,6 +6,6 @@
 	setcookie("email");
 	setcookie("contrasena");
 
-	header("location: index.php");
+	header("location: .");
 	exit();
 ?>

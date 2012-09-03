@@ -3,7 +3,7 @@ include_once "base.php";
 
 if (getUsuario() != null)
 {
-    header("location: index.php");
+    header("location: .");
     exit();
 }
     
