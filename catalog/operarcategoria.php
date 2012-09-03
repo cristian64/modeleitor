@@ -5,14 +5,14 @@ $usuario = getUsuario();
 if ($usuario == null)
 {
     $_SESSION["mensaje_aviso"] = "Tu sesión ha caducado. Debes iniciar sesión antes de poder ver los datos.";
-    header("location: index.php");
+    header("location: .");
     exit();
 }
 
 if (!$usuario->getAdmin())
 {
     $_SESSION["mensaje_aviso"] = "Área restringida a administradores.";
-    header("location: index.php");
+    header("location: .");
     exit();
 }
 

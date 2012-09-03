@@ -3,7 +3,7 @@ include_once "base.php";
 
 if (getUsuario() != null)
 {
-    header("location: index.php");
+    header("location: .");
     exit();
 }
 
@@ -52,7 +52,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
                                 $_SESSION["mensaje_exito"] = "Cuenta $email creada correctamente";
                                 $_SESSION["mensaje_aviso"] = "Recibirás un e-mail cuando un administrador valide tu cuenta";
                                 
-                                header("location: index.php");
+                                header("location: .");
                                 exit();
                             }
                             else

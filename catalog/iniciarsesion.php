@@ -3,7 +3,7 @@
     
     if (getUsuario() != null)
     {
-        header("location: index.php");
+        header("location: .");
         exit();
     }
     
@@ -38,7 +38,7 @@
                 
                 ENAcceso::save($ip, $usuario->getId(), true);
                 
-                header("location: index.php");
+                header("location: .");
                 exit();
             }
         }

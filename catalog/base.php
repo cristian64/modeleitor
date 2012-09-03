@@ -65,7 +65,7 @@ function baseSuperior($titulo)
                     <table id="tabla-cabecera">
                         <tr>
                             <td id="titulo">
-                                <h1><a href="index.php"><span>Calzados JAM</span></a></h1>
+                                <h1><a href="."><span>Calzados JAM</span></a></h1>
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
