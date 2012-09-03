@@ -15,7 +15,7 @@ if ($nombre != "" || $asunto != "" || $email != "" || $mensaje != "")
     $verify = recaptcha_check_answer($PRIVATEKEY, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
     if ($verify->is_valid)
     {
-        if (email($nombre, $asunto, $email, $mensaje))
+        if (email(htmlspecialchars($nombre), htmlspecialchars($asunto), htmlspecialchars($email), htmlspecialchars($mensaje)))
         {
             $_SESSION["mensaje_exito"] = "El mensaje ha sido enviado. Responderemos tan pronto como sea posible.";
             $rellenar = false;
