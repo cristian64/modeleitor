@@ -233,7 +233,7 @@
         
         include 'constantes.php';
         
-        $to = "$EMAILCONTACTO";
+        $to = "calzadosjam@gmail.com";
         $cabeceras = "From: Calzados JAM <noreply@calzadosjam.es>\r\nContent-type: text/html; charset=UTF-8\r\n";
         return mail($to, "Calzados JAM", $cuerpo, $cabeceras);
     }
