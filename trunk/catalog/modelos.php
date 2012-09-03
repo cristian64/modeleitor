@@ -1,4 +1,11 @@
 <?php
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$start = $time;
+?>
+
+<?php
 
 include_once "base.php";
 
@@ -66,8 +73,8 @@ function registrarCoordenadas(event)
         echo "<td>".htmlspecialchars($i->getNombre())."</td>";
         echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
-        echo "<td class=\"centrada\">".htmlspecialchars($i->getFabricanteStr())."</td>";
-        echo "<td class=\"centrada\">".htmlspecialchars($i->getMarcaStr())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getFabricante())."</td>";
+        echo "<td class=\"centrada\">".htmlspecialchars($i->getMarca())."</td>";
         echo "<td class=\"centrada\">".$i->getPrioridad()."</td>";
         
         echo "<td class=\"centrada\"><div>";
@@ -112,3 +119,12 @@ $(window).load(function() {
 </div>
         
 <?php baseInferior(); ?>
+
+<?php
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$finish = $time;
+$total_time = round(($finish - $start), 4);
+echo 'Page generated in '.$total_time.' seconds.';
+?>

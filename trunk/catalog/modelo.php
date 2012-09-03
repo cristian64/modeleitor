@@ -74,10 +74,13 @@ $(document).ready(function(){
                                                                 $fabricantes = ENFabricante::get();
                                                                 foreach ($fabricantes as $f)
                                                                 {
-                                                                    if ($modelo->getIdFabricante() == $f->getId())
-                                                                        echo "<option value=\"".$f->getId()."\" selected=\"selected\">".htmlspecialchars($f->getNombre())."</option>\n";
-                                                                    else
-                                                                        echo "<option value=\"".$f->getId()."\">".htmlspecialchars($f->getNombre())."</option>\n";
+                                                                    if ($f->getId() != 0)
+                                                                    {
+                                                                        if ($modelo->getIdFabricante() == $f->getId())
+                                                                            echo "<option value=\"".$f->getId()."\" selected=\"selected\">".htmlspecialchars($f->getNombre())."</option>\n";
+                                                                        else
+                                                                            echo "<option value=\"".$f->getId()."\">".htmlspecialchars($f->getNombre())."</option>\n";
+                                                                    }
                                                                 }
                                                             ?>
                                                             </select>
@@ -104,10 +107,13 @@ $(document).ready(function(){
                                                                 $marcas = ENMarca::get();
                                                                 foreach ($marcas as $m)
                                                                 {
-                                                                    if ($modelo->getIdMarca() == $m->getId())
-                                                                        echo "<option value=\"".$m->getId()."\" selected=\"selected\">".htmlspecialchars($m->getNombre())."</option>\n";
-                                                                    else
-                                                                        echo "<option value=\"".$m->getId()."\">".htmlspecialchars($m->getNombre())."</option>\n";
+                                                                    if ($m->getId() != 0)
+                                                                    {
+                                                                        if ($modelo->getIdMarca() == $m->getId())
+                                                                            echo "<option value=\"".$m->getId()."\" selected=\"selected\">".htmlspecialchars($m->getNombre())."</option>\n";
+                                                                        else
+                                                                            echo "<option value=\"".$m->getId()."\">".htmlspecialchars($m->getNombre())."</option>\n";
+                                                                    }
                                                                 }
                                                             ?>
                                                             </select>

@@ -20,6 +20,8 @@ class ENModelo
     private $foto;
     private $fecha_creacion;
     private $fecha_modificacion;
+    private $fabricante;
+    private $marca;
 
     public function getId()
     {
@@ -36,13 +38,9 @@ class ENModelo
         $this->id_fabricante = $id_fabricante;
     }
     
-    public function getFabricanteStr()
+    public function getFabricante()
     {
-        $fabricante = ENFabricante::getById($this->id_fabricante);
-        if ($fabricante != null)
-            return $fabricante->getNombre();
-        else
-            return "Otros fabricantes";
+        return $this->fabricante;
     }
     
     public function getIdMarca()
@@ -55,13 +53,9 @@ class ENModelo
         $this->id_marca = $id_marca;
     }
     
-    public function getMarcaStr()
+    public function getMarca()
     {
-        $marca = ENMarca::getById($this->id_marca);
-        if ($marca != null)
-            return $marca->getNombre();
-        else
-            return "Otras marcas";
+        return $this->marca;
     }
 
     public function getReferencia()
@@ -294,6 +288,8 @@ class ENModelo
         $this->foto = "";
         $this->fecha_creacion = new DateTime();
         $this->fecha_modificacion = new DateTime();
+        $this->fabricante = "";
+        $this->marca = "";
     }
 
     private static function getRow($fila)
@@ -315,6 +311,14 @@ class ENModelo
         $obj->foto = utf8_encode($fila[13]);
         $obj->fecha_creacion = new DateTime($fila[14]);
         $obj->fecha_modificacion = new DateTime($fila[15]);
+        return $obj;
+    }
+    
+    private static function getRowMore($fila)
+    {
+        $obj = self::getRow($fila);
+        $obj->fabricante = utf8_encode($fila[16]);
+        $obj->marca = utf8_encode($fila[17]);
         return $obj;
     }
     
@@ -595,7 +599,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by nombre asc, prioridad desc";
+            $sentencia = "select modelos.*, fabricantes.nombre, marcas.nombre from modelos, fabricantes, marcas where id_fabricante = fabricantes.id and id_marca = marcas.id order by prioridad desc, modelos.nombre asc";
             
             if ($filtro != "")
             {
@@ -608,7 +612,7 @@ class ENModelo
                     else
                         $condiciones = "$condiciones and (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
                 }
-                $sentencia = "select * from modelos where $condiciones order by nombre asc, prioridad desc";
+                $sentencia = "select modelos.*, fabricantes.nombre, marcas.nombre from modelos, fabricantes, marcas where id_fabricante = fabricantes.id and id_marca = marcas.id and $condiciones order by prioridad desc, modelos.nombre asc";
             }
             
             $conexion = BD::conectar();
@@ -619,7 +623,7 @@ class ENModelo
                 $contador = 0;
                 while ($fila = mysql_fetch_array($resultado))
                 {
-                    $obj = self::getRow($fila);
+                    $obj = self::getRowMore($fila);
                     if ($obj != NULL)
                     {
                         $lista[$contador++] = $obj;

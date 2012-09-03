@@ -59,7 +59,8 @@ $(document).ready(function(){
                                                                 $fabricantes = ENFabricante::get();
                                                                 foreach ($fabricantes as $f)
                                                                 {
-                                                                    echo "<option value=\"".$f->getId()."\">".$f->getNombre()."</option>\n";
+                                                                    if ($f->getId() != 0)
+                                                                        echo "<option value=\"".$f->getId()."\">".$f->getNombre()."</option>\n";
                                                                 }
                                                             ?>
                                                             </select>
@@ -82,7 +83,8 @@ $(document).ready(function(){
                                                                 $marcas = ENMarca::get();
                                                                 foreach ($marcas as $m)
                                                                 {
-                                                                    echo "<option value=\"".$m->getId()."\">".$m->getNombre()."</option>\n";
+                                                                    if ($m->getId() != 0)
+                                                                        echo "<option value=\"".$m->getId()."\">".$m->getNombre()."</option>\n";
                                                                 }
                                                             ?>
                                                             </select>
