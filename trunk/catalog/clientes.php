@@ -29,10 +29,13 @@ baseSuperior("Clientes");
                                         </tr>
                                         <tr>
                                             <td class="guapo-label"></td>
-                                            <td class="guapo-input"><input type="submit" value="Iniciar sesión" /> o <a href="crearcuenta">crear una nueva cuenta</a></td>
+                                            <td class="guapo-input"><input type="submit" value="Iniciar sesión" /></td>
                                         </tr>
                                     </table>
                                 </form>
+                                <br />
+                                <br />
+                                <div>Si todavía no eres cliente, debes crear una nueva cuenta. <br /><br /><a class="btnverde" href="crearcuenta">Soy un nuevo cliente</a></div>
                             </div>
 </div></div>
 <?php
