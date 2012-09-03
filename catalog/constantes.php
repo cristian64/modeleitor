@@ -9,6 +9,4 @@ $PRIVATEKEY = "6LclgdESAAAAAG5ktRzJnf7u6Zk-I86bjKC-29DG";
 
 $RELLENO = 6; //longitud minima al mostrar una ID
 $CANTIDAD_USUARIOS = 30;
-
-$EMAILCONTACTO = "cristian64@gmail.com";
 ?>
