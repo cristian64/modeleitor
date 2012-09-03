@@ -41,18 +41,6 @@
                             
                             ENAcceso::save($ip, $usuario2->getId(), true);
                         }
-                        else
-                        {
-                            ENAcceso::save($ip, $usuario2->getId(), false);
-                            setcookie("email");
-                            setcookie("contrasena");
-                        }
-                    }
-                    else
-                    {
-                        ENAcceso::save($ip, 0, false);                
-                        setcookie("email");
-                        setcookie("contrasena");
                     }
                 }
             }
