@@ -1,3 +1,9 @@
+drop index categorias_id on categorias;
+drop index modelos_id on modelos;
+drop index marcas_id on marcas;
+drop index fabricantes_id on fabricantes;
+drop index usuarios_id on usuarios;
+
 drop table if exists pedidos_linea;
 drop table if exists pedidos;
 drop table if exists usuarios;
@@ -91,6 +97,12 @@ create table usuarios
     primary key (id),
     unique (email)
 ) engine = myisam default charset=utf8 collate=utf8_general_ci;
+
+create index categorias_id on categorias(id);
+create index marcas_id on marcas(id);
+create index fabricantes_id on fabricantes(id);
+create index usuarios_id on usuarios(id);
+create index modelos_id on modelos(id);
 
 create table fotos
 (
