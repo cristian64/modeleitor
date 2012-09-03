@@ -1,5 +1,6 @@
 drop index categorias_id on categorias;
 drop index modelos_id on modelos;
+drop index modelos_ids on modelos;
 drop index marcas_id on marcas;
 drop index fabricantes_id on fabricantes;
 drop index usuarios_id on usuarios;
@@ -103,6 +104,7 @@ create index marcas_id on marcas(id);
 create index fabricantes_id on fabricantes(id);
 create index usuarios_id on usuarios(id);
 create index modelos_id on modelos(id);
+create index modelos_ids on modelos(id, id_fabricante, id_marca);
 
 create table fotos
 (
