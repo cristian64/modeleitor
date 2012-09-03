@@ -27,6 +27,12 @@ a
     cursor: pointer;
 }
 
+input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
+{ 
+    border: 0px;
+    padding: 0px;  
+}
+
 @font-face
 {
     font-family: "Cabin_Bold";
@@ -209,7 +215,7 @@ a.btnazul
     display: inline-block;
     border: 0 none;
     color: #fff;
-    font-size: 10pt;
+    font-size: 11pt;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
@@ -223,11 +229,30 @@ a:hover.btnazul
     background: #0F78AE;
 }
 
+a.btnverde
+{
+    display: inline-block;
+    border: 0 none;
+    color: #fff;
+    font-size: 11pt;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    background: #0FA413;
+}
+
+a:hover.btnverde
+{
+    background: #009203;
+}
+
 a.btnrojo
 {
     border: 0 none;
     color: #fff;
-    font-size: 10pt;
+    font-size: 11pt;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
@@ -592,19 +617,20 @@ td.guapo-input
 }
 
 
-.guapo-input input[type=submit]
+.guapo-input input[type=submit], .guapo-input input[type=button]
 {
     border: 0 none;
     background: #1695D6;
     color: #fff;
-    font-size: 10pt;
+    font-size: 11pt;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
     cursor: pointer;
+    font-family: "Calibri","Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
 }
 
-.guapo-input input[type=submit]:hover
+.guapo-input input[type=submit]:hover, .guapo-input input[type=button]:hover
 {
     background: #0F78AE;
 }
