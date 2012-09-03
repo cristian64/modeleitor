@@ -151,9 +151,9 @@ function bloqueCategorias()
     foreach ($marcas as $i)
     {
         if (ENModelo::countByMarca($i->getId()) > 0 && $i->getId() != 0)
-            echo "<li><a href=\"catalogo?marca=".$i->getId()."\">".htmlspecialchars($i->getNombre())."</a></li>\n";
+            echo "<li class=\"horizontal\"><a href=\"catalogo?marca=".$i->getId()."\">".htmlspecialchars($i->getNombre())."</a></li>\n";
     }
-    echo "<li><a href=\"catalogo?marca=0\">Otras marcas</a></li>\n";
+    echo "<li class=\"horizontal\"><a href=\"catalogo?marca=0\">Otras marcas</a></li>\n";
     echo "</ul></li>\n";
     
     $usuario = getUsuario();
