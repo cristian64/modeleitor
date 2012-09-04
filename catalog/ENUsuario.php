@@ -324,7 +324,7 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update usuarios set email = '".secure(utf8_decode($this->email))."', contrasena = '".secure(utf8_decode($this->contrasena))."', nombre = '".secure(utf8_decode($this->nombre))."', telefono = '".secure(utf8_decode($this->telefono))."', direccion = '".secure(utf8_decode($this->direccion))."', direccion = '".secure(utf8_decode($this->cif))."', admin = '".($this->admin ? 1 : 0)."', activo = '".($this->activo ? 1 : 0)."'";
+                $sentencia = "update usuarios set email = '".secure(utf8_decode($this->email))."', contrasena = '".secure(utf8_decode($this->contrasena))."', nombre = '".secure(utf8_decode($this->nombre))."', telefono = '".secure(utf8_decode($this->telefono))."', direccion = '".secure(utf8_decode($this->direccion))."', cif = '".secure(utf8_decode($this->cif))."', admin = '".($this->admin ? 1 : 0)."', activo = '".($this->activo ? 1 : 0)."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);
@@ -347,6 +347,38 @@ class ENUsuario
         }
 
         return $guardado;
+    }
+    
+    public function delete()
+    {
+        $done = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+                
+                $sentencia = "delete from usuarios where id = '".secure(utf8_decode($this->id))."'";
+                $resultado = mysql_query($sentencia, $conexion);
+                if ($resultado)
+                {           
+                    $done = true;
+                }
+                else
+                {
+                    debug("ENMarca::delete() ".mysql_error());
+                }
+                
+                BD::desconectar($conexion);
+            }
+            catch (Exception $e)
+            {
+                debug("ENCategoria::delete() ".$e->getMessage());
+            }
+        }
+
+        return $done;
     }
 }
 ?>
