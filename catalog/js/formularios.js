@@ -25,8 +25,12 @@ function validarIdentificacion(formulario)
 
 function validarRegistro()
 {
-    comprobarEmail(); comprobarContrasena(); comprobarContrasena2(); comprobarNombre(); comprobarTelefono();
-    return comprobarEmail() && comprobarContrasena() && comprobarContrasena2() && comprobarNombre() && comprobarTelefono();
+    var email = comprobarEmail();
+    var contrasena = comprobarContrasena();
+    var contrasena2 = comprobarContrasena2();
+    var nombre = comprobarNombre();
+    var telefono = comprobarTelefono();
+    return email && contrasena && contrasena2 && nombre && telefono;
 }
 
 function comprobarEmail()
