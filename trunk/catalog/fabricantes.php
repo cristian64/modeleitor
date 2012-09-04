@@ -68,7 +68,7 @@ baseSuperior("Fabricantes");
     </form>
 </div>
 
-<div id="dialogo-anadir" title="Añadir marca">
+<div id="dialogo-anadir" title="Añadir fabricante">
     <form id="form-anadir" method="POST" action="operarfabricante">
     <div><input type="hidden" name="op" value="anadir" /></div>
     <table class="guapo-form">
@@ -80,7 +80,7 @@ baseSuperior("Fabricantes");
     </form>
 </div>
 
-<div id="dialogo-editar" title="Editar marca">
+<div id="dialogo-editar" title="Editar fabricante">
     <form id="form-editar" method="POST" action="operarfabricante">
     <div><input type="hidden" name="op" value="editar" /></div>
     <table class="guapo-form">
