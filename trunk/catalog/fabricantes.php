@@ -46,10 +46,10 @@ baseSuperior("Fabricantes");
         echo "<td class=\"centrada\"><div>";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(filtrarComillas($i->getNombre()))."');";
-        echo "$('#form-editar input[name=email]').val('".htmlspecialchars(filtrarComillas($i->getEmail()))."');";
-        echo "$('#form-editar input[name=telefono]').val('".htmlspecialchars(filtrarComillas($i->getTelefono()))."');";
-        echo "$('#form-editar input[name=descripcion]').val('".htmlspecialchars(filtrarComillas($i->getDescripcion()))."');";
+        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(secure($i->getNombre()))."');";
+        echo "$('#form-editar input[name=email]').val('".htmlspecialchars(secure($i->getEmail()))."');";
+        echo "$('#form-editar input[name=telefono]').val('".htmlspecialchars(secure($i->getTelefono()))."');";
+        echo "$('#form-editar input[name=descripcion]').val('".htmlspecialchars(secure($i->getDescripcion()))."');";
         echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
         echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";

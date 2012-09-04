@@ -67,55 +67,12 @@
         return (is_string($key) && isset($_SESSION[$key])) ? $_SESSION[$key] : "";
     }
     
-    function filtrarComillas($cadena)
-    {
-        if ($cadena != NULL)
-        {
-            if (is_string($cadena) || is_numeric($cadena))
-            {
-                $cadena = str_replace("'", "\'", $cadena);
-                return $cadena;
-            }
-        }
-        return "";
-    }
-    
     function secure($string)
     {
         if ($string != NULL && (is_string($string) || is_numeric($string)))
-            return str_replace("'", "\'", $string);
-        return "";
-    }
-    
-    function filtrarCadena($cadena)
-    {
-        if ($cadena != NULL)
         {
-            if (is_string($cadena) || is_numeric($cadena))
-            {
-                /*$cadena = str_replace("'", "", $cadena);
-                $cadena = str_replace("\\", "", $cadena);
-                $cadena = str_replace("\"", "", $cadena);
-                $cadena = str_replace("=", "", $cadena);
-                $cadena = str_replace(">", "", $cadena);
-                $cadena = str_replace("<", "", $cadena);
-                $cadena = str_replace("\/", "", $cadena);
-                $cadena = str_replace("/", "", $cadena);
-                $cadena = str_replace("%", "", $cadena);
-                $cadena = str_replace(";", ":", $cadena);
-                $cadena = str_replace("|", "", $cadena);
-                $cadena = str_replace("&", "", $cadena);*/
-                
-                $cadena = str_replace("'", "", $cadena);
-                $cadena = str_replace("\\", "", $cadena);
-                $cadena = str_replace("\"", "", $cadena);
-                $cadena = str_replace(">", "", $cadena);
-                $cadena = str_replace("<", "", $cadena);
-                $cadena = str_replace("\/", "", $cadena);
-                $cadena = str_replace("/", "", $cadena);
-                $cadena = str_replace("&", "", $cadena);
-                return $cadena;
-            }
+            $string = str_replace("\\", "\\\\", $string);
+            return str_replace("'", "\'", $string);
         }
         return "";
     }

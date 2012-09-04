@@ -41,7 +41,7 @@ baseSuperior("Marcas");
         echo "<div>";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
-        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(filtrarComillas($i->getNombre()))."');";
+        echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(secure($i->getNombre()))."');";
         echo "$('#dialogo-editar').dialog('open');\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a> ";
         
         echo "<a onclick=\"$('#form-eliminar input[name=id]').val(".$i->getId()."); $('#dialogo-eliminar').dialog('open');\"><img src=\"css/papelera.png\" alt=\"Eliminar\" title=\"Eliminar\" /></a>\n";
