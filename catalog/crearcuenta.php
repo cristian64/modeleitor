@@ -115,7 +115,7 @@ baseSuperior("Clientes");
 <div id="interno">
     <div>
         <h3><span>Crear una nueva cuenta</span></h3>
-        <form id="crearcuenta" action="crearcuenta" method="post">
+        <form id="crearcuenta" action="crearcuenta" method="post" onsubmit="return validarRegistro();">
             <table class="guapo-form">
                 <tr>
                     <td class="guapo-label">E-mail*</td>
@@ -134,8 +134,8 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="text" value="<?php echo $nombre; ?>" name="nombre" onblur="comprobarNombre();" /><div id="error-nombre" class="guapo-error">El nombre debe tener entre 4 y 100 letras</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Teléfono</td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" /></td>
+                    <td class="guapo-label">Teléfono fijo y móvil*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" onblur="comprobarTelefono();" /><div id="error-telefono" class="guapo-error">Introduce al menos un número de teléfono</div></td>
                 </tr>
                 <tr>
                     <td class="guapo-label">CIF/NIF</td>
