@@ -51,6 +51,8 @@ baseSuperior("Usuarios");
         echo "$('#form-editar input[name=email]').val('".htmlspecialchars(secure($i->getEmail()))."');";
         echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(secure($i->getNombre()))."');";
         echo "$('#form-editar input[name=telefono]').val('".htmlspecialchars(secure($i->getTelefono()))."');";
+        echo "$('#form-editar input[name=contrasena]').val('');";
+        echo "$('#form-editar input[name=contrasena2]').val('');";
         echo "$('#form-editar input[name=direccion]').val('".htmlspecialchars(secure($i->getDireccion()))."');";
         echo "$('#form-editar input[name=cif]').val('".htmlspecialchars(secure($i->getCif()))."');";
         if ($i->getActivo())
