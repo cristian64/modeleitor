@@ -362,14 +362,22 @@ fieldset
 #pie
 {
     clear: both;
-    padding: 20px;
-    margin-top: 80px;
+    padding: 40px;
+    margin-top: 60px;
+    border-top: 3px solid #E0E0E0;
 }
 
 #pie a
 {
     display: inline-block;
     vertical-align: middle;
+    margin: 0 15px;
+    border-bottom: 5px solid transparent;
+}
+
+#pie a:hover
+{
+    border-bottom: 5px solid #000;
 }
 
 #paginacion
