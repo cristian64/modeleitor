@@ -64,6 +64,7 @@ function editar()
         $usuario->setCif(getPost("cif"));
         $usuario->setDireccion(getPost("direccion"));
         $usuario->setTelefono(getPost("telefono"));
+        $activoAntes = $usuario->getActivo();
         $usuario->setActivo(getPost("activo") == "yes");
         $contrasena = getPost("contrasena");
         $contrasena2 = getPost("contrasena2");
@@ -79,6 +80,16 @@ function editar()
             $_SESSION["mensaje_exito"] = "El usuario $id ha sido guardado correctamente";
             if ($cambiada)
                 $_SESSION["mensaje_info"] = "La contraseña también se ha cambiado correctamente";
+            if (!$activoAntes && $usuario->getActivo())
+            {
+                if (emailActivado($usuario))
+                {
+                    if (getSession("mensaje_info") == "")
+                        $_SESSION["mensaje_info"] = "Se ha enviado un e-mail al cliente notificando la activación";
+                    else
+                        $_SESSION["mensaje_info"] = "\nSe ha enviado un e-mail al cliente notificando la activación";
+                }
+            }
             header("location: usuarios");
             exit();
         }
