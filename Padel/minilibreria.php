@@ -56,7 +56,7 @@
         {
             if (is_string($cadena) || is_numeric($cadena))
             {
-                $cadena = str_replace("'", "", $cadena);
+                /*$cadena = str_replace("'", "", $cadena);
                 $cadena = str_replace("\\", "", $cadena);
                 $cadena = str_replace("\"", "", $cadena);
                 $cadena = str_replace("=", "", $cadena);
@@ -67,6 +67,15 @@
                 $cadena = str_replace("%", "", $cadena);
                 $cadena = str_replace(";", ":", $cadena);
                 $cadena = str_replace("|", "", $cadena);
+                $cadena = str_replace("&", "", $cadena);*/
+                
+                $cadena = str_replace("'", "", $cadena);
+                $cadena = str_replace("\\", "", $cadena);
+                $cadena = str_replace("\"", "", $cadena);
+                $cadena = str_replace(">", "", $cadena);
+                $cadena = str_replace("<", "", $cadena);
+                $cadena = str_replace("\/", "", $cadena);
+                $cadena = str_replace("/", "", $cadena);
                 $cadena = str_replace("&", "", $cadena);
                 return $cadena;
             }
@@ -201,6 +210,42 @@
         $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
         
         return mail($destino, "Club Padel Matola - Reserva realizada", $cuerpo, $cabeceras);
+    }
+    
+    function emailCancelarReserva($destino, $usuario, $reserva)
+    {
+        include 'constantes.php';
+        
+        $cuerpo = "<tr>";
+        $cuerpo = $cuerpo."<td><strong>Nº de reserva:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getIdPista()."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getFechaInicio()->format('d/m/Y')."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Horario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i')."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Duración:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$reserva->getDuracion()." minutos</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = $cuerpo."<tr>";
+        $cuerpo = $cuerpo."<td><strong>Usuario:</strong>&nbsp;&nbsp;&nbsp;</td>";
+        $cuerpo = $cuerpo."<td>".$usuario->getEmail()."</td>";
+        $cuerpo = $cuerpo."</tr>";
+        $cuerpo = "<table>".$cuerpo."</table>";
+        $cuerpo = "<img src=\"http://www.clubpadelmatola.com/css/logo.png\" /><h2 style=\"color: #f00;\">Una reserva ha sido CANCELADA:<br /></h2>"."$cuerpo";
+
+        $cabeceras = "From: Club Padel Matola <noreply@clubpadelmatola.com>\r\nContent-type: text/html; charset=UTF-8\r\n";
+        
+        return mail($destino, "Club Padel Matola - Reserva cancelada", $cuerpo, $cabeceras);
     }
     
     function getDirectoryList ($directory) 
