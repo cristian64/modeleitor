@@ -54,6 +54,13 @@ if ($reserva->getEstado() != "Pendiente" && !$usuario->getAdmin())
 if (ENReserva::borrarPorId($reserva->getId()))
 {
     $_SESSION["mensaje_exito"] = "La reserva ha sido cancelada correctamente";
+    $usuarioReserva = ENUsuario::obtenerPorId($reserva->getIdUsuario());
+    if ($reserva->getReservable())
+    {
+        emailCancelarReserva("beatriz@autofima.com", $usuarioReserva, $reserva);
+        emailCancelarReserva("Santiago@autofima.com", $usuarioReserva, $reserva);
+        emailCancelarReserva("fran@padelelche.com", $usuarioReserva, $reserva);
+    }
     header("location: $retorno");
     exit();
 }

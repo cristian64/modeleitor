@@ -186,7 +186,7 @@ class ENUsuario
         $usuario->sexo = $fila[5];
         $usuario->direccion = utf8_encode($fila[6]);
         $usuario->telefono = utf8_encode($fila[7]);
-        $usuario->admin = ($fila[8] == "0" || $fila == 0) ? false : true;
+        $usuario->admin = ($fila[8] == "0" || $fila[8] == 0) ? false : true;
         $usuario->fecha_registro = new DateTime($fila[9]);
         return $usuario;
     }
