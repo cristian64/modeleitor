@@ -100,12 +100,12 @@ function baseInferior()
                 </div>
 
             </div>
+            <div style="clear:both;"></div>
             <div id="pie">
                 <div>
-                    <!--Patrocinadores:
                     <a href="http://www.hyundai.es"><img src="css/hyundai.png" alt="Hyundai" /></a>
-                    <a href="http://www.cam.es"><img src="css/cam.png" alt="La CAM" /></a>
-                    <a href="http://www.informacion.es"><img src="css/diario_informacion.png" alt="Diario Información" /></a>-->
+                    <a href="http://www.lacaixa.es"><img src="css/lacaixa.jpg" alt="La Caixa" /></a>
+                    <a href="http://www.informacion.es"><img src="css/informacion.gif" alt="Diario Información" /></a>
                 </div>            
             </div>
         </div>
