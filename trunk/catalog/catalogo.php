@@ -9,13 +9,12 @@ $start = $time;
 
 include_once "base.php";
 
-baseSuperior("Catálogo");
-
 $usuario = getUsuario();
 $activo = $usuario != null && $usuario->getActivo();
 $admin = $usuario != null && $usuario->getAdmin();
 $modelos = array();
 $nombreCategoria = "";
+$titulo = "";
 $esMovil = esMovil();
 
 
@@ -29,9 +28,15 @@ if ($id_categoria != "")
     while ($categoria != null)
     {
         if ($nombreCategoria == "")
+        {
             $nombreCategoria = $categoria->getNombre();
+            $titulo = $caetgoria->getNombre();
+        }
         else
-            $nombreCategoria = "<a href=\"".$categoria->getId()."\">".$categoria->getNombre()."</a>"." &raquo; ".$nombreCategoria;
+        {
+            $nombreCategoria = "<a href=\"catalogo?categoria=".$categoria->getId()."\">".$categoria->getNombre()."</a>"." &raquo; ".$nombreCategoria;
+            $titulo = $caetgoria->getNombre().", ".$titulo;
+        }
         $categoria = ENCategoria::getById($categoria->getIdPadre());
     }
 }
@@ -45,18 +50,21 @@ if ($id_marca != "" && count($modelos) == 0)
             $nombreCategoria = "Otras marcas";
         else
             $nombreCategoria = ENMarca::getById($id_marca)->getNombre();
+    $titulo = $nombreCategoria;
 }
 
 $filtro = getGet("busqueda");
 if ($filtro != "" && count($modelos) == 0)
 {
     $modelos = ENModelo::get($filtro, 1, 99999);
-    $nombreCategoria = "Búsqueda: \"$filtro\"";
+    $titulo = $nombreCategoria = "Búsqueda: \"$filtro\"";
 }
 
 /*$modelos = ENModelo::get();
 for ($i = 0; $i < 5; $i++)
     $modelos = array_merge($modelos, $modelos);*/
+    
+baseSuperior($titulo);
 
 ?>
     <h3><?php echo $nombreCategoria; ?></h3>
