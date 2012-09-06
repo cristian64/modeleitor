@@ -611,11 +611,10 @@ td.guapo-input
     box-shadow: 0 1px 0 #FFFFFF, 0 1px 1px rgba(0, 0, 0, 0.10) inset;
 }
 
-.guapo-input input[readonly="readonly"]
+.guapo-input input[readonly="readonly"], .guapo-input textarea[readonly="readonly"]
 {
     background: #ddd;
 }
-
 
 .guapo-input input[type=submit], .guapo-input input[type=button]
 {

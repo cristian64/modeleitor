@@ -14,8 +14,12 @@ function baseSuperior($titulo)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Calzados JAM - <?php echo $titulo; ?></title>
-        
+		<meta name="description" content="Almacén y fábrica de calzado nacional. Venta Mayorista. Entrega inmediata. Nuestros productos han sido elaborados con materias primas nacionales, dando trabajo a un número elevado de personas, y usted con su adquisición contribuye a todo ello." />
+		<meta name="keywords" content="almacen calzado, fabrica calzado, venta al por mayor, calzado piel, calzados jam, venta mayorista calzado, calzado español" />
+		<meta name="author" content="Calzados JAM" />
+		<meta charset="UTF-8" />
+		
+        <title>Calzados JAM. Almacén y fábrica de calzado Español - <?php echo $titulo; ?></title>
         <link type="text/css" rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.23.custom.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/responsiveslides/responsiveslides.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
