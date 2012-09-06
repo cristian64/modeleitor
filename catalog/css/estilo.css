@@ -295,6 +295,17 @@ a:hover.btnrojo
     color: #5A5A5A;
 }
 
+.texto-transportes
+{
+    margin: 30px;
+    margin-bottom: 0;
+}
+
+.texto-transportes a
+{
+    margin: 0 30px;
+}
+
 .cabecera-texto
 {
     margin-bottom: 15px;

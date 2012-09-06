@@ -28,7 +28,8 @@ $imagenes = array_unique($imagenes);
     <div id="textos">
         <div class="texto">
             <div class="cabecera-texto">Quiénes somos</div>
-            Calzados JAM es un almacén y fábrica de calzado nacional, donde fabricamos y distribuimos las últimas tendencias en moda española. También nos suministran otras fábricas de Elche, Elda, Almansa, Yecla, etc... Nuestros clientes son las tiendas y almacenes de toda Europa. Estamos especializados en la venta mayorista, surtido libre y la entrega en 24h siempre que tengamos existencias en el almacén. Disponemos de todo tipo de calzado y también podemos fabricar modelos adaptándonos a sus necesidades. 
+            Calzados JAM es un almacén y fábrica de calzado nacional, donde fabricamos y distribuimos las últimas tendencias en moda española. También nos suministran otras fábricas de Elche, Elda, Almansa, Yecla, etc. Nuestros clientes son las tiendas y almacenes de toda Europa.  Disponemos de todo tipo de calzado y también podemos fabricar modelos adaptándonos a sus necesidades. Estamos especializados en la venta mayorista, surtido libre y la entrega en 24h.
+            <div class="texto-transportes"><a href="http://www.seur.es"><img src="css/seur.png" alt="SEUR" /></a><a href="http://www.envialia-urgente.com"><img src="css/envialia.png" alt="Enviália" /></a></div>
         </div>
         <div class="separador-textos"></div>
         <div class="texto">
