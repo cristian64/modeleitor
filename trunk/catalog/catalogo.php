@@ -21,6 +21,10 @@ $esMovil = esMovil();
 $id_categoria = getGet("categoria");
 if ($id_categoria != "")
 {
+    $posicion = strpos($id_categoria, '-');
+    if ($posicion !== false)
+        $id_categoria = substr($id_categoria, 0, $posicion);
+
     $nombreCategoria = "";
     $modelos = ENModelo::getByCategoria($id_categoria, 1, 9999);
     
@@ -30,12 +34,12 @@ if ($id_categoria != "")
         if ($nombreCategoria == "")
         {
             $nombreCategoria = $categoria->getNombre();
-            $titulo = $caetgoria->getNombre();
+            $titulo = $nombreCategoria;
         }
         else
         {
-            $nombreCategoria = "<a href=\"catalogo?categoria=".$categoria->getId()."\">".$categoria->getNombre()."</a>"." &raquo; ".$nombreCategoria;
-            $titulo = $caetgoria->getNombre().", ".$titulo;
+            $nombreCategoria = "<a href=\"catalogo?categoria=".$categoria->getId()."-".$categoria->getNombre()."\">".$categoria->getNombre()."</a>"." &raquo; ".$nombreCategoria;
+            $titulo = $categoria->getNombre().", ".$titulo;
         }
         $categoria = ENCategoria::getById($categoria->getIdPadre());
     }
@@ -44,6 +48,10 @@ if ($id_categoria != "")
 $id_marca = getGet("marca");
 if ($id_marca != "" && count($modelos) == 0)
 {
+    $posicion = strpos($id_marca, '-');
+    if ($posicion !== false)
+        $id_marca = substr($id_marca, 0, $posicion);
+
     $modelos = ENModelo::getByMarca($id_marca, 1, 99999);
     if (is_array($modelos))
         if ($id_marca == 0)
