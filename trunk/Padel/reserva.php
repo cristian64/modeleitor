@@ -41,38 +41,38 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
         <div id="reserva">
             <h3><span>Reserva nº <?php echo rellenar($reserva->getId(), '0', $RELLENO); ?></span></h3>
             <form id="formulario" action="operarborrarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return confirmarBorrarReserva();">
-                <table>
+                <table class="guapo-form">
                     <tr>
-                        <td class="columna1">Nº de reserva</td>
-                        <td class="columna2">
-                            <input type="text" value="<?php echo rellenar($reserva->getId(), '0', $RELLENO); ?>" readonly="readonly" class="textinputreadonly" />
+                        <td class="guapo-label">Nº de reserva</td>
+                        <td class="guapo-input">
+                            <input type="text" value="<?php echo rellenar($reserva->getId(), '0', $RELLENO); ?>" readonly="readonly" />
                             <input type="hidden" value="<?php echo $reserva->getId(); ?>" name="id" />
                             <input type="hidden" value="reservar.php" name="retorno" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="columna1">Pista</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Pista</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Día</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('d/m/Y'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Día</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('d/m/Y'); ?>" name="" readonly="readonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Horario</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Horario</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getFechaInicio()->format('H:i')." - ".$reserva->getFechaFin()->format('H:i'); ?>" name="" readonly="readonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Duración</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getDuracion(); ?> minutos" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Duración</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getDuracion(); ?> minutos" readonly="readonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Precio</td>
-                        <td class="columna2"><input type="text" value="<?php echo ceil($reserva->getDuracion() * $PRECIOHORA / 60); ?>€ a pagar en ventanilla" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Precio</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo ceil($reserva->getDuracion() * $PRECIOHORA / 60); ?>€ a pagar en ventanilla" readonly="readonly" /></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Estado</td>
-                        <td class="columna2"><div class="textinputfake">
+                        <td class="guapo-label">Estado</td>
+                        <td class="guapo-input"><div class="textinputfake">
                             <?php
                                 $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
                                 echo "<span class=\"$clase\">".$reserva->getEstado()."</span>\n";
@@ -83,32 +83,32 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     </tr>
                     <?php if ($usuario->getAdmin()) { ?>
                     <tr>
-                        <td class="columna1">Usuario</td>
-                        <td class="columna2"><div class="textinputfake">
+                        <td class="guapo-label">Usuario</td>
+                        <td class="guapo-input"><div class="textinputfake">
                             <?php echo $usuarioReseva->getEmail(); ?> (<a href="usuario.php?id=<?php echo $usuarioReseva->getId(); ?>">Ver usuario</a>)
                         </div></td>
                     </tr>
                     <?php } ?>
                     <tr>
-                        <td class="columna1">Fecha en la que se realizó la reserva</td>
-                        <td class="columna2"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" class="textinputreadonly" /></td>
+                        <td class="guapo-label">Fecha en la que se realizó la reserva</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getFechaRealizacion()->format('d/m/Y H:i:s'); ?>" readonly="readonly" /></td>
                     </tr>
                     <?php if ($usuario->getAdmin()) { ?>
                     <tr>
-                        <td class="columna1">Tipo de reserva</td>
-                        <td class="columna2"><div class="textinputfake">
+                        <td class="guapo-label">Tipo de reserva</td>
+                        <td class="columna2"><div>
                             <input type="radio" name="tipo" value="" <?php echo ($reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Reserva
                             <input type="radio" name="tipo" value="" <?php echo (!$reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> No reservable
                         </div></td>
                     </tr>
                     <tr>
-                        <td class="columna1">Notas</td>
-                        <td class="columna2"><textarea readonly="readonly" class="textinputreadonly" rows="6" cols="30"><?php echo $reserva->getNotas(); ?></textarea></td>
+                        <td class="guapo-label">Notas</td>
+                        <td class="guapo-input"><textarea readonly="readonly" rows="6" cols="30"><?php echo $reserva->getNotas(); ?></textarea></td>
                     </tr>
                     <?php } ?>
                     <tr>
-                        <td class="columna1"></td>
-                        <td class="columna2"><div class="textinputfake">
+                        <td class="guapo-label"></td>
+                        <td class="guapo-input"><div class="textinputfake">
                             <a class="freshbutton-blue" onclick="print();">Imprimir reserva</a>
                             <?php if ($reserva->getEstado() == "Pendiente" || $usuario->getAdmin()) { ?>
                             <a class="freshbutton-red" onclick="if (confirmarBorrarReserva()) document.getElementById('formulario').submit();">Borrar reserva</a>

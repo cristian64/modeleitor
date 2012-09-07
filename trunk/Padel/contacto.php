@@ -62,30 +62,30 @@ baseSuperior("Contacto", true);
                                 <p>E-mail de contacto: <a href="mailto:<?php echo $EMAILCONTACTO; ?>"><?php echo $EMAILCONTACTO; ?></a></p>
                                 <h3><span>También puedes enviarnos un mensaje</span></h3>
                                 <form action="contacto.php" method="post" enctype="multipart/form-data" onsubmit="return validarContacto(this);">
-                                    <table>
+                                    <table class="guapo-form">
                                         <tr>
-                                            <td class="columna1">Tu nombre</td>
-                                            <td class="columna2"><input type="text" value="<?php if ($rellenar) echo $nombre; ?>" name="nombre" class="textinput" /></td>
+                                            <td class="guapo-label">Tu nombre</td>
+                                            <td class="guapo-input"><input type="text" value="<?php if ($rellenar) echo $nombre; ?>" name="nombre" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Asunto</td>
-                                            <td class="columna2"><input type="text" value="<?php if ($rellenar) echo $asunto; ?>" name="asunto" class="textinput" /></td>
+                                            <td class="guapo-label">Asunto</td>
+                                            <td class="guapo-input"><input type="text" value="<?php if ($rellenar) echo $asunto; ?>" name="asunto" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">E-mail al que responderte</td>
-                                            <td class="columna2"><input type="text" value="<?php if ($rellenar) echo $email; ?>" name="email" class="textinput" /></td>
+                                            <td class="guapo-label">E-mail al que responderte</td>
+                                            <td class="guapo-input"><input type="text" value="<?php if ($rellenar) echo $email; ?>" name="email" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Mensaje</td>
-                                            <td class="columna2"><textarea cols="40" rows="7" class="textinput" name="mensaje"><?php if ($rellenar) echo $mensaje; ?></textarea></td>
+                                            <td class="guapo-label">Mensaje</td>
+                                            <td class="guapo-input"><textarea cols="40" rows="7" class="textinput" name="mensaje"><?php if ($rellenar) echo $mensaje; ?></textarea></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1"></td>
-                                            <td class="columna2"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
+                                            <td class="guapo-label"></td>
+                                            <td class="guapo-input"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1"></td>
-                                            <td class="columna2"><input type="submit" value="Enviar mensaje" class="freshbutton-big" /></td>
+                                            <td class="guapo-label"></td>
+                                            <td class="guapo-input"><input type="submit" value="Enviar mensaje" class="freshbutton-big" /></td>
                                         </tr>
                                     </table>
                                 </form>

@@ -297,7 +297,7 @@ class ENReserva
 
         try
         {
-            $sentencia = "select * from reservas where id_usuario = '$id_usuario' order by fecha_inicio asc limit $cantidad";
+            $sentencia = "select * from reservas where id_usuario = '$id_usuario' order by fecha_inicio desc limit $cantidad";
             $resultado = mysql_query($sentencia, BD::conectar());
 
             if ($resultado)
