@@ -2,7 +2,7 @@
 Botón y input text
 *****************************************************/
 
-.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-lightblue, .freshbutton-purple, .freshbutton-red, .freshbutton-disabled, .freshbutton-lightdisabled
+.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-lightblue, .freshbutton-purple, .freshbutton-red, .freshbutton-yellow, .freshbutton-disabled, .freshbutton-lightdisabled
 {
     border-radius: 3px 3px 3px 3px;
     cursor: pointer;
@@ -68,6 +68,21 @@ Botón y input text
     text-shadow: #823435 0 1px 2px;
     -webkit-text-shadow: #823435 0 1px 2px;
     -moz-text-shadow: #823435 0 1px 2px;
+}
+
+.freshbutton-yellow
+{    
+    background: #CBCE22;
+    background: -moz-linear-gradient(center top , #D6DB44, #BFC32F) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#D6DB44), to(#BFC32F));
+    border-color: #A0A12B #8A9222 #808217 #8D8F21;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #ECF17F inset;
+    color: #FFFFFF;
+    text-shadow: #828234 0 1px 2px;
+    -webkit-text-shadow: #828234 0 1px 2px;
+    -moz-text-shadow: #828234 0 1px 2px;
 }
 
 .freshbutton-purple

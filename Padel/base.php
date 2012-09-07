@@ -69,10 +69,16 @@ if ($usuario != null)
                     <a href="cerrarsesion.php" class="freshbutton-red">Cerrar sesión</a>
                     <br /><br />
 <?php
+if ($usuario->getId() == 1 || $usuario->getId() == 2 || $usuario->getId() == 25 || $usuario->getId() == 30)
+{
+?>
+                    <a href="estadisticas.php" class="freshbutton-yellow">Estadísticas</a>
+<?php    
+}
+
 if ($usuario->getAdmin())
 {
 ?>
-                    <a href="estadisticas.php" class="freshbutton-purple">Estadísticas</a>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
                     <a href="reservas.php" class="freshbutton-purple">Reservas</a>
                     <a href="backup" class="freshbutton-purple">Copia de seguridad</a>
