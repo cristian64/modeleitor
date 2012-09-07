@@ -210,7 +210,8 @@ function nuevoAjax()
 }
 
 function cargarModelo(id)
-{    
+{
+    document.location.hash = id;
     ajax = nuevoAjax();
     ajax.open("POST", "ajax_modelo", true);
     ajax.onreadystatechange = function()

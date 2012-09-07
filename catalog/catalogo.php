@@ -74,6 +74,19 @@ for ($i = 0; $i < 5; $i++)
     
 baseSuperior($titulo);
 
+if (!$esMovil)
+{
+?>
+    <script type="text/javascript">
+        $(window).load(function(){
+            if (document.location.hash.length > 1)
+            {
+                cargarModelo(document.location.hash.replace("#", "", ""));
+            }
+        });
+    </script>
+<?php
+}
 ?>
     <h3><?php echo $nombreCategoria; ?></h3>
     <div id="externo">
