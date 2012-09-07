@@ -28,7 +28,7 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "</td>";
     echo "</tr>";
     echo "</table>";
-    echo "<div class=\"g-plusone-button\"><div class=\"g-plusone\"></div></div>";
+    echo "<div class=\"g-plusone-button\"><div class=\"g-plusone\" data-href=\"catalogo?marca=".$modelo->getIdMarca()."#".$modelo->getId()."\"></div></div>";
     
 ?>
         <script type="text/javascript">
