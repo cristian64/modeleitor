@@ -10,6 +10,7 @@ if ($usuario == null)
 }
 
 $reservas = ENReserva::obtenerPorUsuario($usuario->getId(), $CANTIDAD_RESERVAS);
+$reservas = array_reverse($reservas);
 
 baseSuperior("Reservas");
 ?>

@@ -301,44 +301,60 @@ while ($tiempoInicial < $tiempoFinal)
                 
                 echo "<div class=\"dialogoreserva\" id=\"dialog".$estado->getId()."\" title=\"Reserva nº ".$estado->getId()."\">";
                 $cuerpo = "<tr>";
-                $cuerpo = $cuerpo."<td><strong>Nº de reserva:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".rellenar($estado->getId(), '0', $RELLENO)."</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Nº de reserva</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".rellenar($estado->getId(), '0', $RELLENO)."\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".$estado->getIdPista()."</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Pista</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getIdPista()."\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".$estado->getFechaInicio()->format('d/m/Y')."</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Día</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getFechaInicio()->format('d/m/Y')."\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Horario:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".$estado->getFechaInicio()->format('H:i')." - ".$estado->getFechaFin()->format('H:i')."</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Horario</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getFechaInicio()->format('H:i')." - ".$estado->getFechaFin()->format('H:i')."\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Duración:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".$estado->getDuracion()." minutos</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Duración</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getDuracion()." minutos\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Usuario:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $usuarioReseva = ENUsuario::obtenerPorId($estado->getIdUsuario());
-                $cuerpo = $cuerpo."<td>".$usuarioReseva->getEmail()." (<a href=\"usuario.php?id=".$usuarioReseva->getId()."\">Ver usuario</a>)</td>";
-                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Estado</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\">";
+                $clase = ($estado->getEstado() ==  "Pendiente") ? "pendiente2" : ($estado->getEstado() == "Finalizada" ? "finalizada2" : "encurso2");
+                $cuerpo = $cuerpo."<span class=\"$clase\">".$estado->getEstado()."</span>\n";
+                if ($estado->getEstado() == "Pendiente")
+                $cuerpo = $cuerpo."<br /><span style=\"font-size: 0.8em\">(".$estado->getCuentaAtrasString().")</span>";
+                $cuerpo = $cuerpo."</td>";
+                $cuerpo = $cuerpo."</tr>";                
                 $cuerpo = $cuerpo."<tr>";
-                $cuerpo = $cuerpo."<td><strong>Precio:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                $cuerpo = $cuerpo."<td>".ceil($estado->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Precio</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".ceil($estado->getDuracion() * $PRECIOHORA / 60)."€ a pagar en ventanilla\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 if ($usuario->getAdmin())
                 {
                     $cuerpo = $cuerpo."<tr>";
-                    $cuerpo = $cuerpo."<td><strong>Notas:</strong>&nbsp;&nbsp;&nbsp;</td>";
-                    $cuerpo = $cuerpo."<td>".nl2br($estado->getNotas())."</td>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-label\">Cobrado</td>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\""."0"."€\" /> <a href=\"#\" onclick=\"alert('No disponible todavía');\"><img src=\"css/dinero.png\" alt=\"Realizar cobro\" title=\"Realizar cobro\" /></a></td>";
+                    $cuerpo = $cuerpo."</tr>";
+                    $cuerpo = $cuerpo."<tr>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-label\">Notas</td>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-input\"><textarea readonly=\"readonly\" cols=\"20\" rows=\"2\">".nl2br($estado->getNotas())."</textarea></td>";
+                    $cuerpo = $cuerpo."</tr>";
+                    $cuerpo = $cuerpo."<tr>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-label\">Usuario de la reserva</td>";
+                    $usuarioReseva = ENUsuario::obtenerPorId($estado->getIdUsuario());
+                    $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$usuarioReseva->getEmail()."\" /> <a href=\"usuario.php?id=".$usuarioReseva->getId()."\"><img src=\"css/ficha_usuario.png\" alt=\"Ver usuario\" title=\"Ver usuario\" /></a></td>";
                     $cuerpo = $cuerpo."</tr>";
                 }
-                $cuerpo = "<table>".$cuerpo."</table>";
+                $cuerpo = $cuerpo."<tr>";
+                $cuerpo = $cuerpo."<td class=\"guapo-label\">Fecha de reserva</td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getFechaRealizacion()->format('d/m/Y H:i:s')."\" /></td>";
+                $cuerpo = $cuerpo."</tr>";
+                $cuerpo = "<table class=\"guapo-form\">".$cuerpo."</table>";
                 echo $cuerpo;
-                echo "<br /><a class=\"freshbutton-lightblue\" href=\"reserva.php?id=".$estado->getId()."\">Ver reserva en detalle</a>";
                 echo "</div>";
             }
             echo "</td>\n";
@@ -375,11 +391,16 @@ while ($tiempoInicial < $tiempoFinal)
                     $.fx.speeds._default = 300;
                     
                     $(".dialogoreserva").dialog({
+                        resizable: false,
                         autoOpen: false,
-                        hide: "explode",
                         width: "auto",
                         height: "auto",
-                        modal: true
+                        modal: true,
+                        buttons: {
+                            "Cerrar": function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
                     });
                         
                     jQuery(function($){

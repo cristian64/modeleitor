@@ -35,6 +35,7 @@ create table reservas
     fecha_realizacion datetime not null,
     reservable int not null default 1,
     notas text not null,
+    cobrado decimal(10,2) not null default 0,
     primary key (id),
     unique (id_pista, fecha_inicio),
     unique (id_pista, fecha_fin)

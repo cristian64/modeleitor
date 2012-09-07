@@ -51,49 +51,49 @@ $_SESSION["registro_telefono"] = "";
                             <div id="registrarse">
                                 <h3><span>Datos del nuevo usuario</span></h3>
                                 <form action="operarregistro.php" method="post" enctype="multipart/form-data" onsubmit="return validarRegistro(this);">
-                                    <table>
+                                    <table class="guapo-form">
                                         <tr>
-                                            <td class="columna1">E-mail*</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $email; ?>" name="email" class="textinput" /></td>
+                                            <td class="guapo-label">E-mail*</td>
+                                            <td class="guapo-input"><input type="text" value="<?php echo $email; ?>" name="email" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Contraseña*</td>
-                                            <td class="columna2"><input type="password" value="<?php echo $contrasena; ?>" name="contrasena" class="textinput" autocomplete="off" /></td>
+                                            <td class="guapo-label">Contraseña*</td>
+                                            <td class="guapo-input"><input type="password" value="<?php echo $contrasena; ?>" name="contrasena" class="textinput" autocomplete="off" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Confirmación de contraseña*</td>
-                                            <td class="columna2"><input type="password" value="<?php echo $contrasena2; ?>" name="contrasena2" class="textinput" autocomplete="off" /></td>
+                                            <td class="guapo-label">Confirmación de contraseña*</td>
+                                            <td class="guapo-input"><input type="password" value="<?php echo $contrasena2; ?>" name="contrasena2" class="textinput" autocomplete="off" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Nombre y apellidos*</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $nombre; ?>" name="nombre" class="textinput" /></td>
+                                            <td class="guapo-label">Nombre y apellidos*</td>
+                                            <td class="guapo-input"><input type="text" value="<?php echo $nombre; ?>" name="nombre" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">DNI</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $dni; ?>" name="dni" class="textinput" /></td>
+                                            <td class="guapo-label">DNI</td>
+                                            <td class="guapo-input"><input type="text" value="<?php echo $dni; ?>" name="dni" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Sexo*</td>
-                                            <td class="columna2"><div class="textinputfake">
+                                            <td class="guapo-label">Sexo*</td>
+                                            <td class="guapo-input"><div class="textinputfake">
                                                 <input type="radio" name="sexo" value="mujer" <?php if ($sexo == "mujer") echo "checked=\"checked\";" ?> /> Mujer
                                                 <input type="radio" name="sexo" value="hombre" <?php if ($sexo == "hombre") echo "checked=\"checked\";" ?>/> Hombre
                                             </div></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Dirección</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $direccion; ?>" name="direccion" class="textinput" /></td>
+                                            <td class="guapo-label">Dirección</td>
+                                            <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1">Teléfono</td>
-                                            <td class="columna2"><input type="text" value="<?php echo $telefono; ?>" name="telefono" class="textinput" /></td>
+                                            <td class="guapo-label">Teléfono</td>
+                                            <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1"></td>
-                                            <td class="columna2"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
+                                            <td class="guapo-label"></td>
+                                            <td class="guapo-input"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="columna1"></td>
-                                            <td class="columna2"><input type="submit" value="Registrarse" class="freshbutton-big" /></td>
+                                            <td class="guapo-label"></td>
+                                            <td class="guapo-input"><input type="submit" value="Registrarse" class="freshbutton-big" /></td>
                                         </tr>
                                     </table>
                                 </form>
