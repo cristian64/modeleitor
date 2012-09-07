@@ -171,3 +171,21 @@ function comprobanteDia(dia, anterior)
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajax.send("dia="+dia);
 }
+
+function realizarCobro(id, cobrado)
+{
+    ajax = nuevoAjax();
+    ajax.open("POST", "operarcobro", true);
+    ajax.onreadystatechange = function()
+    {
+        if (ajax.readyState == 4)
+        {
+            if (ajax.responseText == "OK")
+            {
+                document.getElementById("cobrado"+id).value = cobrado + "€";
+            }
+        }
+    }
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajax.send("id="+id+"&cobrado="+cobrado);
+}
