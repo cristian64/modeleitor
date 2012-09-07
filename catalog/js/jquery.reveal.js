@@ -83,7 +83,7 @@
 						}, options.animationspeed,unlockModal());					
 					} 
 					if(options.animation == "none") {
-						modal.css({'visibility' : 'visible', 'top':$(document).scrollTop()+topMeasure});
+						modal.css({'visibility' : 'visible', 'display' : 'block', 'top':$(document).scrollTop()+topMeasure});
 						modalBG.css({"display":"block"});	
 						unlockModal()				
 					}
@@ -115,7 +115,7 @@
 						});					
 					}  	
 					if(options.animation == "none") {
-						modal.css({'visibility' : 'hidden', 'top' : topMeasure});
+						modal.css({'visibility' : 'hidden', 'display' : 'none', 'top' : topMeasure});
 						modalBG.css({'display' : 'none'});	
 					}		
 				}
