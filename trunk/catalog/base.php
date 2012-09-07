@@ -32,6 +32,9 @@ function baseSuperior($titulo)
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
         
+        <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+          {lang: 'es', parsetags: 'explicit'}
+        </script>
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
@@ -80,7 +83,7 @@ function baseSuperior($titulo)
                                     if ($usuario == null)
                                         echo "<a href=\"clientes\" class=\"btnazul\">Clientes</a>\n";
                                     else
-                                        echo "<a href=\"cerrarsesion\" class=\"btnrojo\">Cerrar sesión</a>\n";
+                                        echo "<a href=\"cerrarsesion\" class=\"btnrojo\" title=\"Sesión iniciada como ".$usuario->getEmail()."\">Cerrar sesión</a>\n";
                                 ?>
                             </td>
                             <td id="idioma">
@@ -110,6 +113,8 @@ function baseSuperior($titulo)
                         function closeSubMenu() {
                             $(this).find('ul').hide();
                         };
+                        
+                        gapi.plusone.go();
                     });
                 </script>
                 
@@ -173,8 +178,9 @@ function bloqueCategorias()
     }
 
     echo "</ul>\n";
-    if ($usuario != null)
-        echo "<div style=\"vertical-align: middle; text-align: right; padding: 15px 0;\">".$usuario->getEmail()."</div>\n";
+    echo "<div style=\"vertical-align: middle; text-align: right; padding: 10px;\">";
+    echo "<div class=\"g-plusone\" data-href=\"http://www.calzadosjam.es\"></div>";
+    echo "</div>\n";
     echo "</div>\n";
 }
 

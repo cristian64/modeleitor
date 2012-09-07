@@ -33,23 +33,17 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
 ?>
         <script type="text/javascript">
 
-         var _gaq = _gaq || [];
-         _gaq.push(['_setAccount', 'UA-8410217-1']);
-         _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-8410217-1']);
+        _gaq.push(['_trackPageview']);
 
-         (function() {
+        (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-         })();
-         
-        window.___gcfg = {lang: 'es'};
-
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
+         
+        gapi.plusone.go();
 
         </script>
 <?php
