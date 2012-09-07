@@ -17,6 +17,7 @@ class ENReserva
     private $fecha_realizacion;
     private $reservable;
     private $notas;
+    private $cobrado;
 
     public function getId()
     {
@@ -157,6 +158,16 @@ class ENReserva
     {
         $this->notas = filtrarCadena($notas);
     }
+    
+    public function getCobrado()
+    {
+        return $this->cobrado;
+    }
+    
+    public function setCobrado($cobrado)
+    {
+        $this->cobrado = filtrarCadena($cobrado);
+    }
 
     /**
      * Constructor de la clase.
@@ -171,6 +182,7 @@ class ENReserva
         $this->fecha_realizacion = new DateTime();
         $this->reservable = true;
         $this->notas = "";
+        $this->cobrado = 0;
     }
 
     public function toString() {
@@ -187,6 +199,7 @@ class ENReserva
         $reserva->fecha_realizacion = new DateTime($fila[5]);
         $reserva->reservable = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
         $reserva->notas = utf8_encode($fila[7]);
+        $reserva->cobrado = $fila[8];
         return $reserva;
     }
 
@@ -765,8 +778,8 @@ class ENReserva
                     
                 if ($disponible)
                 {
-                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable, notas)";
-                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."', '".utf8_decode($this->notas)."');\n";
+                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable, notas, cobrado)";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."', '".utf8_decode($this->notas)."', '".$this->cobrado."');\n";
 
                     $resultado = mysql_query($sentencia, $conexion);
 
@@ -804,6 +817,42 @@ class ENReserva
             catch (Exception $e)
             {
                 debug("ENReserva::guardar() " . $e->getMessage());
+            }
+        }
+
+        return $guardado;
+    }
+    
+    public function actualizarCobro()
+    {
+        $guardado = false;
+
+        if ($this->id > 0)
+        {
+            try
+            {
+                $conexion = BD::conectar();
+
+                // Actualizamos el usuario.
+                $sentencia = "update reservas set cobrado = '".$this->cobrado."'";
+                $sentencia = "$sentencia where id = '".$this->id."'";
+
+                $resultado = mysql_query($sentencia, $conexion);
+
+                if ($resultado)
+                {
+                    $guardado = true;
+                }
+                else
+                {
+                    debug("ENReserva::actualizarCobro() ".mysql_error());
+                }
+                        
+                BD::desconectar($conexion);
+            }
+            catch (Exception $e)
+            {
+                debug("ENReserva::actualizarCobro() ".$e->getMessage());
             }
         }
 

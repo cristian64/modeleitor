@@ -337,7 +337,7 @@ while ($tiempoInicial < $tiempoFinal)
                 {
                     $cuerpo = $cuerpo."<tr>";
                     $cuerpo = $cuerpo."<td class=\"guapo-label\">Cobrado</td>";
-                    $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\""."0"."€\" /> <a href=\"#\" onclick=\"alert('No disponible todavía');\"><img src=\"css/dinero.png\" alt=\"Realizar cobro\" title=\"Realizar cobro\" /></a></td>";
+                    $cuerpo = $cuerpo."<td class=\"guapo-input\"><input id=\"cobrado".$estado->getId()."\" type=\"text\" readonly=\"readonly\" value=\"".$estado->getCobrado()."€\" /> <a href=\"#\" onclick=\"realizarCobro('".$estado->getId()."', prompt('Cantidad cobrada:', ''));\"><img src=\"css/dinero.png\" alt=\"Realizar cobro\" title=\"Realizar cobro\" /></a></td>";
                     $cuerpo = $cuerpo."</tr>";
                     $cuerpo = $cuerpo."<tr>";
                     $cuerpo = $cuerpo."<td class=\"guapo-label\">Notas</td>";

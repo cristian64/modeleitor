@@ -71,6 +71,10 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                         <td class="guapo-input"><input type="text" value="<?php echo ceil($reserva->getDuracion() * $PRECIOHORA / 60); ?>€ a pagar en ventanilla" readonly="readonly" /></td>
                     </tr>
                     <tr>
+                        <td class="guapo-label">Cobrado</td>
+                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getCobrado(); ?>€" readonly="readonly" /></td>
+                    </tr>
+                    <tr>
                         <td class="guapo-label">Estado</td>
                         <td class="guapo-input"><div class="textinputfake">
                             <?php
