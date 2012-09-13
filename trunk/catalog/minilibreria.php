@@ -227,6 +227,44 @@
     {
         return openssl_digest($string, "sha512");
     }
+    
+    function diaStr()
+    {
+        switch (date("w"))
+        {
+            case 1: return "lunes";
+            case 2: return "martes";
+            case 3: return "miércoles";
+            case 4: return "jueves";
+            case 5: return "viernes";
+            case 6: return "sábado";
+            case 7: return "domingo";
+        }
+    }
+    
+    function mesStr()
+    {
+        switch (date("m"))
+        {
+            case 1: return "enero";
+            case 2: return "febrero";
+            case 3: return "marzo";
+            case 4: return "abril";
+            case 5: return "mayo";
+            case 6: return "junio";
+            case 7: return "julio";
+            case 8: return "agosto";
+            case 9: return "septiembre";
+            case 10: return "octubre";
+            case 11: return "noviembre";
+            case 12: return "diciembre";
+        }
+    }
+    
+    function fechaStr()
+    {
+        return diaStr()." ".date("d")." de ".mesStr()." de ".date("Y");
+    }
 
     /**
      * Cambia el formato de la fecha.
