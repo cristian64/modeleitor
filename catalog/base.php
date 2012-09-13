@@ -176,6 +176,7 @@ function bloqueCategorias()
         echo "<li><a href=\"marcas\">Marcas</a></li>";
         echo "<li><a href=\"fabricantes\">Fabricantes</a></li>";
         echo "<li><a href=\"usuarios\">Usuarios</a></li>";
+        echo "<li><a href=\"precios\">Listado de precios</a></li>";
         echo "<li><a href=\"shell\">Shell</a></li>";
         echo "</ul></li>\n";
     }
