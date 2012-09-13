@@ -113,7 +113,7 @@ if (!$esMovil)
                     else
                         echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())." €</div>";
                 }
-                echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".$i->getNumeracion()."</div></div></div>\n";
+                echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".(($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0) ? $i->getNumeracion() : "")."</div></div></div>\n";
                 if (!$esMovil)
                     echo "</div>\n";
                 else

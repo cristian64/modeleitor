@@ -23,7 +23,8 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
         else
             echo "<div class=\"modelo-precio\">".str_replace('.', ',', $modelo->getPrecio())." €</div>";
     echo "<div class=\"modelo-nombre\">".$modelo->getNombre()."</div>";
-    echo "<div class=\"modelo-nombre\">Numeración: ".$modelo->getNumeracion()."</div>";
+    if ($modelo->getTallaMenor() > 0 || $modelo->getTallaMayor() > 0)
+        echo "<div class=\"modelo-nombre\">Numeración: ".$modelo->getNumeracion()."</div>";
     echo "<div class=\"modelo-descripcion\">".$modelo->getDescripcion()."</div>";
     echo "</td>";
     echo "</tr>";
