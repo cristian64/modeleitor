@@ -93,6 +93,7 @@
 
 			//Closing Animation
 			modal.bind('reveal:close', function () {
+			  document.location.hash = "";
 			  if(!locked) {
 					lockModal();
 					if(options.animation == "fadeAndPop") {
