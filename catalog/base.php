@@ -14,9 +14,12 @@ function baseSuperior($titulo)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="description" content="Almacén y fábrica de calzado nacional. Venta Mayorista. Entrega inmediata. Nuestros productos han sido elaborados con materias primas nacionales, dando trabajo a un número elevado de personas, y usted con su adquisición contribuye a todo ello." />
+		<meta name="description" content="Almacén y fábrica de calzado nacional. Venta Mayorista. Entrega inmediata. Nuestros productos han sido elaborados con materias primas nacionales." />
 		<meta name="keywords" content="almacen calzado, fabrica calzado, venta al por mayor, calzado piel, calzados jam, venta mayorista calzado, calzado español" />
 		<meta name="author" content="Calzados JAM" />
+		<meta name="geo.position" content="38.278123,-0.719726">
+		<meta name="geo.placename" content="Elche, Alicante, Comunidad Valenciana, España">
+		<meta name="geo.region" content="es-es">
 		<meta charset="UTF-8" />
 		
         <title>Calzados JAM. Almacén y fábrica de calzado Español - <?php echo $titulo; ?></title>
@@ -71,7 +74,7 @@ function baseSuperior($titulo)
                     <table id="tabla-cabecera">
                         <tr>
                             <td id="titulo">
-                                <h1><a href="."><span>Calzados JAM</span></a></h1>
+                                <h1><a href="."><span>Calzados JAM. Almacén y fábrica de calzado nacional. Calzados al por Mayor.</span></a></h1>
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
@@ -190,11 +193,11 @@ function baseInferior()
                 </div>
             </div>
             <div id="barra-pie">
-                <a href="http://www.calzadosjam.es" class="btnpie"><img src="css/casa.png" alt="" /> Página de inicio</a>
-                <a href="mapa" class="btnpie"><img src="css/mundo.png" alt="" /> Mapa</a>
-                <a href="contacto" class="btnpie"><img src="css/sobre.png" alt="" /> Contacto</a>
-                <a href="privacidad" class="btnpie"><img src="css/candado.png" alt="" /> Política de privacidad y datos</a>
-                <a href="condiciones" class="btnpieultimo"><img src="css/condiciones.png" alt="" /> Condiciones de uso</a>
+                <a href="http://www.calzadosjam.es" class="btnpie"><img src="css/casa.png" alt="Inicio" /> Página de inicio</a>
+                <a href="mapa" class="btnpie"><img src="css/mundo.png" alt="Mapa" /> Mapa</a>
+                <a href="contacto" class="btnpie"><img src="css/sobre.png" alt="Contacto" /> Contacto</a>
+                <a href="privacidad" class="btnpie"><img src="css/candado.png" alt="Privacidad" /> Política de privacidad y datos</a>
+                <a href="condiciones" class="btnpieultimo"><img src="css/condiciones.png" alt="Condiciones" /> Condiciones de uso</a>
             </div>
             <div id="pie">
                 <a href="http://www.calzadosjam.es"><img src="css/calzadosjam_logo.png" alt="Calzados JAM logo" /></a>

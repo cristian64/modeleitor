@@ -86,6 +86,7 @@ baseSuperior("Contacto");
                                                 <p>
                                                     <a href="https://www.facebook.com/calzados.jam"><img src="css/facebook.png" alt="Facebook" title="Facebook" /></a> 
                                                     <a href="https://plus.google.com/115603135881616840952/"><img src="css/googleplus.png" alt="Google+" title="Google+" /></a>
+													<a href="https://twitter.com/calzadosjam"><img src="css/twitter.png" alt="Twitter" title="Twitter" /></a>
                                                 </p>
                                             </div>
                                         </div>
