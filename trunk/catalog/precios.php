@@ -94,8 +94,9 @@ if (!$usuario->getAdmin())
             {
                 echo "<tr class=\"fila\" style=\"white-space: nowrap;\">";
                 echo "<td>".htmlspecialchars($i->getReferencia())."</td>";
-                echo "<td style=\"width: 100%; white-space: normal;\">".htmlspecialchars($i->getNombre())."</td>";
-                echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
+                echo "<td ".(($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0) ? "" : "colspan=\"2\"")." style=\"width: 100%; white-space: normal;\">".htmlspecialchars($i->getNombre())."</td>";
+                if ($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0)
+                    echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
                 echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."€</td>";
                 //echo "<td class=\"centrada\">".htmlspecialchars($i->getMarca())."</td>";
                 echo "</tr>";
