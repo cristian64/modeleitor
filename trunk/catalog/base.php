@@ -140,16 +140,16 @@ function bloqueCategorias()
         $subcategorias = ENCategoria::getByPadre($i->getId());
         echo "    <li>\n";
         if (esMovil() && count($subcategorias) > 0)
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".$i->getNombre()."\" class=\"firstLevel\" onclick=\"return false;\">".htmlspecialchars($i->getNombre())."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\" class=\"firstLevel\" onclick=\"return false;\">".htmlspecialchars($i->getNombre())."</a>\n";
         else
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".$i->getNombre()."\" class=\"firstLevel\">".htmlspecialchars($i->getNombre())."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\" class=\"firstLevel\">".htmlspecialchars($i->getNombre())."</a>\n";
             
         if (count($subcategorias) > 0)
         {
             echo "        <ul>\n";
             foreach ($subcategorias as $j)
             {
-                echo "            <li><a href=\"catalogo?categoria=".$j->getId()."-".$j->getNombre()."-".$i->getNombre()."\">".htmlspecialchars($j->getNombre())."</a></li>\n";
+                echo "            <li><a href=\"catalogo?categoria=".$j->getId()."-".rawurlencode($j->getNombre())."-".$i->getNombre()."\">".htmlspecialchars($j->getNombre())."</a></li>\n";
             }
             echo "         </ul>\n";
         }
@@ -162,7 +162,7 @@ function bloqueCategorias()
     foreach ($marcas as $i)
     {
         if (ENModelo::countByMarca($i->getId()) > 0 && $i->getId() != 0)
-            echo "<li class=\"horizontal\"><a href=\"catalogo?marca=".$i->getId()."-".$i->getNombre()."\">".htmlspecialchars($i->getNombre())."</a></li>\n";
+            echo "<li class=\"horizontal\"><a href=\"catalogo?marca=".$i->getId()."-".rawurlencode($i->getNombre())."\">".htmlspecialchars($i->getNombre())."</a></li>\n";
     }
     echo "<li class=\"horizontal\"><a href=\"catalogo?marca=0\">Otras marcas</a></li>\n";
     echo "</ul></li>\n";

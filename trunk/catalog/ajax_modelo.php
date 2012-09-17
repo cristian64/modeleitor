@@ -13,7 +13,7 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "<tr><td class=\"modelo-foto\">";
     if ($modelo->getOferta())
         echo "<div class=\"modelo-oferta-modal\">Oferta</div>";
-    echo "<img id=\"modelo-img\" src=\"img/modelos/".$modelo->getFoto()."\" alt=\"\"></td></tr>";
+    echo "<img id=\"modelo-img\" src=\"img/modelos/".$modelo->getFoto()."\" alt=\"".$modelo->getNombre()."\" title=\"".$modelo->getNombre()."\" /></td></tr>";
     echo "<tr>";
     echo "<td class=\"modelo-titulo-modal\">";
     echo "<div class=\"modelo-ref\">Ref. ".$modelo->getReferencia()."</div>";

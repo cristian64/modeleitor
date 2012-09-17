@@ -104,7 +104,7 @@ if (!$esMovil)
                 if ($i->getOferta())
                     echo "<div class=\"modelo-oferta\">Oferta</div>";
                 echo "<div class=\"modelo-wrapper\">";
-                echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"\" style=\"max-height: 160px;\">";
+                echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"".$i->getNombre()."\" title=\"".$i->getNombre()."\" style=\"max-height: 160px;\" />";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".htmlspecialchars($i->getReferencia())."</div>";
                 if ($activo)
                 {
