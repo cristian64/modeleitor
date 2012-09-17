@@ -87,7 +87,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
     }
     else
     {
-        $_SESSION["mensaje_error"] = "Las 2 palabras introducidas no son correctas";
+        $_SESSION["mensaje_error"] = "Las 2 palabras de la imagen no son correctas";
     }
 }
 
@@ -147,7 +147,7 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" /></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label"><br /><br />Escribe las 2 palabras que hay arriba</td>
+                    <td class="guapo-label"><br /><br />Escribe las 2 palabras que aparecen en la imagen</td>
                     <td class="guapo-input"><?php /*echo recaptcha_get_html($PUBLICKEY);*/ ?>
 
                         <div id="recaptcha_widget" style="display:none; position: relative; background: #fff;">
