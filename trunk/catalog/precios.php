@@ -79,7 +79,7 @@ if (!$usuario->getAdmin())
     </head>
     <body style="font-size: 8pt; font-family: Calibri, Arial;">
         <img style="margin-bottom: 10px;" src="css/calzadosjam_logo.png" alt="Calzados JAM" width="130xp" />
-        <div style="float: right; font-size: 11pt;">www.calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; calzadosjam@gmail.com &nbsp;&nbsp;·&nbsp;&nbsp; (+34)966673439 &nbsp;&nbsp;·&nbsp;&nbsp; <?php echo fechaStr(); ?></div>
+        <div style="float: right; font-size: 10pt; text-align: right;">www.calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; calzadosjam@gmail.com &nbsp;&nbsp;·&nbsp;&nbsp; (+34)966673439<br /><?php echo fechaStr(); ?></div>
         <div>
             <table>
         <?php
