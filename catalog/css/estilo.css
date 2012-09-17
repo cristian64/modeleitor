@@ -586,7 +586,7 @@ td.guapo-label
     text-align: right;
     font-family: "☺SegoeLight", "Segoe UI", Segoe, Arial, Verdana, sans-serif;
     font-weight: 300;
-    font-size: 14pt;
+    font-size: 13pt;
     color: #000;
 }
 
@@ -602,7 +602,7 @@ td.guapo-input
     font-weight: 300;
     font-size: 11pt;
     color: #000;
-    padding: 10px;
+    padding: 5px;
     
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -659,7 +659,7 @@ td.guapo-input
     display: inline-block;
     width: 290px; /*mismo tamaño que el input text*/
     background: #fff;
-    padding: 10px;
+    padding: 5px;
     
     -moz-border-bottom-colors: none;
     -moz-border-image: none;

@@ -87,7 +87,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
     }
     else
     {
-        $_SESSION["mensaje_error"] = "El código de seguridad no se introdujo correctamente";
+        $_SESSION["mensaje_error"] = "Las 2 palabras introducidas no son correctas";
     }
 }
 
@@ -97,7 +97,7 @@ baseSuperior("Clientes");
 <script type="text/javascript">
  var RecaptchaOptions = {
                 custom_translations : {
-                        instructions_visual : "Escribe las palabras",
+                        instructions_visual : "Escribe las 2 palabras",
                         instructions_audio : "Transcribe el mensaje",
                         play_again : "Reproducir el audio",
                         cant_hear_this : "Descargar el audio",
@@ -107,8 +107,9 @@ baseSuperior("Clientes");
                         help_btn : "Ayuda",
                         incorrect_try_again : "Incorrecto. Reintentar"
                 },
-    theme : 'red',
-    lang : 'es'
+    theme : 'custom',
+    lang : 'es',
+    custom_theme_widget: 'recaptcha_widget'
  };
  </script>
 <div id="externo">
@@ -146,8 +147,17 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" /></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label"></td>
-                    <td class="guapo-input"><?php echo recaptcha_get_html($PUBLICKEY); ?></td>
+                    <td class="guapo-label"><br /><br />Escribe las 2 palabras que hay arriba</td>
+                    <td class="guapo-input"><?php /*echo recaptcha_get_html($PUBLICKEY);*/ ?>
+
+                        <div id="recaptcha_widget" style="display:none; position: relative; background: #fff;">
+                            <div id="recaptcha_image"></div>
+                            <input type="text" id="recaptcha_response_field" name="recaptcha_response_field" />
+                            <div style="position: absolute; right: -16px; top: 0;"><a href="javascript:Recaptcha.reload()"><img src="css/refrescar.png" alt="Refrescar" /></a></div>
+                        </div>
+                        <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<?php echo $PUBLICKEY; ?>"></script>
+                    
+                    </td>
                 </tr>
                 <tr>
                     <td class="guapo-label"></td>
