@@ -8,8 +8,12 @@ class ENUsuario
     private $email;
     private $contrasena;
     private $nombre;
+    private $apellidos;
     private $telefono;
     private $direccion;
+    private $cp;
+    private $ciudad;
+    private $empresa;
     private $cif;
     private $admin;
     private $activo;
@@ -50,6 +54,16 @@ class ENUsuario
         $this->nombre = $nombre;
     }
     
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+    
     public function getTelefono()
     {
         return $this->telefono;
@@ -68,6 +82,36 @@ class ENUsuario
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
+    }
+    
+    public function getCp()
+    {
+        return $this->cp;
+    }
+
+    public function setCp($cp)
+    {
+        $this->cp = $cp;
+    }
+    
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
+
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+    }
+    
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
     }
     
     public function getCif()
@@ -111,8 +155,12 @@ class ENUsuario
         $this->email = "";
         $this->contrasena = "";
         $this->nombre = "";
+        $this->apellidos = "";
         $this->telefono = "";
         $this->direccion = "";
+        $this->cp = "";
+        $this->ciudad = "";
+        $this->empresa = "";
         $this->cif = "";
         $this->admin = false;
         $this->activo = false;
@@ -126,12 +174,16 @@ class ENUsuario
         $obj->email = utf8_encode($fila[1]);
         $obj->contrasena = utf8_encode($fila[2]);
         $obj->nombre = utf8_encode($fila[3]);
-        $obj->telefono = utf8_encode($fila[4]);
-        $obj->direccion = utf8_encode($fila[5]);
-        $obj->cif = utf8_encode($fila[6]);
-        $obj->admin = ($fila[7] == "0" || $fila[7] == 0) ? false : true;
-        $obj->activo = ($fila[8] == "0" || $fila[8] == 0) ? false : true;
-        $obj->fecha_registro = new DateTime($fila[9]);
+        $obj->apellidos = utf8_encode($fila[4]);
+        $obj->telefono = utf8_encode($fila[5]);
+        $obj->direccion = utf8_encode($fila[6]);
+        $obj->cp = utf8_encode($fila[7]);
+        $obj->ciudad = utf8_encode($fila[8]);
+        $obj->empresa = utf8_encode($fila[9]);
+        $obj->cif = utf8_encode($fila[10]);
+        $obj->admin = ($fila[11] == "0" || $fila[11] == 0) ? false : true;
+        $obj->activo = ($fila[12] == "0" || $fila[12] == 0) ? false : true;
+        $obj->fecha_registro = new DateTime($fila[13]);
         return $obj;
     }
 
@@ -269,8 +321,8 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into usuarios (email, contrasena, nombre, telefono, direccion, cif, admin, activo, fecha_registro)";
-                $sentencia = "$sentencia values ('".secure(utf8_decode($this->email))."', '".secure(utf8_decode($this->contrasena))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->telefono))."', '".secure(utf8_decode($this->direccion))."', '".secure(utf8_decode($this->cif))."', '".($this->admin ? 1 : 0)."', '".($this->activo ? 1 : 0)."', now())";
+                $sentencia = "insert into usuarios (email, contrasena, nombre, apellidos, telefono, direccion, cp, ciudad, empresa, cif, admin, activo, fecha_registro)";
+                $sentencia = "$sentencia values ('".secure(utf8_decode($this->email))."', '".secure(utf8_decode($this->contrasena))."', '".secure(utf8_decode($this->nombre))."', '".secure(utf8_decode($this->apellidos))."', '".secure(utf8_decode($this->telefono))."', '".secure(utf8_decode($this->direccion))."', '".secure(utf8_decode($this->cp))."', '".secure(utf8_decode($this->ciudad))."', '".secure(utf8_decode($this->empresa))."', '".secure(utf8_decode($this->cif))."', '".($this->admin ? 1 : 0)."', '".($this->activo ? 1 : 0)."', now())";
                 $resultado = mysql_query($sentencia, $conexion);
 
 
@@ -324,7 +376,7 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update usuarios set email = '".secure(utf8_decode($this->email))."', contrasena = '".secure(utf8_decode($this->contrasena))."', nombre = '".secure(utf8_decode($this->nombre))."', telefono = '".secure(utf8_decode($this->telefono))."', direccion = '".secure(utf8_decode($this->direccion))."', cif = '".secure(utf8_decode($this->cif))."', admin = '".($this->admin ? 1 : 0)."', activo = '".($this->activo ? 1 : 0)."'";
+                $sentencia = "update usuarios set email = '".secure(utf8_decode($this->email))."', contrasena = '".secure(utf8_decode($this->contrasena))."', nombre = '".secure(utf8_decode($this->nombre))."', apellidos = '".secure(utf8_decode($this->apellidos))."', telefono = '".secure(utf8_decode($this->telefono))."', direccion = '".secure(utf8_decode($this->direccion))."', cp = '".secure(utf8_decode($this->cp))."', ciudad = '".secure(utf8_decode($this->ciudad))."', empresa = '".secure(utf8_decode($this->empresa))."', cif = '".secure(utf8_decode($this->cif))."', admin = '".($this->admin ? 1 : 0)."', activo = '".($this->activo ? 1 : 0)."'";
                 $sentencia = "$sentencia where id = '".secure(utf8_decode($this->id))."'";
 
                 $resultado = mysql_query($sentencia, $conexion);

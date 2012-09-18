@@ -13,8 +13,12 @@ $email = getPost("email");
 $contrasena = getPost("contrasena");
 $contrasena2 = getPost("contrasena2");
 $nombre = getPost("nombre");
+$apellidos = getPost("apellidos");
 $telefono = getPost("telefono");
 $direccion = getPost("direccion");
+$cp = getPost("cp");
+$ciudad = getPost("ciudad");
+$empresa = getPost("empresa");
 $cif = getPost("cif");
 
 $kMinContrasena = 4;
@@ -32,7 +36,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
             $existente = ENUsuario::getByEmail($email);
             if ($existente == null)
             {
-                if (strlen($nombre) < $kMaxNombre && strlen($nombre) > $kMinNombre)
+                if (strlen($nombre) < $kMaxNombre && strlen($nombre) > $kMinNombre && strlen($apellidos) < $kMaxNombre && strlen($apellidos) > $kMinNombre)
                 {
                     if ($contrasena == $contrasena2)
                     {
@@ -41,9 +45,13 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
                             $nuevo = new ENUsuario;
                             $nuevo->setEmail($email);
                             $nuevo->setNombre($nombre);
+                            $nuevo->setApellidos($apellidos);
                             $nuevo->setContrasena(sha512($contrasena));
                             $nuevo->setTelefono($telefono);
                             $nuevo->setDireccion($direccion);
+                            $nuevo->setCp($cp);
+                            $nuevo->setCiudad($ciudad);
+                            $nuevo->setEmpresa($empresa);
                             $nuevo->setCif($cif);
                             $registrado = $nuevo->save();
 
@@ -73,7 +81,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
                 }
                 else
                 {
-                    $_SESSION["mensaje_error"] = "El nombre debe tener entre $kMinNombre y $kMaxNombre caracteres";
+                    $_SESSION["mensaje_error"] = "El nombre y los apellidos deben tener entre $kMinNombre y $kMaxNombre caracteres";
                 }
             }
             else
@@ -132,12 +140,20 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="password" value="" name="contrasena2" autocomplete="off" onblur="comprobarContrasena2();" /><div id="error-contrasena2" class="guapo-error">La confirmación de contraseña debe coincidir con la contraseña</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Nombre completo*</td>
+                    <td class="guapo-label">Nombre*</td>
                     <td class="guapo-input"><input type="text" value="<?php echo $nombre; ?>" name="nombre" onblur="comprobarNombre();" /><div id="error-nombre" class="guapo-error">El nombre debe tener entre 4 y 100 letras</div></td>
+                </tr>
+                <tr>
+                    <td class="guapo-label">Apellidos*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $apellidos; ?>" name="apellidos" onblur="comprobarApellidos();" /><div id="error-apellidos" class="guapo-error">Los apellidos deben tener entre 4 y 100 letras</div></td>
                 </tr>
                 <tr>
                     <td class="guapo-label">Teléfono fijo y móvil*</td>
                     <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" onblur="comprobarTelefono();" /><div id="error-telefono" class="guapo-error">Introduce al menos un número de teléfono</div></td>
+                </tr>
+                <tr>
+                    <td class="guapo-label">Nombre de la empresa</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $empresa; ?>" name="empresa" /></td>
                 </tr>
                 <tr>
                     <td class="guapo-label">CIF/NIF</td>
@@ -147,6 +163,15 @@ baseSuperior("Clientes");
                     <td class="guapo-label">Dirección</td>
                     <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" /></td>
                 </tr>
+                <tr>
+                    <td class="guapo-label">Código postal</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $cp; ?>" name="cp" /></td>
+                </tr>
+                <tr>
+                    <td class="guapo-label">Ciudad <small>(localidad, provincia, país)</small></td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $ciudad; ?>" name="ciudad" /></td>
+                </tr>
+                
                 <tr>
                     <td class="guapo-label"><br /><br />Escribe las 2 palabras que aparecen en la imagen</td>
                     <td class="guapo-input"><?php /*echo recaptcha_get_html($PUBLICKEY);*/ ?>

@@ -25,8 +25,9 @@ baseSuperior("Usuarios");
     <table>
         <tr class="cabecera">
             <td>ID</td>
-            <td class="estirar">Nombre</td>
-            <td>Email</td>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td class="estirar">Email</td>
             <td>Teléfono</td>
             <td>CIF/NIF</td>
             <td>Fecha de registro</td>
@@ -40,6 +41,7 @@ baseSuperior("Usuarios");
         echo "<tr class=\"fila\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td>".htmlspecialchars($i->getNombre())."</td>";
+        echo "<td>".htmlspecialchars($i->getApellidos())."</td>";
         echo "<td class=\"centrada\">".$i->getEmail()."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getTelefono())."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getCif())."</td>";
@@ -50,10 +52,14 @@ baseSuperior("Usuarios");
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=email]').val('".htmlspecialchars(secure($i->getEmail()))."');";
         echo "$('#form-editar input[name=nombre]').val('".htmlspecialchars(secure($i->getNombre()))."');";
+        echo "$('#form-editar input[name=apellidos]').val('".htmlspecialchars(secure($i->getApellidos()))."');";
         echo "$('#form-editar input[name=telefono]').val('".htmlspecialchars(secure($i->getTelefono()))."');";
         echo "$('#form-editar input[name=contrasena]').val('');";
         echo "$('#form-editar input[name=contrasena2]').val('');";
         echo "$('#form-editar input[name=direccion]').val('".htmlspecialchars(secure($i->getDireccion()))."');";
+        echo "$('#form-editar input[name=cp]').val('".htmlspecialchars(secure($i->getCp()))."');";
+        echo "$('#form-editar input[name=ciudad]').val('".htmlspecialchars(secure($i->getCiudad()))."');";
+        echo "$('#form-editar input[name=empresa]').val('".htmlspecialchars(secure($i->getEmpresa()))."');";
         echo "$('#form-editar input[name=cif]').val('".htmlspecialchars(secure($i->getCif()))."');";
         if ($i->getActivo())
             echo "$('#form-editar input[name=activo]').attr('checked', true);";
@@ -84,11 +90,15 @@ baseSuperior("Usuarios");
     <table class="guapo-form">
         <tr><td class="guapo-label">ID</td><td class="guapo-input"><input type="text" name="id" value="" readonly="readonly" /></td></tr>
         <tr><td class="guapo-label">E-mail</td><td class="guapo-input"><input type="text" name="email" value="" readonly="readonly" /></td></tr>
-        <tr><td class="guapo-label">Nombre completo</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Nombre</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">Apellidos</td><td class="guapo-input"><input type="text" name="apellidos" value="" /></td></tr>
         <tr><td class="guapo-label">Contraseña</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td></tr>
         <tr><td class="guapo-label">Confirmación de contraseña</td><td class="guapo-input"><input type="password" name="contrasena2" value="" /></td></tr>
         <tr><td class="guapo-label">Teléfono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
         <tr><td class="guapo-label">Dirección</td><td class="guapo-input"><input type="text" name="direccion" value="" /></td></tr>
+        <tr><td class="guapo-label">Código postal</td><td class="guapo-input"><input type="text" name="cp" value="" /></td></tr>
+        <tr><td class="guapo-label">Ciudad <small>(localidad, provincia, país)</small></td><td class="guapo-input"><input type="text" name="ciudad" value="" /></td></tr>
+        <tr><td class="guapo-label">Nombre de empresa</td><td class="guapo-input"><input type="text" name="empresa" value="" /></td></tr>
         <tr><td class="guapo-label">CIF/NIF</td><td class="guapo-input"><input type="text" name="cif" value="" /></td></tr>
         <tr><td class="guapo-label">Activo</td><td class="guapo-input"><input type="checkbox" value="yes" name="activo" /></td></tr>
         <tr><td class="guapo-label">Fecha de registro</td><td class="guapo-input"><input type="text" name="fecha_registro" value="" readonly="readonly" /></td></tr>

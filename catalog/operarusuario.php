@@ -61,8 +61,12 @@ function editar()
     {
         //$usuario->setEmail(getPost("email"));
         $usuario->setNombre(getPost("nombre"));
-        $usuario->setCif(getPost("cif"));
+        $usuario->setApellidos(getPost("apellidos"));
         $usuario->setDireccion(getPost("direccion"));
+        $usuario->setCp(getPost("cp"));
+        $usuario->setCiudad(getPost("ciudad"));
+        $usuario->setEmpresa(getPost("empresa"));
+        $usuario->setCif(getPost("cif"));
         $usuario->setTelefono(getPost("telefono"));
         $activoAntes = $usuario->getActivo();
         $usuario->setActivo(getPost("activo") == "yes");
