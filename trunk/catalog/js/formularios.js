@@ -29,8 +29,9 @@ function validarRegistro()
     var contrasena = comprobarContrasena();
     var contrasena2 = comprobarContrasena2();
     var nombre = comprobarNombre();
+    var apellidos = comprobarApellidos();
     var telefono = comprobarTelefono();
-    return email && contrasena && contrasena2 && nombre && telefono;
+    return email && contrasena && contrasena2 && nombre && apellidos && telefono;
 }
 
 function comprobarEmail()
@@ -90,6 +91,21 @@ function comprobarNombre()
     else
     {
         $('#error-nombre').hide();
+        return true;
+    }
+}
+
+function comprobarApellidos()
+{
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.apellidos.value.length < kMinNombre || formulario.apellidos.value.length > kMaxNombre)
+    {
+        $('#error-apellidos').show('blind');
+        return false;
+    }
+    else
+    {
+        $('#error-apellidos').hide();
         return true;
     }
 }
