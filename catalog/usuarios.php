@@ -25,9 +25,8 @@ baseSuperior("Usuarios");
     <table>
         <tr class="cabecera">
             <td>ID</td>
-            <td>Nombre</td>
-            <td>Apellidos</td>
-            <td class="estirar">Email</td>
+            <td class="estirar">Nombre</td>
+            <td>Email</td>
             <td>Teléfono</td>
             <td>CIF/NIF</td>
             <td>Fecha de registro</td>
@@ -40,8 +39,7 @@ baseSuperior("Usuarios");
     {
         echo "<tr class=\"fila\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
-        echo "<td>".htmlspecialchars($i->getNombre())."</td>";
-        echo "<td>".htmlspecialchars($i->getApellidos())."</td>";
+        echo "<td>".htmlspecialchars($i->getNombre())." ".htmlspecialchars($i->getApellidos())."</td>";
         echo "<td class=\"centrada\">".$i->getEmail()."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getTelefono())."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getCif())."</td>";
