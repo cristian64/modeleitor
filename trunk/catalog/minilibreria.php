@@ -135,7 +135,7 @@
     
     function debug($cadena)
     {
-        $fp = fopen('debug.log', 'a');
+        $fp = fopen("$DEBUG_FILE", 'a');
         fwrite($fp, $cadena."\n");
         fclose($fp);
         echo $cadena."<br />";
@@ -188,12 +188,30 @@
         include 'constantes.php';
         
         $cuerpo = "";
-        $cuerpo = $cuerpo."Tu cuenta ha sido activa correctamente.<br />Inicia sesión con <strong>".$usuario->getEmail()."</strong> en <a href=\"http://www.calzadosjam.es/clientes\">http://www.calzadosjam.es/clientes</a><br /><br />";
+        $cuerpo = $cuerpo."Tu cuenta ha sido <strong>ACTIVADA CORRECTAMENTE</strong>.<br />Inicia sesión con <strong>".$usuario->getEmail()."</strong> en <a href=\"http://www.calzadosjam.es/clientes\">http://www.calzadosjam.es/clientes</a><br /><br />";
         $cuerpo = "<div style=\"font-size: 12pt;\">".$cuerpo."</div>";
-        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/calzadosjam_logo.png\" /><br /><br /><br /><br /><br />"."$cuerpo";
+        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/calzadosjam_logo.png\" /><br /><br /><br /><br />"."$cuerpo";
 
         $cabeceras = "From: Calzados JAM <noreply@calzadosjam.es>\r\nContent-type: text/html; charset=UTF-8\r\n";
-        return mail($usuario->getEmail(), "Cuanta activada correctamente en Calzados JAM", $cuerpo, $cabeceras);
+        return mail($usuario->getEmail(), "Cuenta activada correctamente en Calzados JAM", $cuerpo, $cabeceras);
+    }
+    
+    function emailRegistrado($usuario, $contrasena_sin_sha)
+    {
+        include 'constantes.php';
+        
+        $cuerpo = "";
+        $cuerpo = $cuerpo."Tu cuenta ha sido <strong>REGISTRADA CORRECTAMENTE</strong>.<br /><br />E-mail: ".$usuario->getEmail()."<br />Contraseña: ".$contrasena_sin_sha."<br /><br /><strong>Debes esperar unos minutos hasta que validemos tu cuenta.</strong><br />Si no recibes respuesta rápida, puedes escribirnos a <a href=\"mailto:calzadosjam@gmail.com\">calzadosjam@gmail.com</a><br /><br />";
+        $cuerpo = "<div style=\"font-size: 12pt;\">".$cuerpo."</div>";
+        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/calzadosjam_logo.png\" /><br /><br /><br /><br />"."$cuerpo";
+
+        $cabeceras = "From: Calzados JAM <noreply@calzadosjam.es>\r\nContent-type: text/html; charset=UTF-8\r\n";
+        mail($usuario->getEmail(), "Cuenta registrada correctamente en Calzados JAM", $cuerpo, $cabeceras);
+        
+        $cuerpo = "";
+        $cuerpo = $cuerpo."La cuenta ".$usuario->getEmail()." ha sido registrada.";
+        $cuerpo = "<div style=\"font-size: 12pt;\">".$cuerpo."</div>";        
+        return mail("calzadosjam@gmail.com", "Nuevo usuario registrado en Calzados JAM", $cuerpo, $cabeceras);
     }
     
     function getDirectoryList ($directory) 
