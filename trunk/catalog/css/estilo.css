@@ -22,6 +22,11 @@ img
     vertical-align: middle;
 }
 
+small
+{
+    font-size: 8pt;
+}
+
 a
 {
     cursor: pointer;

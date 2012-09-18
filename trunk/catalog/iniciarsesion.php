@@ -33,7 +33,7 @@
                         setcookie("email", $email, time() + (30 * 86400));
                         setcookie("contrasena", sha512($contrasena), time() + (30 * 86400));
                     }
-                    $_SESSION["mensaje_exito"] = "Sesión iniciada correctamente";
+                    $_SESSION["mensaje_exito"] = "Bienvenido ".$usuario->getNombre();
                 }
                 
                 ENAcceso::save($ip, $usuario->getId(), true);

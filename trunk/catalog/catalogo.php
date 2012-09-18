@@ -109,9 +109,9 @@ if (!$esMovil)
                 if ($activo)
                 {
                     if ($i->getOferta())
-                        echo "<div class=\"modelo-precio\"><span class=\"modelo-precio-tachado\">".str_replace('.', ',', $i->getPrecio())." €</span> <span class=\"modelo-precio-oferta\">".str_replace('.', ',', $i->getPrecioOferta())." €</span></div>";
+                        echo "<div class=\"modelo-precio\"><span class=\"modelo-precio-tachado\">".str_replace('.', ',', $i->getPrecio())." €</span> <span class=\"modelo-precio-oferta\">".str_replace('.', ',', $i->getPrecioOferta())."€ <small>sin IVA</small></span></div>";
                     else
-                        echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())." €</div>";
+                        echo "<div class=\"modelo-precio\">".str_replace('.', ',', $i->getPrecio())."€ <small>sin IVA</small></div>";
                 }
                 echo "<div class=\"modelo-nombre\">".$i->getNombre()." ".(($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0) ? $i->getNumeracion() : "")."</div></div></div>\n";
                 if (!$esMovil)

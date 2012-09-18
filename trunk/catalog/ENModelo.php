@@ -666,11 +666,11 @@ class ENModelo
                 foreach ($words as $w)
                 {
                     if ($condiciones == "")
-                        $condiciones = "$condiciones (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                        $condiciones = "$condiciones (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
                     else
-                        $condiciones = "$condiciones and (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
+                        $condiciones = "$condiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
                 }
-                $sentencia = "select * from modelos where descatalogado = 0 and $condiciones order by nombre asc, prioridad desc";
+                $sentencia = "select modelos.* from modelos, marcas where id_marca = marcas.id and descatalogado = 0 and $condiciones order by modelos.nombre asc, prioridad desc";
             }
             
             $conexion = BD::conectar();
