@@ -30,7 +30,6 @@ baseSuperior("Usuarios");
             <td>Teléfono</td>
             <td>CIF/NIF</td>
             <td>Fecha de registro</td>
-            <td>Activo</td>
             <td></td>
         </tr>
 <?php
@@ -44,8 +43,11 @@ baseSuperior("Usuarios");
         echo "<td class=\"centrada\">".htmlspecialchars($i->getTelefono())."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getCif())."</td>";
         echo "<td class=\"centrada\">".$i->getFechaRegistro()->format('d/m/Y H:i:s')."</td>";
-        echo "<td class=\"centrada\">".($i->getActivo() == 1 ? "sí" : "no")."</td>";
         echo "<td class=\"centrada\"><div>";
+        if ($i->getActivo())
+            echo "<img src=\"css/activo.png\" alt=\"Activo\" title=\"Activo\" /> ";
+        else
+            echo "<img src=\"css/noactivo.png\" alt=\"No activo\" title=\"No activo\" /> ";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=email]').val('".htmlspecialchars(secure($i->getEmail()))."');";
