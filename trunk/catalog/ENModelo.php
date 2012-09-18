@@ -329,10 +329,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by id_marca desc, prioridad desc, referencia asc";
-            
-            if (is_numeric($id_categoria))
-                $sentencia = "select * from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by id_marca desc, prioridad desc, referencia asc";
+            $sentencia = "select modelos.* from modelos, categorias_modelos, marcas where marcas.id = id_marca and descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."' order by marcas.nombre asc, prioridad desc, referencia asc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -379,10 +376,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos where descatalogado = 0";
-            
-            if (is_numeric($id_categoria))
-                $sentencia = "select count(*) from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."'";
+            $sentencia = "select count(*) from modelos, categorias_modelos where descatalogado = 0 and modelos.id = id_modelo and id_categoria = '".$id_categoria."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -418,10 +412,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc, referencia asc";
-            
-            if (is_numeric($id_fabricante))
-                $sentencia = "select * from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."' order by prioridad desc, referencia asc";
+            $sentencia = "select * from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."' order by prioridad desc, referencia asc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -468,10 +459,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos where descatalogado = 0";
-            
-            if (is_numeric($id_fabricante))
-                $sentencia = "select count(*) from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."'";
+            $sentencia = "select count(*) from modelos where descatalogado = 0 and id_fabricante = '".$id_fabricante."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -507,10 +495,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by prioridad desc, referencia desc";
-            
-            if (is_numeric($id_marca))
-                $sentencia = "select * from modelos where descatalogado = 0 and id_marca = '".$id_marca."' order by prioridad desc, referencia desc";
+            $sentencia = "select * from modelos where descatalogado = 0 and id_marca = '".$id_marca."' order by prioridad desc, referencia desc";
                 
             if (is_numeric($pagina) && is_numeric($cantidad))
                 $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;
@@ -557,10 +542,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select count(*) from modelos where descatalogado = 0";
-            
-            if (is_numeric($id_marca))
-                $sentencia = "select count(*) from modelos where descatalogado = 0 and id_marca = '".$id_marca."'";
+            $sentencia = "select count(*) from modelos where descatalogado = 0 and id_marca = '".$id_marca."'";
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -657,7 +639,7 @@ class ENModelo
 
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by nombre asc, prioridad desc";
+            $sentencia = "select * from modelos where descatalogado = 0 order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
             
             if ($filtro != "")
             {
@@ -670,7 +652,7 @@ class ENModelo
                     else
                         $condiciones = "$condiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
                 }
-                $sentencia = "select modelos.* from modelos, marcas where id_marca = marcas.id and descatalogado = 0 and $condiciones order by modelos.nombre asc, prioridad desc";
+                $sentencia = "select modelos.* from modelos, marcas where id_marca = marcas.id and descatalogado = 0 and $condiciones order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
             }
             
             $conexion = BD::conectar();
