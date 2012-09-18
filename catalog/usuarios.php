@@ -36,7 +36,10 @@ baseSuperior("Usuarios");
     $usuarios = ENUsuario::get();
     foreach ($usuarios as $i)
     {
-        echo "<tr class=\"fila\">";
+        if ($i->getActivo())
+            echo "<tr class=\"fila\">";
+        else
+            echo "<tr class=\"fila fila-roja\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td>".htmlspecialchars($i->getNombre())." ".htmlspecialchars($i->getApellidos())."</td>";
         echo "<td class=\"centrada\">".$i->getEmail()."</td>";
@@ -44,10 +47,6 @@ baseSuperior("Usuarios");
         echo "<td class=\"centrada\">".htmlspecialchars($i->getCif())."</td>";
         echo "<td class=\"centrada\">".$i->getFechaRegistro()->format('d/m/Y H:i:s')."</td>";
         echo "<td class=\"centrada\"><div>";
-        if ($i->getActivo())
-            echo "<img src=\"css/activo.png\" alt=\"Activo\" title=\"Activo\" /> ";
-        else
-            echo "<img src=\"css/noactivo.png\" alt=\"No activo\" title=\"No activo\" /> ";
         echo "<a onclick=\"";
         echo "$('#form-editar input[name=id]').val(".$i->getId().");";
         echo "$('#form-editar input[name=email]').val('".htmlspecialchars(secure($i->getEmail()))."');";
