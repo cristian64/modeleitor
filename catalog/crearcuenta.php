@@ -49,6 +49,7 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
 
                             if ($registrado)
                             {
+                                emailRegistrado($nuevo, $contrasena);
                                 $_SESSION["mensaje_exito"] = "Cuenta $email creada correctamente";
                                 $_SESSION["mensaje_aviso"] = "Recibirás un e-mail cuando un administrador valide tu cuenta";
                                 
