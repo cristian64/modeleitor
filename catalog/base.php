@@ -74,6 +74,10 @@ function baseSuperior($titulo)
 		$.src='//cdn.zopim.com/?yAnJYqtfG8LYFeycDZ1mqr1YcB1CKT0B';z.t=+new Date;$.
 		type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 		</script>
+		<script type="text/javascript">$zopim(function() {
+		$zopim.livechat.setLanguage('es');
+		});
+		</script>
 		<!--End of Zopim Live Chat Script-->
 <?php } ?>
         <meta name="google-translate-customization" content="83036bbb495e9259-b92db425e1be685c-g15db1c5c55c82e4b-12" />
