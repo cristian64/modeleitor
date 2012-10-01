@@ -113,6 +113,7 @@
             }
             emailReserva("beatriz@autofima.com", $usuario, $reserva);
             emailReserva("Santiago@autofima.com", $usuario, $reserva);
+            emailReserva("emihyundai@hotmail.com", $usuario, $reserva);
             emailReserva("fran@padelelche.com", $usuario, $reserva);
             
             $nueva = $reserva->copiar();

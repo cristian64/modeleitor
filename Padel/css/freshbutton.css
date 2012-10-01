@@ -720,6 +720,11 @@ table, tr
     border-collapse: collapse;
 }
 
+#estadisticas table
+{
+    border-collapse: collapse;
+}
+
 #leyenda
 {
     float: right;
@@ -924,4 +929,51 @@ td.guapo-input
 .guapo-input input[type=submit]:hover, .guapo-input input[type=button]:hover
 {
     background: #0F78AE;
+}
+
+.guapo-tabla
+{
+    width: 100%;
+}
+
+.guapo-tabla th
+{
+    font-weight: bold;
+    padding: 5px;
+    height: 60px;
+    border: 1px solid #AED0EA !important;
+    border-bottom: 1px solid #000 !important;
+    
+    -moz-border-bottom-colors: none !important;
+    -moz-border-image: none !important;
+    -moz-border-left-colors: none !important;
+    -moz-border-right-colors: none !important;
+    -moz-border-top-colors: none !important;
+    border-color: #AED0EA #AED0EA #000000 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    font-weight: bold;
+    height: 60px;
+    padding: 5px 10px;
+    text-align: center;
+
+    background: #C2E3FD;
+    background: -moz-linear-gradient(center top , #DAEEFB, #C2E3FD) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#DAEEFB), to(#C2E3FD));
+    border-color: #93CEF8 #79BCEA #79BCEA;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 #EDF9FF inset;
+    color: #1E75BD;
+}
+
+.guapo-tabla td
+{
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.guapo-centro
+{
+    text-align: center;
 }
