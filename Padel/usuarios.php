@@ -30,7 +30,7 @@ baseSuperior("Usuarios");
         <div id="usuarios">
             <div id="busqueda">
                 <form action="usuarios.php" method="get">
-                    <div><input id="filtro" type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" /></div>
+                    <div><input id="filtro" type="text" name="filtro" value="<?php echo $filtro; ?>" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" />&nbsp;&nbsp;&nbsp;<a onclick="$('#dialogo-anadir').dialog('open');" class="freshbutton-green">Añadir usuario</a></div>
                 </form>
             </div>
             <script type="text/javascript">
@@ -94,6 +94,51 @@ if (count($usuarios) == 0)
                     echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Siguiente</a>\n";
             ?></div>
         </div>
+        
+<div id="dialogo-anadir" title="Añadir usuario">
+    <form id="form-anadir" method="POST" action="operarusuario">
+    <div><input type="hidden" name="op" value="anadir" /></div>
+    <table class="guapo-form">
+        <tr><td class="guapo-label">E-mail*</td><td class="guapo-input"><input type="text" name="email" value="" /></td></tr>
+        <tr><td class="guapo-label">Contraseña*</td><td class="guapo-input"><input type="password" name="contrasena" value="" /></td></tr>
+        <tr><td class="guapo-label">Nombre y apellidos*</td><td class="guapo-input"><input type="text" name="nombre" value="" /></td></tr>
+        <tr><td class="guapo-label">DNI</td><td class="guapo-input"><input type="text" name="dni" value="" /></td></tr>
+        <tr>
+            <td class="guapo-label">Sexo*</td>
+            <td class="guapo-input">
+                <div class="textinputfake">
+                    <input type="radio" name="sexo" value="mujer" <?php if ($sexo == "mujer") echo "checked=\"checked\";" ?> /> Mujer
+                    <input type="radio" name="sexo" value="hombre" <?php if ($sexo == "hombre") echo "checked=\"checked\";" ?>/> Hombre
+                </div>
+            </td>
+        </tr>
+        <tr><td class="guapo-label">Dirección</td><td class="guapo-input"><input type="text" name="direccion" value="" /></td></tr>
+        <tr><td class="guapo-label">Teléfono</td><td class="guapo-input"><input type="text" name="telefono" value="" /></td></tr>
+    </table>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(window).load(function() {
+
+    $("#dialogo-anadir").dialog({
+        resizable: false,
+        autoOpen: false,
+        width: 'auto',
+        height: 'auto',
+        modal: true,
+        buttons: {
+            "Añadir": function() {
+                $("#form-anadir").submit();
+            },
+            "Cancelar": function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    });
+});
+</script>
+
 <?php
 baseInferior();
 ?>
