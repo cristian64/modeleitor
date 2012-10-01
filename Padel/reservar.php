@@ -131,6 +131,10 @@ baseSuperior("Reservar pista");
                                     <label>Notas</label>
                                     <textarea name="notas" rows="5" cols="25"></textarea>
                                 </div>
+                                <div>
+                                    <label>Usuario alternativo</label><br />
+                                    <input type="text" readonly="readonly" value="" id="email" name="email" /> <a style="cursor: pointer;" onclick="$('#dialogo-seleccionar').dialog('open');"><img src="css/users.png" alt="Seleccionar usuario" title="Seleccionar usuario" /></a>
+                                </div>
 
 <?php } ?>
                                 <div><input type="submit" value="Confirmar reserva" name="" class="freshbutton-big" /></div>
@@ -384,6 +388,42 @@ while ($tiempoInicial < $tiempoFinal)
                                 <div class="ocupado"></div>Ocupado
                                 <div class="noreservable"></div>No reservable
                             </div>
+                            
+<?php
+if ($usuario->getAdmin())
+{
+?>
+                            <div id="dialogo-seleccionar" title="Seleccionar usuario">
+                                <div>
+                                    <form id="busqueda-form" action="" method="get" onsubmit="buscarUsuarios(this); return false;">
+                                        Escribe a continuación el e-mail, nombre, DNI o teléfono del usuario y selecciona un usuario para el que quieras realizar la reserva.<br/><br/>
+                                        <div><input id="filtro" type="text" autocomplete="off" name="filtro" value="" onkeyup="buscarUsuarios(null);" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" /></div>
+                                    </form>
+                                </div>
+                                <br />
+                                <div id="dialogo-seleccionar-contenedor" style="overflow: auto; width: 800px; height: 300px;"></div>
+                            </div>
+
+                            <script type="text/javascript">
+                            $(window).load(function() {
+
+                                $("#dialogo-seleccionar").dialog({
+                                    resizable: true,
+                                    autoOpen: false,
+                                    width: 'auto',
+                                    height: 'auto',
+                                    modal: true,
+                                    buttons: {
+                                        "Cerrar": function() {
+                                            $( this ).dialog( "close" );
+                                        }
+                                    }
+                                });
+                            });
+                            </script>
+<?php
+}
+?>
                         </div>
                     </div>
                     <script type="text/javascript">

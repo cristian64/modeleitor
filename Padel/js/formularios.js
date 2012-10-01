@@ -189,3 +189,29 @@ function realizarCobro(id, cobrado)
     ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajax.send("id="+id+"&cobrado="+cobrado);
 }
+
+function buscarUsuarios(formulario)
+{
+    if (formulario == null)
+    {
+        formulario = document.getElementById("busqueda-form");
+
+        if (formulario.filtro.value.length < 3)
+            return;
+    }
+    
+    ajax = nuevoAjax();
+    ajax.open("POST", "usuarios_ajax", true);
+    ajax.onreadystatechange = function()
+    {
+        if (ajax.readyState == 4)
+        {
+            if (ajax.responseText != "ERROR")
+            {
+                $("#dialogo-seleccionar-contenedor").html(ajax.responseText);
+            }
+        }
+    }
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    ajax.send("filtro="+formulario.filtro.value);
+}
