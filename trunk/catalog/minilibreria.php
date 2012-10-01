@@ -201,7 +201,7 @@
         include 'constantes.php';
         
         $cuerpo = "";
-        $cuerpo = $cuerpo."Tu cuenta ha sido <strong>REGISTRADA CORRECTAMENTE</strong>.<br /><br />E-mail: ".$usuario->getEmail()."<br />Contraseña: ".$contrasena_sin_sha."<br /><br /><strong>Debes esperar unos minutos hasta que validemos tu cuenta.</strong><br />Si no recibes respuesta rápida, puedes escribirnos a <a href=\"mailto:calzadosjam@gmail.com\">calzadosjam@gmail.com</a><br /><br />";
+        $cuerpo = $cuerpo."Tu cuenta ha sido <strong>REGISTRADA CORRECTAMENTE</strong>.<br /><br />E-mail: ".$usuario->getEmail()."<br />Contraseña: ".$contrasena_sin_sha."<br /><br /><strong>Debes esperar unos minutos hasta que validemos tu cuenta.</strong><br />Si no recibes respuesta rápida, puedes escribirnos a <a href=\"mailto:buzon@calzadosjam.es\">buzon@calzadosjam.es</a><br /><br />";
         $cuerpo = "<div style=\"font-size: 12pt;\">".$cuerpo."</div>";
         $cuerpo = "<img src=\"http://www.calzadosjam.es/css/calzadosjam_logo.png\" /><br /><br /><br /><br />"."$cuerpo";
 
