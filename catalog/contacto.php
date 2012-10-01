@@ -78,7 +78,7 @@ baseSuperior("Contacto");
                                             
                                             <p>Puedes escribinos a:</p>
                                             <div class="contacto-detalles">
-                                                <p><a href="mailto:calzadosjam@gmail.com">calzadosjam@gmail.com</a></p>
+                                                <p><a href="mailto:buzon@calzadosjam.es">buzon@calzadosjam.es</a></p>
                                             </div>
                                             
                                             <p>Visítanos en:</p>

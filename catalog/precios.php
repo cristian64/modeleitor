@@ -79,7 +79,7 @@ if (!$usuario->getAdmin())
     </head>
     <body style="font-size: 8pt; font-family: Calibri, Arial;">
         <img style="margin-bottom: 10px;" src="css/calzadosjam_logo.png" alt="Calzados JAM" width="130xp" />
-        <div style="float: right; font-size: 10pt; text-align: right;">www.calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; calzadosjam@gmail.com &nbsp;&nbsp;·&nbsp;&nbsp; (+34)966673439<br /><?php echo fechaStr(); ?></div>
+        <div style="float: right; font-size: 10pt; text-align: right;">www.calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; buzon@calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; (+34)966673439<br /><?php echo fechaStr(); ?></div>
         <div>
             <table>
         <?php
@@ -90,9 +90,12 @@ if (!$usuario->getAdmin())
         
             $modelos = ENModelo::getAdmin();
             usort($modelos, "cmp");
+            $color = "";
             foreach ($modelos as $i)
             {
-                echo "<tr class=\"fila\" style=\"white-space: nowrap;\">";
+                $color = ($color == "") ? "background-color: #e5e5e5;" : "";
+                    
+                echo "<tr class=\"fila\" style=\"white-space: nowrap; $color\">";
                 echo "<td>".htmlspecialchars($i->getReferencia())."</td>";
                 echo "<td ".(($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0) ? "" : "colspan=\"2\"")." style=\"width: 100%; white-space: normal;\">".htmlspecialchars($i->getNombre())."</td>";
                 if ($i->getTallaMenor() > 0 || $i->getTallaMayor() > 0)
