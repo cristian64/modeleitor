@@ -26,7 +26,7 @@ if ($id_categoria != "")
         $id_categoria = substr($id_categoria, 0, $posicion);
 
     $nombreCategoria = "";
-    $modelos = ENModelo::getByCategoria($id_categoria, 1, 9999);
+    $modelos = ENModelo::getByCategoria($id_categoria, 1, 999999);
     
     $categoria = ENCategoria::getById($id_categoria);
     while ($categoria != null)
@@ -52,7 +52,7 @@ if ($id_marca != "" && count($modelos) == 0)
     if ($posicion !== false)
         $id_marca = substr($id_marca, 0, $posicion);
 
-    $modelos = ENModelo::getByMarca($id_marca, 1, 99999);
+    $modelos = ENModelo::getByMarca($id_marca, 1, 999999);
     if (is_array($modelos))
         if ($id_marca == 0)
             $nombreCategoria = "Otras marcas";
@@ -64,7 +64,12 @@ if ($id_marca != "" && count($modelos) == 0)
 $filtro = getGet("busqueda");
 if ($filtro != "" && count($modelos) == 0)
 {
-    $modelos = ENModelo::get($filtro, 1, 99999);
+    $modelos = array();
+    $filtros = explode(',', $filtro);
+    foreach ($filtros as $i)
+    {
+        $modelos = array_merge($modelos, ENModelo::get(trim($i), 1, 999999));
+    }
     $titulo = $nombreCategoria = "Búsqueda: \"$filtro\"";
 }
 

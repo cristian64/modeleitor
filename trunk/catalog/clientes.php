@@ -36,11 +36,6 @@ baseSuperior("Clientes");
                                 <br />
                                 <br />
                                 <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
                                 <div>Si todavía no eres cliente, debes crear una nueva cuenta. <br /><br /><a class="btnverde" href="crearcuenta">Soy un nuevo cliente</a></div>
                             </div>
 </div></div>
