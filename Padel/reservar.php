@@ -13,10 +13,11 @@ if ($usuario == null)
 $now = new DateTime();
 $now->setTime(0, 0, 0);
 $dia = new DateTime();
+/*TOCHECK IF WANTED
 if (intval($dia->format('H')) >= 22)
 {
     $dia->add(new DateInterval("P1D"));
-}
+}*/
 if (getGet("dia") != "")
 {
     $dia = DateTime::createFromFormat('d/m/Y', getGet("dia"));
