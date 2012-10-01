@@ -22,11 +22,13 @@
     $pista = intval(getPost("pista"));
     $proximos = 0;
     $notas = "";
+    $email = "";
     if ($usuario->getAdmin())
     {
         $notas = getPost("notas");
         $reservable = isset($_POST['bloquear']) ? false : true;
         $proximos = getPost("proximos");
+        $email = getPost("email");
     }
 
     $reservasHoy = ENReserva::obtenerPorUsuarioHoy($usuario->getId());
@@ -83,6 +85,13 @@
     
     if ($usuario->getAdmin())
         $reserva->setReservable($reservable);
+        
+    if ($email != "")
+    {
+        $usuarioAlternativo = ENUsuario::obtenerPorEmail($email);
+        if ($usuarioAlternativo != null)
+            $reserva->setIdUsuario($usuarioAlternativo->getId());
+    }
     
     if ($reserva->getDuracion() > ($usuario->getAdmin() ? $MAXDURACION_ADMIN : $MAXDURACION))
     {
@@ -145,7 +154,7 @@
     }
     else
     {
-        $_SESSION["mensaje_error"] = "La reserva se no pudo completar porque alguien ha reservado ya este horario";
+        $_SESSION["mensaje_error"] = "La reserva no se pudo completar porque alguien ha reservado ya este horario";
         header("location: reservar.php?dia=$diaoculto".$scroll);
     }
 ?>

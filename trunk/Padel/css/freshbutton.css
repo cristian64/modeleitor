@@ -540,7 +540,7 @@ Particulares de cada página
     text-align: left;
 }
 
-#reservas tr.pendiente td, #reservas tr.encurso td, #reservas tr.finalizada td, #usuarios tr.linea td
+#reservas tr.pendiente td, #reservas tr.encurso td, #reservas tr.finalizada td, tr.linea td
 {
     padding: 5px;
 }
@@ -606,7 +606,7 @@ Particulares de cada página
     color: #888;
 }
 
-#usuarios tr.linea:hover
+tr.linea:hover
 {
     cursor: pointer;
     background-color: #eee;

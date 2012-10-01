@@ -43,16 +43,16 @@ baseSuperior("Usuarios");
                     });
             </script>
             <h3><span>Usuarios</span></h3>
-            <table>
-                <tr class="filacabecera">
-                    <td class="cabecera">Nº de usuario</td>
-                    <td class="cabecera">E-mail</td>
-                    <td class="cabecera">Nombre</td>
-                    <td class="cabecera">DNI</td>
-                    <td class="cabecera">Sexo</td>
-                    <td class="cabecera">Teléfono</td>
-                    <!-- <td class="cabecera">Dirección</td> -->
-                    <td class="cabecera">Fecha de registro</td>
+            <table class="guapo-tabla">
+                <tr>
+                    <th>Nº de usuario</th>
+                    <th>E-mail</th>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Sexo</th>
+                    <th>Teléfono</th>
+                    <!-- <th class="cabecera">Dirección</th> -->
+                    <th>Fecha de registro</th>
                 </tr>
 <?php
 foreach ($usuarios as $u)
