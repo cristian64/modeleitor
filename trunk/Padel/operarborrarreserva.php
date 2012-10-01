@@ -59,6 +59,7 @@ if (ENReserva::borrarPorId($reserva->getId()))
     {
         emailCancelarReserva("beatriz@autofima.com", $usuarioReserva, $reserva);
         emailCancelarReserva("Santiago@autofima.com", $usuarioReserva, $reserva);
+        emailCancelarReserva("emihyundai@hotmail.com", $usuarioReserva, $reserva);
         emailCancelarReserva("fran@padelelche.com", $usuarioReserva, $reserva);
     }
     header("location: $retorno");

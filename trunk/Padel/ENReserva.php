@@ -675,6 +675,48 @@ class ENReserva
 
         return $lista;
     }
+    
+    public static function obtenerPorMesAno($mes, $ano)
+    {
+        $lista = NULL;
+
+        try
+        {
+            $sentencia = "select * from reservas where month(date(fecha_inicio)) = '".$mes."' and year(date(fecha_inicio)) = '".$ano."'";
+            $resultado = mysql_query($sentencia, BD::conectar());
+
+            if ($resultado)
+            {
+                $lista = array();
+                $contador = 0;
+                while ($fila = mysql_fetch_array($resultado))
+                {
+                    $reserva = self::obtenerDatos($fila);
+                    if ($reserva != NULL)
+                    {
+                        $lista[$contador++] = $reserva;
+                    }
+                    else
+                    {
+                        debug("ENReserva::obtenerPorMesAno() Reserva nula nº $contador");
+                    }
+                }
+
+                BD::desconectar();
+            }
+            else
+            {
+                debug("ENReserva::obtenerPorMesAno()" . mysql_error());
+            }
+        }
+        catch (Exception $e)
+        {
+            $lista = NULL;
+            debug("ENReserva::obtenerPorMesAno()" . $e->getMessage());
+        }
+
+        return $lista;
+    }
 
     /**
      * Obtiene un usuario desde la base de datos a partir de su nombre.
