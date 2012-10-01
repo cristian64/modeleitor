@@ -20,12 +20,58 @@
     $contrasena3 = getPost("contrasena3");
     $contrasena = getPost("contrasena");
     $contrasena2 = getPost("contrasena2");
-    //$email = getPost("email");
+    $email = getPost("email");
     $sexo = (getPost("sexo") == "hombre") ? "hombre" : "mujer";
     $dni = getPost("dni");
     $admin = getPost("admin") == "1" ? true : false;
     $direccion = getPost("direccion");
     $telefono = getPost("telefono");
+    
+    $op = getPost("op");
+    if ($op == "anadir" && $usuario->getAdmin())
+    {
+        $u = new ENUsuario();
+        $u->setEmail($email);
+        $u->setNombre($nombre);
+        $u->setSexo($sexo);
+        $u->setContrasena(sha1($contrasena));
+        $u->setDni($dni);
+        $u->setDireccion($direccion);
+        $u->setTelefono($telefono);
+                
+        // Se comprueban los parámetros.
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            $_SESSION["mensaje_error"] = "El e-mail $email no tiene un formato adecuado";
+            header("location: usuarios.php");
+            exit();
+        }
+        else
+        {
+            $otrouser = ENUsuario::obtenerPorEmail($email);
+            if ($otrouser != null && $otrouser->getId() != $u->getId())
+            {
+                $_SESSION["mensaje_error"] = "Ya existe un usuario con el e-mail $email";
+                header("location: usuarios.php");
+                exit();
+            }
+            else
+            {       
+                $guardar = $u->guardar();
+                if ($guardar)
+                {
+                    $_SESSION["mensaje_exito"] = "Usuario añadido correctamente";
+                    header ("location: usuario.php?id=".$u->getId());
+                }
+                else
+                {
+                    $_SESSION["mensaje_error"] = "No se pudo guardar el usuario";
+                    header ("location: usuarios.php");
+                }
+            }
+        }
+        exit();
+    }
     
     $u = ENUsuario::obtenerPorId($id);
     if ($u == null)
