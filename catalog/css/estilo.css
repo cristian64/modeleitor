@@ -270,7 +270,7 @@ a:hover.btnrojo
     background: #B8220A;
 }
 
-#tabla-cabecera .btncabecera, #tabla-cabecera .btnazul, #tabla-cabecera .btnrojo
+#tabla-cabecera .btncabecera, #tabla-cabecera .btnazul, #tabla-cabecera .btnrojo, #tabla-cabecera .btnverde
 {
     display: inline-block;
     color: #fff;
@@ -279,7 +279,7 @@ a:hover.btnrojo
     text-decoration: none;
     padding: 0 15px;
     height: 100%;
-    margin: 0 10px;
+    margin: 0 1px;
     vertical-align: middle;
     line-height: 90px; /*mismo tamaño que #table-celda td*/
 }

@@ -93,13 +93,16 @@ function baseSuperior($titulo)
                             </td>
                             <td class="estirar"></td>
                             <td id="busqueda">
-                                <form method="GET" action="catalogo"><input type="text" title="Introduce el nº de referencia o descripción del modelo" value="<?php echo htmlspecialchars(getGet("busqueda")); ?>" name="busqueda" <?php if (!$esMovil) echo "class=\"animacion\""; ?> /></form>
+                                <form method="GET" action="catalogo"><input id="busqueda-input" type="text" title="Introduce el nº de referencia o descripción del modelo" value="<?php echo htmlspecialchars(getGet("busqueda")); ?>" name="busqueda" /></form>
                             </td>
                             <td>
                                 <?php
                                     $usuario = getUsuario();
                                     if ($usuario == null)
+                                    {
                                         echo "<a href=\"clientes\" class=\"btnazul\">Clientes</a>\n";
+                                        echo "<a href=\"crearcuenta\" class=\"btnverde\">Nuevo cliente</a>\n";
+                                    }
                                     else
                                         echo "<a href=\"cerrarsesion\" class=\"btnrojo\" title=\"Sesión iniciada como ".$usuario->getEmail()."\">Cerrar sesión</a>\n";
                                 ?>
@@ -122,6 +125,10 @@ function baseSuperior($titulo)
                 <?php bloqueCategorias(); ?>
                 <script type="text/javascript">
                     $(document).ready(function() {
+                        
+                        $("#busqueda-input").focus(function(){
+                            this.select();
+                        });
                         
                         $('.myMenu > li').bind('mouseover', openSubMenu);
                         $('.myMenu > li').bind('mouseout', closeSubMenu);
