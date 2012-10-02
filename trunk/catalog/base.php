@@ -26,7 +26,7 @@ function baseSuperior($titulo)
         <title>Calzados JAM. Almacén y fábrica de calzado Español - <?php echo $titulo; ?></title>
         <link type="text/css" rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.23.custom.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/responsiveslides/responsiveslides.css" media="screen" />
-        <link type="text/css" rel="stylesheet" href="css/myMenu.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/sexyMenu.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/estilo.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/mensajes.css" media="screen" />
@@ -101,7 +101,7 @@ function baseSuperior($titulo)
                                     if ($usuario == null)
                                     {
                                         echo "<a href=\"clientes\" class=\"btnazul\">Clientes</a>\n";
-                                        echo "<a href=\"crearcuenta\" class=\"btnverde\">Nuevo cliente</a>\n";
+                                        echo "</td><td><a href=\"crearcuenta\" class=\"btnverde\">Nuevo cliente</a>\n";
                                     }
                                     else
                                         echo "<a href=\"cerrarsesion\" class=\"btnrojo\" title=\"Sesión iniciada como ".$usuario->getEmail()."\">Cerrar sesión</a>\n";
@@ -130,14 +130,18 @@ function baseSuperior($titulo)
                             this.select();
                         });
                         
-                        $('.myMenu > li').bind('mouseover', openSubMenu);
-                        $('.myMenu > li').bind('mouseout', closeSubMenu);
-                        function openSubMenu() {
-                            $(this).find('ul').show();
-                        };
-                        function closeSubMenu() {
-                            $(this).find('ul').hide();
-                        };
+                        $("ul.topnav li a").hover(function() { //When trigger is clicked...
+                            
+                            //Following events are applied to the subnav itself (moving subnav up and down)
+                            $(this).parent().find("ul.subnav").show(); //Drop down the subnav on click
+                            $(this).parent().css("z-index", 15);
+
+                            $(this).parent().hover(function() {
+                            }, function(){	
+                                $(this).parent().find("ul.subnav").hide(); //When the mouse hovers out of the subnav, move it back up
+                                $(this).css("z-index", 10);
+                            });
+                            });
                         
                         gapi.plusone.go();
                     });
@@ -154,7 +158,7 @@ function baseSuperior($titulo)
 function bloqueCategorias()
 {    
     echo "<div id=\"menu\">\n";
-    echo "<ul class=\"myMenu\">\n";
+    echo "<ul class=\"topnav\">\n";
     
     $categorias = ENCategoria::getByPadre(0);
     foreach ($categorias as $i)
@@ -162,13 +166,13 @@ function bloqueCategorias()
         $subcategorias = ENCategoria::getByPadre($i->getId());
         echo "    <li>\n";
         if (esMovil() && count($subcategorias) > 0)
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\" class=\"firstLevel\" onclick=\"return false;\">".htmlspecialchars($i->getNombre())."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\" onclick=\"return false;\">".htmlspecialchars($i->getNombre())."</a>\n";
         else
-            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\" class=\"firstLevel\">".htmlspecialchars($i->getNombre())."</a>\n";
+            echo "         <a href=\"catalogo?categoria=".$i->getId()."-".rawurlencode($i->getNombre())."\">".htmlspecialchars($i->getNombre())."</a>\n";
             
         if (count($subcategorias) > 0)
         {
-            echo "        <ul>\n";
+            echo "        <ul class=\"subnav\">\n";
             foreach ($subcategorias as $j)
             {
                 echo "            <li><a href=\"catalogo?categoria=".$j->getId()."-".rawurlencode($j->getNombre())."-".$i->getNombre()."\">".htmlspecialchars($j->getNombre())."</a></li>\n";
@@ -179,7 +183,7 @@ function bloqueCategorias()
         echo "    </li>\n";
     }
     
-    echo "<li><a href=\"#\" class=\"firstLevel\">Marcas</a><ul>\n";
+    echo "<li><a href=\"#\">Marcas</a><ul class=\"subnav subnavhz\">\n";
     $marcas = ENMarca::get();
     foreach ($marcas as $i)
     {
@@ -192,7 +196,7 @@ function bloqueCategorias()
     $usuario = getUsuario();
     if ($usuario != null && $usuario->getAdmin())
     {
-        echo "<li><a href=\"\" class=\"firstLevel\" onclick=\"return false;\">Administración</a><ul>";
+        echo "<li><a href=\"\" onclick=\"return false;\">Administración</a><ul class=\"subnav\">";
         echo "<li><a href=\"modelos\">Modelos</a></li>";
         echo "<li><a href=\"categorias\">Categorías</a></li>";
         echo "<li><a href=\"marcas\">Marcas</a></li>";
