@@ -31,7 +31,12 @@ function validarRegistro()
     var nombre = comprobarNombre();
     var apellidos = comprobarApellidos();
     var telefono = comprobarTelefono();
-    return email && contrasena && contrasena2 && nombre && apellidos && telefono;
+    var empresa = comprobarEmpresa();
+    var cif = comprobarCif();
+    var direccion = comprobarDireccion();
+    var cp = comprobarCp();
+    var ciudad = comprobarCiudad();
+    return email && contrasena && contrasena2 && nombre && apellidos && telefono && empresa && cif && direccion && cp && ciudad;
 }
 function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
@@ -127,76 +132,77 @@ function comprobarTelefono()
     }
 }
 
-/*function comprobarContrasena(formulario)
+function comprobarEmpresa()
 {
-    if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.empresa.value.length == 0)
     {
-        alerta = alerta + "- La contraseña debe tener entre " + kMinContrasena + " y " + kMaxContrasena + " caracteres.\n\n";
-    }
-
-    // Comprobamos que las contraseñas coinciden.
-    if (formulario.contrasena.value != formulario.contrasena2.value)
-        alerta = alerta + "- Las contraseñas no coinciden.\n\n";
-}*/
-
-function validarUsuario(formulario)
-{
-    var alerta = "";
-
-    // Comprobamos que la contraseña es válida.
-    if (formulario.nombre.value.length < kMinNombre || formulario.nombre.value.length > kMaxNombre)
-        alerta = alerta + "- El nombre debe tener entre " + kMinNombre + " y " + kMaxNombre + " caracteres.\n\n";
-
-    // Comprobamos que la contraseña es válida.
-    if (formulario.contrasena.value.length > 0 || formulario.contrasena2.value.length > 0)
-    {
-        // Comprobamos que las contraseñas coinciden.
-        if (formulario.contrasena.value != formulario.contrasena2.value)
-            alerta = alerta + "- Las contraseñas no coinciden.\n\n";
-        
-        if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
-            alerta = alerta + "- La contraseña debe tener entre " + kMinContrasena + " y " + kMaxContrasena + " caracteres.\n\n";
-    }
-
-    // Comprobamos que se ha marcado algún sexo.
-    if (!formulario.sexo[0].checked && !formulario.sexo[1].checked)
-        alerta = alerta + "- Es necesario seleccionar algún sexo.\n\n";
-
-    // Comprobamos que la dirección de correo electrónico es correcta.
-    var expReg = new RegExp("^[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*@[a-zA-Z]+([\\.-]?[a-zA-Z0-9]+)*(\\.[a-zA-Z0-9]{2,4})+$");
-    if (!expReg.test(formulario.email.value))
-        alerta = alerta + "- La dirección de e-mail no tiene un formato válido.\n\n";
-
-    // Si se ha concatenado algún error, se muestra el mensaje y se aborta el "submit" del formulario devolviendo falso.
-    if (alerta != "")
-    {
-        alert(alerta);
+        $('#error-empresa').show('blind');
         return false;
     }
     else
     {
+        $('#error-empresa').hide();
         return true;
     }
 }
 
-function validarReserva(formulario)
+function comprobarCif()
 {
-    var alerta = "";
-
-    formulario.scroll.value = $(document).scrollTop();
-
-    // Comprobamos que la contraseña es válida.
-    if (!new RegExp("^[0-9_]+$").test(formulario.duracion.value))
-        alerta = alerta + "Debes elegir un horario para confirmar la reserva.";
-
-    // Si se ha concatenado algún error, se muestra el mensaje y se aborta el "submit" del formulario devolviendo falso.
-    if (alerta != "")
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.cif.value.length == 0)
     {
-        alert(alerta);
+        $('#error-cif').show('blind');
         return false;
     }
     else
     {
+        $('#error-cif').hide();
+        return true;
+    }
+}
+
+function comprobarDireccion()
+{
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.direccion.value.length == 0)
+    {
+        $('#error-direccion').show('blind');
+        return false;
+    }
+    else
+    {
+        $('#error-direccion').hide();
+        return true;
+    }
+}
+
+function comprobarCp()
+{
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.cp.value.length == 0)
+    {
+        $('#error-cp').show('blind');
+        return false;
+    }
+    else
+    {
+        $('#error-cp').hide();
+        return true;
+    }
+}
+
+function comprobarCiudad()
+{
+    var formulario = document.getElementById('crearcuenta');
+    if (formulario.ciudad.value.length == 0)
+    {
+        $('#error-ciudad').show('blind');
+        return false;
+    }
+    else
+    {
+        $('#error-ciudad').hide();
         return true;
     }
 }
