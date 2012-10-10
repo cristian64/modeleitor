@@ -152,28 +152,28 @@ baseSuperior("Clientes");
                     <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" onblur="comprobarTelefono();" /><div id="error-telefono" class="guapo-error">Introduce al menos un número de teléfono</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Nombre de la empresa</td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $empresa; ?>" name="empresa" /></td>
+                    <td class="guapo-label">Nombre de la empresa*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $empresa; ?>" name="empresa"onblur="comprobarEmpresa();" /><div id="error-empresa" class="guapo-error">Introduce el nombre de la empresa</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">CIF/NIF</td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $cif; ?>" name="cif" /></td>
+                    <td class="guapo-label">CIF/NIF*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $cif; ?>" name="cif"onblur="comprobarCif();" /><div id="error-cif" class="guapo-error">Introduce un CIF o NIF válido</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Dirección</td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" /></td>
+                    <td class="guapo-label">Dirección*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion"onblur="comprobarDireccion();" /><div id="error-direccion" class="guapo-error">Introduce una dirección postal (calle y número)</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Código postal</td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $cp; ?>" name="cp" /></td>
+                    <td class="guapo-label">Código postal*</td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $cp; ?>" name="cp"onblur="comprobarCp();" /><div id="error-cp" class="guapo-error">Introduce el código postal</div></td>
                 </tr>
                 <tr>
-                    <td class="guapo-label">Ciudad <small>(localidad, provincia, país)</small></td>
-                    <td class="guapo-input"><input type="text" value="<?php echo $ciudad; ?>" name="ciudad" /></td>
+                    <td class="guapo-label">Ciudad* <small>(localidad, provincia, país)</small></td>
+                    <td class="guapo-input"><input type="text" value="<?php echo $ciudad; ?>" name="ciudad"onblur="comprobarCiudad();" /><div id="error-ciudad" class="guapo-error">Introduce el nombre de la localidad</div></td>
                 </tr>
                 
                 <tr>
-                    <td class="guapo-label"><br /><br />Escribe las 2 palabras que aparecen en la imagen</td>
+                    <td class="guapo-label"><br /><br />Escribe las 2 palabras que aparecen en la imagen*</td>
                     <td class="guapo-input"><?php /*echo recaptcha_get_html($PUBLICKEY);*/ ?>
 
                         <div id="recaptcha_widget" style="display:none; position: relative; background: #fff;">
