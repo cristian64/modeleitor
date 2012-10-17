@@ -135,7 +135,8 @@
     
     function debug($cadena)
     {
-        $fp = fopen("$DEBUG_FILE", 'a');
+        include 'constantes.php';
+        $fp = fopen($DEBUG_FILE, 'a');
         fwrite($fp, $cadena."\n");
         fclose($fp);
         echo $cadena."<br />";
