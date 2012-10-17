@@ -112,7 +112,7 @@ class ENCategoria
                     }
                     else
                     {
-                        debug("ENCategoria::get() Categoria nula nº $contador");
+                        depurar("ENCategoria::get() Categoria nula nº $contador");
                     }
                 }
 
@@ -120,13 +120,13 @@ class ENCategoria
             }
             else
             {
-                debug("ENCategoria::get()".mysql_error());
+                depurar("ENCategoria::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENCategoria::get()".$e->getMessage());
+            depurar("ENCategoria::get()".$e->getMessage());
         }
 
         return $lista;
@@ -157,7 +157,7 @@ class ENCategoria
                     }
                     else
                     {
-                        debug("ENCategoria::get() Categoria nula nº $contador");
+                        depurar("ENCategoria::get() Categoria nula nº $contador");
                     }
                 }
 
@@ -165,13 +165,13 @@ class ENCategoria
             }
             else
             {
-                debug("ENCategoria::getByPadre()".mysql_error());
+                depurar("ENCategoria::getByPadre()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENCategoria::getByPadre()".$e->getMessage());
+            depurar("ENCategoria::getByPadre()".$e->getMessage());
         }
 
         return $lista;
@@ -197,7 +197,7 @@ class ENCategoria
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENCategoria::getById() Categoria nula $id");
+                        depurar("ENCategoria::getById() Categoria nula $id");
                     }
                 }
 
@@ -205,13 +205,13 @@ class ENCategoria
             }
             else
             {
-                debug("ENCategoria::getById() ".mysql_error());
+                depurar("ENCategoria::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENCategoria::getById() ".$e->getMessage());
+            depurar("ENCategoria::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -249,19 +249,19 @@ class ENCategoria
                     }
                     else
                     {
-                        debug("ENCategoria::save() ".mysql_error());
+                        depurar("ENCategoria::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENCategoria::save() ".mysql_error());
+                    depurar("ENCategoria::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::save() ".$e->getMessage());
+                depurar("ENCategoria::save() ".$e->getMessage());
             }
         }
 
@@ -290,14 +290,14 @@ class ENCategoria
                 }
                 else
                 {
-                    debug("ENCategoria::update() ".mysql_error());
+                    depurar("ENCategoria::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::update() ".$e->getMessage());
+                depurar("ENCategoria::update() ".$e->getMessage());
             }
         }
 
@@ -334,11 +334,11 @@ class ENCategoria
                         return $done;
                     }
                 }
-                debug("ENCategoria::delete() ".mysql_error());
+                depurar("ENCategoria::delete() ".mysql_error());
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::delete() ".$e->getMessage());
+                depurar("ENCategoria::delete() ".$e->getMessage());
             }
         }
 

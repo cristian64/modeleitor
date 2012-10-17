@@ -34,16 +34,16 @@ class BD
     {
         if (!($conexion=mysql_connect(self::$ip,self::$usuario,self::$contrasena)))
         {
-            debug("BD::conectar No se pudo conectar al servidor de la base de datos.");
-            debug(mysql_error());
+            depurar("BD::conectar No se pudo conectar al servidor de la base de datos.");
+            depurar(mysql_error());
             $conexion = NULL;
             exit();
         }            
 
         if (!mysql_select_db(self::$nombreBd,$conexion))
         {
-            debug("BD::conectar No se pudo seleccionar la base de datos.");
-            debug(mysql_error());
+            depurar("BD::conectar No se pudo seleccionar la base de datos.");
+            depurar(mysql_error());
             $conexion = NULL;
             exit();
         }

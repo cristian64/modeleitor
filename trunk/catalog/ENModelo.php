@@ -208,7 +208,7 @@ class ENModelo
                         }
                         else
                         {
-                            debug("ENModelo::getCategoriasFromDB() Categoria nulo nº $contador");
+                            depurar("ENModelo::getCategoriasFromDB() Categoria nulo nº $contador");
                         }
                     }
 
@@ -216,13 +216,13 @@ class ENModelo
                 }
                 else
                 {
-                    debug("ENModelo::getCategoriasFromDB()".mysql_error());
+                    depurar("ENModelo::getCategoriasFromDB()".mysql_error());
                 }
             }
             catch (Exception $e)
             {
                 $lista = NULL;
-                debug("ENModelo::getCategoriasFromDB()".$e->getMessage());
+                depurar("ENModelo::getCategoriasFromDB()".$e->getMessage());
             }
         }
 
@@ -250,20 +250,20 @@ class ENModelo
                         $resultado = mysql_query($sentencia, $conexion);
                         if (!$resultado)
                         {
-                            debug("ENModelo::setCategoriasToDB() ".mysql_error());
+                            depurar("ENModelo::setCategoriasToDB() ".mysql_error());
                         }
                     }
                 }
                 else
                 {
-                    debug("ENModelo::setCategoriasToDB() ".mysql_error());
+                    depurar("ENModelo::setCategoriasToDB() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENModelo::setCategoriasToDB() ".$e->getMessage());
+                depurar("ENModelo::setCategoriasToDB() ".$e->getMessage());
             }
         }
 
@@ -349,7 +349,7 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::get() Modelo nulo nº $contador");
                     }
                 }
 
@@ -357,13 +357,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $lista;
@@ -393,13 +393,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $cantidad;
@@ -432,7 +432,7 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::get() Modelo nulo nº $contador");
                     }
                 }
 
@@ -440,13 +440,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $lista;
@@ -476,13 +476,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $cantidad;
@@ -515,7 +515,7 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::get() Modelo nulo nº $contador");
                     }
                 }
 
@@ -523,13 +523,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $lista;
@@ -559,13 +559,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $cantidad;
@@ -612,7 +612,7 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::get() Modelo nulo nº $contador");
                     }
                 }
 
@@ -620,13 +620,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $lista;
@@ -670,7 +670,7 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::get() Modelo nulo nº $contador");
                     }
                 }
 
@@ -678,13 +678,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::get()".mysql_error());
+                depurar("ENModelo::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::get()".$e->getMessage());
         }
 
         return $lista;
@@ -710,7 +710,7 @@ class ENModelo
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENModelo::getById() Modelo nulo $id");
+                        depurar("ENModelo::getById() Modelo nulo $id");
                     }
                 }
 
@@ -718,13 +718,13 @@ class ENModelo
             }
             else
             {
-                debug("ENModelo::getById() ".mysql_error());
+                depurar("ENModelo::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENModelo::getById() ".$e->getMessage());
+            depurar("ENModelo::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -762,19 +762,19 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENModelo::save() ".mysql_error());
+                        depurar("ENModelo::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENModelo::save() ".mysql_error());
+                    depurar("ENModelo::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENModelo::save() ".$e->getMessage());
+                depurar("ENModelo::save() ".$e->getMessage());
             }
         }
 
@@ -803,14 +803,14 @@ class ENModelo
                 }
                 else
                 {
-                    debug("ENModelo::update() ".mysql_error());
+                    depurar("ENModelo::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENModelo::update() ".$e->getMessage());
+                depurar("ENModelo::update() ".$e->getMessage());
             }
         }
 
@@ -884,12 +884,12 @@ class ENModelo
                     }
                     else
                     {
-                        debug("ENCategoria::delete() ".mysql_error());
+                        depurar("ENCategoria::delete() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENCategoria::delete() ".mysql_error());
+                    depurar("ENCategoria::delete() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
@@ -902,7 +902,7 @@ class ENModelo
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::delete() ".$e->getMessage());
+                depurar("ENCategoria::delete() ".$e->getMessage());
             }
         }
 

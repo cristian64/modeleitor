@@ -18,7 +18,7 @@ class ENAcceso
             $resultado = mysql_query($sentencia, BD::conectar());
             if (!$resultado)
             {
-                debug("ENAcceso::save() ".mysql_error());
+                depurar("ENAcceso::save() ".mysql_error());
                 BD::desconectar();
                 return false;
             }
@@ -28,7 +28,7 @@ class ENAcceso
         }
         catch (Exception $e)
         {
-            debug("ENAcceso::save()" . $e->getMessage());
+            depurar("ENAcceso::save()" . $e->getMessage());
         }
         return false;
     }
@@ -52,14 +52,14 @@ class ENAcceso
             }
             else
             {
-                debug("ENAcceso::isGranted() ".mysql_error());
+                depurar("ENAcceso::isGranted() ".mysql_error());
             }
 
             BD::desconectar();
         }
         catch (Exception $e)
         {
-            debug("ENAcceso::isGranted()" . $e->getMessage());
+            depurar("ENAcceso::isGranted()" . $e->getMessage());
         }
 
         return $granted;
