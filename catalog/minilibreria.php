@@ -133,11 +133,11 @@
         return array("$nombre.thumb1.$extension", "$nombre.thumb2.$extension", "$nombre.thumb3.$extension", "$nombre.thumb4.$extension", "$nombre.thumb5.$extension");
     }
     
-    function debug($cadena)
+    function depurar($cadena)
     {
         include 'constantes.php';
         $fp = fopen($DEBUG_FILE, 'a');
-        fwrite($fp, $cadena."\n");
+        fwrite($fp, date("Y/m/d h:i:s")." ".$cadena."\n");
         fclose($fp);
         echo $cadena."<br />";
     }

@@ -102,7 +102,7 @@ class ENFabricante
                     }
                     else
                     {
-                        debug("ENFabricante::get() Fabricante nulo nº $contador");
+                        depurar("ENFabricante::get() Fabricante nulo nº $contador");
                     }
                 }
 
@@ -110,13 +110,13 @@ class ENFabricante
             }
             else
             {
-                debug("ENFabricante::get()".mysql_error());
+                depurar("ENFabricante::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENFabricante::get()".$e->getMessage());
+            depurar("ENFabricante::get()".$e->getMessage());
         }
 
         return $lista;
@@ -142,7 +142,7 @@ class ENFabricante
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENFabricante::getById() Fabricante nulo $id");
+                        depurar("ENFabricante::getById() Fabricante nulo $id");
                     }
                 }
 
@@ -150,13 +150,13 @@ class ENFabricante
             }
             else
             {
-                debug("ENFabricante::getById() ".mysql_error());
+                depurar("ENFabricante::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENFabricante::getById() ".$e->getMessage());
+            depurar("ENFabricante::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -194,19 +194,19 @@ class ENFabricante
                     }
                     else
                     {
-                        debug("ENFabricante::save() ".mysql_error());
+                        depurar("ENFabricante::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENFabricante::save() ".mysql_error());
+                    depurar("ENFabricante::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENFabricante::save() ".$e->getMessage());
+                depurar("ENFabricante::save() ".$e->getMessage());
             }
         }
 
@@ -235,14 +235,14 @@ class ENFabricante
                 }
                 else
                 {
-                    debug("ENFabricante::update() ".mysql_error());
+                    depurar("ENFabricante::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENFabricante::update() ".$e->getMessage());
+                depurar("ENFabricante::update() ".$e->getMessage());
             }
         }
 
@@ -272,19 +272,19 @@ class ENFabricante
                     }
                     else
                     {
-                        debug("ENMarca::delete() ".mysql_error());
+                        depurar("ENMarca::delete() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENMarca::delete() ".mysql_error());
+                    depurar("ENMarca::delete() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::delete() ".$e->getMessage());
+                depurar("ENCategoria::delete() ".$e->getMessage());
             }
         }
 

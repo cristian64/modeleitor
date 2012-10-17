@@ -76,7 +76,7 @@ class ENMarca
                     }
                     else
                     {
-                        debug("ENMarca::get() Marca nula nº $contador");
+                        depurar("ENMarca::get() Marca nula nº $contador");
                     }
                 }
 
@@ -84,13 +84,13 @@ class ENMarca
             }
             else
             {
-                debug("ENMarca::get()".mysql_error());
+                depurar("ENMarca::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENMarca::get()".$e->getMessage());
+            depurar("ENMarca::get()".$e->getMessage());
         }
 
         return $lista;
@@ -116,7 +116,7 @@ class ENMarca
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENMarca::getById() Marca nula $id");
+                        depurar("ENMarca::getById() Marca nula $id");
                     }
                 }
 
@@ -124,13 +124,13 @@ class ENMarca
             }
             else
             {
-                debug("ENMarca::getById() ".mysql_error());
+                depurar("ENMarca::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENMarca::getById() ".$e->getMessage());
+            depurar("ENMarca::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -159,12 +159,12 @@ class ENMarca
                     }
                     else
                     {
-                        debug("ENMarca::delete() ".mysql_error());
+                        depurar("ENMarca::delete() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENMarca::delete() ".mysql_error());
+                    depurar("ENMarca::delete() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
@@ -177,7 +177,7 @@ class ENMarca
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::delete() ".$e->getMessage());
+                depurar("ENCategoria::delete() ".$e->getMessage());
             }
         }
 
@@ -260,19 +260,19 @@ class ENMarca
                     }
                     else
                     {
-                        debug("ENMarca::save() ".mysql_error());
+                        depurar("ENMarca::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENMarca::save() ".mysql_error());
+                    depurar("ENMarca::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENMarca::save() ".$e->getMessage());
+                depurar("ENMarca::save() ".$e->getMessage());
             }
         }
 
@@ -301,14 +301,14 @@ class ENMarca
                 }
                 else
                 {
-                    debug("ENMarca::update() ".mysql_error());
+                    depurar("ENMarca::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENMarca::update() ".$e->getMessage());
+                depurar("ENMarca::update() ".$e->getMessage());
             }
         }
 

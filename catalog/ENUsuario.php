@@ -210,7 +210,7 @@ class ENUsuario
                     }
                     else
                     {
-                        debug("ENUsuario::get() Usuario nulo nº $contador");
+                        depurar("ENUsuario::get() Usuario nulo nº $contador");
                     }
                 }
 
@@ -218,13 +218,13 @@ class ENUsuario
             }
             else
             {
-                debug("ENUsuario::get()".mysql_error());
+                depurar("ENUsuario::get()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            debug("ENUsuario::get()".$e->getMessage());
+            depurar("ENUsuario::get()".$e->getMessage());
         }
 
         return $lista;
@@ -250,7 +250,7 @@ class ENUsuario
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENUsuario::getById() Usuario nulo $id");
+                        depurar("ENUsuario::getById() Usuario nulo $id");
                     }
                 }
 
@@ -258,13 +258,13 @@ class ENUsuario
             }
             else
             {
-                debug("ENUsuario::getById() ".mysql_error());
+                depurar("ENUsuario::getById() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENUsuario::getById() ".$e->getMessage());
+            depurar("ENUsuario::getById() ".$e->getMessage());
         }
 
         return $obj;
@@ -290,7 +290,7 @@ class ENUsuario
                     $obj = self::getRow($fila);
                     if ($obj == NULL)
                     {
-                        debug("ENUsuario::getByEmail() Usuario nulo $id");
+                        depurar("ENUsuario::getByEmail() Usuario nulo $id");
                     }
                 }
 
@@ -298,13 +298,13 @@ class ENUsuario
             }
             else
             {
-                debug("ENUsuario::getByEmail() ".mysql_error());
+                depurar("ENUsuario::getByEmail() ".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $obj = NULL;
-            debug("ENUsuario::getByEmail() ".$e->getMessage());
+            depurar("ENUsuario::getByEmail() ".$e->getMessage());
         }
 
         return $obj;
@@ -346,19 +346,19 @@ class ENUsuario
                     }
                     else
                     {
-                        debug("ENUsuario::save() ".mysql_error());
+                        depurar("ENUsuario::save() ".mysql_error());
                     }
                 }
                 else
                 {
-                    debug("ENUsuario::save() ".mysql_error());
+                    depurar("ENUsuario::save() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENUsuario::save() ".$e->getMessage());
+                depurar("ENUsuario::save() ".$e->getMessage());
             }
         }
 
@@ -387,14 +387,14 @@ class ENUsuario
                 }
                 else
                 {
-                    debug("ENUsuario::update() ".mysql_error());
+                    depurar("ENUsuario::update() ".mysql_error());
                 }
                         
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENUsuario::update() ".$e->getMessage());
+                depurar("ENUsuario::update() ".$e->getMessage());
             }
         }
 
@@ -419,14 +419,14 @@ class ENUsuario
                 }
                 else
                 {
-                    debug("ENMarca::delete() ".mysql_error());
+                    depurar("ENMarca::delete() ".mysql_error());
                 }
                 
                 BD::desconectar($conexion);
             }
             catch (Exception $e)
             {
-                debug("ENCategoria::delete() ".$e->getMessage());
+                depurar("ENCategoria::delete() ".$e->getMessage());
             }
         }
 
