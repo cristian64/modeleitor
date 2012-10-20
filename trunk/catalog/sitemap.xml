@@ -8,282 +8,310 @@
 
 <url>
   <loc>http://www.calzadosjam.es/</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>http://www.calzadosjam.es/.</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>http://www.calzadosjam.es/clientes</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=1-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=6-Zapatos-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=9-Anchos%20Especiales-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=7-Botas%20y%20Botines-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=27-Abotinados-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=13-Mocasines%20y%20Kiowas-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=28-Plataforma-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=10-Fiesta-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=29-Francesitas-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=31-Deportivos-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=11-Anatómicos%20y%20Zapatillas-Mujer</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=2-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=26-Náuticos-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=19-Clásicos-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=15-Casual-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=18-Mocasines%20y%20Kiowas-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=16-Suela%20de%20Cuero-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=17-Deportivos-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=30-Botas%20y%20Botines-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=25-Zapatillas-Hombre</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=3-Niño%20y%20Niña</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=4-Tallas%20Especiales</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=32-Deportivos</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?categoria=33-Complementos</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=13-Agatha%20Shoes</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=14-Air</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=19-Alto%20Estilo</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=15-Anchos%20Calzados</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=16-Annora</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=17-Antonella</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=22-Ballerinas%20A&amp;J</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=23-Cactus</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=44-Calzados%20Bailen</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=24-Calzados%20Chachi</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=61-Carleti</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=43-Carlo%20Garelli</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=28-Carmelo</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=69-Carrús</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=27-Cutillas</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=32-D'Alvaro</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=38-Elegance</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=35-Fortium</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=36-Gavis</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=37-Guantifles</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=18-Hernández</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=40-Ibérico</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=51-JAM</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=50-JAM%20Fiesta</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=39-Lambus</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=45-Luciher</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=46-Mistral</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=47-Morxiva</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=57-Nikoe</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=52-Par%20y%20Medio</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=56-Roger%20Milton</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=55-Roquisini</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=58-Sachini</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=33-Sakut</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=60-Serna</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=63-Vicente%20Garban</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=64-Wheti's</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/catalogo?marca=0</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/mapa</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/contacto</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/privacidad</loc>
-  <changefreq>weekly</changefreq>
-</url>
-<url>
-  <loc>http://www.calzadosjam.es/condiciones</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>http://www.calzadosjam.es/crearcuenta</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=1-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=6-Zapatos-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=9-Anchos%20Especiales-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=7-Botas%20y%20Botines-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=27-Abotinados-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=13-Mocasines%20y%20Kiowas-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=28-Plataforma-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=10-Fiesta%20%7C%20Vestir-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=29-Francesitas%20%7C%20Manoletinas-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=31-Deportivos-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=11-Anat%C3%B3micos%20y%20Zapatillas-Mujer</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=2-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=26-N%C3%A1uticos-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=19-Cl%C3%A1sicos-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=15-Casual%20%7C%20Sport-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=18-Mocasines%20y%20Kiowas-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=16-Suela%20de%20Cuero-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=17-Deportivos-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=30-Botas%20y%20Botines-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=25-Zapatillas%20y%20Zuecos-Hombre</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=3-Ni%C3%B1o%20y%20Ni%C3%B1a</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=4-Tallas%20Especiales</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=39-Zapatillas</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=32-Deportivos</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=33-Complementos</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=35-Auxiliares-Complementos</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=34-Cinturones-Complementos</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?categoria=36-Plantillas-Complementos</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=13-Agatha%20Shoes</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=14-AirOne</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=19-Alto%20Estilo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=15-Anchos%20Calzados</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=16-Annora</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=17-Antonella</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=70-Atlitec</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=22-Ballerinas%20A%26J</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=66-Beppi</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=23-Cactus</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=44-Calzados%20Bailen</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=24-Calzados%20Chachi</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=61-Carleti</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=43-Carlo%20Garelli</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=28-Carmelo</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=69-Carr%C3%BAs</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=27-Cutillas</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=32-D%27Alvaro</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=38-Elegance</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=35-Fortium%20Fat%20Company</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=36-Gavis</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=37-Guantifles</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=18-Hern%C3%A1ndez</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=40-Ib%C3%A9rico</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=51-JAM</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=50-JAM%20Fiesta</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=39-Lambus</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=67-Linea%207</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=45-Luciher</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=46-Mistral</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=47-Morxiva</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=57-Nikoe</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=52-Par%20y%20Medio</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=56-Roger%20Milton</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=55-Roquisini</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=58-Sachini</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=33-Sakut</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=60-Serna</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=63-Vicente%20Garban</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=64-Wheti%27s</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/catalogo?marca=0</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/mapa</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/contacto</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/privacidad</loc>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.calzadosjam.es/condiciones</loc>
+  <changefreq>daily</changefreq>
 </url>
 </urlset>

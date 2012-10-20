@@ -34,6 +34,7 @@ baseSuperior("Usuarios");
         </tr>
 <?php
     $usuarios = ENUsuario::get();
+	$usuarios = array_reverse($usuarios);
     foreach ($usuarios as $i)
     {
         if ($i->getActivo())
