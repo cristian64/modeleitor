@@ -349,7 +349,7 @@ class ENModelo
                     }
                     else
                     {
-                        depurar("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::getByCategoria() Modelo nulo nº $contador");
                     }
                 }
 
@@ -357,13 +357,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::getByCategoria()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::getByCategoria()".$e->getMessage());
         }
 
         return $lista;
@@ -393,13 +393,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::countByCategoria()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::countByCategoria()".$e->getMessage());
         }
 
         return $cantidad;
@@ -432,7 +432,7 @@ class ENModelo
                     }
                     else
                     {
-                        depurar("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::getByFabricante() Modelo nulo nº $contador");
                     }
                 }
 
@@ -440,13 +440,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::getByFabricante()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::getByFabricante()".$e->getMessage());
         }
 
         return $lista;
@@ -476,13 +476,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::countByFabricante()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::countByFabricante()".$e->getMessage());
         }
 
         return $cantidad;
@@ -515,7 +515,7 @@ class ENModelo
                     }
                     else
                     {
-                        depurar("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::getByMarca() Modelo nulo nº $contador");
                     }
                 }
 
@@ -523,13 +523,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::getByMarca()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::getByMarca()".$e->getMessage());
         }
 
         return $lista;
@@ -559,13 +559,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::countByMarca()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $cantidad = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::countByMarca()".$e->getMessage());
         }
 
         return $cantidad;
@@ -612,7 +612,7 @@ class ENModelo
                     }
                     else
                     {
-                        depurar("ENModelo::get() Modelo nulo nº $contador");
+                        depurar("ENModelo::getAdmin() Modelo nulo nº $contador");
                     }
                 }
 
@@ -620,26 +620,27 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::get()".mysql_error());
+                depurar("ENModelo::getAdmin()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            depurar("ENModelo::get()".$e->getMessage());
+            depurar("ENModelo::getAdmin()".$e->getMessage());
         }
 
         return $lista;
     }
 
-    public static function get($filtro = "")
+    public static function get($filtro = "", $descatalogados)
     {        
         $filtro = secure(utf8_decode($filtro));
         $lista = NULL;
-
+        
         try
         {
-            $sentencia = "select * from modelos where descatalogado = 0 order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
+            $descatalogado = !$descatalogados ? "where descatalogado = 0" : "";
+            $sentencia = "select * from modelos $descatalogado order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
             
             if ($filtro != "")
             {
@@ -652,7 +653,8 @@ class ENModelo
                     else
                         $condiciones = "$condiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
                 }
-                $sentencia = "select modelos.* from modelos, marcas where id_marca = marcas.id and descatalogado = 0 and $condiciones order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
+                $descatalogado = !$descatalogados ? "and descatalogado = 0" : "";
+                $sentencia = "select modelos.* from modelos, marcas where id_marca = marcas.id $descatalogado and $condiciones order by marcas.nombre desc, prioridad desc, modelos.nombre asc";
             }
             
             $conexion = BD::conectar();

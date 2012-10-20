@@ -68,7 +68,7 @@ if ($filtro != "" && count($modelos) == 0)
     $filtros = explode(',', $filtro);
     foreach ($filtros as $i)
     {
-        $modelos = array_merge($modelos, ENModelo::get(trim($i), 1, 999999));
+        $modelos = array_merge($modelos, ENModelo::get(trim($i), $admin));
     }
     $titulo = $nombreCategoria = "Búsqueda: \"$filtro\"";
 }
@@ -108,6 +108,8 @@ if (!$esMovil)
                     echo "<a style=\"position: absolute; top: 0; right: 0;\" href=\"modelo?id=".$i->getId()."\"><img src=\"css/editar.png\" alt=\"Editar\" title=\"Editar\" /></a>";
                 if ($i->getOferta())
                     echo "<div class=\"modelo-oferta\">Oferta</div>";
+                if ($i->getDescatalogado())
+                    echo "<div class=\"modelo-descatalogado\">Descatalogado</div>";
                 echo "<div class=\"modelo-wrapper\">";
                 echo "<img src=\"img/modelos/".$thumbs[1]."\" alt=\"".$i->getNombre()."\" title=\"".$i->getNombre()."\" style=\"max-height: 160px;\" />";
                 echo "<div class=\"modelo-titulo\"><div class=\"modelo-ref\">Ref. ".htmlspecialchars($i->getReferencia())."</div>";
