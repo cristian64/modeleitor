@@ -11,9 +11,6 @@ if (rand(0, 3) == 0)
 else
     array_unshift($imagenes, "s2.jpg");
 $imagenes = array_unique($imagenes);
-
-    depurar("pollaca");
-    echo "POllaca!";
 ?>
 
     <div id="externo">
