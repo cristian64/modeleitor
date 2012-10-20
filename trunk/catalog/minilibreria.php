@@ -137,7 +137,7 @@
     {
         include 'constantes.php';
         $fp = fopen($DEBUG_FILE, 'a');
-        fwrite($fp, date("Y/m/d h:i:s")." ".$cadena."\n");
+        fwrite($fp, date("Y/m/d H:i:s")." ".$cadena."\n");
         fclose($fp);
         echo $cadena."<br />";
     }
