@@ -86,6 +86,7 @@ function registrarCoordenadas(event)
 <div style="clear: both;"></div>
 <div style="float: right; padding-top: 20px;"><a href="nuevomodelo"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
 <h3>Modelos</h3>
+<div>
     <table onmousemove="registrarCoordenadas(event);">    
         <tr class="cabecera">
             <td>ID</td>
@@ -99,7 +100,7 @@ function registrarCoordenadas(event)
             <td></td>
         </tr>
 <?php
-    $modelos = ENModelo::getPro($filtro, 0, 0, 0, $oferta == "" ? null : $oferta, $descatalogado == "" ? null : $descatalogado, $orden == "" ? "modelos.id desc" : $orden, 1, 5);
+    $modelos = ENModelo::getPro($filtro, 0, 0, 0, $oferta == "" ? null : $oferta, $descatalogado == "" ? null : $descatalogado, $orden == "" ? "modelos.id desc" : $orden, 1, 999999);
     foreach ($modelos as $i)
     {
         $thumbs = getThumbs($i->getFoto());
@@ -123,6 +124,9 @@ function registrarCoordenadas(event)
         echo "</div></td>";
         echo "</tr>";
     }
+    
+    if (count($modelos) == 0)
+        echo "<tr class=\"fila\"><td colspan=\"9\" class=\"centrada\"><br /><br />No se han encontrado modelos<br /><br /><br /></td></tr>";
 ?>
     </table>
 
