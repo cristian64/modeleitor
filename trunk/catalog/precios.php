@@ -82,14 +82,8 @@ if (!$usuario->getAdmin())
         <div style="float: right; font-size: 10pt; text-align: right;">www.calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; buzon@calzadosjam.es &nbsp;&nbsp;·&nbsp;&nbsp; (+34)966673439<br /><?php echo fechaStr(); ?></div>
         <div>
             <table>
-        <?php
-            function cmp($a, $b)
-            {
-                return strcmp($a->getReferencia(), $b->getReferencia());
-            }
-        
-            $modelos = ENModelo::getAdmin();
-            usort($modelos, "cmp");
+        <?php        
+            $modelos = ENModelo::getPro("", 0, 0, 0, 0, 0, "modelos.referencia asc", null, null);
             $color = "";
             foreach ($modelos as $i)
             {
