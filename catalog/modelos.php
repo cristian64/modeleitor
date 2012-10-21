@@ -63,14 +63,16 @@ function registrarCoordenadas(event)
             <td></td>
         </tr>
 <?php
-    $modelos = ENModelo::getAdmin();
+    $modelos = ENModelo::getPro("", 0, 0, 0, null, null, "modelos.id asc", null, null);
     foreach ($modelos as $i)
     {
         $thumbs = getThumbs($i->getFoto());
         echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[1]."')\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getReferencia())."</td>";
-        echo "<td>".htmlspecialchars($i->getNombre())."</td>";
+        $ofertaStr = $i->getOferta() == 1 ? " <small><strong>(OFERTA)</strong></small>" : "";
+        $descatalogadoStr = $i->getDescatalogado() == 1 ? " <small><strong>(DESCATALOGADO)</strong></small>" : "";
+        echo "<td>".htmlspecialchars($i->getNombre()).$ofertaStr.$descatalogadoStr."</td>";
         echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getFabricante())."</td>";

@@ -571,31 +571,27 @@ class ENModelo
         return $cantidad;
     }
 
-    //TODO
-    //public static function getAdmin($filtro, $id_categoria, $id_fabricante, $_marca, $oferta, $descatalogado, $orden, $pagina, $cantidad)
-    public static function getAdmin($filtro = "")
+    public static function getPro($filtro, $id_categoria, $id_fabricante, $id_marca, $oferta, $descatalogado, $orden, $pagina, $cantidad)
     {
-        //TODO, completar todo el rollo que hay ahi de categorias e historias
         $filtro = secure(utf8_decode($filtro));
         $lista = NULL;
 
         try
-        {
-            $sentencia = "select modelos.*, fabricantes.nombre, marcas.nombre from modelos, fabricantes, marcas where id_fabricante = fabricantes.id and id_marca = marcas.id order by prioridad desc, modelos.nombre asc";
+        {           
+            $words = explode(' ', $filtro);
+            $condiciones = "";
+            foreach ($words as $w)
+                $condiciones = "$condiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
+
+            if ($id_categoria > 0) $condiciones = $condiciones." and modelos.id in (select id_modelo from categorias_modelos where id_categoria = $id_categoria)";
+            if ($id_fabricante > 0) $condiciones = $condiciones." and id_fabricante = $id_fabricante";
+            if ($id_marca > 0) $condiciones = $condiciones." and id_marca = $id_marca";
+            if ($oferta != null) $condiciones = $condiciones." and oferta = $oferta";
+            if ($descatalogado != null) $condiciones = $condiciones." and descatalogado = $descatalogado";
             
-            if ($filtro != "")
-            {
-                $words = explode(' ', $filtro);
-                $condiciones = "";
-                foreach ($words as $w)
-                {
-                    if ($condiciones == "")
-                        $condiciones = "$condiciones (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
-                    else
-                        $condiciones = "$condiciones and (nombre like '%$w%' or referencia like '%$w%' or descripcion like '%$w%')";
-                }
-                $sentencia = "select modelos.*, fabricantes.nombre, marcas.nombre from modelos, fabricantes, marcas where id_fabricante = fabricantes.id and id_marca = marcas.id and $condiciones order by prioridad desc, modelos.nombre asc";
-            }
+            $sentencia = "select modelos.*, fabricantes.nombre, marcas.nombre from modelos, fabricantes, marcas where id_fabricante = fabricantes.id and id_marca = marcas.id $condiciones order by $orden";
+            if (is_numeric($pagina) && is_numeric($cantidad))
+                $sentencia = $sentencia." limit ".(($pagina - 1) * $cantidad).", ".$cantidad;            
             
             $conexion = BD::conectar();
             $resultado = mysql_query($sentencia, $conexion);
@@ -612,7 +608,7 @@ class ENModelo
                     }
                     else
                     {
-                        depurar("ENModelo::getAdmin() Modelo nulo nº $contador");
+                        depurar("ENModelo::getPro() Modelo nulo nº $contador");
                     }
                 }
 
@@ -620,13 +616,13 @@ class ENModelo
             }
             else
             {
-                depurar("ENModelo::getAdmin()".mysql_error());
+                depurar("ENModelo::getPro()".mysql_error());
             }
         }
         catch (Exception $e)
         {
             $lista = NULL;
-            depurar("ENModelo::getAdmin()".$e->getMessage());
+            depurar("ENModelo::getPro()".$e->getMessage());
         }
 
         return $lista;
