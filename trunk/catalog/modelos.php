@@ -24,6 +24,11 @@ if (!$usuario->getAdmin())
     exit();
 }
 
+$filtro = getGet("filtro");
+$oferta = getGet("oferta");
+$descatalogado = getGet("descatalogado");
+$orden = getGet("orden");
+
 baseSuperior("Modelos");
 
 ?>
@@ -47,9 +52,40 @@ function registrarCoordenadas(event)
     //document.getElementById("capaimagenraton").style.left = (event.clientX-30-document.getElementById("imagenraton").width)+document.documentElement.scrollLeft + "px";
 }
 </script>
+
+<div style="float: right; padding-bottom: 10px;">
+    <form action="modelos" method="get">
+        <input type="text" name="filtro" value="<?php echo $filtro; ?>" />
+        <select name="oferta">
+            <option value="" <?php if ($oferta == "") echo "selected=\"selected\""; ?>>Todos</option>
+            <option value="1" <?php if ($oferta == "1") echo "selected=\"selected\""; ?>>En oferta</option>
+            <option value="0" <?php if ($oferta == "0") echo "selected=\"selected\""; ?>>Sin oferta</option>
+        </select>
+        <select name="descatalogado">
+            <option value="" <?php if ($descatalogado == "") echo "selected=\"selected\""; ?>>Todos</option>
+            <option value="1" <?php if ($descatalogado == "1") echo "selected=\"selected\""; ?>>Descatalogados</option>
+            <option value="0" <?php if ($descatalogado == "0") echo "selected=\"selected\""; ?>>Sin descatalogar</option>
+        </select>
+        <select name="orden">
+            <option value="modelos.id desc" <?php if ($orden == "modelos.id desc") echo "selected=\"selected\""; ?>>ID (de mayor a menor)</option>
+            <option value="modelos.id asc" <?php if ($orden == "modelos.id asc") echo "selected=\"selected\""; ?>>ID (de menor a mayor)</option>
+            <option value="modelos.referencia asc" <?php if ($orden == "modelos.referencia asc") echo "selected=\"selected\""; ?>>Referencia (del 0 a la Z)</option>
+            <option value="modelos.referencia desc" <?php if ($orden == "modelos.referencia desc") echo "selected=\"selected\""; ?>>Referencia (de la Z al 0)</option>
+            <option value="modelos.nombre asc" <?php if ($orden == "modelos.nombre asc") echo "selected=\"selected\""; ?>>Nombre (de la A a la Z)</option>
+            <option value="modelos.nombre desc" <?php if ($orden == "modelos.nombre desc") echo "selected=\"selected\""; ?>>Nombre (de la Z a la A)</option>
+            <option value="modelos.marca asc" <?php if ($orden == "modelos.marca asc") echo "selected=\"selected\""; ?>>Marca (de la A a la Z)</option>
+            <option value="modelos.marca desc" <?php if ($orden == "modelos.marca desc") echo "selected=\"selected\""; ?>>Marca (de la Z a la A)</option>
+            <option value="modelos.precio desc" <?php if ($orden == "modelos.precio desc") echo "selected=\"selected\""; ?>>Precio (de mayor a menor)</option>
+            <option value="modelos.precio asc" <?php if ($orden == "modelos.precio asc") echo "selected=\"selected\""; ?>>Precio (de menor a mayor)</option>
+            <option value="modelos.prioridad desc" <?php if ($orden == "modelos.prioridad desc") echo "selected=\"selected\""; ?>>Prioridad (de mayor a menor)</option>
+            <option value="modelos.prioridad asc" <?php if ($orden == "modelos.prioridad asc") echo "selected=\"selected\""; ?>>Prioridad (de menor a mayor)</option>
+        </select>
+        <input type="submit" value="Filtrar" />
+    </form>
+</div>
+<div style="clear: both;"></div>
 <div style="float: right; padding-top: 20px;"><a href="nuevomodelo"><img src="css/anadir.png" alt="Añadir" title="Añadir" /></a></div>
 <h3>Modelos</h3>
-<div>
     <table onmousemove="registrarCoordenadas(event);">    
         <tr class="cabecera">
             <td>ID</td>
@@ -63,7 +99,7 @@ function registrarCoordenadas(event)
             <td></td>
         </tr>
 <?php
-    $modelos = ENModelo::getPro("", 0, 0, 0, null, null, "modelos.id asc", null, null);
+    $modelos = ENModelo::getPro($filtro, 0, 0, 0, $oferta == "" ? null : $oferta, $descatalogado == "" ? null : $descatalogado, $orden == "" ? "modelos.id desc" : $orden, 1, 5);
     foreach ($modelos as $i)
     {
         $thumbs = getThumbs($i->getFoto());
@@ -72,7 +108,7 @@ function registrarCoordenadas(event)
         echo "<td class=\"centrada\">".htmlspecialchars($i->getReferencia())."</td>";
         $ofertaStr = $i->getOferta() == 1 ? " <div class=\"emblema-oferta\">OFERTA</div>" : "";
         $descatalogadoStr = $i->getDescatalogado() == 1 ? " <div class=\"emblema-descatalogado\">DESCATALOGADO</div>" : "";
-        echo "<td>".htmlspecialchars($i->getNombre()).$ofertaStr.$descatalogadoStr."</td>";
+        echo "<td style=\"white-space: normal;\">".htmlspecialchars($i->getNombre()).$ofertaStr.$descatalogadoStr."</td>";
         echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getFabricante())."</td>";
@@ -90,7 +126,7 @@ function registrarCoordenadas(event)
 ?>
     </table>
 
-<div id="dialogo-eliminar" title="¿Eliminar modelo?">
+<div id="dialogo-eliminar" title="¿Eliminar modelo?" style="display: none;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Se eliminará el modelo definitivamente. ¿Continuar?</p>
     <form id="form-eliminar" method="POST" action="operarmodelo">
         <div><input type="hidden" name="id" value="" /></div>
