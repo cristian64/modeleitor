@@ -472,6 +472,21 @@ table, tr
     margin-top: 10px;
 }
 
+.emblema-oferta, .emblema-descatalogado
+{
+    font-size: 6pt;
+    padding: 3px;
+    display: inline-block;
+    background: #f00;
+    color: #fff;
+    font-weight: bold;
+}
+
+.emblema-descatalogado
+{
+    background: #4D4D4D;
+}
+
 .modelo
 {
     position: relative;

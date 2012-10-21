@@ -70,8 +70,8 @@ function registrarCoordenadas(event)
         echo "<tr class=\"fila\" onmouseout=\"ocultarImagenRaton();\" onmouseover=\"mostrarImagenRaton('img/modelos/".$thumbs[1]."')\">";
         echo "<td class=\"centrada\">".rellenar($i->getId(), '0', 6)."</td>";
         echo "<td class=\"centrada\">".htmlspecialchars($i->getReferencia())."</td>";
-        $ofertaStr = $i->getOferta() == 1 ? " <small><strong>(OFERTA)</strong></small>" : "";
-        $descatalogadoStr = $i->getDescatalogado() == 1 ? " <small><strong>(DESCATALOGADO)</strong></small>" : "";
+        $ofertaStr = $i->getOferta() == 1 ? " <div class=\"emblema-oferta\">OFERTA</div>" : "";
+        $descatalogadoStr = $i->getDescatalogado() == 1 ? " <div class=\"emblema-descatalogado\">DESCATALOGADO</div>" : "";
         echo "<td>".htmlspecialchars($i->getNombre()).$ofertaStr.$descatalogadoStr."</td>";
         echo "<td class=\"centrada\">".str_replace('.', ',', $i->getPrecio())."</td>";
         echo "<td class=\"centrada\">".$i->getNumeracion()."</td>";
