@@ -122,7 +122,7 @@ function baseSuperior($titulo)
             </div>
             <div id="barra">
                 
-                <?php bloqueCategorias(); ?>
+                <?php bloqueCategorias($usuario != null && $usuario->getAdmin()); ?>
                 <script type="text/javascript">
                     $(document).ready(function() {
                         
@@ -155,8 +155,17 @@ function baseSuperior($titulo)
 <?php
 }
 
-function bloqueCategorias()
-{    
+function bloqueCategorias($admin)
+{
+    $cachefile = $admin ? "bloqueCategoriasAdmin.php" : "bloqueCategorias.php";
+    if (file_exists($cachefile))
+    {
+        include($cachefile);
+        return;
+    }
+
+    ob_start();
+
     echo "<div id=\"menu\">\n";
     echo "<ul class=\"topnav\">\n";
     
@@ -193,8 +202,7 @@ function bloqueCategorias()
     echo "<li class=\"horizontal\"><a href=\"catalogo?marca=0\">Otras marcas</a></li>\n";
     echo "</ul></li>\n";
     
-    $usuario = getUsuario();
-    if ($usuario != null && $usuario->getAdmin())
+    if ($admin)
     {
         echo "<li><a href=\"\" onclick=\"return false;\">Administración</a><ul class=\"subnav\">";
         echo "<li><a href=\"modelos\">Modelos</a></li>";
@@ -212,6 +220,11 @@ function bloqueCategorias()
     echo "<div class=\"g-plusone\" data-href=\"http://www.calzadosjam.es\"></div>";
     echo "</div>\n";
     echo "</div>\n";
+    
+    $fp = fopen($cachefile, 'w');
+    fwrite($fp, ob_get_contents());
+    fclose($fp);
+    ob_end_flush();
 }
 
 function baseInferior()
