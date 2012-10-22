@@ -577,11 +577,32 @@ class ENModelo
         $lista = NULL;
 
         try
-        {           
-            $words = explode(' ', $filtro);
+        {
             $condiciones = "";
-            foreach ($words as $w)
-                $condiciones = "$condiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
+            $filtros = explode(',', $filtro);
+            foreach ($filtros as $f)
+            {
+                $subcondiciones = "";
+                $words = explode(' ', trim($f));
+                foreach ($words as $w)
+                    if ($w != "")
+                    {
+                        if ($subcondiciones == "")
+                            $subcondiciones = "(modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
+                        else
+                            $subcondiciones = "$subcondiciones and (modelos.nombre like '%$w%' or modelos.referencia like '%$w%' or modelos.descripcion like '%$w%' or marcas.nombre like '%$w%')";
+                    }
+                
+                if ($subcondiciones != "")
+                {
+                    if ($condiciones == "")
+                        $condiciones = "(".$subcondiciones.")";
+                    else
+                        $condiciones = "$condiciones or (".$subcondiciones.")";
+                }
+            }
+            if ($condiciones != "")
+                $condiciones = "and (".$condiciones.")";
 
             if ($id_categoria > 0) $condiciones = $condiciones." and modelos.id in (select id_modelo from categorias_modelos where id_categoria = $id_categoria)";
             if ($id_fabricante > 0) $condiciones = $condiciones." and id_fabricante = $id_fabricante";
