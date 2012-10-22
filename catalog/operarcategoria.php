@@ -30,6 +30,9 @@ switch ($operacion)
         break;
 }
 
+borrar("bloqueCategorias.php");
+borrar("bloqueCategoriasAdmin.php");
+
 function eliminar()
 {
     $id = getPost("id");
