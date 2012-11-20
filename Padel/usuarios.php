@@ -72,7 +72,7 @@ foreach ($usuarios as $u)
 
 if (count($usuarios) == 0)
 {
-    echo "<tr><td colspan=\"7\"><br /><br /><br />No se han encontrado usuarios<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"7\"><br /><br /><br />No se han encontrado usuarios<br /><br /><br /><br /></td></tr>";
 }
 ?>
             </table>

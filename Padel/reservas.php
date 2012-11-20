@@ -73,7 +73,7 @@ foreach ($reservas as $reserva)
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"10\"><br /><br /><br />No hay reservas con estos criterios de búsqueda<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"10\"><br /><br /><br />No hay reservas con estos criterios de búsqueda<br /><br /><br /><br /></td></tr>";
 }
 ?>
             </table>

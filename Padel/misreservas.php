@@ -46,7 +46,7 @@ foreach ($reservas as $reserva)
 }
 if (count($reservas) == 0)
 {
-    echo "<tr><td colspan=\"9\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td>";
+    echo "<tr><td colspan=\"9\"><br /><br /><br />No tienes reservas<br /><br /><br /><br /></td></tr>";
 }
 ?>
             </table>
