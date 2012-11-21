@@ -74,9 +74,9 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "<div class=\"modelo-ref\">Ref. ".htmlspecialchars($modelo->getReferencia())."</div>";
     if ($activo)
         if ($modelo->getOferta())
-            echo "<div class=\"modelo-precio\"><span class=\"modelo-precio-tachado\">".str_replace('.', ',', $modelo->getPrecio())." €</span> <span class=\"modelo-precio-oferta\">".str_replace('.', ',', $modelo->getPrecioOferta())."€ <small>sin IVA</small></span></div>";
+            echo "<div class=\"modelo-precio\"><span class=\"modelo-precio-tachado\">".str_replace('.', ',', $modelo->getPrecio())." €</span> <span class=\"modelo-precio-oferta\">".str_replace('.', ',', $modelo->getPrecioOferta())."€ <small>IVA no incluido</small></span></div>";
         else
-            echo "<div class=\"modelo-precio\">".str_replace('.', ',', $modelo->getPrecio())."€ <small>sin IVA</small></div>";
+            echo "<div class=\"modelo-precio\">".str_replace('.', ',', $modelo->getPrecio())."€ <small>IVA no incluido</small></div>";
     echo "<div class=\"modelo-nombre\">".htmlspecialchars($modelo->getNombre())."</div>";
     if ($modelo->getTallaMenor() > 0 || $modelo->getTallaMayor() > 0)
         echo "<div class=\"modelo-nombre\">Numeración: ".$modelo->getNumeracion()."</div>";
