@@ -100,10 +100,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     <?php if ($usuario->getAdmin()) { ?>
                     <tr>
                         <td class="guapo-label">Tipo de reserva</td>
-                        <td class="columna2"><div>
-                            <input type="radio" name="tipo" value="" <?php echo ($reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> Reserva
-                            <input type="radio" name="tipo" value="" <?php echo (!$reserva->getReservable()) ? "checked=\"checked\"" : ""; ?> readonly="readonly" disabled='disabled' /> No reservable
-                        </div></td>
+                        <td class="columna2"><div class="textinputfake"><div class="leyenda <?php echo tipoCss($reserva->getTipo()); ?>"></div><?php echo tipoString($reserva->getTipo()); ?></div></td>
                     </tr>
                     <tr>
                         <td class="guapo-label">Notas</td>
