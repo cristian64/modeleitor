@@ -19,6 +19,7 @@ create table usuarios
     sexo enum ('hombre', 'mujer') not null,
     direccion text not null,
     telefono text not null,
+    disponibilidad int not null default 0,
     admin int not null default 0,
     fecha_registro datetime not null,
     primary key (id),

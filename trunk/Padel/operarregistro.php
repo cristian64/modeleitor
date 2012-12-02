@@ -23,6 +23,13 @@
     $dni = getPost("dni");
     $direccion = getPost("direccion");
     $telefono = getPost("telefono");
+    $disponibilidad = 0;
+    $array_disponibilidad = $_POST['disponibilidad'];
+    if (!empty($array_disponibilidad)) {
+        for ($i = 0; $i < count($array_disponibilidad); $i++) {
+            $disponibilidad += $array_disponibilidad[$i];
+        }
+    }
     
     $_SESSION["registro_nombre"] = $nombre;
     $_SESSION["registro_contrasena"] = $contrasena;
@@ -32,6 +39,7 @@
     $_SESSION["registro_dni"] = $dni;
     $_SESSION["registro_direccion"] = $direccion;
     $_SESSION["registro_telefono"] = $telefono;
+    $_SESSION["registro_disponibilidad"] = $disponibilidad;
 
     $verify = recaptcha_check_answer($PRIVATEKEY, $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
     if (!$verify->is_valid)
@@ -94,6 +102,7 @@
     $nuevo->setDni($dni);
     $nuevo->setDireccion($direccion);
     $nuevo->setTelefono($telefono);
+    $nuevo->setDisponibilidad($disponibilidad);
     $registrado = $nuevo->guardar();
 
     if ($registrado)
@@ -109,6 +118,7 @@
         $_SESSION["registro_dni"] = "";
         $_SESSION["registro_direccion"] = "";
         $_SESSION["registro_telefono"] = "";
+        $_SESSION["registro_disponibilidad"] = "";
         
         header("location: index.php");
     }

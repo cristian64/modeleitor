@@ -18,6 +18,8 @@ $sexo = getSession("registro_sexo");
 $dni = getSession("registro_dni");
 $direccion = getSession("registro_direccion");
 $telefono = getSession("registro_telefono");
+$disponibilidad = getSession("registro_disponibilidad");
+$disponibilidad = $disponibilidad != "" ? intval($disponibilidad) : 0;
 
 $_SESSION["registro_nombre"] = "";
 $_SESSION["registro_contrasena"] = "";
@@ -27,6 +29,7 @@ $_SESSION["registro_sexo"] = "";
 $_SESSION["registro_dni"] = "";
 $_SESSION["registro_direccion"] = "";
 $_SESSION["registro_telefono"] = "";
+$_SESSION["registro_disponibilidad"] = "";
 
 ?>
 <script type="text/javascript">
@@ -86,6 +89,31 @@ $_SESSION["registro_telefono"] = "";
                                         <tr>
                                             <td class="guapo-label">Teléfono</td>
                                             <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" class="textinput" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="guapo-label">Disponibilidad<br/>para eventos</td>
+                                            <td class="guapo-input">
+                                                <fieldset>
+                                                <legend>Entresemana:</legend>
+                                                    <input type="checkbox" value="1" name="disponibilidad[]" <?php if ($disponibilidad & 1) echo "checked=\"checked\""; ?> />mañana&nbsp;&nbsp;
+                                                    <input type="checkbox" value="2" name="disponibilidad[]" <?php if ($disponibilidad & 2) echo "checked=\"checked\""; ?> />tarde&nbsp;&nbsp;
+                                                    <input type="checkbox" value="4" name="disponibilidad[]" <?php if ($disponibilidad & 4) echo "checked=\"checked\""; ?> />noche&nbsp;&nbsp;
+                                                </fieldset>
+                                                <br/>
+                                                <fieldset>
+                                                <legend>Sábado:</legend>
+                                                    <input type="checkbox" value="8" name="disponibilidad[]" <?php if ($disponibilidad & 8) echo "checked=\"checked\""; ?> />mañana&nbsp;&nbsp;
+                                                    <input type="checkbox" value="16" name="disponibilidad[]" <?php if ($disponibilidad & 16) echo "checked=\"checked\""; ?> />tarde&nbsp;&nbsp;
+                                                    <input type="checkbox" value="32" name="disponibilidad[]" <?php if ($disponibilidad & 32) echo "checked=\"checked\""; ?> />noche&nbsp;&nbsp;
+                                                </fieldset>
+                                                <br/>
+                                                <fieldset>
+                                                <legend>Domingo:</legend>
+                                                    <input type="checkbox" value="64" name="disponibilidad[]" <?php if ($disponibilidad & 64) echo "checked=\"checked\""; ?> />mañana&nbsp;&nbsp;
+                                                    <input type="checkbox" value="128" name="disponibilidad[]" <?php if ($disponibilidad & 128) echo "checked=\"checked\""; ?> />tarde&nbsp;&nbsp;
+                                                    <input type="checkbox" value="256" name="disponibilidad[]" <?php if ($disponibilidad & 256) echo "checked=\"checked\""; ?> />noche&nbsp;&nbsp;
+                                                </fieldset>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="guapo-label"></td>

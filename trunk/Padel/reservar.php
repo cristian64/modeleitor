@@ -396,7 +396,7 @@ if ($usuario->getAdmin())
 ?>
                             <div id="dialogo-seleccionar" title="Seleccionar usuario">
                                 <div>
-                                    <form id="busqueda-form" action="" method="get" onsubmit="buscarUsuarios(this); return false;">
+                                    <form id="busqueda-form" method="get" onsubmit="buscarUsuarios(this); return false;">
                                         Escribe a continuación el e-mail, nombre, DNI o teléfono del usuario y selecciona un usuario para el que quieras realizar la reserva.<br/><br/>
                                         <div><input id="filtro" type="text" autocomplete="off" name="filtro" value="" onkeyup="buscarUsuarios(null);" class="searchinput" title="nº de usuario, nombre, e-mail, DNI o teléfono" /></div>
                                     </form>
