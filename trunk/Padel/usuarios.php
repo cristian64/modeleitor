@@ -81,17 +81,23 @@ if (count($usuarios) == 0)
             <div id="paginacion">
             <?php
                 $parametros = $filtro != "" ? "?filtro=$filtro&" : "?";
-                if ($pagina > 1)
+                if ($pagina > 1) {
+                    echo "<a href=\"usuarios.php$parametros"."pagina=".(1)."\" class=\"freshbutton-lightblue\">Primera</a>\n";
                     echo "<a href=\"usuarios.php$parametros"."pagina=".($pagina - 1)."\" class=\"freshbutton-lightblue\">Anterior</a>\n";
-                else
+                } else {
+                    echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Primera</a>\n";
                     echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Anterior</a>\n";
+                }
                 
                 echo "<a href=\"\" class=\"freshbutton-lightblue\">Página $pagina de $maxpagina</a>\n";
                 
-                if ($pagina < $maxpagina)
+                if ($pagina < $maxpagina) {
                     echo "<a href=\"usuarios.php$parametros"."pagina=".($pagina + 1)."\" class=\"freshbutton-lightblue\">Siguiente</a>\n";
-                else
+                    echo "<a href=\"usuarios.php$parametros"."pagina=".($maxpagina)."\" class=\"freshbutton-lightblue\">Última</a>\n";
+                } else {
                     echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Siguiente</a>\n";
+                    echo "<a href=\"\" class=\"freshbutton-lightdisabled\">Última</a>\n";
+                }
             ?></div>
         </div>
         
