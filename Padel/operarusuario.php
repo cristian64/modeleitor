@@ -26,6 +26,13 @@
     $admin = getPost("admin") == "1" ? true : false;
     $direccion = getPost("direccion");
     $telefono = getPost("telefono");
+    $disponibilidad = 0;
+    $array_disponibilidad = $_POST['disponibilidad'];
+    if (!empty($array_disponibilidad)) {
+        for ($i = 0; $i < count($array_disponibilidad); $i++) {
+            $disponibilidad += $array_disponibilidad[$i];
+        }
+    }
     
     $op = getPost("op");
     if ($op == "anadir" && $usuario->getAdmin())
@@ -38,6 +45,7 @@
         $u->setDni($dni);
         $u->setDireccion($direccion);
         $u->setTelefono($telefono);
+        $u->setDisponibilidad($disponibilidad);
                 
         // Se comprueban los parámetros.
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -155,6 +163,7 @@
     $u->setDni($dni);
     $u->setDireccion($direccion);
     $u->setTelefono($telefono);
+    $u->setDisponibilidad($disponibilidad);
     $actualizado = $u->actualizar();
 
     if ($actualizado)

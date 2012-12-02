@@ -73,6 +73,8 @@ if ($usuario->getId() == 1 || $usuario->getId() == 2 || $usuario->getId() == 25 
 {
 ?>
                     <a href="estadisticas.php" class="freshbutton-yellow">Estadísticas</a>
+                    <a href="informe.php" class="freshbutton-yellow">Generar informe</a>
+                    <a href="backup" class="freshbutton-yellow">Copia de seguridad</a>
 <?php    
 }
 
@@ -81,7 +83,6 @@ if ($usuario->getAdmin())
 ?>
                     <a href="usuarios.php" class="freshbutton-purple">Usuarios</a>
                     <a href="reservas.php" class="freshbutton-purple">Reservas</a>
-                    <a href="backup" class="freshbutton-purple">Copia de seguridad</a>
 <?php
 }
 ?>
