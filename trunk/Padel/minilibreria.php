@@ -293,6 +293,29 @@
             case 12: return "Diciembre";
         }
     }
+    
+    function tipoString($tipo) {
+        switch ($tipo) {
+            case 0: return "Normal"; break;
+            case 1: return "No reservable"; break;
+            case 2: return "Clase 1 persona"; break;
+            case 3: return "Clase 2 personas"; break;
+            case 4: return "Clase 3 personas"; break;
+            default: return "ERROR: tipo \"$tipo\" desconocido"; break;
+        }
+    }
+    
+    
+    function tipoCss($tipo) {
+        switch ($tipo) {
+            case 0: return "ocupado"; break;
+            case 1: return "noreservable"; break;
+            case 2: return "clase"; break;
+            case 3: return "clase"; break;
+            case 4: return "clase"; break;
+            default: return "ERROR: tipo \"$tipo\" desconocido"; break;
+        }
+    }
 
     /**
      * Cambia el formato de la fecha.

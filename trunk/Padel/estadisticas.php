@@ -24,13 +24,22 @@ if ($usuario->getId() != 1 && $usuario->getId() != 2 && $usuario->getId() != 25 
 function imprimirModulo($mes, $ano)
 {
     $reservasMes = ENReserva::obtenerPorMesAno($mes, $ano);
+    $normales = 0;
     $no_reservables = 0;
+    $clases1p = 0;
+    $clases2p = 0;
+    $clases3p = 0;
     $cobrado = 0;
     foreach ($reservasMes as $i)
     {
         $cobrado += $i->getCobrado();
-        if (!$i->getReservable())
-            $no_reservables++;
+        switch ($i->getTipo()) {
+            case 0: $normales++; break;
+            case 1: $no_reservables++; break;
+            case 2: $clases1p++; break;
+            case 3: $clases2p++; break;
+            case 4: $clases3p++; break;
+        }
     }
 ?>
             <table class="guapo-tabla" style="float: left; width: auto; margin: 20px;">
@@ -38,26 +47,23 @@ function imprimirModulo($mes, $ano)
                     <th colspan="2"><?php echo mesToStr($mes)." $ano"; ?></th>
                 </tr>
                 <tr>
-                    <td>Reservas</td><td class="guapo-centro"><?php echo count($reservasMes) - $no_reservables; ?></td>
+                    <td>Reservas normales</td><td class="guapo-centro"><?php echo $normales; ?></td>
                 </tr>
                 <tr>
                     <td>No reservables</td><td class="guapo-centro"><?php echo $no_reservables; ?></td>
                 </tr>
                 <tr>
-                    <td>Cobrado</td><td class="guapo-centro"><?php echo $cobrado; ?>€</td>
-                </tr>
-                <!--<tr>
-                    <td>Bonos de 4 clases 1 personas</td><td class="guapo-centro">0</td>
+                    <td>Clases de 1 persona</td><td class="guapo-centro"><?php echo $clases1p; ?></td>
                 </tr>
                 <tr>
-                    <td>Bonos de 4 clases 2 personas</td><td class="guapo-centro">0</td>
+                    <td>Clases de 2 personas</td><td class="guapo-centro"><?php echo $clases2p; ?></td>
                 </tr>
                 <tr>
-                    <td>Bonos de 4 clases 3 personas</td><td class="guapo-centro">0</td>
+                    <td>Clases de 3 personas</td><td class="guapo-centro"><?php echo $clases3p; ?></td>
                 </tr>
                 <tr>
-                    <td>Bonos de 4 clases 4 personas</td><td class="guapo-centro">0</td>
-                </tr>-->
+                    <td>Total cobrado</td><td class="guapo-centro"><?php echo $cobrado; ?>€</td>
+                </tr>
             </table>
 <?php
 }
@@ -76,26 +82,6 @@ baseSuperior("Estadísticas");
             }
             imprimirModulo($mesActual, $anoActual);
             ?>
-            
-            <table style="display: none;">
-                <tr>
-                    <td>
-                        <div id="lineas">
-                            <div><span class="descripcion">Reservas totales: </span><span class="dato"><?php echo ENReserva::contar(); ?></span></div>
-                            <div><span class="descripcion">Reservas para hoy: </span><span class="dato"><?php echo ENReserva::contarHoy(); ?></span></div>
-                            <div><span class="descripcion">Reservas durante los últimos 7 días: </span><span class="dato"><?php echo ENReserva::contarUltimos7(); ?></span></div>
-                            <div><span class="descripcion">Reservas durante los próximos 7 días: </span><span class="dato"><?php echo ENReserva::contarProximos7(); ?></span></div>
-                            <div><span class="descripcion">Tiempo total de reservas: </span><span class="dato"><?php echo ENReserva::totalMinutos(); ?> minutos</span></div>
-                            <div><span class="descripcion">Tiempo medio por reserva: </span><span class="dato"><?php echo round(ENReserva::totalMinutos() / ENReserva::contar()); ?> minutos por reserva</span></div>
-                            <div><span class="descripcion">Usuarios registrados: </span><span class="dato"><?php echo ENUsuario::contar(); ?></span></div>
-                            <div><span class="descripcion">Usuarios registrados durante los últimos 7 días: </span><span class="dato"><?php echo ENUsuario::contarUltimos7(); ?></span></div>                            
-                        </div>
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
-            </table>
         </div>
 <?php
 baseInferior();

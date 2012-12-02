@@ -15,7 +15,7 @@ class ENReserva
     private $fecha_inicio;
     private $fecha_fin;
     private $fecha_realizacion;
-    private $reservable;
+    private $tipo;
     private $notas;
     private $cobrado;
 
@@ -139,14 +139,14 @@ class ENReserva
             return -1 * ($interval->y * 365 * 30 * 24 * 60 + $interval->m * 30 * 24 * 60 + $interval->d * 24 * 60 + $interval->h * 60 + $interval->i);
     }
     
-    public function getReservable()
+    public function getTipo()
     {
-        return $this->reservable;
+        return $this->tipo;
     }
     
-    public function setReservable($reservable)
+    public function setTipo($tipo)
     {
-        $this->reservable = $reservable;
+        $this->tipo = $tipo;
     }
     
     public function getNotas()
@@ -180,13 +180,13 @@ class ENReserva
         $this->fecha_inicio = new DateTime();
         $this->fecha_fin = new DateTime();
         $this->fecha_realizacion = new DateTime();
-        $this->reservable = true;
+        $this->tipo = 0;
         $this->notas = "";
         $this->cobrado = 0;
     }
 
     public function toString() {
-        return "----- RESERVA :: $this->id :: $this->id_usuario :: $this->id_pista :: ".$this->fecha_inicio->format("d/m/Y H:i:s")." :: ".$this->fecha_fin->format("d/m/Y H:i:s")." :: ".$this->getDuracion()." minutos :: ".$this->fecha_realizacion->format("d/m/Y H:i:s")." ::".($this->reservable ? "RESERVABLE" : "NO RESERVABLE")."-----<br />";
+        return "----- RESERVA :: $this->id :: $this->id_usuario :: $this->id_pista :: ".$this->fecha_inicio->format("d/m/Y H:i:s")." :: ".$this->fecha_fin->format("d/m/Y H:i:s")." :: ".$this->getDuracion()." minutos :: ".$this->fecha_realizacion->format("d/m/Y H:i:s")." ::".$this->tipo."-----<br />";
     }
 
     private static function obtenerDatos($fila) {
@@ -197,7 +197,7 @@ class ENReserva
         $reserva->fecha_inicio = new DateTime($fila[3]);
         $reserva->fecha_fin = new DateTime($fila[4]);
         $reserva->fecha_realizacion = new DateTime($fila[5]);
-        $reserva->reservable = ($fila[6] == "0" || $fila[6] == 0) ? false : true;
+        $reserva->tipo = $fila[6];
         $reserva->notas = utf8_encode($fila[7]);
         $reserva->cobrado = $fila[8];
         return $reserva;
@@ -345,147 +345,7 @@ class ENReserva
 
         return $lista;
     }
-    
-    public static function contar()
-    {
-        $cantidad = 0;
 
-        try
-        {
-            $sentencia = "select count(*) from reservas where reservable = 1";
-            $resultado = mysql_query($sentencia, BD::conectar());
-
-            if ($resultado)
-            {
-                $fila = mysql_fetch_array($resultado);
-                if ($fila)
-                {
-                    $cantidad = $fila[0];
-                }
-
-                BD::desconectar();
-            }
-            else
-            {
-                debug("ENReserva::contar()" . mysql_error());
-            }
-        }
-        catch (Exception $e)
-        {
-            $cantidad = 0;
-            debug("ENReserva::contar()" . $e->getMessage());
-        }
-
-        return $cantidad;
-    }
-    
-    public static function contarHoy()
-    {
-        $cantidad = 0;
-
-        try
-        {
-            $ahora = new DateTime();
-            $sentencia = "select count(*) from reservas where date(fecha_inicio) = '".$ahora->format('Y/m/d')."' and reservable = 1";
-            $resultado = mysql_query($sentencia, BD::conectar());
-
-            if ($resultado)
-            {
-                $fila = mysql_fetch_array($resultado);
-                if ($fila)
-                {
-                    $cantidad = $fila[0];
-                }
-
-                BD::desconectar();
-            }
-            else
-            {
-                debug("ENReserva::contarHoy()" . mysql_error());
-            }
-        }
-        catch (Exception $e)
-        {
-            $cantidad = 0;
-            debug("ENReserva::contarHoy()" . $e->getMessage());
-        }
-
-        return $cantidad;
-    }
-    
-    public static function contarUltimos7()
-    {
-        $cantidad = 0;
-
-        try
-        {
-            $ahora = new DateTime();
-            $ahora->sub(new DateInterval("P7D"));
-            $ahora2 = new DateTime();
-            $ahora2->add(new DateInterval("P1D"));
-            $sentencia = "select count(*) from reservas where date(fecha_inicio) >= '".$ahora->format('Y/m/d')."' and date(fecha_fin) < '".$ahora2->format('Y/m/d')."' and reservable = 1";
-            $resultado = mysql_query($sentencia, BD::conectar());
-
-            if ($resultado)
-            {
-                $fila = mysql_fetch_array($resultado);
-                if ($fila)
-                {
-                    $cantidad = $fila[0];
-                }
-
-                BD::desconectar();
-            }
-            else
-            {
-                debug("ENReserva::contarUltimos7()" . mysql_error());
-            }
-        }
-        catch (Exception $e)
-        {
-            $cantidad = 0;
-            debug("ENReserva::contarUltimos7()" . $e->getMessage());
-        }
-
-        return $cantidad;
-    }
-    
-    public static function contarProximos7()
-    {
-        $cantidad = 0;
-
-        try
-        {
-            $ahora = new DateTime();
-            $ahora2 = new DateTime();
-            $ahora2->add(new DateInterval("P7D"));
-            $sentencia = "select count(*) from reservas where date(fecha_inicio) >= '".$ahora->format('Y/m/d')."' and date(fecha_fin) <= '".$ahora2->format('Y/m/d')."' and reservable = 1";
-            $resultado = mysql_query($sentencia, BD::conectar());
-
-            if ($resultado)
-            {
-                $fila = mysql_fetch_array($resultado);
-                if ($fila)
-                {
-                    $cantidad = $fila[0];
-                }
-
-                BD::desconectar();
-            }
-            else
-            {
-                debug("ENReserva::contarProximos7()" . mysql_error());
-            }
-        }
-        catch (Exception $e)
-        {
-            $cantidad = 0;
-            debug("ENReserva::contarProximos7()" . $e->getMessage());
-        }
-
-        return $cantidad;
-    }
-    
     public static function contarPorUsuario($id_usuario)
     {
         $cantidad = 0;
@@ -520,40 +380,7 @@ class ENReserva
 
         return $cantidad;
     }
-    
-    public static function totalMinutos()
-    {
-        $cantidad = 0;
 
-        try
-        {
-            $sentencia = "select sum(TIMESTAMPDIFF(MINUTE, fecha_inicio,fecha_fin)) from reservas where reservable = 1";
-            $resultado = mysql_query($sentencia, BD::conectar());
-
-            if ($resultado)
-            {
-                $fila = mysql_fetch_array($resultado);
-                if ($fila)
-                {
-                    $cantidad = $fila[0];
-                }
-
-                BD::desconectar();
-            }
-            else
-            {
-                debug("ENReserva::totalMinutos()" . mysql_error());
-            }
-        }
-        catch (Exception $e)
-        {
-            $cantidad = 0;
-            debug("ENReserva::totalMinutos()" . $e->getMessage());
-        }
-
-        return $cantidad;
-    }
-    
     public static function obtenerPorUsuarioHoy($id_usuario)
     {
         $lista = NULL;
@@ -769,7 +596,7 @@ class ENReserva
         $nueva = new ENReserva();
         $nueva->setIdUsuario($this->getIdUsuario());
         $nueva->setIdPista($this->getIdPista());
-        $nueva->setReservable($this->getReservable());
+        $nueva->setTipo($this->getTipo());
         $nueva->setNotas($this->getNotas());
         $nueva->setFechaInicioDateTime($this->getFechaInicio());
         $nueva->setFechaFinDateTime($this->getFechaFin());
@@ -820,8 +647,8 @@ class ENReserva
                     
                 if ($disponible)
                 {
-                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, reservable, notas, cobrado)";
-                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".($this->reservable ? "1" : "0")."', '".utf8_decode($this->notas)."', '".$this->cobrado."');\n";
+                    $sentencia = "insert into reservas (id_usuario, id_pista, fecha_inicio, fecha_fin, fecha_realizacion, tipo, notas, cobrado)";
+                    $sentencia = "$sentencia values ('".$this->id_usuario."', '".$this->id_pista."', '".$fechaInicioStr."', '".$fechaFinStr."', now(), '".$this->tipo."', '".utf8_decode($this->notas)."', '".$this->cobrado."');\n";
 
                     $resultado = mysql_query($sentencia, $conexion);
 

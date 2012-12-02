@@ -55,7 +55,7 @@ if (ENReserva::borrarPorId($reserva->getId()))
 {
     $_SESSION["mensaje_exito"] = "La reserva ha sido cancelada correctamente";
     $usuarioReserva = ENUsuario::obtenerPorId($reserva->getIdUsuario());
-    if ($reserva->getReservable())
+    if ($reserva->getTipo() == 0)
     {
         emailCancelarReserva("beatriz@autofima.com", $usuarioReserva, $reserva);
         emailCancelarReserva("Santiago@autofima.com", $usuarioReserva, $reserva);

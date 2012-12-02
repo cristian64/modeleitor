@@ -26,7 +26,7 @@
     if ($usuario->getAdmin())
     {
         $notas = getPost("notas");
-        $reservable = isset($_POST['bloquear']) ? false : true;
+        $tipo = getPost("tipo");
         $proximos = getPost("proximos");
         $email = getPost("email");
     }
@@ -84,7 +84,7 @@
     $reserva->setNotas($notas);
     
     if ($usuario->getAdmin())
-        $reserva->setReservable($reservable);
+        $reserva->setTipo($tipo);
         
     if ($email != "")
     {

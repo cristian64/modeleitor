@@ -717,6 +717,11 @@ table, tr
     background-color: #BABABA;
 }
 
+.clase
+{
+    background-color: #BC63FF;
+}
+
 .libre
 {
     background-color: #8AE65C;
@@ -740,13 +745,13 @@ table, tr
     border-collapse: collapse;
 }
 
-#leyenda
+#leyenda, #leyendareservar
 {
     float: right;
     margin-top: 15px;
 }
 
-#leyenda div
+#leyenda div, .leyenda
 {
     display: inline-block;
     width: 10px;

@@ -73,11 +73,11 @@ if ($tiempoFinal->format('d') != $dia->format('d'))
  *
  * @param type $reservas
  * @param type $tiempo 
- * @return 0 si libre, 1 si ocupada, 2 si no reservable, un objeto ENReserva si coincide con la primera celda, para poder usar rowspan
+ * @return null si libre, objeto si hay una reserva que comienza justo en ese $tiempo, -1 si hay una reserva que forma parte de otra
  */
 function determinarEstado($reservas, $tiempo)
 {
-    $estado = 0;
+    $estado = null;
     foreach ($reservas as $reserva)
     {
         if ($reserva->getFechaInicio() <= $tiempo && $tiempo < $reserva->getFechaFin())
@@ -87,8 +87,7 @@ function determinarEstado($reservas, $tiempo)
                 return $reserva;
             }
                 
-            $estado = $reserva->getReservable() ? 1 : 2;
-            break;
+            return -1;
         }
     }
     return $estado;
@@ -113,7 +112,13 @@ baseSuperior("Reservar pista");
                                 <div><label>Precio </label><input type="text" value="" name="precio" readonly="readonly" style="width: 30px;" /><label> euros</label></div>
 <?php if ($usuario->getAdmin()) { ?>
                                 <div>
-                                    <input type="checkbox" name="bloquear" value="0" /> Marcar como no reservable
+                                    <select name="tipo">
+                                        <option value="0"><?php echo tipoString(0); ?></option>
+                                        <option value="1"><?php echo tipoString(1); ?></option>
+                                        <option value="2"><?php echo tipoString(2); ?></option>
+                                        <option value="3"><?php echo tipoString(3); ?></option>
+                                        <option value="4"><?php echo tipoString(4); ?></option>
+                                    </select>
                                 </div>
                                 <div>Realizar la misma reserva también los próximos
                                 
@@ -289,7 +294,7 @@ while ($tiempoInicial < $tiempoFinal)
         $estado = determinarEstado($reservas[$i], $tiempoInicial);
         if (is_object($estado))
         {
-            $clase = $estado->getReservable() ? "ocupado" : "noreservable";
+            $clase = tipoCss($estado->getTipo());
             $celdas = $estado->getDuracion() / $INTERVALO;
             if ($fila + $celdas >= $maxfilas)
                 $celdas = $maxfilas - $fila;
@@ -304,7 +309,7 @@ while ($tiempoInicial < $tiempoFinal)
                 echo "<a class=\"smallicon\" onclick=\"$('#dialog".$estado->getId()."').dialog('open');\"><img src=\"css/lupa.png\" alt=\"Ver reserva\" title=\"Ver reserva\" /></a>&nbsp;";
                 echo "<a class=\"smallicon\" onclick=\"if (confirmarBorrarReserva()) { document.getElementById('borrar".$estado->getId()."').scroll.value = $(document).scrollTop(); document.getElementById('borrar".$estado->getId()."').submit(); }\"><img src=\"css/papelera.png\" alt=\"Borrar reserva\" title=\"Borrar reserva\" /></a>";
                 
-                echo "<div class=\"dialogoreserva\" id=\"dialog".$estado->getId()."\" title=\"Reserva nº ".$estado->getId()."\">";
+                echo "<div style=\"display: none;\" class=\"dialogoreserva\" id=\"dialog".$estado->getId()."\" title=\"Reserva nº ".$estado->getId()."\">";
                 $cuerpo = "<tr>";
                 $cuerpo = $cuerpo."<td class=\"guapo-label\">Nº de reserva</td>";
                 $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".rellenar($estado->getId(), '0', $RELLENO)."\" /></td>";
@@ -364,7 +369,7 @@ while ($tiempoInicial < $tiempoFinal)
             }
             echo "</td>\n";
         }
-        else if ($estado == 0)
+        else if ($estado == null)
         {
             if ((new DateTime() < $tiempoInicial && $tiempoInicial <= $siguientemaximodia && $tiempo <= $siguientemaximodia) || $usuario->getAdmin())
                 echo "<td class=\"libre\" onmousedown=\"seleccionar(this, ".($i + 1).", $fila);\" onmouseover=\"if (isDown) seleccionar(this, ".($i + 1).", $fila);\"></td>\n";
@@ -384,17 +389,18 @@ while ($tiempoInicial < $tiempoFinal)
                                 <script type="text/javascript" src="http://www.tutiempo.net/widget/eltiempo_vitgrhthdcYBDIsU7AuDDDjDzKlULUa1kxEzzhCKglI"></script>
                             </div>
                             
-                            <div id="leyenda">
-                                <div class="libre"></div>Libre
-                                <div class="ocupado"></div>Ocupado
-                                <div class="noreservable"></div>No reservable
+                            <div id="leyendareservar">
+                                <div><div class="leyenda libre"></div>Libre</div>
+                                <div><div class="leyenda ocupado"></div>Ocupado</div>
+                                <div><div class="leyenda clase"></div>Ocupado por profesor</div>
+                                <div><div class="leyenda noreservable"></div>No reservable</div>
                             </div>
                             
 <?php
 if ($usuario->getAdmin())
 {
 ?>
-                            <div id="dialogo-seleccionar" title="Seleccionar usuario">
+                            <div style="display: none;" id="dialogo-seleccionar" title="Seleccionar usuario">
                                 <div>
                                     <form id="busqueda-form" method="get" onsubmit="buscarUsuarios(this); return false;">
                                         Escribe a continuación el e-mail, nombre, DNI o teléfono del usuario y selecciona un usuario para el que quieras realizar la reserva.<br/><br/>

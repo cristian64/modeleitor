@@ -46,16 +46,13 @@ baseSuperior("Reservas");
                     <td class="cabecera">Hora de inicio</td>
                     <td class="cabecera">Hora de fin</td>
                     <td class="cabecera">Duración<br />(minutos)</td>
+                    <td class="cabecera">Tipo</td>
                     <td class="cabecera">Precio<br />(a pagar en ventanilla)</td>
-                    <td class="cabecera">Estado</td>
                     <td class="cabecera">Fecha en la que<br />se realizó la reserva</td>
                 </tr>
 <?php
 foreach ($reservas as $reserva)
-{
-    if (!$reserva->getReservable())
-        continue;
-        
+{        
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
@@ -66,8 +63,10 @@ foreach ($reservas as $reserva)
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getFechaFin()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getDuracion()."</td>\n";
+?>
+    <td><div class="leyenda <?php echo tipoCss($reserva->getTipo()); ?>"></div><?php echo tipoString($reserva->getTipo()); ?></td>
+<?php
     echo "<td>".ceil($reserva->getDuracion() * $PRECIOHORA / 60)."€</td>\n";
-    echo "<td>".$reserva->getEstado()."</td>\n";
     echo "<td>".$reserva->getFechaRealizacion()->format('d/m/Y H:i:s')."</td>\n";
     echo "</tr>\n";
 }
