@@ -20,6 +20,7 @@ create table usuarios
     direccion text not null,
     telefono text not null,
     disponibilidad int not null default 0,
+    categoria int not null default 0,
     admin int not null default 0,
     fecha_registro datetime not null,
     primary key (id),
