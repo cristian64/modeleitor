@@ -52,7 +52,7 @@ baseSuperior("Reserva nº ".rellenar($reserva->getId(), '0', $RELLENO));
                     </tr>
                     <tr>
                         <td class="guapo-label">Pista</td>
-                        <td class="guapo-input"><input type="text" value="<?php echo $reserva->getIdPista(); ?>" readonly="readonly" /></td>
+                        <td class="guapo-input"><input type="text" value="<?php echo pistaString($reserva->getIdPista()); ?>" readonly="readonly" /></td>
                     </tr>
                     <tr>
                         <td class="guapo-label">Día</td>

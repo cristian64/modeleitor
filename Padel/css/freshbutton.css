@@ -2,7 +2,7 @@
 Botón y input text
 *****************************************************/
 
-.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-lightblue, .freshbutton-purple, .freshbutton-red, .freshbutton-yellow, .freshbutton-disabled, .freshbutton-lightdisabled, .freshbutton-green
+.freshbutton, .freshbutton-big, .freshbutton-blue, .freshbutton-darkblue, .freshbutton-lightblue, .freshbutton-purple, .freshbutton-red, .freshbutton-yellow, .freshbutton-disabled, .freshbutton-lightdisabled, .freshbutton-green
 {
     border-radius: 3px 3px 3px 3px;
     cursor: pointer;
@@ -28,6 +28,21 @@ Botón y input text
     text-shadow: #355782 0 1px 2px;
     -webkit-text-shadow: #355782 0 1px 2px;
     -moz-text-shadow: #355782 0 1px 2px;
+}
+
+.freshbutton-darkblue
+{
+    background: #4E70AA;
+    background: -moz-linear-gradient(center top , #5173AF, #476599) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#5173AF), to(#476599));
+    border-color: #4E70AA #3D62A1 #3A5789;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 0 #6A8AC1 inset;
+    color: #FFFFFF;
+    text-shadow: #314C6E 0 1px 2px;
+    -webkit-text-shadow: #314C6E 0 1px 2px;
+    -moz-text-shadow: #314C6E 0 1px 2px;
 }
 
 .freshbutton-lightblue, .cabecera
@@ -707,6 +722,11 @@ table, tr
     white-space: nowrap;
 }
 
+.columnapista
+{
+    width: 15%;
+}
+
 .ocupado
 {
     background-color: #FF4545;
@@ -810,6 +830,19 @@ table, tr
 #lineas div
 {
     margin-top: 30px;
+}
+
+a.facebook
+{
+    position: relative;
+    padding-left: 40px;
+}
+
+a.facebook img
+{
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }
 
 /*****************************************************

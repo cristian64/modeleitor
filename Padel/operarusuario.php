@@ -26,6 +26,7 @@
     $admin = getPost("admin") == "1" ? true : false;
     $direccion = getPost("direccion");
     $telefono = getPost("telefono");
+    $categoria = getPost("categoria");
     $disponibilidad = 0;
     $array_disponibilidad = $_POST['disponibilidad'];
     if (!empty($array_disponibilidad)) {
@@ -45,6 +46,7 @@
         $u->setDni($dni);
         $u->setDireccion($direccion);
         $u->setTelefono($telefono);
+        $u->setCategoria($categoria);
         $u->setDisponibilidad($disponibilidad);
                 
         // Se comprueban los parámetros.
@@ -163,6 +165,7 @@
     $u->setDni($dni);
     $u->setDireccion($direccion);
     $u->setTelefono($telefono);
+    $u->setCategoria($categoria);
     $u->setDisponibilidad($disponibilidad);
     $actualizado = $u->actualizar();
 

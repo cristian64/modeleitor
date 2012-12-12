@@ -113,6 +113,8 @@ function baseInferior()
                     <a href="http://www.hyundai.es"><img src="css/hyundai.png" alt="Hyundai" /></a>
                     <a href="http://www.lacaixa.es"><img src="css/lacaixa.jpg" alt="La Caixa" /></a>
                     <a href="http://www.informacion.es"><img src="css/informacion.gif" alt="Diario Información" /></a>
+                    <a class="freshbutton-darkblue facebook" href="https://www.facebook.com/clubpadelmatola.mejias"><img src="css/facebook.png" alt="" title="Club Padel Matola" /> Club Padel<br />Matola</a>
+                    <a class="freshbutton-darkblue facebook" href="https://www.facebook.com/cafeteria.padelmatola"><img src="css/facebook.png" alt="" title="Cafetería Padel Matola" /> Cafetería<br />Padel Matola</a>
                 </div>            
             </div>
         </div>

@@ -34,7 +34,7 @@ foreach ($reservas as $reserva)
     $clase = ($reserva->getEstado() ==  "Pendiente") ? "pendiente" : ($reserva->getEstado() == "Finalizada" ? "finalizada" : "encurso");
     echo "<tr class=\"$clase\" onclick=\"window.location = 'reserva.php?id=".$reserva->getId()."';\">\n";
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
-    echo "<td>".$reserva->getIdPista()."</td>\n";
+    echo "<td>".pistaString($reserva->getIdPista())."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('d/m/Y')."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getFechaFin()->format('H:i')."</td>\n";

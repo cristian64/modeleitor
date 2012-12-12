@@ -271,12 +271,12 @@ baseSuperior("Reservar pista");
                             <table>
                                 <tr class="filacabecera">
                                     <td class="hora esquina"></td>
-                                    <td class="cabecera">Pista 1</td>
-                                    <td class="cabecera">Pista 2</td>
-                                    <td class="cabecera">Pista 3</td>
-                                    <td class="cabecera">Pista 4</td>
-                                    <td class="cabecera">Pista 5</td>
-                                    <td class="cabecera">Pista 6</td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(1); ?></td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(2); ?></td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(3); ?></td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(4); ?></td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(5); ?></td>
+                                    <td class="cabecera columnapista"><?php echo pistaString(6); ?></td>
                                 </tr>
 <?php
 $fila = 0;

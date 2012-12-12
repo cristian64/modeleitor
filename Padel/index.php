@@ -89,7 +89,7 @@ else
             <table class="bloques">
                 <tr>
                     <td><div class="bloque">6 pistas de padel recién construidas</div></td>
-                    <td><div class="bloque"><?php echo ceil($PRECIOHORA * 1.5); ?>€ por hora y media</div></td>
+                    <td><div class="bloque">Vesturarios y cafetería dentro del recinto</td>
                     <td><div class="bloque">Vereda Santa Teresa, Matola (Elche, Alicante)</div></td>
                 </tr>
             </table>
