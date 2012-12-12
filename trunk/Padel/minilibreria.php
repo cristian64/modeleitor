@@ -316,6 +316,18 @@
             default: return "ERROR: tipo \"$tipo\" desconocido"; break;
         }
     }
+    
+    function pistaString($pista) {
+        switch ($pista) {
+            case 1: return "IX20"; break;
+            case 2: return "IX35"; break;
+            case 3: return "I30"; break;
+            case 4: return "VELOSTER"; break;
+            case 5: return "SANTA FE"; break;
+            case 6: return "I40"; break;
+            default: return $pista; break;
+        }
+    }
 
     /**
      * Cambia el formato de la fecha.

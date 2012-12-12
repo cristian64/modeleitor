@@ -42,6 +42,7 @@ class ENUsuario
 
      private $telefono;
      private $disponibilidad;
+     private $categoria;
      private $dni;
      private $direccion;
      private $admin;
@@ -118,6 +119,17 @@ class ENUsuario
          $disponibilidad = intval($disponibilidad);
          $this->disponibilidad = $disponibilidad;
      }
+     
+     public function getCategoria()
+     {
+         return intval($this->categoria);
+     }
+
+     public function setCategoria($categoria)
+     {
+         $categoria = intval($categoria);
+         $this->categoria = $categoria;
+     }
          
      public function getDni()
      {
@@ -168,6 +180,7 @@ class ENUsuario
         $this->sexo = null;
         $this->telefono = "";
         $this->disponibilidad = 0;
+        $this->categoria = 0;
         $this->dni = "";
         $this->direccion = "";
         $this->admin = false;
@@ -200,6 +213,7 @@ class ENUsuario
         $usuario->direccion = utf8_encode($fila[6]);
         $usuario->telefono = utf8_encode($fila[7]);
         $usuario->disponibilidad = intval($fila[8]);
+        $usuario->categoria = intval($fila[9]);
         $usuario->admin = ($fila[9] == "0" || $fila[9] == 0) ? false : true;
         $usuario->fecha_registro = new DateTime($fila[10]);
         return $usuario;
@@ -456,8 +470,8 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Insertamos el usuario.
-                $sentencia = "insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, disponibilidad, admin, fecha_registro)";
-                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".$this->disponibilidad."', '".($this->admin ? "1" : "0")."', now())";
+                $sentencia = "insert into usuarios (nombre, contrasena, email, dni, sexo, direccion, telefono, disponibilidad, categoria, admin, fecha_registro)";
+                $sentencia = "$sentencia values ('".utf8_decode($this->nombre)."', '".$this->contrasena."', '".$this->email."', '".utf8_decode($this->dni)."', '".$this->sexo."', '".utf8_decode($this->direccion)."', '".utf8_decode($this->telefono)."', '".$this->disponibilidad."', '".$this->categoria."', '".($this->admin ? "1" : "0")."', now())";
                 $resultado = mysql_query($sentencia, $conexion);
 
                 if ($resultado)
@@ -512,7 +526,7 @@ class ENUsuario
                 $conexion = BD::conectar();
 
                 // Actualizamos el usuario.
-                $sentencia = "update usuarios set nombre = '".utf8_decode($this->nombre)."', email = '".$this->email."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', disponibilidad = '".$this->disponibilidad."', direccion = '".utf8_decode($this->direccion)."', admin = '".($this->admin ? "1" : "0")."'";
+                $sentencia = "update usuarios set nombre = '".utf8_decode($this->nombre)."', email = '".$this->email."', contrasena = '".$this->contrasena."', sexo = '".$this->sexo."', dni = '".utf8_decode($this->dni)."', telefono = '".utf8_decode($this->telefono)."', disponibilidad = '".$this->disponibilidad."', categoria = '".$this->categoria."', direccion = '".utf8_decode($this->direccion)."', admin = '".($this->admin ? "1" : "0")."'";
                 $sentencia = "$sentencia where id = $this->id";
 
                 $resultado = mysql_query($sentencia, $conexion);
