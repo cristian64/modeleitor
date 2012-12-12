@@ -212,10 +212,10 @@ class ENUsuario
         $usuario->sexo = $fila[5];
         $usuario->direccion = utf8_encode($fila[6]);
         $usuario->telefono = utf8_encode($fila[7]);
-        $usuario->disponibilidad = intval($fila[8]);
-        $usuario->categoria = intval($fila[9]);
-        $usuario->admin = ($fila[9] == "0" || $fila[9] == 0) ? false : true;
-        $usuario->fecha_registro = new DateTime($fila[10]);
+        $usuario->categoria = intval($fila[8]);
+        $usuario->disponibilidad = intval($fila[9]);
+        $usuario->admin = ($fila[10] == "0" || $fila[10] == 0) ? false : true;
+        $usuario->fecha_registro = new DateTime($fila[11]);
         return $usuario;
     }
 

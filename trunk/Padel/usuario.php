@@ -114,8 +114,24 @@ baseSuperior("Usuario nº ".rellenar($u->getId(), '0', $RELLENO), true);
                                             <td class="guapo-input"><input type="text" value="<?php echo $u->getDireccion(); ?>" name="direccion" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="guapo-label">Teléfono</td>
+                                            <td class="guapo-label">Teléfono*</td>
                                             <td class="guapo-input"><input type="text" value="<?php echo $u->getTelefono(); ?>" name="telefono" class="textinput" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="guapo-label">Categoría</td>
+                                            <td class="guapo-input">   
+                                                <div class="textinputfake">
+                                                <select name="categoria">
+                                                    <option value="0" <?php if ($u->getCategoria() == 0) echo "selected=\"selected\""; ?>>Sin categoría</option>
+                                                    <option value="5" <?php if ($u->getCategoria() == 5) echo "selected=\"selected\""; ?>>5ª categoría</option>
+                                                    <option value="4" <?php if ($u->getCategoria() == 4) echo "selected=\"selected\""; ?>>4ª categoría</option>
+                                                    <option value="3" <?php if ($u->getCategoria() == 3) echo "selected=\"selected\""; ?>>3ª categoría</option>
+                                                    <option value="2" <?php if ($u->getCategoria() == 2) echo "selected=\"selected\""; ?>>2ª categoría</option>
+                                                    <option value="1" <?php if ($u->getCategoria() == 1) echo "selected=\"selected\""; ?>>1ª categoría</option>
+                                                </select>
+                                                <a href="http://www.infopadel.es/calcula-tu-categoria-de-padel/">Calcula tu categoría</a>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="guapo-label">Disponibilidad<br/>para eventos</td>

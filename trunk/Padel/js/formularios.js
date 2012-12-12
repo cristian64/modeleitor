@@ -39,6 +39,10 @@ function validarRegistro(formulario)
     if (formulario.contrasena.value != formulario.contrasena2.value)
         alerta = alerta + "- Las contraseñas no coinciden.\n\n";
 
+    if (formulario.telefono.value.length < 5) {
+        alerta = alerta + "- Debe facilitar un teléfono de contacto.\n\n";
+    }
+
     // Comprobamos que se ha marcado algún sexo.
     if (!formulario.sexo[0].checked && !formulario.sexo[1].checked)
         alerta = alerta + "- Es necesario seleccionar algún sexo.\n\n";
@@ -77,6 +81,10 @@ function validarUsuario(formulario)
         
         if (formulario.contrasena.value.length < kMinContrasena || formulario.contrasena.value.length > kMaxContrasena)
             alerta = alerta + "- La contraseña debe tener entre " + kMinContrasena + " y " + kMaxContrasena + " caracteres.\n\n";
+    }
+    
+    if (formulario.telefono.value.length < 5) {
+        alerta = alerta + "- Debe facilitar un teléfono de contacto.\n\n";
     }
 
     // Comprobamos que se ha marcado algún sexo.

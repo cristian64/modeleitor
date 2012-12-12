@@ -18,6 +18,7 @@ $sexo = getSession("registro_sexo");
 $dni = getSession("registro_dni");
 $direccion = getSession("registro_direccion");
 $telefono = getSession("registro_telefono");
+$categoria = getSession("registro_categoria");
 $disponibilidad = getSession("registro_disponibilidad");
 $disponibilidad = $disponibilidad != "" ? intval($disponibilidad) : 0;
 
@@ -29,6 +30,7 @@ $_SESSION["registro_sexo"] = "";
 $_SESSION["registro_dni"] = "";
 $_SESSION["registro_direccion"] = "";
 $_SESSION["registro_telefono"] = "";
+$_SESSION["registro_categoria"] = "";
 $_SESSION["registro_disponibilidad"] = "";
 
 ?>
@@ -87,8 +89,21 @@ $_SESSION["registro_disponibilidad"] = "";
                                             <td class="guapo-input"><input type="text" value="<?php echo $direccion; ?>" name="direccion" class="textinput" /></td>
                                         </tr>
                                         <tr>
-                                            <td class="guapo-label">Teléfono</td>
+                                            <td class="guapo-label">Teléfono*</td>
                                             <td class="guapo-input"><input type="text" value="<?php echo $telefono; ?>" name="telefono" class="textinput" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="guapo-label">Categoría</td>
+                                            <td class="guapo-input">                                                
+                                                <select name="categoria">
+                                                    <option value="0" <?php if ($categoria == 0) echo "selected=\"selected\""; ?>>Sin categoría</option>
+                                                    <option value="5" <?php if ($categoria == 5) echo "selected=\"selected\""; ?>>5ª categoría</option>
+                                                    <option value="4" <?php if ($categoria == 4) echo "selected=\"selected\""; ?>>4ª categoría</option>
+                                                    <option value="3" <?php if ($categoria == 3) echo "selected=\"selected\""; ?>>3ª categoría</option>
+                                                    <option value="2" <?php if ($categoria == 2) echo "selected=\"selected\""; ?>>2ª categoría</option>
+                                                    <option value="1" <?php if ($categoria == 1) echo "selected=\"selected\""; ?>>1ª categoría</option>
+                                                </select>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="guapo-label">Disponibilidad<br/>para eventos</td>

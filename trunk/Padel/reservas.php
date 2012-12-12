@@ -58,7 +58,7 @@ foreach ($reservas as $reserva)
     echo "<td>".rellenar($reserva->getId(), '0', $RELLENO)."</td>\n";
     $reservaUsuario = ENUsuario::obtenerPorId($reserva->getIdUsuario());
     echo "<td><a href=\"usuario.php?id=".$reservaUsuario->getId()."\">".$reservaUsuario->getEmail()."</a></td>\n";
-    echo "<td>".$reserva->getIdPista()."</td>\n";
+    echo "<td>".pistaString($reserva->getIdPista())."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('d/m/Y')."</td>\n";
     echo "<td>".$reserva->getFechaInicio()->format('H:i')."</td>\n";
     echo "<td>".$reserva->getFechaFin()->format('H:i')."</td>\n";
