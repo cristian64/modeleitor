@@ -308,7 +308,6 @@
         }
     }
     
-    
     function tipoCss($tipo) {
         switch ($tipo) {
             case 0: return "ocupado"; break;
@@ -320,6 +319,25 @@
             case 6: return "ligainformacion"; break;
             default: return "ERROR: tipo \"$tipo\" desconocido"; break;
         }
+    }
+    
+    function disponibilidadString($disponibilidad) {
+        $cadena = "";
+        
+        if ($disponibilidad & 1) $cadena = $cadena."semana-mañana, ";
+        if ($disponibilidad & 2) $cadena = $cadena."semana-tarde, ";
+        if ($disponibilidad & 4) $cadena = $cadena."semana-noche, ";
+        
+        if ($disponibilidad & 8) $cadena = $cadena."sabado-mañana, ";
+        if ($disponibilidad & 16) $cadena = $cadena."sabado-tarde, ";
+        if ($disponibilidad & 32) $cadena = $cadena."sabado-noche, ";
+        
+        if ($disponibilidad & 64) $cadena = $cadena."domingo-mañana, ";
+        if ($disponibilidad & 128) $cadena = $cadena."domingo-tarde, ";
+        if ($disponibilidad & 256) $cadena = $cadena."domingo-noche, ";
+        
+        
+        return $cadena;
     }
     
     function pistaString($pista) {
