@@ -118,6 +118,8 @@ baseSuperior("Reservar pista");
                                         <option value="2"><?php echo tipoString(2); ?></option>
                                         <option value="3"><?php echo tipoString(3); ?></option>
                                         <option value="4"><?php echo tipoString(4); ?></option>
+                                        <option value="5"><?php echo tipoString(5); ?></option>
+                                        <option value="6"><?php echo tipoString(6); ?></option>
                                     </select>
                                 </div>
                                 <div>Realizar la misma reserva también los próximos
@@ -393,6 +395,8 @@ while ($tiempoInicial < $tiempoFinal)
                                 <div><div class="leyenda libre"></div>Libre</div>
                                 <div><div class="leyenda ocupado"></div>Ocupado</div>
                                 <div><div class="leyenda clase"></div>Ocupado por profesor</div>
+                                <div><div class="leyenda ligamatola"></div>Liga Matola</div>
+                                <div><div class="leyenda ligainformacion"></div>Liga Información</div>
                                 <div><div class="leyenda noreservable"></div>No reservable</div>
                             </div>
                             

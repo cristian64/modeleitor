@@ -88,9 +88,9 @@ else
             <?php } ?>
             <table class="bloques">
                 <tr>
-                    <td><div class="bloque">6 pistas de padel recién construidas</div></td>
-                    <td><div class="bloque">Vesturarios y cafetería dentro del recinto</td>
-                    <td><div class="bloque">Vereda Santa Teresa, Matola (Elche, Alicante)</div></td>
+                    <td><div class="bloque">6 pistas de padel recién construidas en Matola</div></td>
+                    <td><div class="bloque">Pista y menú en el restaurante por 10€</td>
+                    <td><div class="bloque">Servicio de fisioterapia</div></td>
                 </tr>
             </table>
     </div></div>
