@@ -100,7 +100,7 @@ baseSuperior("Reservar pista");
                         <h3><span>Reservar pista</span></h3>
                         <div id="resumenreserva">
                             <div id="datepicker"></div>
-                            <form id="formulario" action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
+                            <form id="formulario" <?php if (!$usuario->getAdmin()) echo "style=\"visibility:hidden;"; ?>action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
                                 <div><label>Día </label>
                                     <input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
                                     <input type="hidden" value="<?php echo $dia->format('d/m/Y'); ?>" name="diaoculto" />
@@ -230,6 +230,7 @@ baseSuperior("Reservar pista");
                                     restaurarSeleccionadas();
                                 pistaSeleccionada = pista;
                                 formulario.elements["pista"].value = pistaSeleccionada;
+                                formulario.style.visibility = "visible";
                                 
                                 // Si la celda no estaba en la lista ya, se introduce en las listas y se actualiza el formulario.
                                 if (!contains(celdasSeleccionadas, celda))
