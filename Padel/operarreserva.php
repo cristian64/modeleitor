@@ -39,7 +39,7 @@
         exit();
     }
     
-    if ($pista < 1 || $pista > 6)
+    if ($pista < 1 || $pista > count($PISTAS))
     {
         $_SESSION["mensaje_error"] = "La pista seleccionada no existe";
         header("location: reservar.php?dia=$diaoculto");

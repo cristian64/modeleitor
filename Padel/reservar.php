@@ -52,21 +52,15 @@ $intervalo->i = $INTERVALO;
 
 // Obtenemos las reservas de las 6 pistas para el día elegido.
 $reservas = array();
-$reservas[0] = ENReserva::obtenerPorPistaDia(1, $dia);
-$reservas[1] = ENReserva::obtenerPorPistaDia(2, $dia);
-$reservas[2] = ENReserva::obtenerPorPistaDia(3, $dia);
-$reservas[3] = ENReserva::obtenerPorPistaDia(4, $dia);
-$reservas[4] = ENReserva::obtenerPorPistaDia(5, $dia);
-$reservas[5] = ENReserva::obtenerPorPistaDia(6, $dia);
+for ($i = 0; $i < count($PISTAS); $i++) {
+    $reservas[$i] = ENReserva::obtenerPorPistaDia($i + 1, $dia);
+}
 
 if ($tiempoFinal->format('d') != $dia->format('d'))
-{    
-    $reservas[0] = array_merge($reservas[0], ENReserva::obtenerPorPistaDia(1, $siguiente));
-    $reservas[1] = array_merge($reservas[1], ENReserva::obtenerPorPistaDia(2, $siguiente));
-    $reservas[2] = array_merge($reservas[2], ENReserva::obtenerPorPistaDia(3, $siguiente));
-    $reservas[3] = array_merge($reservas[3], ENReserva::obtenerPorPistaDia(4, $siguiente));
-    $reservas[4] = array_merge($reservas[4], ENReserva::obtenerPorPistaDia(5, $siguiente));
-    $reservas[5] = array_merge($reservas[5], ENReserva::obtenerPorPistaDia(6, $siguiente));
+{
+    for ($i = 0; $i < count($PISTAS); $i++) {
+        $reservas[$i] = array_merge($reservas[$i], ENReserva::obtenerPorPistaDia($i + 1, $siguiente));
+    }
 }
 
 /**
@@ -274,12 +268,11 @@ baseSuperior("Reservar pista");
                             <table>
                                 <tr class="filacabecera">
                                     <td class="hora esquina"></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(1); ?></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(2); ?></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(3); ?></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(4); ?></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(5); ?></td>
-                                    <td class="cabecera columnapista"><?php echo pistaString(6); ?></td>
+<?php
+$pistaWidth = (100 / count($PISTAS))."%";
+for ($i = 0; $i < count($PISTAS); $i++) { ?>
+                                    <td style="width: <?php echo $pistaWidth; ?>" class="cabecera"><?php echo $PISTAS[$i]; ?></td>
+<?php } ?>
                                 </tr>
 <?php
 $fila = 0;
@@ -292,7 +285,7 @@ while ($tiempoInicial < $tiempoFinal)
     echo "<td class=\"hora\">\n";
     echo $tiempo->format("H:i")." - "; $tiempo->add($intervalo); echo $tiempo->format("H:i");
     echo "</td>\n";
-    for ($i = 0; $i < 6; $i++)
+    for ($i = 0; $i < count($PISTAS); $i++)
     {
         $estado = determinarEstado($reservas[$i], $tiempoInicial);
         if (is_object($estado))
@@ -319,7 +312,7 @@ while ($tiempoInicial < $tiempoFinal)
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
                 $cuerpo = $cuerpo."<td class=\"guapo-label\">Pista</td>";
-                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$estado->getIdPista()."\" /></td>";
+                $cuerpo = $cuerpo."<td class=\"guapo-input\"><input type=\"text\" readonly=\"readonly\" value=\"".$PISTAS[$estado->getIdPista() - 1]."\" /></td>";
                 $cuerpo = $cuerpo."</tr>";
                 $cuerpo = $cuerpo."<tr>";
                 $cuerpo = $cuerpo."<td class=\"guapo-label\">Día</td>";

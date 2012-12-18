@@ -2,6 +2,7 @@
     session_start();
 
     require_once 'constantes.php';
+    require_once 'pistas.php';
     require_once 'BD.php';
     BD::espeficarDatos($BDURL, $BDUSER, $BDPASSWORD, $BDNAME);
     require_once 'ENUsuario.php';
@@ -322,15 +323,11 @@
     }
     
     function pistaString($pista) {
-        switch ($pista) {
-            case 1: return "IX20"; break;
-            case 2: return "IX35"; break;
-            case 3: return "I30"; break;
-            case 4: return "VELOSTER"; break;
-            case 5: return "SANTA FE"; break;
-            case 6: return "I40"; break;
-            default: return $pista; break;
+        include 'pistas.php';
+        if ($pista >= 1 && $pista <= count($PISTAS)) {
+            return $PISTAS[$pista - 1];
         }
+        return $pista;
     }
 
     /**
