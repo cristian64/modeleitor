@@ -57,10 +57,11 @@ if (ENReserva::borrarPorId($reserva->getId()))
     $usuarioReserva = ENUsuario::obtenerPorId($reserva->getIdUsuario());
     if ($reserva->getTipo() == 0)
     {
-        emailCancelarReserva("beatriz@autofima.com", $usuarioReserva, $reserva);
-        emailCancelarReserva("Santiago@autofima.com", $usuarioReserva, $reserva);
-        emailCancelarReserva("emihyundai@hotmail.com", $usuarioReserva, $reserva);
-        emailCancelarReserva("fran@padelelche.com", $usuarioReserva, $reserva);
+        include("emails.php");
+
+        foreach ($EMAILS_RESERVAS as $i) {
+            emailCancelarReserva($i, $usuarioReserva, $reserva);
+        }
     }
     header("location: $retorno");
     exit();
