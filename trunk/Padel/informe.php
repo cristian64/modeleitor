@@ -28,8 +28,14 @@ header("Expires: 0");
 
 echo "id,email,nombre,dni,dirección,teléfono,sexo,fecha de registro,disponibilidad,categoría,reservas totales,fecha de la última reserva,días transcurridos desde la última reserva,\n";
 
+$ahora = new DateTime();
+$ahora = $ahora->getTimestamp();
 $usuarios = ENUsuario::obtenerTodos(0, 9999999, "");
 foreach ($usuarios as $i) {
+    
+    $reservas = ENReserva::obtenerPorUsuario($i->getId(), 9999999);
+    $ultimaReserva = count($reservas) > 0 ? $reservas[0] : null;
+    
     echo $i->getId().",";
     echo "\"".$i->getEmail()."\",";
     echo "\"".$i->getNombre()."\",";
@@ -38,11 +44,16 @@ foreach ($usuarios as $i) {
     echo "\"".$i->getTelefono()."\",";
     echo "\"".$i->getSexo()."\",";
     echo "\"".$i->getFechaRegistro()->format("Y-m-d H-i-s")."\",";
-    echo "\"".$i->getDisponibilidad()."\",";
-    echo ",";//echo "\"".$i->getCategoria()."\",";
-    echo ",";//echo "\"".$i->getReservasTotales()."\",";
-    echo ",";//echo "\"".$i->getUltimaReserva()."\",";
-    echo ",";//echo "\"".$i->getDiasTranscurridos()."\",";
+    echo "\"".disponibilidadString($i->getDisponibilidad())."\",";
+    echo "\"".$i->getCategoria()."\",";
+    echo "\"".count($reservas)."\",";
+    if ($ultimaReserva != null) {
+        echo "\"".$ultimaReserva->getFechaInicio()->format("Y-m-d H-i-s")."\",";
+        echo "\"".round(($ahora - $ultimaReserva->getFechaInicio()->getTimestamp()) / (60 * 60 * 24), 0)."\",";
+    } else {
+        echo ",";
+        echo ",";
+    }
     echo "\n";
 }
 
