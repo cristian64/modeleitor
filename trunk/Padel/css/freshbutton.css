@@ -717,14 +717,8 @@ table, tr
 
 #tablapistas table td.hora
 {
-    width: 1%;
     padding: 0 5px;
     white-space: nowrap;
-}
-
-.columnapista
-{
-    width: 15%;
 }
 
 .ocupado
