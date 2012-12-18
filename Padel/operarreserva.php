@@ -120,10 +120,12 @@
             {
                 $_SESSION["mensaje_info"] = "Recibirás un e-mail con el resumen de la reserva";            
             }
-            emailReserva("beatriz@autofima.com", $usuario, $reserva);
-            emailReserva("Santiago@autofima.com", $usuario, $reserva);
-            emailReserva("emihyundai@hotmail.com", $usuario, $reserva);
-            emailReserva("fran@padelelche.com", $usuario, $reserva);
+            
+            include("emails.php");
+            
+            foreach ($EMAILS_RESERVAS as $i) {
+                emailReserva($i, $usuario, $reserva);
+            }
             
             $nueva = $reserva->copiar();
             $reservasProximas = 0;
