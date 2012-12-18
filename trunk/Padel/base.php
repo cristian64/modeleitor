@@ -110,6 +110,7 @@ function baseInferior()
             <div style="clear:both;"></div>
             <div id="pie">
                 <div>
+                    <a href="http://www.autofima.com"><img src="css/autofima.png" alt="AUTOFIMA" /></a>
                     <a href="http://www.hyundai.es"><img src="css/hyundai.png" alt="Hyundai" /></a>
                     <a href="http://www.lacaixa.es"><img src="css/lacaixa.jpg" alt="La Caixa" /></a>
                     <a href="http://www.informacion.es"><img src="css/informacion.gif" alt="Diario Información" /></a>

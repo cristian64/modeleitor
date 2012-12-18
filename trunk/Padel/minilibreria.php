@@ -301,6 +301,8 @@
             case 2: return "Clase 1 persona"; break;
             case 3: return "Clase 2 personas"; break;
             case 4: return "Clase 3 personas"; break;
+            case 5: return "Liga Matola"; break;
+            case 6: return "Liga Información"; break;
             default: return "ERROR: tipo \"$tipo\" desconocido"; break;
         }
     }
@@ -313,6 +315,8 @@
             case 2: return "clase"; break;
             case 3: return "clase"; break;
             case 4: return "clase"; break;
+            case 5: return "ligamatola"; break;
+            case 6: return "ligainformacion"; break;
             default: return "ERROR: tipo \"$tipo\" desconocido"; break;
         }
     }
