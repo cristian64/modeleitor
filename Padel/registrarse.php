@@ -94,7 +94,8 @@ $_SESSION["registro_disponibilidad"] = "";
                                         </tr>
                                         <tr>
                                             <td class="guapo-label">Categoría</td>
-                                            <td class="guapo-input">                                                
+                                            <td class="guapo-input">    
+                                                <div class="textinputfake">
                                                 <select name="categoria">
                                                     <option value="0" <?php if ($categoria == 0) echo "selected=\"selected\""; ?>>Sin categoría</option>
                                                     <option value="5" <?php if ($categoria == 5) echo "selected=\"selected\""; ?>>5ª categoría</option>
@@ -103,6 +104,8 @@ $_SESSION["registro_disponibilidad"] = "";
                                                     <option value="2" <?php if ($categoria == 2) echo "selected=\"selected\""; ?>>2ª categoría</option>
                                                     <option value="1" <?php if ($categoria == 1) echo "selected=\"selected\""; ?>>1ª categoría</option>
                                                 </select>
+                                                <a href="http://www.infopadel.es/calcula-tu-categoria-de-padel/">Calcula tu categoría</a>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
