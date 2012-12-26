@@ -175,7 +175,7 @@
         $cuerpo = $cuerpo."<td>$mensaje</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = "<table>".$cuerpo."</table>";
-        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/logo.png\" /><h2>Se ha recibido un nuevo mensaje desde un usuario:<br /></h2>"."$cuerpo";
+        $cuerpo = "<img src=\"http://www.calzadosjam.es/css/calzadosjam_logo.png\" /><h2>Se ha recibido un nuevo mensaje desde un usuario:<br /></h2>"."$cuerpo";
         
         include 'constantes.php';
         
