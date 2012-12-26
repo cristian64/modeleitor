@@ -183,7 +183,7 @@
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = $cuerpo."<tr>";
         $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>".$reserva->getIdPista()."</td>";
+        $cuerpo = $cuerpo."<td>".pistaString($reserva->getIdPista())."</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = $cuerpo."<tr>";
         $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
@@ -223,7 +223,7 @@
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = $cuerpo."<tr>";
         $cuerpo = $cuerpo."<td><strong>Pista:</strong>&nbsp;&nbsp;&nbsp;</td>";
-        $cuerpo = $cuerpo."<td>".$reserva->getIdPista()."</td>";
+        $cuerpo = $cuerpo."<td>".pistaString($reserva->getIdPista())."</td>";
         $cuerpo = $cuerpo."</tr>";
         $cuerpo = $cuerpo."<tr>";
         $cuerpo = $cuerpo."<td><strong>Día:</strong>&nbsp;&nbsp;&nbsp;</td>";
