@@ -18,10 +18,9 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <link type="text/css" rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.23.custom.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/freshbutton.css" media="screen" />
         <link type="text/css" rel="stylesheet" href="css/thickbox.css" media="screen" />
+        <link type="text/css" rel="stylesheet" href="css/responsiveslides/responsiveslides.css" media="screen" />
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
-        <link type="text/css" rel="stylesheet" href="css/sliderman.css" />
-        <script type="text/javascript" src="js/sliderman.1.3.7.js"></script>
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="js/mapa.js" type="text/javascript"></script>
         <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
@@ -30,6 +29,7 @@ function baseSuperior($titulo, $mostrarmenu = true)
         <script src="js/thickbox.js" type="text/javascript"></script>
         <script src="js/formularios.js" type="text/javascript"></script>
         <script src="js/cookies.js" type="text/javascript"></script>
+        <script src="js/responsiveslides.min.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="contenedor">

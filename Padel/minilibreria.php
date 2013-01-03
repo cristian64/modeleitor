@@ -89,7 +89,7 @@
         return $rutaFichero != NULL && file_exists($rutaFichero) && @unlink($rutaFichero);
     }
     
-    function crearFicheroFoto($httpPostFile)
+    function crearFicheroFoto($httpPostFile, $directorio)
     {
         //http://emilio.aesinformatica.com/2007/05/03/subir-una-imagen-con-php/
         $creada = false;
@@ -99,8 +99,8 @@
             $ahora = new DateTime();
             $nombre = $ahora->format("dmYHis");
             $extension = pathinfo($httpPostFile['name'], PATHINFO_EXTENSION);
-            $rutaFoto = "fotos/$nombre."."$extension";
-            $rutaMiniatura = "fotos/$nombre.thumb."."$extension";
+            $rutaFoto = $directorio."$nombre."."$extension";
+            $rutaMiniatura = $directorio."$nombre.thumb."."$extension";
 
             // Hay que intentar borrar las anteriores. No importa si falla.
             borrar($rutaFoto);
