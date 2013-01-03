@@ -790,6 +790,15 @@ table, tr
     font-size: 0.8em;
 }
 
+.whiteinput
+{
+    border: 0;
+    background: #fff;
+    text-align: center;
+    color: #009E12;
+    font-weight: bold;
+}
+
 #resumenreserva
 {
     width: 300px;

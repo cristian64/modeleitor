@@ -96,14 +96,14 @@ baseSuperior("Reservar pista");
                             <div id="datepicker"></div>
                             <form id="formulario" <?php if (!$usuario->getAdmin()) echo "style=\"visibility:hidden;"; ?>action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
                                 <div><label>Día </label>
-                                    <input type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
+                                    <input class="whiteinput" type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
                                     <input type="hidden" value="<?php echo $dia->format('d/m/Y'); ?>" name="diaoculto" />
                                     <input type="hidden" value="0" name="scroll" />
                                 </div>
-                                <div><label>Pista </label><input type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
-                                <div><label>Desde las </label><input type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
-                                <div><label>Duración </label><input type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
-                                <div><label>Precio </label><input type="text" value="" name="precio" readonly="readonly" style="width: 30px;" /><label> euros</label></div>
+                                <div><label>Pista </label><input class="whiteinput" type="text" value="" name="pista" readonly="readonly" style="width: 30px;" /></div>
+                                <div><label>Desde las </label><input class="whiteinput" type="text" value="" name="desde" readonly="readonly" style="width: 50px;" /><label> hasta las </label><input class="whiteinput" type="text" value="" name="hasta" readonly="readonly" style="width: 50px;" /></div>
+                                <div><label>Duración </label><input class="whiteinput" type="text" value="" name="duracion" readonly="readonly" style="width: 30px;" /><label> minutos</label></div>
+                                <div><label>Precio </label><input class="whiteinput" type="text" value="" name="precio" readonly="readonly" style="width: 30px;" /><label> euros</label></div>
 <?php if ($usuario->getAdmin()) { ?>
                                 <div>
                                     <select name="tipo">
