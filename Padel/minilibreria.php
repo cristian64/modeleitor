@@ -262,7 +262,7 @@
         while ($file = readdir($handler)) {
 
             // if file isn't this directory or its parent, add it to the results
-            if ($file != "." && $file != "..") {
+            if ($file != "." && $file != ".." && !startsWith($file, ".")) {
             $results[] = $file;
             }
 
@@ -274,6 +274,21 @@
         // done!
         return $results;
 
+    }
+    
+    function startsWith($haystack, $needle)
+    {
+        return !strncmp($haystack, $needle, strlen($needle));
+    }
+
+    function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
     }
     
     function mesToStr($mes)

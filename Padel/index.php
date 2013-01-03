@@ -23,6 +23,7 @@ else
             
         </div>
             <?php if ($usuario == null) { ?>
+            <br />
             <a href="iniciarsesion.php" class="freshbutton-big freshbutton-extrabig"><span>Iniciar sesión<br /><small>para reservar pista</small></span></a>&nbsp;&nbsp;&nbsp;
             <a href="registrarse.php" class="freshbutton-big freshbutton-extrabig"><span>Registrarse<br /><small>para reservar pista</small></span></a>
             <?php } ?>
