@@ -95,6 +95,8 @@ baseSuperior("Fotos");
                 <li>Selecciona una foto y pulsa el botón Subir foto</li>
                 <li>Comprueba que el fichero es un formato válido: JPG, PNG, GIF, etc.</li>
                 <li>Es recomendable subir fotos JPG con un tamaño no superior a 500 KB</li>
+                <li>Las fotos de la portada deberían ser más bien alargadas. Si no, ocuparán mucho la pantalla.</li>
+                <li>Todas las fotos de la portada deberían tener el mismo tamaño.</li>
             </ol>
             </div>
 <?php
