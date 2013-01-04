@@ -94,7 +94,7 @@ baseSuperior("Reservar pista");
                         <h3><span>Reservar pista</span></h3>
                         <div id="resumenreserva">
                             <div id="datepicker"></div>
-                            <form id="formulario" <?php if (!$usuario->getAdmin()) echo "style=\"visibility:hidden;"; ?>action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
+                            <form id="formulario" <?php if (!$usuario->getAdmin()) echo "style=\"visibility:hidden;\""; ?> action="operarreserva.php" method="post" enctype="multipart/form-data" onsubmit="return validarReserva(this);">
                                 <div><label>Día </label>
                                     <input class="whiteinput" type="text" value="<?php echo $dia->format('d/m/Y'); ?>" name="dia" readonly="readonly" style="width: 100px;" />
                                     <input type="hidden" value="<?php echo $dia->format('d/m/Y'); ?>" name="diaoculto" />
