@@ -16,6 +16,9 @@ if (!$usuario->getAdmin())
     exit();
 }
 
+borrar("bloqueCategorias.php");
+borrar("bloqueCategoriasAdmin.php");
+
 $operacion = getPost("op");
 switch ($operacion)
 {
@@ -29,9 +32,6 @@ switch ($operacion)
         editar();
         break;
 }
-
-borrar("bloqueCategorias.php");
-borrar("bloqueCategoriasAdmin.php");
 
 function eliminar()
 {
