@@ -65,21 +65,6 @@ function baseSuperior($titulo)
         })();
 
         </script>
-<?php if (!$esMovil) { ?>
-		<!--Start of Zopim Live Chat Script-->
-		<script type="text/javascript">
-		window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-		d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-		_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-		$.src='//cdn.zopim.com/?yAnJYqtfG8LYFeycDZ1mqr1YcB1CKT0B';z.t=+new Date;$.
-		type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-		</script>
-		<script type="text/javascript">$zopim(function() {
-		$zopim.livechat.setLanguage('es');
-		});
-		</script>
-		<!--End of Zopim Live Chat Script-->
-<?php } ?>
         <meta name="google-translate-customization" content="83036bbb495e9259-b92db425e1be685c-g15db1c5c55c82e4b-12" />
     </head>
     <body>
@@ -216,9 +201,6 @@ function bloqueCategorias($admin)
     }
 
     echo "</ul>\n";
-    echo "<div style=\"vertical-align: middle; text-align: right; padding: 10px;\">";
-    echo "<div class=\"g-plusone\" data-href=\"http://www.calzadosjam.es\"></div>";
-    echo "</div>\n";
     echo "</div>\n";
     
     $fp = fopen($cachefile, 'w');
