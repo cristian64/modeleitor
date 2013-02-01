@@ -64,6 +64,29 @@ function baseSuperior($titulo)
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
+        $("document").ready(function() {
+            var flotante = false;
+            var cabecera = $("#cabecera");
+            var barra = $("#barra");
+
+            $(window).scroll(function() {
+
+                if ($(this).scrollTop() > 90) {
+                    if (!flotante) {
+                        cabecera.css("marginBottom", barra.height());
+                        barra.addClass("flotante");
+                        flotante = true;
+                    }
+                } else {
+                    if (flotante) {
+                        cabecera.css("marginBottom", 0);
+                        barra.removeClass("flotante");
+                        flotante = false;
+                    }
+                }
+            });
+        });
+
         </script>
         <meta name="google-translate-customization" content="83036bbb495e9259-b92db425e1be685c-g15db1c5c55c82e4b-12" />
     </head>
