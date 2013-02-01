@@ -31,7 +31,6 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
     echo "</td>";
     echo "</tr>";
     echo "</table>";
-    echo "<div class=\"g-plusone-button\"><div class=\"g-plusone\" data-href=\"catalogo?marca=".$modelo->getIdMarca()."#".$modelo->getId()."\"></div></div>";
     
 ?>
         <script type="text/javascript">
@@ -45,8 +44,6 @@ if ($modelo != null && (!$modelo->getDescatalogado() || $admin))
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-         
-        gapi.plusone.go();
 
         </script>
 <?php

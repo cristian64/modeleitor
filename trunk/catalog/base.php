@@ -36,9 +36,6 @@ function baseSuperior($titulo)
         <link rel="shortcut icon" href="favicon.ico" />
         <link rel="icon" type="image/png" href="favicon.png" />
      
-        <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-          {lang: 'es', parsetags: 'explicit'}
-        </script>
         <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es" type="text/javascript"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
@@ -68,9 +65,7 @@ function baseSuperior($titulo)
             var flotante = false;
             var cabecera = $("#cabecera");
             var barra = $("#barra");
-
             $(window).scroll(function() {
-
                 if ($(this).scrollTop() > 90) {
                     if (!flotante) {
                         cabecera.css("marginBottom", barra.height());
@@ -138,6 +133,10 @@ function baseSuperior($titulo)
                             this.select();
                         });
                         
+                        $("#busqueda-input").blur(function(){
+                            this.selectionStart = this.selectionEnd = -1;
+                        });
+                        
                         $("ul.topnav li a").hover(function() { //When trigger is clicked...
                             
                             //Following events are applied to the subnav itself (moving subnav up and down)
@@ -150,8 +149,6 @@ function baseSuperior($titulo)
                                 $(this).css("z-index", 10);
                             });
                             });
-                        
-                        gapi.plusone.go();
                     });
                 </script>
                 
