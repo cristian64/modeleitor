@@ -10,7 +10,6 @@ ul.topnav li {
 	float: left;
 	margin: 0;
 	position: relative;
-    border-left: 1px solid #eee;
 }
 ul.topnav li a{
     z-index: 10;

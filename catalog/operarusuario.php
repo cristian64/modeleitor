@@ -114,42 +114,11 @@ function editar()
 
 function anadir()
 {
-    $fabricante = new ENFabricante();
-    $fabricante->setNombre(getPost("nombre"));
-    $fabricante->setDescripcion(getPost("descripcion"));
-    $fabricante->setEmail(getPost("email"));
-    $fabricante->setTelefono(getPost("telefono"));
-    if ($fabricante->save())
-    {
-        $_SESSION["mensaje_exito"] = "El fabricante ha sido añadida correctamente";
-        header("location: fabricantes");
-        exit();
-    }
-    else
-    {
-        $_SESSION["mensaje_error"] = "No se pudo añadir el fabricante";
-        header("location: fabricantes");
-        exit();
-    }
+    $_SESSION["mensaje_aviso"] = "Área restringida a administradores 5718273.";
+    header("location: .");
+    exit();
 }
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -36,11 +36,11 @@ if ($email != "" || $contrasena != "" || $contrasena2 != "" || $nombre != "" || 
             $existente = ENUsuario::getByEmail($email);
             if ($existente == null)
             {
-                if (strlen($nombre) < $kMaxNombre && strlen($nombre) > $kMinNombre && strlen($apellidos) < $kMaxNombre && strlen($apellidos) > $kMinNombre)
+                if (strlen($nombre) <= $kMaxNombre && strlen($nombre) >= $kMinNombre && strlen($apellidos) <= $kMaxNombre && strlen($apellidos) >= $kMinNombre)
                 {
                     if ($contrasena == $contrasena2)
                     {
-                        if (strlen($contrasena) < $kMaxContrasena && strlen($contrasena) > $kMinContrasena)
+                        if (strlen($contrasena) <= $kMaxContrasena && strlen($contrasena) >= $kMinContrasena)
                         {
                             $nuevo = new ENUsuario;
                             $nuevo->setEmail($email);
