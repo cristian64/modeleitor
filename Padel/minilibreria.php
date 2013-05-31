@@ -130,6 +130,13 @@
     {
         echo $cadena."<br />";
     }
+    
+    function depurar($cadena)
+    {
+        $fp = fopen("debug.txt", 'a');
+        fwrite($fp, date("Y/m/d H:i:s")." ".$cadena."\n");
+        fclose($fp);
+    }
 
     function rellenar($cadena,$caracter,$digitos)
     {
