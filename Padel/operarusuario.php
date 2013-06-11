@@ -126,7 +126,7 @@
             {
                 if ($contrasena != "" || $contrasena2 != "" || $contrasena3 != "")
                 {
-                    if (sha1($contrasena3) != $u->getContrasena() && $usuario->getId() && $u->getId())
+                    if (sha1($contrasena3) != $u->getContrasena() && $usuario->getId() == $u->getId())
                     {
                         $_SESSION["mensaje_error"] = "La contraseña anterior no es correcta";
                         header("location: usuario.php?id=$id");
@@ -158,7 +158,7 @@
     //$u->setEmail($email);
     $u->setNombre($nombre);
     $u->setSexo($sexo);
-    if ($contrasena3 != "")
+    if ($contrasena != "")
         $u->setContrasena(sha1($contrasena));
     if ($usuario->getAdmin() && $usuario->getId() != $u->getId())
         $u->setAdmin($admin);

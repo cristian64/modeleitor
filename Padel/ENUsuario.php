@@ -544,11 +544,41 @@ class ENUsuario
             }
             catch (Exception $e)
             {
-                debug("<ENUsuario::actualizar() ".$e->getMessage());
+                debug("ENUsuario::actualizar() ".$e->getMessage());
             }
         }
 
         return $guardado;
+    }
+    
+    public static function borrarPorId($id)
+    {
+        $id = filtrarCadena($id);
+        $borrado = false;
+
+        try
+        {
+            $conexion = BD::conectar();
+
+            $sentencia = "delete from usuarios where id = '".$id."'";
+            $resultado = mysql_query($sentencia, $conexion);
+            if ($resultado)
+            {
+                $borrado = true;
+            }
+            else
+            {
+                debug("ENUsuario::borrarPorId(id)>".mysql_error());
+            }
+
+            BD::desconectar($conexion);
+        }
+        catch (Exception $e)
+        {
+            debug("ENUsuario::borrarPorId(id) ".$e->getMessage());
+        }
+
+        return $borrado;
     }
 }
 ?>
