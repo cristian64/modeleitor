@@ -54,6 +54,7 @@ baseSuperior("Contacto", true);
                                 <div>
                                 Teléfono de contacto de los administradores:
                                 <ul>
+									<li>672 784 059</li>
                                     <li>Beatriz 605 85 68 70</li>
                                     <li>Santiago Pamies 636 67 06 87</li>
                                     <li>Emilio Mejias  607 382 173</li>
